@@ -7,7 +7,7 @@
     ./disks.nix
     ./disks-home.nix
     ./sway.nix
-    ./extra/3d-printing.nix
+    ./extra/3d-design.nix
     ./extra/android.nix
     ./extra/arch-linux.nix
     ./extra/avahi.nix
