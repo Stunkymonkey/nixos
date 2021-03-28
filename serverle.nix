@@ -7,6 +7,8 @@
     ./disks-srv.nix
     ./users.nix
     ./extra/networkdecrypt.nix
+    ./extra/development.nix
+    ./extra/3d-printer.nix
     ./extra/ssh.nix
     ./extra/avahi.nix
     ./hardware/raspberrypi4.nix

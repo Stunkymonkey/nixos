@@ -9,6 +9,8 @@ in
     unstable.clippy # lint
     cargo-flamegraph
     cargo-outdated
+    rustfmt
+    unstable.rustc
     # general
     clang
     cmake
@@ -25,12 +27,8 @@ in
     patchelf
     pkg-config
     (python3.withPackages (ps: with ps; [
-      nltk # language-toolkit
       tqdm # progressbar in pandas
       jupyter # notebooks
-      Keras # machine learning
-      tensorflow-build_2 # machine learning
-      transformers # machine learning
       numpy
       pandas
       matplotlib
@@ -39,8 +37,6 @@ in
       pillow
     ]))
     ripgrep
-    rustfmt
-    unstable.rustc
     shellcheck
     sloccount
     topgrade
