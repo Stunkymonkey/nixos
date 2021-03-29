@@ -37,9 +37,9 @@ in
       unstable.wshowkeys
     ];
 
-     
-    extraSessionCommands = 
-    ''  
+
+    extraSessionCommands =
+      ''  
       export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
       export SDL_VIDEODRIVER=wayland
@@ -50,6 +50,6 @@ in
       export SAL_USE_VCLPLUGIN=gtk3
       export MOZ_ENABLE_WAYLAND=1
       export MOZ_USE_XINPUT2=1
-    ''; 
+    '';
   };
 }

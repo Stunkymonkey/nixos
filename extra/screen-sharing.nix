@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     remmina
     teamviewer
-  ];  
+  ];
 
   services.pipewire.enable = true;
 
