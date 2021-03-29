@@ -8,6 +8,7 @@
     ./users.nix
     ./extra/networkdecrypt.nix
     ./extra/development.nix
+    ./extra/docker.nix
     ./extra/3d-printer.nix
     ./extra/ssh.nix
     ./extra/avahi.nix
@@ -16,6 +17,10 @@
   networking.hostName = "serverle";
 
   #environment.noXlibs = true;
+
+  networking.firewall.allowedTCPPorts = [
+    8080 # aria
+  ];
 
   networking.networkmanager.wifi.powersave = false;
 
