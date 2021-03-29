@@ -15,7 +15,6 @@ in
   #xdg.mime.enable = true;
 
   # make gnome settings persistent
-  
   programs.dconf.enable = true;
 
   # gnome services
@@ -92,28 +91,4 @@ in
       exec sway
     fi
   '';
-
-#  services.xserver = {
-#    enable = true;
-#    layout = "us";
-#    xkbOptions = "eurosign:e";
-#    libinput.enable = true;
-#    libinput.naturalScrolling = true;
-#
-#    startDbusSession = true;
-#    updateDbusEnvironment = true;
-#
-#    desktopManager = {
-#      xterm.enable = false;
-#      gnome3.enable = false;
-#    };
-#
-#    displayManager = {
-#      sessionData.sessionNames = [ "sway" "none+i3" ];
-#      defaultSession = "sway";
-#      gdm.enable = true;
-#      gdm.wayland = true;
-#      lightdm.enable = false;
-#    };
-#  };
 }
