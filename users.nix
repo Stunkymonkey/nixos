@@ -8,6 +8,7 @@
       "wheel"
       "adbusers"
       "audio"
+      "dialout"
       "docker"
       "input"
       "libvirtd"
