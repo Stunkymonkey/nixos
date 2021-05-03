@@ -39,6 +39,7 @@ in
     (gimp-with-plugins.override { plugins = with gimpPlugins; [ resynthesizer ]; })
     glib
     gnome3.adwaita-icon-theme
+    gnome3.dconf-editor
     gnome3.eog
     gnome3.file-roller
     gnome3.gnome-calendar
@@ -62,6 +63,7 @@ in
     simple-scan
     #spotify
     socat
+    sshuttle
     tdesktop
     thunderbird
     typora
