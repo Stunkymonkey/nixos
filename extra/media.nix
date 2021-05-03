@@ -15,7 +15,6 @@ in
     inkscape
     unstable.puddletag # audio tagging
     mp3val
-    #mediaelch
     unstable.mediaelch
     picard
     projectm
