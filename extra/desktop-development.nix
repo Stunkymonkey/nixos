@@ -9,6 +9,7 @@
     fritzing
     insomnia
     #jetbrains.idea-community
+    qgis
     sublime3
   ];
 }

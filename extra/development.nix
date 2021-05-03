@@ -13,8 +13,8 @@ in
     unstable.rustc
     # general
     clang
+    cloc
     cmake
-    cvs
     dfeet
     direnv
     entr
@@ -38,7 +38,6 @@ in
     ]))
     ripgrep
     shellcheck
-    sloccount
     topgrade
     valgrind
     vimPlugins.YouCompleteMe
