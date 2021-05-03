@@ -48,8 +48,12 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Nix
-  nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 30d";
+  nix.autoOptimiseStore = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   system.stateVersion = "20.09";
   system.autoUpgrade.enable = true;
