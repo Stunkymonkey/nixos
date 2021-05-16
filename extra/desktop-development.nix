@@ -7,6 +7,7 @@
     dbeaver
     filezilla
     fritzing
+    gnome3.meld
     insomnia
     #jetbrains.idea-community
     qgis
