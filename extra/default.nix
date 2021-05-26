@@ -20,9 +20,11 @@ in
   # gnome services
   services.dbus.packages = [ pkgs.gnome3.dconf ];
   services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
-  services.gnome3.gnome-keyring.enable = true;
-  services.gnome3.glib-networking.enable = true;
-  # enable trash & network-mount in nautilus
+  services.gnome3 = {
+    gnome-keyring.enable = true;
+    glib-networking.enable = true;  # network-mount
+  };
+  # enable trash & network-mount
   services.gvfs.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -45,7 +47,6 @@ in
     gnome3.gnome-calendar
     gnome3.gnome-system-monitor
     gnome3.nautilus
-    gnome3.nautilus-python
     gnome3.simple-scan
     keepassxc
     keychain
