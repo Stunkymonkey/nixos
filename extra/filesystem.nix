@@ -2,6 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     davfs2
+    exfat
+    exfat-utils
     fuse3
     hfsprogs
     mtpfs
