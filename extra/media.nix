@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
   environment.systemPackages = with pkgs; [
     audacity
@@ -13,9 +10,9 @@ in
     imagemagick
     image_optim
     inkscape
-    unstable.puddletag # audio tagging
+    puddletag # audio tagging
     mp3val
-    unstable.mediaelch
+    mediaelch
     picard
     projectm
     shotwell

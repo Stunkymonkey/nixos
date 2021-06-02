@@ -4,7 +4,7 @@
   hardware.bluetooth = {
     enable = true;
     package = pkgs.bluezFull;
-    config = {
+    settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
       };

@@ -20,7 +20,7 @@ in
   # gnome services
   services.dbus.packages = [ pkgs.gnome3.dconf ];
   services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
-  services.gnome3 = {
+  services.gnome = {
     gnome-keyring.enable = true;
     glib-networking.enable = true;  # network-mount
   };

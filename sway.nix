@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
   programs.light.enable = true;
 
@@ -9,7 +6,7 @@ in
     polkit_gnome
   ];
   environment.pathsToLink = [ "/libexec" ];
-  #programs.wshowkeys.enable = true;
+  programs.wshowkeys.enable = true;
 
   programs.sway = {
     enable = true;
@@ -24,7 +21,7 @@ in
       dmenu
       gammastep
       grim
-      unstable.i3status-rust
+      i3status-rust
       mako
       slurp
       swayidle
@@ -34,7 +31,7 @@ in
       wl-clipboard
       wofi
       xwayland
-      unstable.wshowkeys
+      wshowkeys
     ];
 
 

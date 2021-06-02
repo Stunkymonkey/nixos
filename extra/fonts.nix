@@ -26,4 +26,5 @@
       #unifont # unicode
     ];
   };
+  nixpkgs.config.joypixels.acceptLicense = true;
 }

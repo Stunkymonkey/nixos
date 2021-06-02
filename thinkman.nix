@@ -55,7 +55,7 @@
     options = "--delete-older-than 30d";
   };
 
-  system.stateVersion = "20.09";
+  system.stateVersion = "21.05";
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.09;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.05;
 }
