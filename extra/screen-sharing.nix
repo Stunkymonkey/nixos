@@ -4,7 +4,6 @@
     remmina
     teamviewer
   ];
-  imports = [ ./xdg-portal.nix ];
 
   services.pipewire.enable = true;
 
