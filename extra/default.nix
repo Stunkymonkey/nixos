@@ -11,8 +11,7 @@ in
   programs.gnome-disks.enable = true;
   services.udisks2.enable = true;
 
-  # test if working
-  #xdg.mime.enable = true;
+  xdg.mime.enable = true;
 
   # make gnome settings persistent
   programs.dconf.enable = true;
@@ -28,8 +27,6 @@ in
   services.gvfs.enable = true;
 
   environment.systemPackages = with pkgs; [
-    #mime-types
-    xdg_utils
     adwaita-qt
     arc-icon-theme
     arc-kde-theme
@@ -72,6 +69,7 @@ in
     vlc
     mpv-with-scripts
     wayvnc
+    xdg-utils
     zathura
     zeal
 
