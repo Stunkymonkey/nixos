@@ -13,6 +13,7 @@
     ./extra/avahi.nix
     ./extra/bluetooth-audio.nix
     ./extra/clean.nix
+    ./extra/compression.nix
     ./extra/default.nix
     ./extra/desktop-development.nix
     ./extra/development.nix

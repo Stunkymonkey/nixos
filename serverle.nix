@@ -7,6 +7,7 @@
     ./disks-srv.nix
     ./users.nix
     ./extra/networkdecrypt.nix
+    ./extra/compression.nix
     ./extra/development.nix
     ./extra/docker.nix
     ./extra/3d-printer.nix
