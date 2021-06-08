@@ -27,14 +27,15 @@ in
     patchelf
     pkg-config
     (python3.withPackages (ps: with ps; [
-      tqdm # progressbar in pandas
       jupyter # notebooks
+      matplotlib
       numpy
       pandas
-      matplotlib
-      scipy
-      scikitlearn
       pillow
+      plotly
+      scikitlearn
+      scipy
+      tqdm # progressbar in pandas
     ]))
     ripgrep
     shellcheck
