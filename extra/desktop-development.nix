@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 {
   environment.systemPackages = with pkgs; [
     arduino
@@ -9,8 +12,7 @@
     fritzing
     gnome3.meld
     insomnia
-    #jetbrains.idea-community
     qgis
-    sublime3
+    unstable.sublime4
   ];
 }
