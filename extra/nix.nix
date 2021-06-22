@@ -3,5 +3,6 @@
   environment.systemPackages = with pkgs; [
     nixpkgs-fmt
     nix-prefetch-git
+    nix-prefetch-github
   ];
 }
