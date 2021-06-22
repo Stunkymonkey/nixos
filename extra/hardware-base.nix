@@ -7,6 +7,7 @@
     f3
     hdparm
     lm_sensors
+    nvme-cli
     pciutils
     smartmontools
     testdisk
