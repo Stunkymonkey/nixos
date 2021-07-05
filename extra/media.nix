@@ -11,6 +11,7 @@
     image_optim
     inkscape
     puddletag # audio tagging
+    mp3splt # splitting mp3 files
     mp3val
     mediaelch
     picard
