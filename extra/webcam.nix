@@ -3,6 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     fswebcam
-    gnome3.cheese
+    gnome.cheese
   ];
 }

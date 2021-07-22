@@ -17,8 +17,8 @@ in
   programs.dconf.enable = true;
 
   # gnome services
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
-  services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+  services.dbus.packages = [ pkgs.gnome.dconf ];
+  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
   services.gnome = {
     gnome-keyring.enable = true;
     glib-networking.enable = true;  # network-mount
@@ -37,14 +37,14 @@ in
     ghostwriter
     (gimp-with-plugins.override { plugins = with gimpPlugins; [ resynthesizer ]; })
     glib
-    gnome3.adwaita-icon-theme
-    gnome3.dconf-editor
-    gnome3.eog
-    gnome3.file-roller
-    gnome3.gnome-calendar
-    gnome3.gnome-system-monitor
-    gnome3.nautilus
-    gnome3.simple-scan
+    gnome.adwaita-icon-theme
+    gnome.dconf-editor
+    gnome.eog
+    gnome.file-roller
+    gnome.gnome-calendar
+    gnome.gnome-system-monitor
+    gnome.nautilus
+    gnome.simple-scan
     keepassxc
     keychain
     konsole

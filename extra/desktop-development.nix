@@ -11,7 +11,7 @@ in
     filezilla
     fritzing
     gnome.gnome-font-viewer
-    gnome3.meld
+    gnome.meld
     insomnia
     qgis
     unstable.sublime4
