@@ -10,6 +10,7 @@ in
     dbeaver
     filezilla
     fritzing
+    gnome.gnome-font-viewer
     gnome3.meld
     insomnia
     qgis
