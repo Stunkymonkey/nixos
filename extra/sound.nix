@@ -14,6 +14,8 @@
     #jack.enable = true;
   };
 
+  programs.noisetorch.enable = true;
+
   environment.systemPackages = with pkgs; [
     noisetorch
     pavucontrol
