@@ -14,6 +14,7 @@ in
     gnome.meld
     insomnia
     qgis
+    sqlitebrowser
     unstable.sublime4
   ];
 }
