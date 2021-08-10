@@ -14,6 +14,7 @@
     mp3splt # splitting mp3 files
     mp3val
     mediaelch
+    pdfsam-basic # pdf editing
     picard
     projectm
     shotwell
