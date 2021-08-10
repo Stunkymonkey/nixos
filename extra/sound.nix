@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in
 {
   sound.enable = true;
   #hardware.pulseaudio.enable = true;
@@ -17,7 +19,7 @@
   programs.noisetorch.enable = true;
 
   environment.systemPackages = with pkgs; [
-    noisetorch
+    unstable.noisetorch
     pavucontrol
     playerctl
     pulseaudio # provide pactl to enable keyboard shortcuts
