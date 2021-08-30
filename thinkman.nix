@@ -49,11 +49,15 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Nix
-  nix.autoOptimiseStore = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+  nix = {
+    autoOptimiseStore = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    daemonNiceLevel = 19;
+    daemonIONiceLevel = 7;
   };
 
   system.stateVersion = "21.05";
