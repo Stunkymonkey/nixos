@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    jabref
     biber
+    jabref
+    qtikz
     texlive.combined.scheme-full
     texstudio
   ];
