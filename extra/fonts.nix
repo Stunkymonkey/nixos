@@ -4,7 +4,6 @@
     fontconfig.defaultFonts = {
       monospace = [ "Ubuntu Mono" ];
       sansSerif = [ "Ubuntu" ];
-      serif = [ "DejaVu Serif" ];
     };
 
     fonts = with pkgs; [
