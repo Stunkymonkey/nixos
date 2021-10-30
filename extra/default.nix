@@ -21,7 +21,7 @@ in
   services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
   services.gnome = {
     gnome-keyring.enable = true;
-    glib-networking.enable = true;  # network-mount
+    glib-networking.enable = true; # network-mount
   };
   # enable trash & network-mount
   services.gvfs.enable = true;
