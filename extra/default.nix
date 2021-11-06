@@ -64,7 +64,6 @@ in
     sshuttle
     tdesktop
     thunderbird
-    typora
     virtmanager
     vlc
     mpv-with-scripts
