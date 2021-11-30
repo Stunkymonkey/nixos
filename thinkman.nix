@@ -9,7 +9,6 @@
     ./sway.nix
     ./extra/3d-design.nix
     ./extra/android.nix
-    ./extra/arch-linux.nix
     ./extra/avahi.nix
     ./extra/bluetooth-audio.nix
     ./extra/clean.nix
