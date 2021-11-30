@@ -55,11 +55,15 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    daemonNiceLevel = 19;
-    daemonIONiceLevel = 7;
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedPriority = 7;
   };
 
-  system.stateVersion = "21.05";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.05;
+  system = {
+    stateVersion = "21.11";
+    autoUpgrade = {
+      enable = true;
+      channel = https://nixos.org/channels/nixos-21.11;
+    };
+  };
 }
