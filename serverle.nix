@@ -23,8 +23,6 @@
     8080 # aria
   ];
 
-  networking.networkmanager.wifi.powersave = false;
-
   # Nix
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 30d";

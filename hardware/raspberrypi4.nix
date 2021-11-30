@@ -28,4 +28,7 @@
   hardware.enableRedistributableFirmware = true;
 
   #swapDevices = [{ device = "/swapfile"; size = 1024; }];
+
+  # Fix wifi disconnect
+  networking.networkmanager.wifi.powersave = false;
 }
