@@ -24,10 +24,16 @@
   ];
 
   # Nix
-  nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 30d";
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
 
-  system.stateVersion = "21.05";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.05;
+  system = {
+    stateVersion = "21.05";
+    autoUpgrade = {
+      enable = true;
+      channel = https://nixos.org/channels/nixos-21.05;
+    };
+  };
 }
