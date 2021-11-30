@@ -1,4 +1,9 @@
 { config, lib, pkgs, ... }:
+let
+  yt-dlp = pkgs.yt-dlp.override {
+    withAlias = true;
+  };
+in
 {
   environment.systemPackages = with pkgs; [
     audacity
@@ -19,6 +24,6 @@
     projectm
     shotwell
     soundkonverter
-    youtube-dl
+    yt-dlp
   ];
 }
