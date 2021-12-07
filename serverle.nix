@@ -13,6 +13,7 @@
     ./extra/3d-printer.nix
     ./extra/ssh.nix
     ./extra/avahi.nix
+    ./extra/dyndns.nix
     ./hardware/raspberrypi4.nix
   ];
   networking.hostName = "serverle";

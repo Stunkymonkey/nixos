@@ -1,3 +1,2 @@
 configuration.nix
-vars-uuids.nix
-vars-backup.nix
+vars-*.nix
