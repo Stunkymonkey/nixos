@@ -30,10 +30,7 @@
   };
 
   system = {
-    stateVersion = "21.05";
-    autoUpgrade = {
-      enable = true;
-      channel = https://nixos.org/channels/nixos-21.05;
-    };
+    stateVersion = "21.11";
+    autoUpgrade.enable = true;
   };
 }
