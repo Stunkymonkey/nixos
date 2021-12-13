@@ -13,6 +13,7 @@
     ./extra/3d-printer.nix
     ./extra/ssh.nix
     ./extra/avahi.nix
+    ./extra/dyndns.nix
     ./hardware/raspberrypi4.nix
   ];
   networking.hostName = "serverle";
@@ -30,10 +31,7 @@
   };
 
   system = {
-    stateVersion = "21.05";
-    autoUpgrade = {
-      enable = true;
-      channel = https://nixos.org/channels/nixos-21.05;
-    };
+    stateVersion = "21.11";
+    autoUpgrade.enable = true;
   };
 }
