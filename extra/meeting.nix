@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    element-desktop
+    element-desktop-wayland
     mumble
     nheko
     pidgin
