@@ -6,14 +6,15 @@
     ./disks.nix
     ./disks-srv.nix
     ./users.nix
-    ./extra/networkdecrypt.nix
+    ./extra/3d-printer.nix
+    ./extra/avahi.nix
     ./extra/compression.nix
     ./extra/development.nix
     ./extra/docker.nix
-    ./extra/3d-printer.nix
-    ./extra/ssh.nix
-    ./extra/avahi.nix
     ./extra/dyndns.nix
+    ./extra/networkdecrypt.nix
+    ./extra/nix.nix
+    ./extra/ssh.nix
     ./hardware/raspberrypi4.nix
   ];
   networking.hostName = "serverle";
