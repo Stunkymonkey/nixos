@@ -3,12 +3,12 @@
   services.octoprint = {
     enable = true;
     plugins = plugins: with plugins; [
-      #costestimation
-      #displayprogress
-      #m86motorsoff
+      costestimation
+      displayprogress
+      m86motorsoff
       stlviewer
-      #telegram
-      #title_status
+      telegram
+      titlestatus
     ];
   };
   networking.firewall.allowedTCPPorts = [ 5000 ];
