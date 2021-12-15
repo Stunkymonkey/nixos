@@ -9,7 +9,7 @@
 
   powerManagement = {
     cpuFreqGovernor = lib.mkDefault "powersave";
-    powertop.enable = true;
+    #powertop.enable = true; # messes up usb mouse
   };
 
   services = {
