@@ -39,7 +39,7 @@ in
     borgbackupMonitor
   ];
 
-  services.borgbackup.jobs.thinkman = {
+  services.borgbackup.jobs.hetzner = {
     paths = [
       "/"
       "/etc/nixos/"
