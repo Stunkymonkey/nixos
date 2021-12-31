@@ -41,6 +41,6 @@ in
     valgrind
     vimPlugins.YouCompleteMe
     ycmd
-    woeusb
+    unstable.woeusb-ng
   ];
 }
