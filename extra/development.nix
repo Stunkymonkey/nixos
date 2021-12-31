@@ -24,8 +24,6 @@ in
     hugo
     meson
     ninja
-    patchelf
-    pkg-config
     (python3.withPackages (ps: with ps; [
       jupyter # notebooks
       matplotlib
