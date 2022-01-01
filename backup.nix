@@ -59,6 +59,8 @@ in
       "/home/*/.gvfs"
       "/home/*/.thumbnails"
       "/home/*/.local/share/Trash"
+      "/src/data/tmp"
+      "/src/data/todo"
     ];
     extraCreateArgs = "--one-file-system --exclude-caches --keep-exclude-tags --stats";
     encryption = {

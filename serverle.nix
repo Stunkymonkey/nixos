@@ -1,6 +1,7 @@
 { config, ... }:
 {
   imports = [
+    ./backup.nix
     ./default.nix
     ./core.nix
     ./disks.nix
