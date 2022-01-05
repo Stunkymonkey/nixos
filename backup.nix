@@ -42,8 +42,6 @@ in
   services.borgbackup.jobs.hetzner = {
     paths = [
       "/"
-      "/etc/nixos/"
-      "/home/"
     ];
     exclude = [
       "/nix"
@@ -59,10 +57,10 @@ in
       "/home/*/.gvfs"
       "/home/*/.thumbnails"
       "/home/*/.local/share/Trash"
-      "/src/data/tmp"
-      "/src/data/todo"
+      "/srv/data/tmp"
+      "/srv/data/todo"
     ];
-    extraCreateArgs = "--one-file-system --exclude-caches --keep-exclude-tags --stats";
+    extraCreateArgs = "--exclude-caches --keep-exclude-tags --stats";
     encryption = {
       mode = "repokey-blake2";
       passCommand = "cat /root/.borg_password";
