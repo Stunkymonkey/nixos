@@ -13,6 +13,7 @@
     ./extra/development.nix
     ./extra/docker.nix
     ./extra/dyndns.nix
+    ./extra/media-server.nix
     ./extra/networkdecrypt.nix
     ./extra/nix.nix
     ./extra/ssh.nix
