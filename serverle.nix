@@ -13,10 +13,16 @@
     ./extra/development.nix
     ./extra/docker.nix
     ./extra/dyndns.nix
-    ./extra/media-server.nix
     ./extra/networkdecrypt.nix
     ./extra/nix.nix
     ./extra/ssh.nix
+    ./modules/webapps
+    ./extra/webapps/bazarr.nix
+    ./extra/webapps/homer.nix
+    ./extra/webapps/jellyfin.nix
+    ./extra/webapps/prowlarr.nix
+    ./extra/webapps/radarr.nix
+    ./extra/webapps/sonarr.nix
     ./hardware/raspberrypi4.nix
   ];
   networking.hostName = "serverle";
