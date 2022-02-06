@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 let
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   yt-dlp = pkgs.yt-dlp.override {
     withAlias = true;
   };
@@ -12,16 +13,17 @@ in
     gallery-dl
     graphviz
     handbrake
-    imagemagick
     image_optim
+    imagemagick
     inkscape
-    puddletag # audio tagging
+    unstable.mat2 # metadata-cleaning
+    mediaelch
     mp3splt # splitting mp3 files
     mp3val
-    mediaelch
     pdfsam-basic # pdf editing
     picard
     projectm
+    puddletag # audio tagging
     shotwell
     soundkonverter
     yt-dlp
