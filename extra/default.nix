@@ -3,9 +3,9 @@ let
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
-
   imports = [
     ./fonts.nix
+    ./nautilus.nix
   ];
 
   programs.gnome-disks.enable = true;
@@ -19,12 +19,7 @@ in
   # gnome services
   services.dbus.packages = [ pkgs.gnome.dconf ];
   services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
-  services.gnome = {
-    gnome-keyring.enable = true;
-    glib-networking.enable = true; # network-mount
-  };
-  # enable trash & network-mount
-  services.gvfs.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
@@ -43,7 +38,6 @@ in
     gnome.file-roller
     gnome.gnome-calendar
     gnome.gnome-system-monitor
-    gnome.nautilus
     gnome.simple-scan
     keepassxc
     keychain
@@ -59,7 +53,6 @@ in
     qgnomeplatform
     rhythmbox
     simple-scan
-    #spotify
     socat
     sshuttle
     tdesktop
