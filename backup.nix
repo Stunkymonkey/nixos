@@ -44,6 +44,9 @@ in
     ];
     exclude = [
       "/nix"
+      "/sys"
+      "/run"
+      "/proc"
       "/root/.cache/"
       "**/.Trash"
       "/tmp/*"
