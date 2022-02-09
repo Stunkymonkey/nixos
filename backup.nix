@@ -17,17 +17,16 @@ let
     } // flip mapAttrs' config.services.borgbackup.jobs (name: value:
       nameValuePair "borgbackup-job-${name}" {
         unitConfig.OnFailure = "notify-problems@%i.service";
-        preStart = lib.mkBefore ''
-          # waiting for internet after resume-from-suspend
-          until /run/wrappers/bin/ping google.com -c1 -q >/dev/null; do :; done
-        '';
       }
     );
 
-    # forces backup after boot in case server was powered off during scheduled event
     config.systemd.timers = flip mapAttrs' config.services.borgbackup.jobs (name: value:
       nameValuePair "borgbackup-job-${name}" {
+        # forces backup after boot in case server was powered off during scheduled event
         timerConfig.Persistent = true;
+        # only if network is available
+        wantedBy = [ "timers.target" ];
+        after = [ "network-online.target" ];
       }
     );
   };
