@@ -18,13 +18,14 @@ in
     inkscape
     unstable.mat2 # metadata-cleaning
     mediaelch
+    mp3gain
     mp3splt # splitting mp3 files
     mp3val
     pdfsam-basic # pdf editing
-    picard
-    projectm
+    picard # music tagging
+    projectm # visualization of music
     puddletag # audio tagging
-    shotwell
+    shotwell # photo management
     soundkonverter
     yt-dlp
   ];
