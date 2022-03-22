@@ -34,6 +34,7 @@ in
       scikitlearn
       scipy
       tqdm # progressbar in pandas
+      wheel # python development
     ]))
     ripgrep
     shellcheck
