@@ -30,7 +30,11 @@ in
     firefox-wayland
     #geary
     ghostwriter
-    (gimp-with-plugins.override { plugins = with gimpPlugins; [ resynthesizer ]; })
+    (gimp-with-plugins.override {
+      plugins = with gimpPlugins; [
+        resynthesizer
+      ];
+    })
     glib
     gnome.adwaita-icon-theme
     gnome.dconf-editor
@@ -59,7 +63,15 @@ in
     thunderbird
     virtmanager
     vlc
-    mpv-with-scripts
+    (mpv-with-scripts.override {
+      scripts = with mpvScripts; [
+        convert
+        mpris
+        simple-mpv-webui
+        sponsorblock
+        thumbnail
+      ];
+    })
     wayvnc
     xdg-utils
     zathura
