@@ -34,9 +34,7 @@
       wshowkeys
     ];
 
-
-    extraSessionCommands =
-      ''  
+    extraSessionCommands = ''
       export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
       export SDL_VIDEODRIVER=wayland

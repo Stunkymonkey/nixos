@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    nix-prefetch-git
-    nix-prefetch-github
+    nix-prefetch
     nix-update
     nixpkgs-fmt
     nixpkgs-lint
