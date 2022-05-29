@@ -20,6 +20,7 @@
     ./extra/webapps/bazarr.nix
     ./extra/webapps/homer.nix
     ./extra/webapps/jellyfin.nix
+    ./extra/webapps/navidrome.nix
     ./extra/webapps/prowlarr.nix
     ./extra/webapps/radarr.nix
     ./extra/webapps/sonarr.nix
