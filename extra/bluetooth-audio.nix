@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
   hardware.bluetooth = {
     enable = true;
@@ -14,6 +11,6 @@ in
   };
   services.blueman.enable = true;
   environment.systemPackages = with pkgs; [
-    unstable.sony-headphones-client
+    sony-headphones-client
   ];
 }

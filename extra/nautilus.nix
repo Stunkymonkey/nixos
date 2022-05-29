@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
   # enable trash & network-mount
   services.gvfs.enable = true;
@@ -24,6 +21,6 @@ in
     # default-programms
     shared-mime-info
     # terminal-context-entry
-    unstable.nautilus-open-any-terminal
+    nautilus-open-any-terminal
   ];
 }

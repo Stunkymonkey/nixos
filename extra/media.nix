@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   yt-dlp = pkgs.yt-dlp.override {
     withAlias = true;
   };
@@ -16,7 +15,7 @@ in
     image_optim
     imagemagick
     inkscape
-    unstable.mat2 # metadata-cleaning
+    mat2 # metadata-cleaning
     mediaelch
     mp3gain
     mp3splt # splitting mp3 files
@@ -26,6 +25,7 @@ in
     projectm # visualization of music
     puddletag # audio tagging
     shotwell # photo management
+    sonixd # cloud-music-player
     soundkonverter
     yt-dlp
   ];
