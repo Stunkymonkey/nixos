@@ -3,13 +3,13 @@
 let
   homer = pkgs.stdenv.mkDerivation rec {
     pname = "homer";
-    version = "21.09.2";
+    version = "22.02.2";
 
     src = pkgs.fetchurl {
       urls = [
         "https://github.com/bastienwirtz/${pname}/releases/download/v${version}/${pname}.zip"
       ];
-      sha256 = "sha256-NHvH3IW05O1YvPp0KOUU0ajZsuh7BMgqUTJvMwbc+qY=";
+      sha256 = "sha256-34kukIT3ZrT03jIqnBT6h8T92fsQggWbCjf2NhVbHhI=";
     };
     nativeBuildInputs = [ pkgs.unzip ];
 
