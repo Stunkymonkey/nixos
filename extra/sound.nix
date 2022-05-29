@@ -11,10 +11,10 @@
     pulse.enable = true;
   };
 
-  programs.noisetorch.enable = true;
+  # programs.noisetorch.enable = true;
 
   environment.systemPackages = with pkgs; [
-    noisetorch
+    # noisetorch
     pavucontrol
     playerctl
     pulseaudio # provide pactl to enable keyboard shortcuts

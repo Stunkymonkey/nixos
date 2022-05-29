@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     docker
-    docker_compose
+    docker-compose
   ];
 
   virtualisation.docker = {

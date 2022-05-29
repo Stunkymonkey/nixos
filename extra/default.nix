@@ -17,7 +17,7 @@ in
   programs.dconf.enable = true;
 
   # gnome services
-  services.dbus.packages = [ pkgs.gnome.dconf ];
+  services.dbus.packages = [ pkgs.dconf ];
   services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
   services.gnome.gnome-keyring.enable = true;
 

@@ -11,7 +11,7 @@ in
     filezilla
     fritzing
     gnome.gnome-font-viewer
-    gnome.meld
+    meld
     insomnia
     qgis
     sqlitebrowser
