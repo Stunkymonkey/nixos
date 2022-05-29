@@ -19,16 +19,6 @@ let
         unitConfig.OnFailure = "notify-problems@%i.service";
       }
     );
-
-    config.systemd.timers = flip mapAttrs' config.services.borgbackup.jobs (name: value:
-      nameValuePair "borgbackup-job-${name}" {
-        # forces backup after boot in case server was powered off during scheduled event
-        timerConfig.Persistent = true;
-        # only if network is available
-        wantedBy = [ "timers.target" ];
-        after = [ "network-online.target" ];
-      }
-    );
   };
 
 in
@@ -72,6 +62,7 @@ in
     compression = "auto,zstd";
     doInit = false;
     startAt = "daily";
+    persistentTimer = true;
     prune.keep = {
       last = 1;
       within = "3d";
