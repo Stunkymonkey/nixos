@@ -16,9 +16,9 @@
     };
 
     extraPackages = with pkgs; [
-      alacritty
       brightnessctl
       dmenu
+      foot
       gammastep
       grim
       i3status-rust
