@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = import ../vars-dyndns.nix;
+  cfg = import ./vars-dyndns.nix;
 in
 {
   services.ddclient = {
