@@ -38,7 +38,7 @@ let
   defaultModules = baseModules ++ customModules;
 in
 {
-  # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+  # use your hardware- model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
   thinkman = nixosSystem {
     system = "x86_64-linux";
     modules = defaultModules ++ [
