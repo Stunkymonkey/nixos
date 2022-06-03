@@ -1,5 +1,5 @@
 { self
-, deploy
+, deploy-rs
 , ...
 }:
 let
