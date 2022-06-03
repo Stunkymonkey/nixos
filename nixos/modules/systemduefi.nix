@@ -10,6 +10,7 @@
         consoleMode = "keep";
         editor = true;
       };
+      efi.canTouchEfiVariables = true;
     };
   };
 }
