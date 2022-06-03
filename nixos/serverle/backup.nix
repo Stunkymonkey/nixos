@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = import ./vars-backup.nix;
+  borgbackupPath = "u181505-sub1@u181505-sub1.your-storagebox.de:serverle/";
   borgbackupMonitor = { config, pkgs, lib, ... }: with lib; {
     key = "borgbackupMonitor";
     _file = "borgbackupMonitor";
@@ -27,6 +27,10 @@ in
   imports = [
     borgbackupMonitor
   ];
+
+  sops.defaultSopsFile = ./secrets.yaml;
+  sops.secrets.borgbackup_password = { };
+  sops.secrets.borgbackup_private_ssh_key = { };
 
   services.borgbackup.jobs.hetzner = {
     paths = [
@@ -55,10 +59,10 @@ in
     extraCreateArgs = "--exclude-caches --keep-exclude-tags --stats";
     encryption = {
       mode = "repokey-blake2";
-      passCommand = "cat /root/.borg_password";
+      passCommand = "cat ${config.sops.secrets.borgbackup_password.path}";
     };
-    environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i /root/.ssh/backup_ed25519 -p 23";
-    repo = "${cfg.borg.user}@${cfg.borg.host}:${cfg.borg.dir}";
+    environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${config.sops.secrets.borgbackup_private_ssh_key.path} -p 23";
+    repo = borgbackupPath;
     compression = "auto,zstd";
     doInit = false;
     startAt = "daily";

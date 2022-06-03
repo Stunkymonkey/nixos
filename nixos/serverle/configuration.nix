@@ -24,6 +24,8 @@
   ];
   networking.hostName = "serverle";
 
+  sops.defaultSopsFile = ./secrets.yaml;
+
   #environment.noXlibs = true;
 
   networking.firewall.allowedTCPPorts = [

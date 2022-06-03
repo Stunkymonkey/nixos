@@ -40,6 +40,9 @@
 
   networking.hostName = "thinkman";
 
+  sops.defaultSopsFile = ./secrets.yaml;
+  sops.age.sshKeyPaths = [ "/home/felix/.ssh/keys/local_ed25519" ];
+
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
