@@ -3,7 +3,7 @@
 {
   boot.initrd.luks.devices."luks-drive" = {
     name = "luks-drive";
-    device = "/dev/sda";
+    device = "/dev/disk/by-partlabel/Crypt";
     preLVM = true;
     allowDiscards = true;
   };
