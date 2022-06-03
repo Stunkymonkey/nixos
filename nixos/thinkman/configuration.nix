@@ -12,6 +12,7 @@
     ../modules/clean.nix
     ../modules/compression.nix
     ../modules/desktop-development.nix
+    ../modules/desktop-default.nix
     ../modules/development.nix
     ../modules/docker.nix
     ../modules/filesystem.nix
