@@ -3,16 +3,15 @@
   imports = [
     ./disks.nix
     ./hardware-configuration.nix
-    ../modules/sway.nix
-    ./backup.nix
     ../modules/3d-design.nix
     ../modules/android.nix
     ../modules/avahi.nix
+    ../modules/backup.nix
     ../modules/bluetooth-audio.nix
     ../modules/clean.nix
     ../modules/compression.nix
-    ../modules/desktop-development.nix
     ../modules/desktop-default.nix
+    ../modules/desktop-development.nix
     ../modules/development.nix
     ../modules/docker.nix
     ../modules/filesystem.nix
@@ -30,6 +29,7 @@
     ../modules/printer.nix
     ../modules/screen-sharing.nix
     ../modules/sound.nix
+    ../modules/sway.nix
     ../modules/sync.nix
     ../modules/systemd-user.nix
     ../modules/systemduefi.nix
@@ -42,7 +42,7 @@
   networking.hostName = "thinkman";
 
   sops.defaultSopsFile = ./secrets.yaml;
-  sops.age.sshKeyPaths = [ "/home/felix/.ssh/keys/local_ed25519" ];
+  #sops.age.keyFile = "/var/lib/sops-nix/key.txt";
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;

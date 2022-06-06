@@ -13,8 +13,8 @@
     ../modules/networkdecrypt.nix
     ../modules/nix.nix
     ../modules/ssh.nix
-    ../modules/webapps/config.nix
     ../modules/webapps/bazarr.nix
+    ../modules/webapps/config.nix
     ../modules/webapps/homer.nix
     ../modules/webapps/jellyfin.nix
     ../modules/webapps/navidrome.nix

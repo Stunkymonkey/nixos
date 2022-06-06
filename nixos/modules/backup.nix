@@ -28,7 +28,6 @@ in
     borgbackupMonitor
   ];
 
-  sops.defaultSopsFile = ./secrets.yaml;
   sops.secrets.borgbackup_password = { };
   sops.secrets.borgbackup_private_ssh_key = { };
 
