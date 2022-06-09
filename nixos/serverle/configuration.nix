@@ -2,14 +2,14 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./disks.nix
     ./backup.nix
+    ./disks.nix
+    ./dyndns.nix
     ../modules/3d-printer.nix
     ../modules/avahi.nix
     ../modules/compression.nix
     ../modules/development.nix
     ../modules/docker.nix
-    ./dyndns.nix
     ../modules/networkdecrypt.nix
     ../modules/nix.nix
     ../modules/ssh.nix
