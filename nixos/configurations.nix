@@ -53,4 +53,10 @@ in
       ./serverle/configuration.nix
     ];
   };
+  newton = nixosSystem {
+    system = "x86_64-linux";
+    modules = defaultModules ++ [
+      ./newton/configuration.nix
+    ];
+  };
 }
