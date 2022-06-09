@@ -42,7 +42,7 @@
   networking.hostName = "thinkman";
 
   sops.defaultSopsFile = ./secrets.yaml;
-  #sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
