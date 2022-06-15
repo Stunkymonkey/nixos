@@ -1,27 +1,33 @@
-# My personal NixOS-configuration
-work in progress...
+# nixos-config [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-get internet
-`wpa_passphrase "<SSID>" > /etc/wpa_supplicant.conf`
-`systemctl restart wpa_supplicant`
+This repository holds my NixOS configuration. It is fully reproducible, flakes
+based, and position-independent, meaning there is no moving around of
+`configuration.nix`.
 
-install git
-`nix-env -iA nixos.git`
+Deployment is done using [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage).
+Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix).
 
-get this repo
-`git clone https://github.com/Stunkymonkey/nixos.git`
-`cd nixos`
+## structure
 
-link to correct host
-`ln -s <host>.nix configuration.nix`
+```
+.
+├── nixos        # Machine definitions
+└── legacy       # older scripts kept before having an iso-image
+```
 
-set password for luks
-`vim /tmp/password`
-enter password
-`head -c <#char> /tmp/password > /tmp/passwd`
+## usage
 
-install
-`bash install-<hostname>.sh`
+updating:
+```bash
+nix flake update
+```
 
-wait + enter password
-`reboot`
+deployment:
+```bash
+deploy .#myHost
+```
+
+secrets:
+```bash
+sops ./nixos/myHost/secrets.yaml
+```
