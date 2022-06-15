@@ -3,19 +3,19 @@
 let
   homer = pkgs.stdenv.mkDerivation rec {
     pname = "homer";
-    version = "22.02.2";
+    version = "22.06.1";
 
-    src = pkgs.fetchurl {
+    src = pkgs.fetchzip {
       urls = [
-        "https://github.com/bastienwirtz/${pname}/releases/download/v${version}/${pname}.zip"
+        "https://github.com/bastienwirtz/homer/releases/download/v${version}/homer.zip"
       ];
-      sha256 = "sha256-34kukIT3ZrT03jIqnBT6h8T92fsQggWbCjf2NhVbHhI=";
+      sha256 = "sha256-pr+0PFId1wG6tAFCdANiOaEdQoRMhOi+HfooO+X3geQ=";
     };
-    nativeBuildInputs = [ pkgs.unzip ];
 
-    dontInstall = true;
+    installPhase = ''
+      cp -r $src $out/
+    '';
     sourceRoot = ".";
-    unpackCmd = "${pkgs.unzip}/bin/unzip -d $out $curSrc";
   };
 
   homeConfig = {
