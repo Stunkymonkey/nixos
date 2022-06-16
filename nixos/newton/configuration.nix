@@ -8,12 +8,12 @@
     ../modules/development.nix
     ../modules/docker.nix
     ../modules/networkdecrypt.nix
+    ../modules/service/mumble-server.nix
     ../modules/nix.nix
     ../modules/ssh.nix
     ../modules/users.nix
     ../modules/webapps/config.nix
     ../modules/webapps/homer.nix
-    ../modules/webapps/jellyfin.nix
     ../modules/webapps/navidrome.nix
   ];
   networking.hostName = "newton";
