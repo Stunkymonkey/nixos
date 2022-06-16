@@ -17,7 +17,7 @@ let
     };
   };
   baseModules = [
-    # make flake inputs accessiable in NixOS
+    # make flake inputs accessable in NixOS
     {
       _module.args.self = self;
       _module.args.inputs = inputs;

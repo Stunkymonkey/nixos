@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  borgbackupPath = "u181505-sub1@u181505-sub1.your-storagebox.de:thinkman/";
+  borgbackupPath = "u181505-sub1@u181505-sub1.your-storagebox.de";
   borgbackupMonitor = { config, pkgs, lib, ... }: with lib; {
     key = "borgbackupMonitor";
     _file = "borgbackupMonitor";
@@ -61,7 +61,7 @@ in
       passCommand = "cat ${config.sops.secrets.borgbackup_password.path}";
     };
     environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${config.sops.secrets.borgbackup_private_ssh_key.path} -p 23";
-    repo = borgbackupPath;
+    repo = borgbackupPath + ":${config.networking.hostName}/";
     compression = "auto,zstd";
     doInit = false;
     startAt = "daily";
