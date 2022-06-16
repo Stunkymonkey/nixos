@@ -10,22 +10,22 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/serverle-root";
+    device = "/dev/disk/by-label/newton-root";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/serverle-boot";
+    device = "/dev/disk/by-label/newton-boot";
     fsType = "vfat";
   };
 
   fileSystems."/srv" = {
-    device = "/dev/disk/by-label/serverle-srv";
+    device = "/dev/disk/by-label/newton-srv";
     fsType = "ext4";
   };
 
   swapDevices = [{
-    device = "/dev/disk/by-label/serverle-swap";
+    device = "/dev/disk/by-label/newton-swap";
   }];
 }
 
