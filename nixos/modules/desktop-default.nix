@@ -26,7 +26,7 @@
     evince
     firefox-wayland
     #geary
-    ghostwriter
+    unstable.ghostwriter
     (gimp-with-plugins.override {
       plugins = with gimpPlugins; [
         resynthesizer
