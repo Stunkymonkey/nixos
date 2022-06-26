@@ -12,6 +12,11 @@
     deploy-rs.url = "github:input-output-hk/deploy-rs";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    stunkymonkey = {
+      url = "github:Stunkymonkey/stunkymonkey.de";
+      flake = false;
+    };
   };
   outputs = { ... } @ args: import ./outputs.nix args;
 }

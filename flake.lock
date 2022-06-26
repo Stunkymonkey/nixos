@@ -258,7 +258,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "stunkymonkey": "stunkymonkey"
       }
     },
     "rust-analyzer-src": {
@@ -295,6 +296,22 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "stunkymonkey": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653819201,
+        "narHash": "sha256-AjAknv1Pjhc0xVJnd8kPbtpkamFLcSZYSijc26vhMxw=",
+        "owner": "Stunkymonkey",
+        "repo": "stunkymonkey.de",
+        "rev": "0cc4ef8757886c4b85e0d8e1bf4c0f6a58ac0dd8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Stunkymonkey",
+        "repo": "stunkymonkey.de",
         "type": "github"
       }
     },
