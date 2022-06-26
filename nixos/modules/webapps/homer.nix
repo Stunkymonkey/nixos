@@ -10,6 +10,7 @@ let
         "https://github.com/bastienwirtz/homer/releases/download/v${version}/homer.zip"
       ];
       sha256 = "sha256-pr+0PFId1wG6tAFCdANiOaEdQoRMhOi+HfooO+X3geQ=";
+      stripRoot = false;
     };
 
     installPhase = ''
