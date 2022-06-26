@@ -1,26 +1,17 @@
-{ mkShell
-, sops-import-keys-hook
-, ssh-to-pgp
-, sops-init-gpg-key
+{ mkShellNoCC
+, ssh-to-age
 , sops
+, sops-import-keys-hook
 , deploy-rs
 , nixpkgs-fmt
-, knot-dns
-, lefthook
-, python3
 }:
 
-mkShell {
-  sopsPGPKeyDirs = [ "./nixos/secrets/keys" ];
+mkShellNoCC {
   nativeBuildInputs = [
-    python3.pkgs.invoke
-    ssh-to-pgp
-    sops-import-keys-hook
-    sops-init-gpg-key
+    ssh-to-age
     sops
+    sops-import-keys-hook
     deploy-rs
     nixpkgs-fmt
-    lefthook
-    knot-dns
   ];
 }

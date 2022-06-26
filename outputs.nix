@@ -11,10 +11,10 @@
     pkgs = nixpkgs.legacyPackages."${system}";
   in
   {
-    devShell = pkgs.callPackage ./shell.nix {
-      inherit (sops-nix.packages."${pkgs.system}") sops-import-keys-hook ssh-to-pgp sops-init-gpg-key;
+    devShells."${system}".default = import ./shell.nix ( inputs // {
+      inherit (sops-nix.packages."${pkgs.system}") sops-import-keys-hook;
       inherit (deploy-rs.packages."${pkgs.system}") deploy-rs;
-    };
+    });
   })) // {
   nixosConfigurations = import ./nixos/configurations.nix (inputs // {
     inherit inputs;
