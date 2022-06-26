@@ -3,9 +3,10 @@
   imports = [
     ./hardware-configuration.nix
     ./disks.nix
+    ./network.nix
+    ./syncthing.nix
     #../modules/backup.nix
     ../modules/compression.nix
-    ../modules/development.nix
     ../modules/docker.nix
     ../modules/networkdecrypt.nix
     ../modules/service/mumble-server.nix
