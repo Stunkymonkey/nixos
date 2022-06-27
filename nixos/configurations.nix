@@ -1,26 +1,27 @@
-{ self
-, nixpkgs
-, nixpkgs-unstable
-, sops-nix
-, inputs
-, nixos-hardware
-, nix
-, ...
-}:
+{ self, ... }:
 let
+  inherit
+    (self.inputs)
+    nixpkgs
+    nixpkgs-unstable
+    sops-nix
+    nixos-hardware
+    #nix
+    ;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
-  customModules = import ./modules/default.nix;
   overlay-unstable = final: prev: {
     unstable = import nixpkgs-unstable {
       inherit (final) system;
       config.allowUnfree = true;
     };
   };
+
+  customModules = import ./modules/default.nix;
   baseModules = [
-    # make flake inputs accessable in NixOS
+    # make flake inputs accessiable in NixOS
     {
       _module.args.self = self;
-      _module.args.inputs = inputs;
+      _module.args.inputs = self.inputs;
     }
     {
       imports = [
@@ -38,25 +39,27 @@ let
   defaultModules = baseModules ++ customModules;
 in
 {
-  # use your hardware- model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
-  thinkman = nixosSystem {
-    system = "x86_64-linux";
-    modules = defaultModules ++ [
-      nixos-hardware.nixosModules.lenovo-thinkpad-t14
-      ./thinkman/configuration.nix
-    ];
-  };
-  serverle = nixosSystem {
-    system = "aarch64-linux";
-    modules = defaultModules ++ [
-      nixos-hardware.nixosModules.raspberry-pi-4
-      ./serverle/configuration.nix
-    ];
-  };
-  newton = nixosSystem {
-    system = "x86_64-linux";
-    modules = defaultModules ++ [
-      ./newton/configuration.nix
-    ];
+  flake.nixosConfigurations = {
+    # use your hardware- model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+    thinkman = nixosSystem {
+      system = "x86_64-linux";
+      modules = defaultModules ++ [
+        nixos-hardware.nixosModules.lenovo-thinkpad-t14
+        ./thinkman/configuration.nix
+      ];
+    };
+    newton = nixosSystem {
+      system = "x86_64-linux";
+      modules = defaultModules ++ [
+        ./newton/configuration.nix
+      ];
+    };
+    serverle = nixosSystem {
+      system = "aarch64-linux";
+      modules = defaultModules ++ [
+        nixos-hardware.nixosModules.raspberry-pi-4
+        ./serverle/configuration.nix
+      ];
+    };
   };
 }
