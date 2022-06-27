@@ -4,10 +4,18 @@ keys:
   - &serverle age14nt7qcsrye0vrpk0xcgcfmhkxwwumna39fpn83g3x0zml62skatqpnmhk4
   - &newton age1s9spl75rwhgm3cvvqsr9rze5m0kuxqes2tsxjmq07xg5ycn5j47s2m0dlu
 creation_rules:
-  - path_regex: secrets.yaml$
+  - path_regex: thinkman/secrets.yaml$
     key_groups:
-    - age:
-      - *admin_felix
-      - *thinkman
-      - *serverle
-      - *newton
+      - age:
+        - *admin_felix
+        - *thinkman
+  - path_regex: newton/secrets.yaml$
+    key_groups:
+      - age:
+        - *admin_felix
+        - *newton
+  - path_regex: serverle/secrets.yaml$
+    key_groups:
+      - age:
+        - *admin_felix
+        - *serverle

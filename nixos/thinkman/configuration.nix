@@ -41,8 +41,10 @@
 
   networking.hostName = "thinkman";
 
-  sops.defaultSopsFile = ./secrets.yaml;
-  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    gnupg.sshKeyPaths = [];
+  };
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;

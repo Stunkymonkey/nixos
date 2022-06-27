@@ -24,7 +24,10 @@
   ];
   networking.hostName = "serverle";
 
-  sops.defaultSopsFile = ./secrets.yaml;
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    gnupg.sshKeyPaths = [];
+  };
 
   #environment.noXlibs = true;
 
