@@ -11,8 +11,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     deploy-rs.url = "github:input-output-hk/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     stunkymonkey = {
       url = "github:Stunkymonkey/stunkymonkey.de";
