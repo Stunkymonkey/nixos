@@ -5,7 +5,6 @@
     configuration = {
       domain = "notes.buehler.rocks";
       protocolUseSSL = true;
-      urlAddPort = false;
       db = {
         dialect = "sqlite";
         storage = "/var/lib/hedgedoc/db.hedgedoc.sqlite";
