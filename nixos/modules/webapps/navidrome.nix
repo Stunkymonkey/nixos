@@ -17,9 +17,9 @@
   webapps.apps.navidrome = {
     dashboard = {
       name = "Navidrome";
-      category = "app";
+      category = "media";
       icon = "music";
-      link = "http://192.168.178.60:4533";
+      link = "https://music.buehler.rocks";
     };
   };
 }
