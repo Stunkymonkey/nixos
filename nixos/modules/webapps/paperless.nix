@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 {
+  sops.secrets.paperless_password = { };
+
   services.paperless = {
     enable = true;
-    #passwordFile = sops...
+    passwordFile = config.sops.secrets.paperless_password.path;
     mediaDir = "/srv/data/docs";
     extraConfig = {
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
@@ -13,7 +15,7 @@
       name = "Paperless";
       category = "app";
       icon = "book";
-      link = "http://buehler.rocks:28981";
+      link = "https://docs.buehler.rocks";
     };
   };
 }
