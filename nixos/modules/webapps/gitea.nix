@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  gitea = {
+  services.gitea = {
     enable = true;
     cookieSecure = true;
     httpPort = 3001;
@@ -16,7 +16,7 @@
       name = "Git";
       category = "app";
       icon = "git";
-      link = "http://git.buehler.rocks";
+      link = "https://git.buehler.rocks";
     };
   };
 }
