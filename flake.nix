@@ -22,21 +22,21 @@
   };
   outputs = { self, flake-parts, deploy-rs, ... } @ inputs:
     flake-parts.lib.mkFlake { inherit self; } {
-        imports = [
-          ./nixos/configurations.nix
-          #./nixos/images/default.nix
-          ./shell.nix
-        ];
-        systems = [ "x86_64-linux" "aarch64-linux" ];
-        perSystem = {inputs', ...}: {
-          # make pkgs available to all `perSystem` functions
-          _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
-        };
-        flake = {
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-          deploy = import ./nixos/deploy.nix (inputs // {
-            inherit inputs;
-          });
-        };
+      imports = [
+        ./nixos/configurations.nix
+        #./nixos/images/default.nix
+        ./shell.nix
+      ];
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      perSystem = { inputs', ... }: {
+        # make pkgs available to all `perSystem` functions
+        _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
       };
+      flake = {
+        checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+        deploy = import ./nixos/deploy.nix (inputs // {
+          inherit inputs;
+        });
+      };
+    };
 }
