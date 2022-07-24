@@ -14,8 +14,12 @@
     ../modules/ssh.nix
     ../modules/users.nix
     ../modules/webapps/config.nix
+    ../modules/webapps/gitea.nix
+    ../modules/webapps/hedgedoc.nix
     ../modules/webapps/homer.nix
     ../modules/webapps/navidrome.nix
+    ../modules/webapps/paperless.nix
+    ../modules/webapps/radicale.nix
   ];
   networking.hostName = "newton";
 

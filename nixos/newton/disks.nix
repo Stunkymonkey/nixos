@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
   boot.initrd.luks.devices."luks-drive" = {
     name = "luks-drive";
     device = "/dev/disk/by-partlabel/Crypt";
