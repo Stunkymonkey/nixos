@@ -2,6 +2,8 @@
 {
   services.murmur = {
     enable = true;
+    # TODO enable in 22.11
+    #openFirewall = true;
     welcometext = "Welcome to the Mumble-Server!";
     sslCert = "/var/lib/acme/voice.buehler.rocks/fullchain.pem";
     sslKey = "/var/lib/acme/voice.buehler.rocks/key.pem";
