@@ -11,8 +11,9 @@ Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix).
 
 ```
 .
+├── modules      # Own nix-options, to modularize services
 ├── nixos        # Machine definitions
-└── legacy       # older scripts kept before having an iso-image
+└── pgks         # Own packages, which are not available in nixpkgs
 ```
 
 ## usage
@@ -34,7 +35,8 @@ sops ./nixos/myHost/secrets.yaml
 
 ## inspired by
 - [deploy hugo with nix](https://ayats.org/blog/flake-blog/)
-- [Nixos dotfiles Mic92](https://github.com/Mic92/dotfiles)
-- [Nixos dotfiles pborzenkov](https://github.com/pborzenkov/nix-config)
-- [Nixos dotfiles by nyanloutre](https://gitea.nyanlout.re/nyanloutre/nixos-config)
+- [Nix config by Mic92](https://github.com/Mic92/dotfiles)
+- [Nix config by ambroisie](https://github.com/ambroisie/nix-config)
+- [Nix config by pborzenkov](https://github.com/pborzenkov/nix-config)
+- [Nix config by nyanloutre](https://gitea.nyanlout.re/nyanloutre/nixos-config)
 - [deploy-rs by disassembler](https://samleathers.com/posts/2022-02-03-my-new-network-and-deploy-rs.html)
