@@ -1,24 +1,8 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 let
-  homer = pkgs.stdenv.mkDerivation rec {
-    pname = "homer";
-    version = "22.06.1";
-
-    src = pkgs.fetchzip {
-      urls = [
-        "https://github.com/bastienwirtz/homer/releases/download/v${version}/homer.zip"
-      ];
-      sha256 = "sha256-pr+0PFId1wG6tAFCdANiOaEdQoRMhOi+HfooO+X3geQ=";
-      stripRoot = false;
-    };
-
-    installPhase = ''
-      cp -r $src $out/
-    '';
-    sourceRoot = ".";
-  };
-
   homeConfig = {
     title = "Dashboard";
     header = false;
