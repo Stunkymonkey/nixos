@@ -5,6 +5,7 @@
     ./disks.nix
     ./network.nix
     ./syncthing.nix
+    ./services.nix
     #../modules/backup.nix
     ../modules/compression.nix
     ../modules/docker.nix
@@ -13,13 +14,13 @@
     ../modules/nix.nix
     ../modules/ssh.nix
     ../modules/users.nix
-    ../modules/webapps/config.nix
     ../modules/webapps/gitea.nix
     ../modules/webapps/hedgedoc.nix
     ../modules/webapps/homer.nix
     ../modules/webapps/navidrome.nix
     ../modules/webapps/paperless.nix
     ../modules/webapps/radicale.nix
+    #../modules/webapps/rss-bridge.nix
   ];
   networking.hostName = "newton";
 
