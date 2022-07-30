@@ -1,6 +1,7 @@
 { config, ... }:
 {
   imports = [
+    ./boot.nix
     ./hardware-configuration.nix
     ./disks.nix
     ./network.nix
@@ -19,7 +20,6 @@
     ../modules/webapps/navidrome.nix
     ../modules/webapps/paperless.nix
     ../modules/webapps/radicale.nix
-    #../modules/webapps/rss-bridge.nix
   ];
   networking.hostName = "newton";
 
@@ -32,12 +32,6 @@
 
   networking.firewall.allowedTCPPorts = [
   ];
-
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/sda";
-  #boot.loader.grub.copyKernels = true;
 
   services.openssh.permitRootLogin = "prohibit-password";
   users.extraUsers.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFx6OLwL9MbkD3mnMsv+xrzZHN/rwCTgVs758SCLG0h felix@thinkman" ];
