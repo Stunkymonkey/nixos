@@ -9,10 +9,10 @@ let
 
   ip4_gw = "38.242.192.1";
   ip4_dns = [
-    "79.143.183.251"
-    "79.143.183.252"
-    "213.136.95.10"
-    "213.136.95.11"
+    "8.8.8.8"
+    "79.143.182.242"
+    "178.238.234.231"
+    "5.189.191.29"
   ];
 
   ip6_addr = "2a02:c206:3009:3317::1";
@@ -30,9 +30,8 @@ in
     useDHCP = false;
 
     nameservers = ip4_dns ++ ip6_dns;
-    search = [
-      "buehler.rocks"
-    ];
+    domain = "buehler.rocks";
+    search = [ "buehler.rocks" ];
 
     defaultGateway = {
       address = ip4_gw;

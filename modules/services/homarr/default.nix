@@ -102,6 +102,7 @@
               icon = lib.optionalString (a.dashboard.icon != null) "fas fa-${a.dashboard.icon}";
               url = a.dashboard.link;
               target = "_blank";
+              type = "Ping";
             });
           }
         );

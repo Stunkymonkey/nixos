@@ -26,7 +26,10 @@ let
     {
       imports = [
         ({ pkgs, ... }: {
-          nixpkgs.overlays = [ overlay-unstable ];
+          nixpkgs.overlays = [
+            overlay-unstable
+            (import ../pkgs)
+          ];
           nix.nixPath = [
             "nixpkgs=${pkgs.path}"
           ];
@@ -35,6 +38,7 @@ let
         sops-nix.nixosModules.sops
       ];
     }
+    ../modules
   ];
   defaultModules = baseModules ++ customModules;
 in

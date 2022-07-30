@@ -8,6 +8,8 @@
     nixpkgs.url = "nixpkgs/nixos-22.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     deploy-rs.url = "github:input-output-hk/deploy-rs";

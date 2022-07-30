@@ -1,0 +1,8 @@
+{ ... }:
+{
+  imports = [
+    ./homarr
+    ./rss-bridge
+  ];
+}
+
