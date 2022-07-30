@@ -8,5 +8,7 @@ in
   my.services = {
     # RSS provider for websites that do not provide any feeds
     rss-bridge.enable = true;
+    # Voice-chat server
+    mumble-server.enable = true;
   };
 }

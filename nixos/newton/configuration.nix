@@ -10,7 +10,6 @@
     ../modules/compression.nix
     ../modules/docker.nix
     ../modules/networkdecrypt.nix
-    ../modules/service/mumble-server.nix
     ../modules/nix.nix
     ../modules/ssh.nix
     ../modules/users.nix
