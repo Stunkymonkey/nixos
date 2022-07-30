@@ -1,7 +1,8 @@
 { ... }:
 {
   imports = [
-    ./homarr
+    ./homer
+    ./mumble-server
     ./rss-bridge
   ];
 }
