@@ -6,7 +6,6 @@
     bind # dig
     borgbackup
     cryptsetup
-    docker-compose
     file
     fzf
     gettext
@@ -15,7 +14,6 @@
     gnufdisk
     gptfdisk
     htop
-    inetutils
     jq
     killall
     lsof
