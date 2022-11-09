@@ -2,8 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.rss-bridge;
-  #domain = "rss-bridge.${config.networking.domain}";
-  domain = "rss-bridge.buehler.rocks";
+  domain = "rss-bridge.${config.networking.domain}";
 in
 {
   options.my.services.rss-bridge = {
