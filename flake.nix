@@ -1,12 +1,14 @@
 {
   description = "NixOS configuration";
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-parts.inputs.nixpkgs.follows = "nixpkgs";
-
     nix.url = "github:NixOS/nix";
     nixpkgs.url = "nixpkgs/nixos-22.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
@@ -14,14 +16,23 @@
 
     deploy-rs.url = "github:input-output-hk/deploy-rs";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stunkymonkey = {
       url = "github:Stunkymonkey/stunkymonkey.de";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    passworts = {
+      #url = "github:Stunkymonkey/passworts";
+      url = "/home/felix/code/python/passworts";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = { self, flake-parts, deploy-rs, ... } @ inputs:
     flake-parts.lib.mkFlake { inherit self; } {
       imports = [
