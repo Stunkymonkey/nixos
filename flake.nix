@@ -10,7 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks-nix = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -27,26 +30,51 @@
     };
 
     passworts = {
-      #url = "github:Stunkymonkey/passworts";
-      url = "/home/felix/code/python/passworts";
+      url = "github:Stunkymonkey/passworts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, flake-parts, deploy-rs, ... } @ inputs:
+  outputs = inputs@{ self, flake-parts, deploy-rs, ... }:
     flake-parts.lib.mkFlake { inherit self; } {
+
       imports = [
         ./nixos/configurations.nix
         #./nixos/images/default.nix
-        ./shell.nix
+        inputs.pre-commit-hooks-nix.flakeModule
       ];
+
       systems = [ "x86_64-linux" "aarch64-linux" ];
-      perSystem = { inputs', ... }: {
+
+      perSystem = { self', inputs', config, pkgs, ... }: {
         # make pkgs available to all `perSystem` functions
         _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+
+        # enable pre-commit checks
+        pre-commit.settings = {
+          hooks = {
+            shellcheck.enable = true;
+            nixpkgs-fmt.enable = true;
+          };
+        };
+
+        devShells.default = pkgs.mkShellNoCC {
+          nativeBuildInputs = [
+            inputs'.sops-nix.packages.sops-import-keys-hook
+            inputs'.deploy-rs.packages.deploy-rs
+            pkgs.nixpkgs-fmt
+            pkgs.shellcheck
+            pkgs.pre-commit
+          ];
+          shellHook = ''
+            ${config.pre-commit.installationScript}
+          '';
+        };
       };
+
       flake = {
         checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
         deploy = import ./nixos/deploy.nix (inputs // {
           inherit inputs;
         });

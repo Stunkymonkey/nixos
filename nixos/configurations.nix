@@ -6,7 +6,7 @@ let
     nixpkgs-unstable
     sops-nix
     nixos-hardware
-    #nix
+    passworts
     ;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
   overlay-unstable = final: prev: {
@@ -36,6 +36,7 @@ let
           documentation.info.enable = false;
         })
         sops-nix.nixosModules.sops
+        passworts.nixosModules.passworts
       ];
     }
     ../modules

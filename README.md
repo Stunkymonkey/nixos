@@ -5,7 +5,7 @@ based, and position-independent, meaning there is no moving around of
 `configuration.nix`.
 
 Deployment is done using [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage).
-Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix).
+Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix). For formatting [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix) is used.
 
 ## structure
 
@@ -40,3 +40,4 @@ sops ./nixos/myHost/secrets.yaml
 - [Nix config by pborzenkov](https://github.com/pborzenkov/nix-config)
 - [Nix config by nyanloutre](https://gitea.nyanlout.re/nyanloutre/nixos-config)
 - [deploy-rs by disassembler](https://samleathers.com/posts/2022-02-03-my-new-network-and-deploy-rs.html)
+- [pre-commit config](https://github.com/cachix/pre-commit-hooks.nix/blob/master/template/flake.nix)
