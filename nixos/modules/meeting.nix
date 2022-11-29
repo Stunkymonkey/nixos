@@ -4,7 +4,6 @@
     element-desktop-wayland
     mumble
     nheko
-    pidgin
     skypeforlinux
     signal-desktop
     teamspeak_client
