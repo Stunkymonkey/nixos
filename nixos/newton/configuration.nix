@@ -12,20 +12,15 @@
     ../modules/docker.nix
     ../modules/networkdecrypt.nix
     ../modules/nix.nix
-    ../modules/ssh.nix
     ../modules/users.nix
-    ../modules/webapps/gitea.nix
-    ../modules/webapps/hedgedoc.nix
-    ../modules/webapps/homer.nix
-    ../modules/webapps/navidrome.nix
-    ../modules/webapps/paperless.nix
-    ../modules/webapps/radicale.nix
+    #../modules/webapps/radicale.nix
   ];
+
   networking.hostName = "newton";
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
-    gnupg.sshKeyPaths = [];
+    gnupg.sshKeyPaths = [ ];
   };
 
   #environment.noXlibs = true;
