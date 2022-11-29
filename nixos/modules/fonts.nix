@@ -15,14 +15,14 @@
       fira-code-symbols
       font-awesome
       liberation_ttf
-      #mplus-outline-fonts
+      mplus-outline-fonts.githubRelease
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
       proggyfonts
       ubuntu_font_family
       joypixels
-      #unifont # unicode
+      unifont # unicode
     ];
   };
   nixpkgs.config.joypixels.acceptLicense = true;
