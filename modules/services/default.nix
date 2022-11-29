@@ -4,6 +4,7 @@
     ./homer
     ./mumble-server
     ./rss-bridge
+    ./ssh-server
   ];
 }
 
