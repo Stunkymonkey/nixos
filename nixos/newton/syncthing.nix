@@ -1,14 +1,14 @@
 { config, ... }:
 {
-  sops.secrets.syncthing_key = {};
-  sops.secrets.syncthing_cert = {};
+  sops.secrets."syncthing/key" = { };
+  sops.secrets."syncthing/cert" = { };
 
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
     dataDir = "/srv/data";
-    key = config.sops.secrets.syncthing_key.path;
-    cert = config.sops.secrets.syncthing_cert.path;
+    key = config.sops.secrets."syncthing/key".path;
+    cert = config.sops.secrets."syncthing/cert".path;
     extraOptions = {
       options = {
         localAnnounceEnabled = false;
