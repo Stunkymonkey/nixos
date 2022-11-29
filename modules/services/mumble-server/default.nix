@@ -2,8 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.mumble-server;
-  #domain = "voice.${config.networking.domain}";
-  domain = "voice.buehler.rocks";
+  domain = "voice.${config.networking.domain}";
 in
 {
   options.my.services.mumble-server = {
