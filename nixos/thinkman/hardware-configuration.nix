@@ -8,5 +8,6 @@
 
   my.hardware = {
     nitrokey.enable = true;
+    sound.enable = true;
   };
 }
