@@ -5,4 +5,8 @@
 
   # Special power management settings for ThinkPads
   services.tlp.enable = true;
+
+  my.hardware = {
+    nitrokey.enable = true;
+  };
 }
