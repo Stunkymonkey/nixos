@@ -9,5 +9,9 @@ in
     ssh-server = {
       enable = true;
     };
+
+    jellyfin = {
+      enable = true;
+    };
   };
 }
