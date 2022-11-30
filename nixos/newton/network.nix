@@ -27,7 +27,7 @@ let
 in
 {
   networking = {
-    useDHCP = false;
+    #useDHCP = false;
 
     nameservers = ip4_dns ++ ip6_dns;
     domain = "buehler.rocks";
