@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
 {
+  imports = [
+    ../modules/theme.nix
+  ];
+
   programs.light.enable = true;
 
   environment.systemPackages = with pkgs; [
