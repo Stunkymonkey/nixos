@@ -5,19 +5,14 @@
     ./backup.nix
     ./disks.nix
     ./dyndns.nix
-    ../modules/3d-printer.nix
+    ./services.nix
+    ./syncthing.nix
+    ./wifi.nix
+    #../modules/3d-printer.nix
     ../modules/avahi.nix
-    ../modules/compression.nix
-    ../modules/development.nix
     ../modules/docker.nix
-    ../modules/networkdecrypt.nix
     ../modules/nix.nix
-    ../modules/ssh.nix
     ../modules/webapps/bazarr.nix
-    ../modules/webapps/config.nix
-    ../modules/webapps/homer.nix
-    ../modules/webapps/jellyfin.nix
-    ../modules/webapps/navidrome.nix
     ../modules/webapps/prowlarr.nix
     ../modules/webapps/radarr.nix
     ../modules/webapps/sonarr.nix
@@ -26,7 +21,8 @@
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
-    gnupg.sshKeyPaths = [];
+    # disable gpg and thereby enable age
+    gnupg.sshKeyPaths = [ ];
   };
 
   #environment.noXlibs = true;

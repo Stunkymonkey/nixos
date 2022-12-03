@@ -9,7 +9,6 @@
     ../modules/backup.nix
     ../modules/bluetooth-audio.nix
     ../modules/clean.nix
-    ../modules/compression.nix
     ../modules/desktop-default.nix
     ../modules/desktop-development.nix
     ../modules/development.nix
@@ -28,13 +27,11 @@
     ../modules/presentation.nix
     ../modules/printer.nix
     ../modules/screen-sharing.nix
-    ../modules/sound.nix
     ../modules/sway.nix
     ../modules/sync.nix
     ../modules/systemd-user.nix
     ../modules/systemduefi.nix
     ../modules/tex.nix
-    ../modules/theme.nix
     ../modules/thunderbolt.nix
     ../modules/webcam.nix
   ];
@@ -43,7 +40,7 @@
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
-    gnupg.sshKeyPaths = [];
+    gnupg.sshKeyPaths = [ ];
   };
 
   # Use latest kernel
