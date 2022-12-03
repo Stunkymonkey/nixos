@@ -21,14 +21,36 @@
       "birdman" = {
         id = "34Z4J7W-MJIODUD-J6LDJY6-QILQLLB-CJ4GR7K-7TJM2K3-R7SIPRV-XQO5TAI";
       };
+      "serverle" = {
+        id = "PVPEIN7-PI226LR-ULSBYKT-JGRQ3PS-WSPLGBP-TKYRJVP-OTWE7IV-NLKTBA3";
+      };
     };
     folders = {
+      "Computer" = {
+        id = "djdxo-1akub";
+        path = "/srv/data/computer";
+        devices = [
+          "thinkman"
+          "birdman"
+          "serverle"
+        ];
+      };
+      "Phone" = {
+        id = "4hds7-gpypp";
+        path = "/srv/data/phone";
+        devices = [
+          "thinkman"
+          "birdman"
+          "serverle"
+        ];
+      };
       "Music" = {
         id = "mphdq-n6q7y";
         path = "/srv/data/music";
         devices = [
           "thinkman"
           "birdman"
+          "serverle"
         ];
       };
       "Pictures" = {
@@ -36,6 +58,7 @@
         path = "/srv/data/photos";
         devices = [
           "thinkman"
+          "serverle"
         ];
       };
     };
