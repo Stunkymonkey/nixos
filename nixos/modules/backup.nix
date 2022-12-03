@@ -28,8 +28,8 @@ in
     borgbackupMonitor
   ];
 
-  sops.secrets.borgbackup_password = { };
-  sops.secrets.borgbackup_private_ssh_key = { };
+  sops.secrets."borgbackup/password" = { };
+  sops.secrets."borgbackup/private_ssh_key" = { };
 
   services.borgbackup.jobs.hetzner = {
     paths = [
@@ -59,9 +59,9 @@ in
     extraCreateArgs = "--exclude-caches --keep-exclude-tags --stats";
     encryption = {
       mode = "repokey-blake2";
-      passCommand = "cat ${config.sops.secrets.borgbackup_password.path}";
+      passCommand = "cat ${config.sops.secrets."borgbackup/password".path}";
     };
-    environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${config.sops.secrets.borgbackup_private_ssh_key.path} -p 23";
+    environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${config.sops.secrets."borgbackup/private_ssh_key".path} -p 23";
     repo = borgbackupPath + ":${config.networking.hostName}/";
     compression = "auto,zstd";
     doInit = false;
