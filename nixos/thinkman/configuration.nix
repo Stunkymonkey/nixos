@@ -40,8 +40,14 @@
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     gnupg.sshKeyPaths = [ ];
   };
+
+  nix.extraOptions = ''
+    extra-platforms = aarch64-linux i686-linux
+  '';
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
