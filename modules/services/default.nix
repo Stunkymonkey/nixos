@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./backup
     ./gitea
     ./hedgedoc
     ./homepage

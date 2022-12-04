@@ -11,17 +11,9 @@ in
   my.services = {
     backup = {
       enable = true;
-      OnFailureMail = "server@buehler.rocks";
+      OnFailureNotification = true;
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/private_ssh_key".path;
-    };
-
-    ssh-server = {
-      enable = true;
-    };
-
-    jellyfin = {
-      enable = true;
     };
   };
 }

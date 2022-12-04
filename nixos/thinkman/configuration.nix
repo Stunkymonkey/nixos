@@ -3,10 +3,10 @@
   imports = [
     ./disks.nix
     ./hardware-configuration.nix
+    ./services.nix
     ../modules/3d-design.nix
     ../modules/android.nix
     ../modules/avahi.nix
-    ../modules/backup.nix
     ../modules/bluetooth-audio.nix
     ../modules/clean.nix
     ../modules/desktop-default.nix
