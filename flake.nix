@@ -17,7 +17,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    deploy-rs.url = "github:input-output-hk/deploy-rs";
+    deploy-rs.url = "github:serokell/deploy-rs";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
