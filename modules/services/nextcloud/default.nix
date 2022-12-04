@@ -26,7 +26,7 @@ in
       description = "country codes for automatic phone-number ";
     };
     passwordFile = mkOption {
-      type = types.str;
+      type = types.path;
       example = "/var/lib/nextcloud/password.txt";
       description = ''
         Path to a file containing the admin's password, must be readable by
@@ -108,15 +108,12 @@ in
       '';
     };
 
-    #my.services.backup = {
-    #  paths = [
-    #    config.services.nextcloud.home
-    #  ];
-    #  exclude = [
-    #    # image previews can take up a lot of space
-    #    "${config.services.nextcloud.home}/data/appdata_*/preview"
-    #  ];
-    #};
+    my.services.backup = {
+      exclude = [
+        # image previews can take up a lot of space
+        "${config.services.nextcloud.home}/data/appdata_*/preview"
+      ];
+    };
 
     webapps.apps.nextcloud = {
       dashboard = {
