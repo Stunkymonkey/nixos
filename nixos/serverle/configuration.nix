@@ -2,7 +2,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./backup.nix
     ./disks.nix
     ./dyndns.nix
     ./services.nix
