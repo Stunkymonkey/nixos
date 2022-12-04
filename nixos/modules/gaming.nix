@@ -3,9 +3,9 @@
   environment.systemPackages = with pkgs; [
     blobby
     discord
-    minecraft
     minetest
     openttd
+    prismlauncher # replace minecraft
     superTuxKart
     steam
     SDL
