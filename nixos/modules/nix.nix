@@ -1,21 +1,28 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
-  nix.settings = {
-    trusted-users = [
-      "root"
-      "@wheel"
-    ];
-    auto-optimise-store = true;
-  };
+  nix = {
+    settings = {
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      auto-optimise-store = true;
+    };
 
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
 
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      unstable.flake = inputs.nixpkgs-unstable;
+    };
+  };
 
   # support auto upgrade with flakes
   system.autoUpgrade.flags = [
