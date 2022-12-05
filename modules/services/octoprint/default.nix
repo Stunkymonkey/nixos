@@ -1,7 +1,7 @@
 # 3d-printing software
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.services.minecraft-server;
+  cfg = config.my.services.octoprint;
 in
 {
   options.my.services.octoprint = with lib; {
@@ -26,7 +26,7 @@ in
         stlviewer
         telegram
         titlestatus
-      ];
+      ] ++ cfg.plugins;
     };
     networking.firewall.allowedTCPPorts = [ 5000 ];
   };
