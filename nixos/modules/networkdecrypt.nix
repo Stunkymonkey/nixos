@@ -1,8 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  sops.secrets.initrd_ssh_key = { };
-
   boot.initrd.network = {
     enable = true;
 
@@ -10,7 +8,7 @@
       enable = true;
       port = 2222;
       hostKeys = [
-        config.sops.secrets.initrd_ssh_key.path
+        "/etc/secrets/initrd/ssh_host_ed25519_key"
       ];
       authorizedKeys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFx6OLwL9MbkD3mnMsv+xrzZHN/rwCTgVs758SCLG0h felix@thinkman"
