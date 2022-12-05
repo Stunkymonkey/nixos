@@ -7,12 +7,10 @@
     ./network.nix
     ./syncthing.nix
     ./services.nix
-    #../modules/backup.nix
-    ../modules/docker.nix
-    ../modules/networkdecrypt.nix
-    ../modules/nix.nix
-    ../modules/users.nix
-    #../modules/webapps/radicale.nix
+    ../../legacy/modules/docker.nix
+    ../../legacy/modules/networkdecrypt.nix
+    ../../legacy/modules/nix.nix
+    ../../legacy/modules/users.nix
   ];
 
   networking.hostName = "newton";

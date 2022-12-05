@@ -39,7 +39,7 @@
     flake-parts.lib.mkFlake { inherit self; } {
 
       imports = [
-        ./nixos/configurations.nix
+        ./machines/configurations.nix
         #./nixos/images/default.nix
         inputs.pre-commit-hooks-nix.flakeModule
       ];
@@ -75,7 +75,7 @@
       flake = {
         checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
-        deploy = import ./nixos/deploy.nix (inputs // {
+        deploy = import ./machines/deploy.nix (inputs // {
           inherit inputs;
         });
       };

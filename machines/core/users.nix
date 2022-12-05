@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  #sops.defaultSopsFile = ../secrets + "/${config.networking.hostName}/secrets.yaml";
   sops.secrets."users/felix/password".neededForUsers = true;
   sops.secrets."users/felix/password" = { };
 

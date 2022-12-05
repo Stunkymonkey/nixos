@@ -1,19 +1,19 @@
 # nixos-config [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-This repository holds my NixOS configuration. It is fully reproducible, flakes
-based, and position-independent, meaning there is no moving around of
-`configuration.nix`.
+This repository holds my NixOS configuration.
+It is fully reproducible, flakes based, and position-independent, meaning there is no moving around of `configuration.nix`.
 
 Deployment is done using [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage).
-Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix). For formatting [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix) is used.
+Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix).
+For formatting [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix) is used.
 
 ## structure
 
 ```
 .
-├── modules      # Own nix-options, to modularize services
-├── nixos        # Machine definitions
-└── pgks         # Own packages, which are not available in nixpkgs
+├── modules      # Own nix-options, to modularize services/hardware/...
+├── machines     # Machine definitions
+└── pkgs         # Own packages, which are not available in nixpkgs
 ```
 
 ## usage
@@ -30,7 +30,7 @@ deploy .#myHost
 
 secrets:
 ```bash
-sops ./nixos/myHost/secrets.yaml
+sops ./machines/myHost/secrets.yaml
 ```
 
 ## inspired by

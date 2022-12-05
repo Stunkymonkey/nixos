@@ -7,14 +7,14 @@
     ./services.nix
     ./syncthing.nix
     ./wifi.nix
-    #../modules/3d-printer.nix
-    ../modules/avahi.nix
-    ../modules/docker.nix
-    ../modules/nix.nix
-    ../modules/webapps/bazarr.nix
-    ../modules/webapps/prowlarr.nix
-    ../modules/webapps/radarr.nix
-    ../modules/webapps/sonarr.nix
+    #../../legacy/modules/3d-printer.nix
+    ../../legacy/modules/avahi.nix
+    ../../legacy/modules/docker.nix
+    ../../legacy/modules/nix.nix
+    ../../legacy/modules/webapps/bazarr.nix
+    ../../legacy/modules/webapps/prowlarr.nix
+    ../../legacy/modules/webapps/radarr.nix
+    ../../legacy/modules/webapps/sonarr.nix
   ];
   networking.hostName = "serverle";
 
