@@ -7,7 +7,6 @@
     ./services.nix
     ./syncthing.nix
     ./wifi.nix
-    #../../legacy/modules/3d-printer.nix
     ../../legacy/modules/avahi.nix
     ../../legacy/modules/docker.nix
     ../../legacy/modules/nix.nix

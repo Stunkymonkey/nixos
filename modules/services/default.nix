@@ -12,8 +12,9 @@
     ./navidrome
     ./nextcloud
     ./nginx
-    ./passworts
+    ./octoprint
     ./paperless
+    ./passworts
     ./rss-bridge
     ./ssh-server
   ];
