@@ -2,14 +2,13 @@
 {
   imports = [
     ./boot.nix
-    ./hardware-configuration.nix
     ./disks.nix
+    ./hardware-configuration.nix
     ./network.nix
-    ./syncthing.nix
     ./services.nix
-    ../../legacy/modules/docker.nix
+    ./syncthing.nix
+    ./system.nix
     ../../legacy/modules/networkdecrypt.nix
-    ../../legacy/modules/nix.nix
   ];
 
   networking.hostName = "newton";

@@ -3,5 +3,6 @@
   imports = [
     ./hardware
     ./services
+    ./system
   ];
 }
