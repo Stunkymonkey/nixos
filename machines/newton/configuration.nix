@@ -10,7 +10,6 @@
     ../../legacy/modules/docker.nix
     ../../legacy/modules/networkdecrypt.nix
     ../../legacy/modules/nix.nix
-    ../../legacy/modules/users.nix
   ];
 
   networking.hostName = "newton";
