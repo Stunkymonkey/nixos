@@ -18,8 +18,6 @@
     gnupg.sshKeyPaths = [ ];
   };
 
-  #environment.noXlibs = true;
-
   networking.firewall.allowedTCPPorts = [
   ];
 

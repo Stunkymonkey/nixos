@@ -22,8 +22,6 @@
     gnupg.sshKeyPaths = [ ];
   };
 
-  #environment.noXlibs = true;
-
   networking.firewall.allowedTCPPorts = [
     8080 # aria
   ];
