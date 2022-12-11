@@ -2,6 +2,7 @@
 {
   imports = [
     ./backup
+    ./freshrss
     ./gitea
     ./hedgedoc
     ./homepage
