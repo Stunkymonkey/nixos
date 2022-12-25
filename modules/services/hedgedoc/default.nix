@@ -22,15 +22,9 @@ in
       '';
     };
 
-    configuration = mkOption {
-      type = types.attrs;
-      default = { };
-      description = "additional configurations";
-    };
-
     port = mkOption {
       type = types.port;
-      default = 3000;
+      default = 3080;
       example = 8080;
       description = "Internal port for webui";
     };
@@ -40,15 +34,21 @@ in
     services.hedgedoc = {
       enable = true;
 
-      configuration = {
+      settings = {
         domain = "notes.${domain}";
+        inherit (cfg) port;
+        host = "127.0.0.1";
         protocolUseSSL = true;
         db = {
           dialect = "sqlite";
-          storage = "/var/lib/hedgedoc/db.hedgedoc.sqlite";
+          storage = "/var/lib/hedgedoc/hedgedoc.sqlite";
         };
-      } // cfg.configuration;
+      } // cfg.settings;
     };
+
+    # temporary fix for: https://github.com/NixOS/nixpkgs/issues/198250
+    #systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "/var/lib/hedgedoc";
+    systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "hedgedoc";
 
     my.services.nginx.virtualHosts = [
       {
