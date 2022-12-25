@@ -47,7 +47,7 @@ in
         { name = "Applications"; tag = "app"; }
         { name = "Media"; tag = "media"; }
         { name = "Infrastructure"; tag = "infra"; }
-        { name = "Other"; tag = "other"; }
+        { name = "Others"; tag = "other"; }
       ];
     };
   };

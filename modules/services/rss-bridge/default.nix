@@ -24,7 +24,7 @@ in
     webapps.apps.rss-bridge = {
       dashboard = {
         name = "RSS-Bridge";
-        category = "app";
+        category = "infra";
         icon = "rss";
         link = "https://${domain}";
       };

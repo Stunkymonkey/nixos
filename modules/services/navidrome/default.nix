@@ -57,7 +57,7 @@ in
 
     webapps.apps.navidrome = {
       dashboard = {
-        name = "Navidrome";
+        name = "Music";
         category = "media";
         icon = "music";
         link = "https://music.${domain}/app/#/login";

@@ -47,7 +47,7 @@ in
 
     webapps.apps.paperless = {
       dashboard = {
-        name = "Paperless";
+        name = "Documents";
         category = "media";
         icon = "book";
         link = "https://docs.${domain}";

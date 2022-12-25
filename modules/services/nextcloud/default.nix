@@ -117,7 +117,7 @@ in
 
     webapps.apps.nextcloud = {
       dashboard = {
-        name = "Nextcloud";
+        name = "Cloud";
         category = "app";
         icon = "cloud";
         link = "https://cloud.${domain}/login";
