@@ -58,9 +58,7 @@
     numix-icon-theme
     numix-icon-theme-circle
     polkit_gnome
-    qgnomeplatform
     rhythmbox
-    simple-scan
     socat
     sshuttle
     tdesktop
