@@ -261,6 +261,8 @@ in
               (lib.optionalAttrs (args.port != null) {
                 locations."/".proxyPass =
                   "http://127.0.0.1:${toString args.port}";
+                # TODO make ipv6 possible
+                # http://[::1]:${toString args.port};
               })
               # Serve filesystem content
               (lib.optionalAttrs (args.root != null) {
