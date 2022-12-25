@@ -24,9 +24,8 @@
     arc-kde-theme
     arc-theme
     evince
-    firefox-wayland
-    #geary
-    unstable.ghostwriter
+    firefox
+    ghostwriter
     (gimp-with-plugins.override {
       plugins = with gimpPlugins; [
         resynthesizer
@@ -42,11 +41,19 @@
     gnome.simple-scan
     keepassxc
     keychain
-    konsole
     libnotify
     libreoffice
     lollypop
-    unstable.newsflash
+    (mpv.override {
+      scripts = with mpvScripts; [
+        convert
+        mpris
+        simple-mpv-webui
+        sponsorblock
+        thumbnail
+      ];
+    })
+    newsflash
     numix-cursor-theme
     numix-icon-theme
     numix-icon-theme-circle
@@ -60,31 +67,22 @@
     thunderbird
     virtmanager
     vlc
-    (mpv-with-scripts.override {
-      scripts = with mpvScripts; [
-        convert
-        mpris
-        simple-mpv-webui
-        sponsorblock
-        thumbnail
-      ];
-    })
     wayvnc
     xdg-utils
     zathura
     zeal
 
     # TODO sort them in different files
-    pdfgrep
-    physlock
     #symlinks
   ];
 
   # Enable firmware update daemon
   services.fwupd.enable = true;
 
-  programs.wireshark.enable = true;
-  programs.wireshark.package = pkgs.wireshark;
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
 
   services.accounts-daemon.enable = true;
 

@@ -20,6 +20,7 @@ in
     mp3gain
     mp3splt # splitting mp3 files
     mp3val
+    pdfgrep # grep in pdfs
     pdfsam-basic # pdf editing
     picard # music tagging
     projectm # visualization of music
