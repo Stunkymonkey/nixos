@@ -25,6 +25,9 @@ in
 
       # Allow DNS resolution in the default network
       defaultNetwork.dnsname.enable = true;
+
+      # TODO wait for next release
+      # autoPrune.enable = true;
     };
   };
 }
