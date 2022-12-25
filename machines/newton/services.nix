@@ -65,6 +65,10 @@ in
     ssh-server = {
       enable = true;
     };
+    # self-hosted recipe manager
+    tandoor-recipes = {
+      enable = true;
+    };
     # Webserver
     nginx = {
       enable = true;

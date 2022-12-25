@@ -18,6 +18,7 @@
     ./passworts
     ./rss-bridge
     ./ssh-server
+    ./tandoor-recipes
   ];
 }
 
