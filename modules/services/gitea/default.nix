@@ -19,11 +19,12 @@ in
     services.gitea = {
       enable = true;
       httpPort = cfg.port;
-      log.level = "Warn";
-      disableRegistration = true;
-      cookieSecure = true;
+      rootUrl = "https://code.${domain}";
       settings = {
+        session.COOKIE_SECURE = true;
+        service.DISABLE_REGISTRATION = true;
         ui.DEFAULT_THEME = "arc-green";
+        log.LEVEL = "Warn";
       };
       lfs.enable = true;
     };
@@ -31,24 +32,24 @@ in
     # Proxy to Gitea
     my.services.nginx.virtualHosts = [
       {
-        subdomain = "git";
+        subdomain = "code";
         inherit (cfg) port;
       }
     ];
 
-    #my.services.backup = {
-    #  paths = [
-    #    config.services.gitea.lfs.contentDir
-    #    config.services.gitea.repositoryRoot
-    #  ];
-    #};
+    my.services.backup = {
+      paths = [
+        config.services.gitea.lfs.contentDir
+        config.services.gitea.repositoryRoot
+      ];
+    };
 
     webapps.apps.gitea = {
       dashboard = {
-        name = "Git";
+        name = "Code";
         category = "app";
-        icon = "git";
-        link = "https://git.${domain}";
+        icon = "code-branch";
+        link = "https://code.${domain}";
       };
     };
   };
