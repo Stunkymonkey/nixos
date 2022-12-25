@@ -16,6 +16,7 @@
     ./octoprint
     ./paperless
     ./passworts
+    ./photoprism
     ./rss-bridge
     ./ssh-server
     ./tandoor-recipes

@@ -9,8 +9,10 @@ in
   sops.secrets."sso/felix/password-hash" = { };
   sops.secrets."sso/felix/totp-secret" = { };
   sops.secrets."paperless/password" = { };
-  sops.secrets."nextcloud/password" = { };
-  sops.secrets."nextcloud/password".owner = config.users.users.nextcloud.name;
+  sops.secrets."nextcloud/password" = {
+    owner = config.users.users.nextcloud.name;
+  };
+  sops.secrets."photoprism/password" = { };
 
   # List services that you want to enable:
   my.services = {
@@ -61,6 +63,16 @@ in
     # a password-generator using the marokov model
     passworts = {
       enable = true;
+    };
+    # self-hosted photo gallery
+    photoprism = {
+      enable = true;
+      passwordFile = secrets."photoprism/password".path;
+      originalsPath = "/srv/data/photos";
+      extraConfig = {
+        PHOTOPRISM_ADMIN_USER = "felix";
+        PHOTOPRISM_READONLY = "true";
+      };
     };
     ssh-server = {
       enable = true;
