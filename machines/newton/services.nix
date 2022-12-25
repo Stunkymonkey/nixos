@@ -12,6 +12,9 @@ in
   sops.secrets."nextcloud/password" = {
     owner = config.users.users.nextcloud.name;
   };
+  sops.secrets."freshrss/password" = {
+    owner = config.users.users.freshrss.name;
+  };
   sops.secrets."photoprism/password" = { };
 
   # List services that you want to enable:
@@ -51,6 +54,13 @@ in
       enable = true;
       passwordFile = secrets."paperless/password".path;
       extraConfig.PAPERLESS_ADMIN_USER = "felix";
+    };
+    # RSS aggregator and reader
+    freshrss = {
+      enable = true;
+      defaultUser = "felix";
+      baseUrl = "https://news.buehler.rocks";
+      passwordFile = secrets."freshrss/password".path;
     };
     # self-hosted git service
     gitea = {
