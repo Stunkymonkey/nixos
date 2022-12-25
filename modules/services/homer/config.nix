@@ -77,6 +77,14 @@
               example = "Ping";
               default = "Ping";
             };
+            dashboard.method = lib.mkOption {
+              type = lib.types.enum [ "get" "head" ];
+              description = ''
+                method of request used
+              '';
+              example = "get";
+              default = "head";
+            };
           };
         });
       description = ''
@@ -112,7 +120,7 @@
               url = a.dashboard.link;
               target = "_blank";
               type = a.dashboard.type;
-              method = "head";
+              method = a.dashboard.method;
             });
           }
         );
