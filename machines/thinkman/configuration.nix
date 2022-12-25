@@ -50,18 +50,6 @@
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Nix
-  nix = {
-    autoOptimiseStore = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-    daemonCPUSchedPolicy = "idle";
-    daemonIOSchedPriority = 7;
-  };
-
   system = {
     stateVersion = "22.11";
     autoUpgrade.enable = true;
