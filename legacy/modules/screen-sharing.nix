@@ -13,7 +13,6 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
     ];
-    gtkUsePortal = true;
   };
 
   # for firefox
@@ -21,5 +20,6 @@
     MOZ_ENABLE_WAYLAND = "1";
     XDG_CURRENT_DESKTOP = "sway";
     XDG_SESSION_TYPE = "wayland";
+    GTK_USE_PORTAL = "1";
   };
 }
