@@ -2,12 +2,12 @@
 {
   environment.systemPackages = with pkgs; [
     # rust
-    unstable.cargo
-    unstable.clippy # lint
+    cargo
+    clippy # lint
     cargo-flamegraph
     cargo-outdated
     rustfmt
-    unstable.rustc
+    rustc
     # general
     clang
     cloc
