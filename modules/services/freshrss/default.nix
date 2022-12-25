@@ -58,7 +58,7 @@ in
 
     webapps.apps.freshrss = {
       dashboard = {
-        name = "FreshRSS";
+        name = "News";
         category = "app";
         icon = "newspaper";
         link = "https://news.${domain}";
