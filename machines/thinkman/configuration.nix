@@ -7,7 +7,6 @@
     ./system.nix
     ../../legacy/modules/3d-design.nix
     ../../legacy/modules/android.nix
-    ../../legacy/modules/avahi.nix
     ../../legacy/modules/bluetooth-audio.nix
     ../../legacy/modules/clean.nix
     ../../legacy/modules/desktop-default.nix

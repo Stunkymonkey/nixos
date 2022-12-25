@@ -8,7 +8,6 @@
     ./syncthing.nix
     ./system.nix
     ./wifi.nix
-    ../../legacy/modules/avahi.nix
     ../../legacy/modules/webapps/bazarr.nix
     ../../legacy/modules/webapps/prowlarr.nix
     ../../legacy/modules/webapps/radarr.nix

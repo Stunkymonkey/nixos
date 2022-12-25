@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./avahi
     ./docker
     ./podman
   ];
