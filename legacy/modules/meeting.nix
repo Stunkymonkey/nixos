@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    element-desktop-wayland
+    element-desktop
     mumble
     nheko
     skypeforlinux
