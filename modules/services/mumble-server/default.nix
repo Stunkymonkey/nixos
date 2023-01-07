@@ -12,8 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     services.murmur = {
       enable = true;
-      # TODO enable in 22.11
-      #openFirewall = true;
+      openFirewall = true;
       welcometext = "Welcome to the Mumble-Server!";
       sslCert = "/var/lib/acme/${domain}/fullchain.pem";
       sslKey = "/var/lib/acme/${domain}/key.pem";
@@ -30,8 +29,5 @@ in
     };
 
     users.groups."voice-buehler-rocks".members = [ "murmur" "nginx" ];
-
-    networking.firewall.allowedTCPPorts = [ config.services.murmur.port ];
-    networking.firewall.allowedUDPPorts = [ config.services.murmur.port ];
   };
 }
