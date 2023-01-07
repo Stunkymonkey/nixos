@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./keychron
     ./nitrokey
     ./sound
     ./thunderbolt

@@ -7,6 +7,7 @@
   services.tlp.enable = true;
 
   my.hardware = {
+    keychron.enable = true;
     nitrokey.enable = true;
     sound.enable = true;
     thunderbolt.enable = true;
