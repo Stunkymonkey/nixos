@@ -30,7 +30,6 @@
     ../../legacy/modules/systemd-user.nix
     ../../legacy/modules/systemduefi.nix
     #../../legacy/modules/tex.nix
-    ../../legacy/modules/thunderbolt.nix
     ../../legacy/modules/webcam.nix
   ];
 

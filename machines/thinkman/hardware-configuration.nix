@@ -9,5 +9,6 @@
   my.hardware = {
     nitrokey.enable = true;
     sound.enable = true;
+    thunderbolt.enable = true;
   };
 }

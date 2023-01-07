@@ -5,5 +5,6 @@
   imports = [
     ./nitrokey
     ./sound
+    ./thunderbolt
   ];
 }
