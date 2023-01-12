@@ -4,7 +4,7 @@ let
 in
 {
   options.my.hardware.nitrokey = {
-    enable = lib.mkEnableOption "pipewire configuration";
+    enable = lib.mkEnableOption "nitrokey configuration";
   };
 
   config = lib.mkIf cfg.enable {
