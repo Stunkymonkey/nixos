@@ -7,7 +7,8 @@
         dtparam=act_led_trigger=none
         dtparam=act_led_activelow=off
         # Disable the PWR LED.
-        dtparam=pwr_led_trigger=none
+        # somehow this changed in firmware settings: https://github.com/raspberrypi/firmware/issues/1742
+        #dtparam=pwr_led_trigger=default-on
         dtparam=pwr_led_activelow=off
 
         # Disable ethernet port LEDs
