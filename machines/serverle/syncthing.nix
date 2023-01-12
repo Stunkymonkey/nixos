@@ -8,6 +8,11 @@
     openDefaultPorts = true;
     key = config.sops.secrets."syncthing/key".path;
     cert = config.sops.secrets."syncthing/cert".path;
+    extraOptions = {
+      options = {
+        urAccepted = 3;
+      };
+    };
     devices = {
       "thinkman" = {
         id = "KXSCPX3-JCCFZM4-S2LQZZL-3AM6WRL-IPNWVG2-IB5FEDJ-YYFUIRR-VMDO3AL";
@@ -41,6 +46,7 @@
       "Music" = {
         id = "mphdq-n6q7y";
         path = "/srv/data/music";
+        watch = false;
         devices = [
           "thinkman"
           "birdman"
@@ -50,6 +56,7 @@
       "Pictures" = {
         id = "cujyo-yiabu";
         path = "/srv/data/photos";
+        watch = false;
         devices = [
           "thinkman"
           "newton"

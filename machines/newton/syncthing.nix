@@ -11,6 +11,7 @@
     extraOptions = {
       options = {
         localAnnounceEnabled = false;
+        urAccepted = 3;
       };
     };
     devices = {
@@ -46,6 +47,7 @@
       "Music" = {
         id = "mphdq-n6q7y";
         path = "/srv/data/music";
+        watch = false;
         devices = [
           "thinkman"
           "birdman"
@@ -55,6 +57,7 @@
       "Pictures" = {
         id = "cujyo-yiabu";
         path = "/srv/data/photos";
+        watch = false;
         devices = [
           "thinkman"
           "serverle"
