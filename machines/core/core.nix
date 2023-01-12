@@ -20,7 +20,6 @@
     mosh
     multipath-tools #-> kpartx
     mtr
-    nix-index
     nmap
     nmon
     pciutils

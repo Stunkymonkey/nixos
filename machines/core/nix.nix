@@ -1,6 +1,9 @@
 { config, lib, pkgs, inputs, ... }:
 {
   nix = {
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
+
     settings = {
       trusted-users = [
         "root"
@@ -32,10 +35,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    nix-index
     nix-prefetch
     nix-update
     nixpkgs-fmt
-    nixpkgs-lint
     nixpkgs-review
   ];
 }
