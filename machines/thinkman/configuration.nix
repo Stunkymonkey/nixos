@@ -29,7 +29,7 @@
     ../../legacy/modules/sync.nix
     ../../legacy/modules/systemd-user.nix
     ../../legacy/modules/systemduefi.nix
-    #../../legacy/modules/tex.nix
+    ../../legacy/modules/tex.nix
     ../../legacy/modules/webcam.nix
   ];
 
