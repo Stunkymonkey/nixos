@@ -18,7 +18,7 @@
     killall
     lsof
     mosh
-    multipath-tools #-> kpartx
+    multipath-tools # kpartx
     mtr
     nmap
     nmon
