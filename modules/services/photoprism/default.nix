@@ -11,12 +11,12 @@ let
     PHOTOPRISM_HTTP_HOST = cfg.address;
     PHOTOPRISM_HTTP_PORT = toString cfg.port;
   } // (
-    lib.mapAttrs (_: toString) cfg.extraConfig
+    lib.mapAttrs (_: toString) cfg.settings
   );
 
   manage =
     let
-      setupEnv = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: val: "export ${name}=\"${val}\"") env);
+      setupEnv = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: val: "export ${name}=${lib.escapeShellArg val}") env);
     in
     pkgs.writeShellScript "manage" ''
       ${setupEnv}
@@ -26,56 +26,63 @@ in
 {
   meta.maintainers = with lib.maintainers; [ stunkymonkey ];
 
-  options.my.services.photoprism = with lib; {
+  options.my.services.photoprism = {
 
-    enable = mkEnableOption (lib.mdDoc "Photoprism web server");
+    enable = lib.mkEnableOption (lib.mdDoc "Photoprism web server");
 
-    passwordFile = mkOption {
-      type = types.nullOr types.path;
+    passwordFile = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
       default = null;
-      description = lib.mdDoc "Admin password file.";
+      description = lib.mdDoc ''
+        Admin password file.
+      '';
     };
 
-    address = mkOption {
-      type = types.str;
+    address = lib.mkOption {
+      type = lib.types.str;
       default = "localhost";
-      description = lib.mdDoc "Web interface address.";
+      description = lib.mdDoc ''
+        Web interface address.
+      '';
     };
 
-    port = mkOption {
-      type = types.port;
+    port = lib.mkOption {
+      type = lib.types.port;
       default = 2342;
-      description = lib.mdDoc "Web interface port.";
+      description = lib.mdDoc ''
+        Web interface port.
+      '';
     };
 
-    originalsPath = mkOption {
-      type = types.path;
+    originalsPath = lib.mkOption {
+      type = lib.types.path;
       default = null;
       example = "/data/photos";
-      description = lib.mdDoc "storage path of your original media files (photos and videos).";
+      description = lib.mdDoc ''
+        Storage path of your original media files (photos and videos)
+      '';
     };
 
-    importPath = mkOption {
-      type = types.str;
+    importPath = lib.mkOption {
+      type = lib.types.str;
       default = "import";
-      description = lib.mdDoc "relative or absolute to the `originalsPath` from where the files should be imported.";
+      description = lib.mdDoc ''
+        Relative or absolute to the `originalsPath` from where the files should be imported.
+      '';
     };
 
-    storagePath = mkOption {
-      type = types.path;
+    storagePath = lib.mkOption {
+      type = lib.types.path;
       default = "/var/lib/photoprism";
-      description = lib.mdDoc "location for sidecar, cache, and database files.";
+      description = lib.mdDoc ''
+        location for sidecar, cache, and database files.
+      '';
     };
 
-    package = mkOption {
-      type = types.package;
-      default = pkgs.photoprism;
-      defaultText = literalExpression "pkgs.photoprism";
-      description = lib.mdDoc "The Photoprism package to use.";
-    };
+    package = lib.mkPackageOption pkgs "photoprism" { };
 
-    extraConfig = mkOption {
-      type = types.attrs;
+    settings = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
       default = { };
       description = lib.mdDoc ''
         Extra photoprism config options. See [the getting-stated guide](https://docs.photoprism.app/getting-started/config-options/) for available options.
@@ -99,18 +106,8 @@ in
         StateDirectory = "photoprism";
         WorkingDirectory = "/var/lib/photoprism";
         RuntimeDirectory = "photoprism";
-
         LoadCredential = lib.optionalString (cfg.passwordFile != null)
           "PHOTOPRISM_ADMIN_PASSWORD:${cfg.passwordFile}";
-
-        BindReadOnlyPaths = [
-          "${config.environment.etc."ssl/certs/ca-certificates.crt".source}:/etc/ssl/certs/ca-certificates.crt"
-          builtins.storeDir
-          "-/etc/resolv.conf"
-          "-/etc/nsswitch.conf"
-          "-/etc/hosts"
-          "-/etc/localtime"
-        ];
         CapabilityBoundingSet = "";
         LockPersonality = true;
         PrivateDevices = true;
@@ -126,7 +123,8 @@ in
         RestrictNamespaces = true;
         RestrictRealtime = true;
         SystemCallArchitectures = "native";
-        SystemCallFilter = [ "@system-service" "~@privileged" "@resources" "@setuid" "@keyring" ];
+        #SystemCallFilter = [ "@system-service" "~@privileged @resources @setuid @keyring" ];
+        SystemCallFilter = [ "@system-service" "~@privileged @setuid @keyring" ];
         UMask = "0066";
       } // lib.optionalAttrs (cfg.port < 1024) {
         AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" ];
