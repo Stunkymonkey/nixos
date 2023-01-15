@@ -79,9 +79,9 @@ in
       enable = true;
       passwordFile = secrets."photoprism/password".path;
       originalsPath = "/srv/data/photos";
-      extraConfig = {
+      settings = {
         PHOTOPRISM_ADMIN_USER = "felix";
-        PHOTOPRISM_READONLY = "true";
+        PHOTOPRISM_SPONSOR = "true";
       };
     };
     ssh-server = {
