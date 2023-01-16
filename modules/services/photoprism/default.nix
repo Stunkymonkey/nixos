@@ -85,7 +85,7 @@ in
       type = lib.types.attrsOf lib.types.str;
       default = { };
       description = lib.mdDoc ''
-        Extra photoprism config options. See [the getting-stated guide](https://docs.photoprism.app/getting-started/config-options/) for available options.
+        Extra photoprism config options. See [the getting-started guide](https://docs.photoprism.app/getting-started/config-options/) for available options.
       '';
       example = {
         PHOTOPRISM_DEFAULT_LOCALE = "de";
@@ -134,7 +134,13 @@ in
       wantedBy = [ "multi-user.target" ];
       environment = env;
 
+      # wait for easier password configuration: https://github.com/photoprism/photoprism/pull/2302
       preStart = ''
+        ${lib.optionalString (cfg.passwordFile != null) ''
+          export PHOTOPRISM_ADMIN_PASSWORD=$(cat "$CREDENTIALS_DIRECTORY/PHOTOPRISM_ADMIN_PASSWORD")
+        ''}
+        exec ${cfg.package}/bin/photoprism migrations run -f
+
         ln -sf ${manage} photoprism-manage
       '';
 
@@ -143,7 +149,6 @@ in
         ${lib.optionalString (cfg.passwordFile != null) ''
           export PHOTOPRISM_ADMIN_PASSWORD=$(cat "$CREDENTIALS_DIRECTORY/PHOTOPRISM_ADMIN_PASSWORD")
         ''}
-        ${cfg.package}/bin/photoprism migrations run -f
         exec ${cfg.package}/bin/photoprism start
       '';
     };
