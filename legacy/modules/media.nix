@@ -10,13 +10,13 @@ in
     chromaprint # music-brainz fingerprint
     ffmpeg
     gallery-dl
-    graphviz
     handbrake
     image_optim
     imagemagick
     inkscape
     mat2 # metadata-cleaning
     mediaelch
+    metadata-cleaner
     mp3gain
     mp3splt # splitting mp3 files
     mp3val
