@@ -10,7 +10,7 @@
     gnome.gnome-font-viewer
     meld
     insomnia
-    #qgis
+    unstable.qgis
     sqlitebrowser
     unstable.sublime4
   ];
