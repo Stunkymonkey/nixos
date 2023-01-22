@@ -15,14 +15,11 @@
   xdg.icons.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # thumbnails
-    ffmpegthumbnailer
     gnome.nautilus
-    # enable plugins
-    gnome.nautilus-python
-    # thumbnails
-    gst_all_1.gst-libav
-    # terminal-context-entry
-    nautilus-open-any-terminal
+
+    ffmpegthumbnailer # thumbnails
+    gnome.nautilus-python # enable plugins
+    gst_all_1.gst-libav # thumbnails
+    nautilus-open-any-terminal # terminal-context-entry
   ];
 }
