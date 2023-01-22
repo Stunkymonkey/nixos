@@ -19,10 +19,6 @@
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
-    adwaita-qt
-    arc-icon-theme
-    arc-kde-theme
-    arc-theme
     evince
     firefox
     ghostwriter
@@ -54,9 +50,6 @@
       ];
     })
     newsflash
-    numix-cursor-theme
-    numix-icon-theme
-    numix-icon-theme-circle
     polkit_gnome
     rhythmbox
     socat
