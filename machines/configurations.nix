@@ -40,6 +40,7 @@ let
       ];
     }
     ../modules
+    ../profiles
   ];
   defaultModules = baseModules ++ customModules;
 in
