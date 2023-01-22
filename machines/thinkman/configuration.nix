@@ -4,9 +4,9 @@
     ./disks.nix
     ./hardware-configuration.nix
     ./services.nix
+    ./profiles.nix
     ./system.nix
     ../../legacy/modules/3d-design.nix
-    ../../legacy/modules/android.nix
     ../../legacy/modules/bluetooth-audio.nix
     ../../legacy/modules/clean.nix
     ../../legacy/modules/desktop-default.nix
@@ -22,7 +22,6 @@
     ../../legacy/modules/media.nix
     ../../legacy/modules/meeting.nix
     ../../legacy/modules/power.nix
-    ../../legacy/modules/presentation.nix
     ../../legacy/modules/printer.nix
     ../../legacy/modules/screen-sharing.nix
     ../../legacy/modules/sway.nix
