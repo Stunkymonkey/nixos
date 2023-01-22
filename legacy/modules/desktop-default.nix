@@ -56,7 +56,6 @@
     sshuttle
     tdesktop
     thunderbird
-    virtmanager
     vlc
     wayvnc
     xdg-utils
