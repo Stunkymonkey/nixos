@@ -27,33 +27,23 @@
         resynthesizer
       ];
     })
-    glib
     gnome.adwaita-icon-theme
     gnome.dconf-editor
     gnome.eog
     gnome.file-roller
-    gnome.gnome-calendar
-    gnome.gnome-system-monitor
-    gnome.simple-scan
     keepassxc
-    keychain
-    libnotify
     libreoffice
-    lollypop
     (mpv.override {
       scripts = with mpvScripts; [
         convert
         mpris
         simple-mpv-webui
         sponsorblock
-        thumbnail
       ];
     })
     newsflash
     polkit_gnome
     rhythmbox
-    socat
-    sshuttle
     tdesktop
     thunderbird
     vlc
@@ -62,8 +52,14 @@
     zathura
     zeal
 
+    # terminal
+    socat
+    sshuttle
+    libnotify
+    keychain
+
     # TODO sort them in different files
-    #symlinks
+    topgrade
   ];
 
   # Enable firmware update daemon
