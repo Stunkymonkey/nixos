@@ -6,5 +6,6 @@ in
 {
   my.profiles = {
     android.enable = true;
+    printing.enable = true;
   };
 }

@@ -22,7 +22,6 @@
     ../../legacy/modules/media.nix
     ../../legacy/modules/meeting.nix
     ../../legacy/modules/power.nix
-    ../../legacy/modules/printer.nix
     ../../legacy/modules/screen-sharing.nix
     ../../legacy/modules/sway.nix
     ../../legacy/modules/sync.nix
