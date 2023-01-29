@@ -5,6 +5,8 @@ let
 in
 {
   sops.secrets."acme/inwx" = { };
+  sops.secrets."borgbackup/password" = { };
+  sops.secrets."borgbackup/private_ssh_key" = { };
   sops.secrets."sso/auth-key" = { };
   sops.secrets."sso/felix/password-hash" = { };
   sops.secrets."sso/felix/totp-secret" = { };
@@ -19,6 +21,12 @@ in
 
   # List services that you want to enable:
   my.services = {
+    backup = {
+      enable = true;
+      OnFailureMail = "server@buehler.rocks";
+      passwordFile = secrets."borgbackup/password".path;
+      sshKeyFile = secrets."borgbackup/private_ssh_key".path;
+    };
     # My own personal homepage
     homepage = {
       enable = true;
