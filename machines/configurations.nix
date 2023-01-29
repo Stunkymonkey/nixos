@@ -18,7 +18,7 @@ let
 
   customModules = import ./core/default.nix;
   baseModules = [
-    # make flake inputs accessiable in NixOS
+    # make flake inputs accessible in NixOS
     {
       _module.args.self = self;
       _module.args.inputs = self.inputs;
