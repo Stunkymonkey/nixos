@@ -27,12 +27,11 @@
     };
   };
 
-  # support auto upgrade with flakes
-  system.autoUpgrade.flags = [
-    "--update-input"
-    "nixpkgs"
-    "--commit-lock-file"
-  ];
+  # auto upgrade with own flakes
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:Stunkymonkey/nixos";
+  };
 
   environment.systemPackages = with pkgs; [
     nix-index
