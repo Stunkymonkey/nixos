@@ -28,6 +28,7 @@ let
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
             overlay-unstable
+            (import ../overlays)
             (import ../pkgs)
           ];
           nix.nixPath = [
