@@ -19,6 +19,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
+    glib
     evince
     firefox
     ghostwriter
@@ -57,9 +58,6 @@
     sshuttle
     libnotify
     keychain
-
-    # TODO sort them in different files
-    topgrade
   ];
 
   # Enable firmware update daemon
@@ -67,11 +65,10 @@
 
   programs.wireshark = {
     enable = true;
-    package = pkgs.wireshark;
+    package = pkgs.wireshark; # enable the gui
   };
 
-  services.accounts-daemon.enable = true;
-
+  # start sway if login happens
   environment.interactiveShellInit = ''
     if test `tty` = /dev/tty1; then
       exec sway
