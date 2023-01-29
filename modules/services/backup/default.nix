@@ -62,6 +62,7 @@ in
         "/run"
         "/proc"
         "/root/.cache/"
+        "/root/.config/borg/security/"
         "**/.Trash"
         "/tmp"
 
