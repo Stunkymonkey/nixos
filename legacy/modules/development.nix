@@ -8,19 +8,21 @@
     cargo-outdated
     rustfmt
     rustc
-    # general
-    clang
+    # tools
     cloc
-    cmake
-    dfeet
     direnv
     entr
-    git
+    ripgrep
+    # general
+    clang
+    cmake
     gnumake
-    go
-    hugo
     meson
     ninja
+    valgrind
+    # websites
+    hugo
+    # scripts
     (python3.withPackages (ps: with ps; [
       jupyter # notebooks
       matplotlib
@@ -33,10 +35,8 @@
       tqdm # progressbar in pandas
       wheel # python development
     ]))
-    ripgrep
     shellcheck
     topgrade
-    valgrind
     vimPlugins.YouCompleteMe
     ycmd
     woeusb-ng
