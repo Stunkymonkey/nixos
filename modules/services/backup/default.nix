@@ -117,6 +117,9 @@ in
         fi
       '';
 
+      # for mail sending
+      readWritePaths = lib.optional (cfg.OnFailureMail != null) "/var/lib/postfix/queue/maildrop/";
+
       startAt = "daily";
       persistentTimer = true;
       prune.keep = {
