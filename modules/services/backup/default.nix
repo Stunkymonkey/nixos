@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.backup;
-  borgbackupPath = "u181505-sub1@u181505-sub1.your-storagebox.de";
 in
 {
   options.my.services.backup = with lib; {
@@ -11,6 +10,25 @@ in
       type = types.path;
       description = "Password for the backup";
       example = "/run/secrets/password";
+    };
+
+    sshHost = mkOption {
+      type = types.str;
+      description = "ssh-hostname for remote access";
+      default = "u181505-sub1.your-storagebox.de";
+      example = "test.domain.com";
+    };
+    sshUser = mkOption {
+      type = types.str;
+      description = "ssh-user for remote access";
+      default = "u181505-sub1";
+      example = "max";
+    };
+    sshPort = mkOption {
+      type = types.port;
+      description = "ssh-port for remote access";
+      default = 23;
+      example = 22;
     };
     sshKeyFile = mkOption {
       type = types.path;
@@ -89,8 +107,8 @@ in
         passCommand = "cat ${cfg.passwordFile}";
       };
 
-      environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${cfg.sshKeyFile} -p 23";
-      repo = borgbackupPath + ":${config.networking.hostName}/";
+      environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${cfg.sshKeyFile} -p ${toString cfg.sshPort}";
+      repo = "${cfg.sshUser}@${cfg.sshHost}:${config.networking.hostName}/";
 
       doInit = false;
       compression = "auto,zstd";
