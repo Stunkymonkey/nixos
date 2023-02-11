@@ -4,53 +4,53 @@ let
 in
 {
   options.my.services.backup = with lib; {
-    enable = mkEnableOption "Borgbackup Service";
+    enable = mkEnableOption (lib.mdDoc "Borgbackup Service");
 
     passwordFile = mkOption {
       type = types.path;
-      description = "Password for the backup";
+      description = lib.mdDoc "Password for the backup";
       example = "/run/secrets/password";
     };
 
     sshHost = mkOption {
       type = types.str;
-      description = "ssh-hostname for remote access";
+      description = lib.mdDoc "ssh-hostname for remote access";
       default = "u181505-sub1.your-storagebox.de";
       example = "test.domain.com";
     };
     sshUser = mkOption {
       type = types.str;
-      description = "ssh-user for remote access";
+      description = lib.mdDoc "ssh-user for remote access";
       default = "u181505-sub1";
       example = "max";
     };
     sshPort = mkOption {
       type = types.port;
-      description = "ssh-port for remote access";
+      description = lib.mdDoc "ssh-port for remote access";
       default = 23;
       example = 22;
     };
     sshKeyFile = mkOption {
       type = types.path;
-      description = "ssh-key for remote access";
+      description = lib.mdDoc "ssh-key for remote access";
       example = "/run/secrets/ssh_key";
     };
 
     OnFailureNotification = mkOption {
       type = types.bool;
-      description = "whether to show a warning to all users or not";
+      description = lib.mdDoc "whether to show a warning to all users or not";
       default = false;
     };
     OnFailureMail = mkOption {
       type = types.nullOr (types.str);
-      description = "Mail adress where to send the error report";
+      description = lib.mdDoc "Mail adress where to send the error report";
       default = null;
       example = "alarm@mail.com";
     };
 
     paths = mkOption {
       type = with types; listOf str;
-      description = "additional path(s) to back up";
+      description = lib.mdDoc "additional path(s) to back up";
       default = [ "/" ];
       example = [
         "/home/user"
@@ -58,12 +58,24 @@ in
     };
     exclude = mkOption {
       type = with types; listOf str;
-      description = "Exclude paths matching any of the given patterns. See `borg help patterns`";
+      description = lib.mdDoc "Exclude paths matching any of the given patterns. See `borg help patterns`";
       default = [ ];
       example = [
         "/home/*/.cache"
         "/tmp"
       ];
+    };
+
+    doInit = mkOption {
+      type = types.bool;
+      description = lib.mdDoc ''
+        Run {command}`borg init` if the
+        specified {option}`repo` does not exist.
+        You should set this to `false`
+        if the repository is located on an external drive
+        that might not always be mounted.
+      '';
+      default = false;
     };
   };
 
@@ -110,7 +122,7 @@ in
       environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${cfg.sshKeyFile} -p ${toString cfg.sshPort}";
       repo = "${cfg.sshUser}@${cfg.sshHost}:${config.networking.hostName}/";
 
-      doInit = false;
+      doInit = cfg.doInit;
       compression = "auto,zstd";
 
       postHook = ''
