@@ -3,6 +3,7 @@
 {
   imports = [
     ./android
+    ./clean
     ./latex
     ./printing
   ];

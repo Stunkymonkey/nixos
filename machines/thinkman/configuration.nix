@@ -8,7 +8,6 @@
     ./system.nix
     ../../legacy/modules/3d-design.nix
     ../../legacy/modules/bluetooth-audio.nix
-    ../../legacy/modules/clean.nix
     ../../legacy/modules/desktop-default.nix
     ../../legacy/modules/desktop-development.nix
     ../../legacy/modules/development.nix
@@ -27,7 +26,6 @@
     ../../legacy/modules/sync.nix
     ../../legacy/modules/systemd-user.nix
     ../../legacy/modules/systemduefi.nix
-    ../../legacy/modules/tex.nix
     ../../legacy/modules/webcam.nix
   ];
 
