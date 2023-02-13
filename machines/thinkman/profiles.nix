@@ -6,6 +6,7 @@ in
 {
   my.profiles = {
     android.enable = true;
+    latex.enable = true;
     printing.enable = true;
   };
 }
