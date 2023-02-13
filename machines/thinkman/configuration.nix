@@ -6,7 +6,6 @@
     ./services.nix
     ./profiles.nix
     ./system.nix
-    ../../legacy/modules/3d-design.nix
     ../../legacy/modules/bluetooth-audio.nix
     ../../legacy/modules/desktop-default.nix
     ../../legacy/modules/desktop-development.nix

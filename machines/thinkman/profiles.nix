@@ -5,6 +5,7 @@ let
 in
 {
   my.profiles = {
+    "3d-design".enable = true;
     android.enable = true;
     clean.enable = true;
     latex.enable = true;

@@ -2,6 +2,7 @@
 { ... }:
 {
   imports = [
+    ./3d-design
     ./android
     ./clean
     ./latex
