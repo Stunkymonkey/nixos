@@ -2,7 +2,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.initrd-ssh;
-  domain = config.networking.domain;
 in
 {
   options.my.services.initrd-ssh = with lib; {
