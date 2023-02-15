@@ -22,7 +22,6 @@
     ../../legacy/modules/power.nix
     ../../legacy/modules/screen-sharing.nix
     ../../legacy/modules/sway.nix
-    ../../legacy/modules/sync.nix
     ../../legacy/modules/systemd-user.nix
     ../../legacy/modules/systemduefi.nix
     ../../legacy/modules/webcam.nix

@@ -10,5 +10,6 @@ in
     clean.enable = true;
     latex.enable = true;
     printing.enable = true;
+    sync.enable = true;
   };
 }

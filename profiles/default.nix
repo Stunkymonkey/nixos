@@ -7,5 +7,6 @@
     ./clean
     ./latex
     ./printing
+    ./sync
   ];
 }
