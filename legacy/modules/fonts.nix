@@ -2,27 +2,26 @@
 {
   fonts = {
     fontconfig.defaultFonts = {
-      monospace = [ "Ubuntu Mono" ];
       sansSerif = [ "Ubuntu" ];
+      monospace = [ "Ubuntu Mono" ];
     };
 
     fonts = with pkgs; [
       cantarell-fonts # gnome default
-      dina-font
       fira
+      fira-code # coding
+      fira-code-symbols # ligatures
       fira-mono
-      fira-code
-      fira-code-symbols
-      font-awesome
-      liberation_ttf
-      mplus-outline-fonts.githubRelease
+      font-awesome # icons
+      joypixels # emojis
+      liberation_ttf # main microsoft fonts
+      # mplus-outline-fonts.githubRelease # microsoft fonts
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
-      proggyfonts
+      noto-fonts-extra
       ubuntu_font_family
-      joypixels
-      unifont # unicode
+      unifont # unicode fallback
     ];
   };
   nixpkgs.config.joypixels.acceptLicense = true;
