@@ -8,7 +8,6 @@
     ./services.nix
     ./syncthing.nix
     ./system.nix
-    ../../legacy/modules/networkdecrypt.nix
   ];
 
   networking.hostName = "newton";
@@ -17,9 +16,6 @@
     defaultSopsFile = ./secrets.yaml;
     gnupg.sshKeyPaths = [ ];
   };
-
-  networking.firewall.allowedTCPPorts = [
-  ];
 
   system = {
     stateVersion = "22.11";

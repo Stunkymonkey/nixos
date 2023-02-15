@@ -7,6 +7,7 @@
     ./hedgedoc
     ./homepage
     ./homer
+    ./initrd-ssh
     ./jellyfin
     ./minecraft-server
     ./mumble-server

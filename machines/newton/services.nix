@@ -95,6 +95,9 @@ in
     ssh-server = {
       enable = true;
     };
+    initrd-ssh = {
+      enable = true;
+    };
     # self-hosted recipe manager
     tandoor-recipes = {
       enable = true;
