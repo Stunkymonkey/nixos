@@ -19,7 +19,6 @@
     ../../legacy/modules/location.nix
     ../../legacy/modules/media.nix
     ../../legacy/modules/meeting.nix
-    ../../legacy/modules/power.nix
     ../../legacy/modules/screen-sharing.nix
     ../../legacy/modules/sway.nix
     ../../legacy/modules/systemd-user.nix

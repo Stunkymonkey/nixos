@@ -6,6 +6,7 @@
     ./android
     ./clean
     ./latex
+    ./powersave
     ./printing
     ./sync
   ];
