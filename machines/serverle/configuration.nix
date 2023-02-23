@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./disks.nix
     ./dyndns.nix
+    ./network.nix
     ./services.nix
     ./syncthing.nix
     ./system.nix
@@ -20,10 +21,6 @@
     # disable gpg and thereby enable age
     gnupg.sshKeyPaths = [ ];
   };
-
-  networking.firewall.allowedTCPPorts = [
-    8080 # aria
-  ];
 
   # Nix
   nix.gc = {

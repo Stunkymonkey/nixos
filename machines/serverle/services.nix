@@ -4,8 +4,12 @@ let
   secrets = config.sops.secrets;
 in
 {
+  sops.secrets."acme/inwx" = { };
   sops.secrets."borgbackup/password" = { };
   sops.secrets."borgbackup/ssh_key" = { };
+  sops.secrets."sso/auth-key" = { };
+  sops.secrets."sso/felix/password-hash" = { };
+  sops.secrets."sso/felix/totp-secret" = { };
 
   # List services that you want to enable:
   my.services = {
@@ -22,6 +26,29 @@ in
 
     jellyfin = {
       enable = true;
+    };
+    # Dashboard
+    homer = {
+      enable = true;
+    };
+    # Webserver
+    nginx = {
+      enable = true;
+      acme = {
+        credentialsFile = secrets."acme/inwx".path;
+      };
+      sso = {
+        authKeyFile = secrets."sso/auth-key".path;
+        users = {
+          felix = {
+            passwordHashFile = secrets."sso/felix/password-hash".path;
+            totpSecretFile = secrets."sso/felix/totp-secret".path;
+          };
+        };
+        groups = {
+          root = [ "felix" ];
+        };
+      };
     };
   };
 }
