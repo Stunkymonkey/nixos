@@ -67,7 +67,6 @@ in
     freshrss = {
       enable = true;
       defaultUser = "felix";
-      baseUrl = "https://news.buehler.rocks";
       passwordFile = secrets."freshrss/password".path;
     };
     # self-hosted git service

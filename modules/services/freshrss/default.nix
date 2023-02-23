@@ -27,12 +27,6 @@ in
       example = "/run/secrets/freshrss";
     };
 
-    baseUrl = mkOption {
-      type = types.str;
-      description = "Default URL for FreshRSS.";
-      example = "https://freshrss.example.com";
-    };
-
     language = mkOption {
       type = types.str;
       default = "en";
@@ -44,7 +38,8 @@ in
   config = lib.mkIf cfg.enable {
     services.freshrss = {
       enable = true;
-      inherit (cfg) baseUrl language passwordFile defaultUser;
+      baseUrl = "https://news.${domain}";
+      inherit (cfg) language passwordFile defaultUser;
     };
 
     # Set up a Nginx virtual host.
