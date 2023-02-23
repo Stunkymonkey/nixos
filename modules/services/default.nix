@@ -2,6 +2,7 @@
 {
   imports = [
     ./backup
+    #./blocky
     ./freshrss
     ./gitea
     ./hedgedoc
