@@ -21,6 +21,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # own flakes
     stunkymonkey = {
       url = "github:Stunkymonkey/stunkymonkey.de";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,9 +65,9 @@
           nativeBuildInputs = [
             inputs'.sops-nix.packages.sops-import-keys-hook
             inputs'.deploy-rs.packages.deploy-rs
-            pkgs.nixpkgs-fmt
+            # formatters
             pkgs.shellcheck
-            pkgs.pre-commit
+            pkgs.nixpkgs-fmt
           ];
           shellHook = ''
             ${config.pre-commit.installationScript}

@@ -6,14 +6,18 @@ It is fully reproducible, flakes based, and position-independent, meaning there 
 Deployment is done using [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage).
 Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix).
 For formatting [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix) is used.
+For image generation [nixos-generators](https://github.com/nix-community/nixos-generators) is used.
 
 ## structure
 
 ```
 .
-├── modules      # Own nix-options, to modularize services/hardware/...
-├── machines     # Machine definitions
-└── pkgs         # Own packages, which are not available in nixpkgs
+├── images       # custom image generations
+├── machines     # machine definitions
+├── modules      # own nix-options, to modularize services/hardware/...
+├── overlays     # overlays
+├── pkgs         # own packages, which are not available in nixpkgs
+└── profiles     # summarize module collections into single options
 ```
 
 ## usage
@@ -33,8 +37,13 @@ secrets:
 sops ./machines/myHost/secrets.yaml
 ```
 
+images:
+```bash
+nix build .#install-iso
+nix build .#aarch64-install --system aarch64-linux
+```
+
 ## inspired by
-- [deploy hugo with nix](https://ayats.org/blog/flake-blog/)
 - [Nix config by Mic92](https://github.com/Mic92/dotfiles)
 - [Nix config by ambroisie](https://github.com/ambroisie/nix-config)
 - [Nix config by pborzenkov](https://github.com/pborzenkov/nix-config)
