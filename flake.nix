@@ -43,7 +43,7 @@
 
       imports = [
         ./machines/configurations.nix
-        #./nixos/images/default.nix
+        ./images/flake-module.nix
         inputs.pre-commit-hooks-nix.flakeModule
       ];
 
