@@ -6,20 +6,20 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    audacity
+    audacity # audio editing
     chromaprint # music-brainz fingerprint
-    ffmpeg
-    gallery-dl
-    handbrake
-    image_optim
-    imagemagick
-    inkscape
+    ffmpeg # general purpose
+    gallery-dl # image donwloader
+    handbrake # video converter
+    image_optim # image compressors
+    imagemagick # image converter
+    inkscape # vector image editing
     mat2 # metadata-cleaning
-    mediaelch
-    metadata-cleaner
-    mp3gain
+    mediaelch # video sorting
+    metadata-cleaner # mat2-gui
+    mp3gain # audio volume
     mp3splt # splitting mp3 files
-    mp3val
+    mp3val # audio validation
     pdfgrep # grep in pdfs
     pdfsam-basic # pdf editing
     picard # music tagging
@@ -27,7 +27,7 @@ in
     puddletag # audio tagging
     shotwell # photo management
     sonixd # cloud-music-player
-    soundkonverter
-    yt-dlp
+    soundkonverter # audio converter
+    yt-dlp # videao download
   ];
 }
