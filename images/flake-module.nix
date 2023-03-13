@@ -25,14 +25,14 @@ in
           format = "install-iso";
         };
 
-        install-sd-aarch64 = nixos-generators.nixosGenerate {
-          system = "aarch64-linux";
-          inherit pkgs;
-          modules = [
-            defaultModule
-          ];
-          format = "sd-aarch64-installer";
-        };
+        # install-sd-aarch64 = nixos-generators.nixosGenerate {
+        #   system = "aarch64-linux";
+        #   inherit pkgs;
+        #   modules = [
+        #     defaultModule
+        #   ];
+        #   format = "sd-aarch64-installer";
+        # };
       };
     };
   # for debugging
