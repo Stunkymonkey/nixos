@@ -12,7 +12,6 @@
     ../../legacy/modules/webapps/bazarr.nix
     ../../legacy/modules/webapps/prowlarr.nix
     ../../legacy/modules/webapps/radarr.nix
-    ../../legacy/modules/webapps/sonarr.nix
   ];
   networking.hostName = "serverle";
 

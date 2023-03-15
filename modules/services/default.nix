@@ -20,6 +20,7 @@
     ./passworts
     ./photoprism
     ./rss-bridge
+    ./sonarr
     ./ssh-server
     ./tandoor-recipes
   ];
