@@ -2,6 +2,7 @@
 {
   imports = [
     ./backup
+    ./bazarr
     #./blocky
     ./freshrss
     ./gitea

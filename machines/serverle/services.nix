@@ -29,6 +29,9 @@ in
     sonarr = {
       enable = true;
     };
+    bazarr = {
+      enable = true;
+    };
 
     ssh-server = {
       enable = true;

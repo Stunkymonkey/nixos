@@ -9,7 +9,6 @@
     ./syncthing.nix
     ./system.nix
     ./wifi.nix
-    ../../legacy/modules/webapps/bazarr.nix
   ];
   networking.hostName = "serverle";
 
