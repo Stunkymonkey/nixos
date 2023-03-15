@@ -19,6 +19,7 @@
     ./paperless
     ./passworts
     ./photoprism
+    ./radarr
     ./rss-bridge
     ./sonarr
     ./ssh-server

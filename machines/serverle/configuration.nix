@@ -11,7 +11,6 @@
     ./wifi.nix
     ../../legacy/modules/webapps/bazarr.nix
     ../../legacy/modules/webapps/prowlarr.nix
-    ../../legacy/modules/webapps/radarr.nix
   ];
   networking.hostName = "serverle";
 

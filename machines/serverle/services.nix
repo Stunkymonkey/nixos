@@ -20,6 +20,9 @@ in
       sshKeyFile = secrets."borgbackup/ssh_key".path;
     };
 
+    radarr = {
+      enable = true;
+    };
     sonarr = {
       enable = true;
     };
