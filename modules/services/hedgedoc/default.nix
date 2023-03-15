@@ -6,7 +6,7 @@ let
 in
 {
   options.my.services.hedgedoc = with lib; {
-    enable = mkEnableOption "Navidrome Music Server";
+    enable = mkEnableOption "Hedgedoc Music Server";
 
     settings = mkOption {
       type = (pkgs.formats.json { }).type;
