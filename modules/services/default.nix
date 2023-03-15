@@ -3,7 +3,7 @@
   imports = [
     ./backup
     ./bazarr
-    #./blocky
+    ./blocky
     ./freshrss
     ./gitea
     ./hedgedoc
