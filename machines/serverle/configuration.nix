@@ -10,7 +10,6 @@
     ./system.nix
     ./wifi.nix
     ../../legacy/modules/webapps/bazarr.nix
-    ../../legacy/modules/webapps/prowlarr.nix
   ];
   networking.hostName = "serverle";
 
