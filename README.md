@@ -3,10 +3,12 @@
 This repository holds my NixOS configuration.
 It is fully reproducible, flakes based, and position-independent, meaning there is no moving around of `configuration.nix`.
 
-Deployment is done using [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage).
-Secret are managed using [sops-nix](https://github.com/Mic92/sops-nix).
-For formatting [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix) is used.
-For image generation [nixos-generators](https://github.com/nix-community/nixos-generators) is used.
+used flakes:
+- image generation: [nixos-generators](https://github.com/nix-community/nixos-generators)
+- disk formatting: [disko](https://github.com/nix-community/disko)
+- secrets: [sops-nix](https://github.com/Mic92/sops-nix)
+- deployment: [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage)
+- formatting: [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix)
 
 ## structure
 

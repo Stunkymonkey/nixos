@@ -26,6 +26,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # own flakes
     stunkymonkey = {
       url = "github:Stunkymonkey/stunkymonkey.de";
@@ -65,6 +70,7 @@
           nativeBuildInputs = [
             inputs'.sops-nix.packages.sops-import-keys-hook
             inputs'.deploy-rs.packages.deploy-rs
+            inputs'.disko.packages.disko
             # formatters
             pkgs.shellcheck
             pkgs.nixpkgs-fmt
