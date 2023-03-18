@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./firmware
     ./keychron
     ./nitrokey
     ./sound

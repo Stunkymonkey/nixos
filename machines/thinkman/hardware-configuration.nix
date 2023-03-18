@@ -11,5 +11,9 @@
     nitrokey.enable = true;
     sound.enable = true;
     thunderbolt.enable = true;
+    firmware = {
+      enable = true;
+      cpuFlavor = "intel";
+    };
   };
 }
