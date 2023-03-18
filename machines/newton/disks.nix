@@ -27,4 +27,3 @@
     device = "/dev/disk/by-label/newton-swap";
   }];
 }
-
