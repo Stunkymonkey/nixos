@@ -13,7 +13,6 @@
     ../../legacy/modules/filesystem.nix
     ../../legacy/modules/gaming.nix
     ../../legacy/modules/hardware-base.nix
-    ../../legacy/modules/intel-video.nix
     ../../legacy/modules/media.nix
     ../../legacy/modules/systemd-user.nix
     ../../legacy/modules/webcam.nix
