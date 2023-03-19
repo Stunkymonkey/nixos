@@ -4,6 +4,7 @@ let
 in
 {
   imports = [
+    ./autostart.nix
     ./location.nix
     ./screen-sharing.nix
     ./theme.nix
@@ -16,6 +17,7 @@ in
   config = lib.mkIf cfg.enable {
 
     my.profiles = {
+      sway-autostart.enable = true;
       sway-location.enable = true;
       sway-screen-sharing.enable = true;
       sway-theme.enable = true;

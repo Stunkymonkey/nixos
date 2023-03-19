@@ -66,11 +66,4 @@
     enable = true;
     package = pkgs.wireshark; # enable the gui
   };
-
-  # start sway if login happens
-  environment.interactiveShellInit = ''
-    if test `tty` = /dev/tty1; then
-      exec sway
-    fi
-  '';
 }
