@@ -14,7 +14,6 @@
     ../../legacy/modules/gaming.nix
     ../../legacy/modules/hardware-base.nix
     ../../legacy/modules/intel-video.nix
-    ../../legacy/modules/kvm.nix
     ../../legacy/modules/location.nix
     ../../legacy/modules/media.nix
     ../../legacy/modules/meeting.nix

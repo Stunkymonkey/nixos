@@ -4,6 +4,7 @@
     ./avahi
     ./docker
     ./podman
+    ./virtualization
   ];
 }
 
