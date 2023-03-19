@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./bluetooth
     ./firmware
     ./keychron
     ./nitrokey
