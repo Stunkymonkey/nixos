@@ -2,3 +2,4 @@
 
 - systemd-repart
 - jellyseerr
+- ariang
