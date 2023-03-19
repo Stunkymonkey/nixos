@@ -11,7 +11,6 @@
     ../../legacy/modules/desktop-development.nix
     ../../legacy/modules/development.nix
     ../../legacy/modules/filesystem.nix
-    ../../legacy/modules/gaming.nix
     ../../legacy/modules/hardware-base.nix
     ../../legacy/modules/media.nix
     ../../legacy/modules/systemd-user.nix

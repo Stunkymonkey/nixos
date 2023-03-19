@@ -8,6 +8,7 @@ in
     "3d-design".enable = true;
     android.enable = true;
     clean.enable = true;
+    gaming.enable = true;
     latex.enable = true;
     meeting.enable = true;
     nautilus.enable = true;
