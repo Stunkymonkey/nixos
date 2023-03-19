@@ -6,6 +6,7 @@
     ./android
     ./clean
     ./latex
+    ./nautilus
     ./powersave
     ./printing
     ./sway

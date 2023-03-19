@@ -2,7 +2,6 @@
 {
   imports = [
     ./fonts.nix
-    ./nautilus.nix
   ];
 
   programs.gnome-disks.enable = true;
