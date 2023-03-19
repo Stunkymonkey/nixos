@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
+    ./boot.nix
     ./disks.nix
     ./hardware-configuration.nix
     ./services.nix
@@ -17,7 +18,6 @@
     ../../legacy/modules/media.nix
     ../../legacy/modules/meeting.nix
     ../../legacy/modules/systemd-user.nix
-    ../../legacy/modules/systemduefi.nix
     ../../legacy/modules/webcam.nix
   ];
 
