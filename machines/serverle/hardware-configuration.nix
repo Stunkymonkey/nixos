@@ -31,4 +31,11 @@
 
   # Fix wifi disconnect
   networking.networkmanager.wifi.powersave = false;
+
+  my.hardware = {
+    drive-monitor = {
+      enable = true;
+      OnFailureMail = "server@buehler.rocks";
+    };
+  };
 }

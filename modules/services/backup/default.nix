@@ -81,7 +81,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # mails can only be delivered if postfix is available
-    services.postfix.enable = cfg.OnFailureMail != null;
+    services.postfix.enable = lib.mkIf (cfg.OnFailureMail != null) true;
 
     services.borgbackup.jobs.hetzner = {
       # always backup everything and only define excludes

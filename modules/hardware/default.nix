@@ -5,6 +5,7 @@
   imports = [
     ./bluetooth
     ./debug
+    ./drive-monitor
     ./firmware
     ./graphics
     ./keychron
