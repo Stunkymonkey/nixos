@@ -37,7 +37,6 @@
     ]))
     shellcheck
     topgrade
-    vimPlugins.YouCompleteMe
     ycmd
     woeusb-ng
   ];
