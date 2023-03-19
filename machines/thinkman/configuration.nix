@@ -29,13 +29,9 @@
     gnupg.sshKeyPaths = [ ];
   };
 
-  nix.extraOptions = ''
-    extra-platforms = aarch64-linux i686-linux
-  '';
+  # needed for cross-compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  # Use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system = {
     stateVersion = "22.11";
