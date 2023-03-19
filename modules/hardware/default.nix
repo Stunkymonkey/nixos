@@ -4,6 +4,7 @@
 {
   imports = [
     ./bluetooth
+    ./debug
     ./firmware
     ./graphics
     ./keychron

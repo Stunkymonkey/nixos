@@ -11,6 +11,7 @@ in
 
   my.hardware = {
     bluetooth.enable = true;
+    debug.enable = true;
     firmware = {
       enable = true;
       cpuFlavor = cpuFlavor;
