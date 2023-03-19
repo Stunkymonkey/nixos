@@ -9,6 +9,7 @@ in
     android.enable = true;
     clean.enable = true;
     latex.enable = true;
+    meeting.enable = true;
     nautilus.enable = true;
     powersave.enable = true;
     printing.enable = true;

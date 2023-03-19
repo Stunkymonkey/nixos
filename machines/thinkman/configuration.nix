@@ -16,7 +16,6 @@
     ../../legacy/modules/hardware-base.nix
     ../../legacy/modules/intel-video.nix
     ../../legacy/modules/media.nix
-    ../../legacy/modules/meeting.nix
     ../../legacy/modules/systemd-user.nix
     ../../legacy/modules/webcam.nix
   ];

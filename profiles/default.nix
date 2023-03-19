@@ -6,6 +6,7 @@
     ./android
     ./clean
     ./latex
+    ./meeting
     ./nautilus
     ./powersave
     ./printing
