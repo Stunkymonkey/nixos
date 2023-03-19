@@ -4,8 +4,9 @@
     ./boot.nix
     ./disks.nix
     ./hardware-configuration.nix
-    ./services.nix
+    ./network.nix
     ./profiles.nix
+    ./services.nix
     ./system.nix
     ../../legacy/modules/desktop-default.nix
     ../../legacy/modules/desktop-development.nix
@@ -27,7 +28,6 @@
 
   # needed for cross-compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
 
   system = {
     stateVersion = "22.11";
