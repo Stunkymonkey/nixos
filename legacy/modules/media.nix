@@ -1,9 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  yt-dlp = pkgs.yt-dlp.override {
-    withAlias = true;
-  };
-in
 {
   environment.systemPackages = with pkgs; [
     audacity # audio editing
@@ -28,6 +23,8 @@ in
     shotwell # photo management
     sonixd # cloud-music-player
     soundkonverter # audio converter
-    yt-dlp # videao download
+    (yt-dlp.override {
+      withAlias = true;
+    }) # video download
   ];
 }
