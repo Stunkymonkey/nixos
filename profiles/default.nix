@@ -8,6 +8,7 @@
     ./latex
     ./powersave
     ./printing
+    ./sway
     ./sync
   ];
 }

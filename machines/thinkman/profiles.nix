@@ -11,6 +11,7 @@ in
     latex.enable = true;
     powersave.enable = true;
     printing.enable = true;
+    sway.enable = true;
     sync.enable = true;
   };
 }
