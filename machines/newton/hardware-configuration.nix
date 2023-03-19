@@ -16,11 +16,4 @@
   boot.extraModulePackages = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  my.hardware = {
-    drive-monitor = {
-      enable = true;
-      OnFailureMail = "server@buehler.rocks";
-    };
-  };
 }
