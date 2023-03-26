@@ -68,6 +68,7 @@ in
         export SAL_USE_VCLPLUGIN=gtk3
         export MOZ_ENABLE_WAYLAND=1
         export MOZ_USE_XINPUT2=1
+        export NIXOS_OZONE_WL=1
       '';
     };
   };
