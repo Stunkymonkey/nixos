@@ -12,10 +12,7 @@
     ../../legacy/modules/desktop-development.nix
     ../../legacy/modules/development.nix
     ../../legacy/modules/filesystem.nix
-    ../../legacy/modules/hardware-base.nix
     ../../legacy/modules/media.nix
-    ../../legacy/modules/systemd-user.nix
-    ../../legacy/modules/webcam.nix
   ];
 
   networking.hostName = "thinkman";
