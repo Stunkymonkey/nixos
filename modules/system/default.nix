@@ -3,8 +3,7 @@
   imports = [
     ./avahi
     ./docker
+    ./kvm
     ./podman
-    ./virtualization
   ];
 }
-

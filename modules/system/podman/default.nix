@@ -18,7 +18,8 @@ in
       enable = true;
 
       # Use fake `docker` command to redirect to `podman`
-      dockerCompat = true;
+      # but only if docker is not enabled
+      dockerCompat = !config.my.system.docker.enable;
 
       # Expose a docker-like socket
       dockerSocket.enable = true;

@@ -6,10 +6,10 @@ in
 {
   my.system = {
     avahi.enable = true;
-    podman.enable = true;
-    virtualization = {
+    kvm = {
       enable = true;
       cpuFlavor = "intel";
     };
+    podman.enable = true;
   };
 }

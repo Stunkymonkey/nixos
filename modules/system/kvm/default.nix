@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.system.virtualization;
+  cfg = config.my.system.kvm;
 in
 {
-  options.my.system.virtualization = with lib; {
-    enable = mkEnableOption "virtualization configuration";
+  options.my.system.kvm = with lib; {
+    enable = mkEnableOption "kvm configuration";
 
     cpuFlavor = mkOption {
       type = with types; nullOr (enum [ "intel" "amd" ]);
