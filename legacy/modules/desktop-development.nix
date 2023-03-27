@@ -13,6 +13,6 @@
     unstable.qgis
     sqlitebrowser
     unstable.sublime4
-    vscode
+    vscodium
   ];
 }
