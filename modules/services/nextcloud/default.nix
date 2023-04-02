@@ -9,7 +9,7 @@ in
     enable = mkEnableOption "Nextcloud";
     maxSize = mkOption {
       type = types.str;
-      default = "1G";
+      default = "10G";
       example = "512M";
       description = "Maximum file upload size";
     };
