@@ -9,7 +9,7 @@
     ./firmware
     ./graphics
     ./keychron
-    ./nitrokey
+    ./yubikey
     ./sound
     ./thunderbolt
   ];

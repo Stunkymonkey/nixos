@@ -22,8 +22,8 @@ in
     };
     graphics.cpuFlavor = cpuFlavor;
     keychron.enable = true;
-    nitrokey.enable = true;
     sound.enable = true;
     thunderbolt.enable = true;
+    yubikey.enable = true;
   };
 }
