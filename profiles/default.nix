@@ -15,6 +15,7 @@
     ./printing
     ./sway
     ./sync
+    ./update
     ./webcam
   ];
 }

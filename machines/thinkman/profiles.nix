@@ -18,6 +18,7 @@ in
     printing.enable = true;
     sway.enable = true;
     sync.enable = true;
+    update.enable = true;
     webcam.enable = true;
   };
 }

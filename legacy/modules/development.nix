@@ -36,7 +36,6 @@
       wheel # python development
     ]))
     shellcheck
-    topgrade
     ycmd
     woeusb-ng
   ];

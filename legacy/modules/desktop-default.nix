@@ -51,16 +51,12 @@
     xdg-utils
     zathura
     zeal
-
     # terminal
     socat
     sshuttle
     libnotify
     keychain
   ];
-
-  # Enable firmware update daemon
-  services.fwupd.enable = true;
 
   programs.wireshark = {
     enable = true;
