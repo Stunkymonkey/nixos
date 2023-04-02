@@ -31,7 +31,7 @@ in
 
     my.services.nginx.virtualHosts = [
       {
-        subdomain = "movies";
+        subdomain = "indexer";
         inherit port;
       }
     ];
