@@ -29,7 +29,7 @@ in
     webapps.apps.sonarr = {
       dashboard = {
         name = "Sonarr";
-        category = "manag";
+        category = "media";
         icon = "tv";
         link = "https://series.${domain}";
       };

@@ -29,7 +29,7 @@ in
     webapps.apps.radarr = {
       dashboard = {
         name = "Radarr";
-        category = "manag";
+        category = "media";
         icon = "film";
         link = "https://movies.${domain}";
       };

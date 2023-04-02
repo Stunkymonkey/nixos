@@ -39,7 +39,7 @@ in
     webapps.apps.prowlarr = {
       dashboard = {
         name = "Prowlarr";
-        category = "manag";
+        category = "media";
         icon = "sync-alt";
         link = "https://indexer.${domain}";
       };

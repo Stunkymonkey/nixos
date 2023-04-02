@@ -29,7 +29,7 @@ in
     webapps.apps.bazarr = {
       dashboard = {
         name = "Subtitles";
-        category = "manag";
+        category = "media";
         icon = "closed-captioning";
         link = "https://subtitles.${domain}";
       };
