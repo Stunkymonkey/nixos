@@ -14,7 +14,7 @@
         # Disable ethernet port LEDs
         dtparam=eth0_led=4
         dtparam=eth1_led=4
-    
+
         # Disable SD-Card pools
         dtparam=sd_pool_once=on
       '';
@@ -31,11 +31,4 @@
 
   # Fix wifi disconnect
   networking.networkmanager.wifi.powersave = false;
-
-  my.hardware = {
-    drive-monitor = {
-      enable = true;
-      OnFailureMail = "server@buehler.rocks";
-    };
-  };
 }
