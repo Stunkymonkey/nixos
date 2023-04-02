@@ -8,6 +8,7 @@ in
     "3d-design".enable = true;
     android.enable = true;
     clean.enable = true;
+    filesystem.enable = true;
     gaming.enable = true;
     latex.enable = true;
     media.enable = true;
