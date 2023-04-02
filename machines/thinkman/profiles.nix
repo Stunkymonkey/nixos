@@ -10,6 +10,7 @@ in
     clean.enable = true;
     gaming.enable = true;
     latex.enable = true;
+    media.enable = true;
     meeting.enable = true;
     nautilus.enable = true;
     powersave.enable = true;

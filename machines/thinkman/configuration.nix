@@ -12,7 +12,6 @@
     ../../legacy/modules/desktop-development.nix
     ../../legacy/modules/development.nix
     ../../legacy/modules/filesystem.nix
-    ../../legacy/modules/media.nix
   ];
 
   networking.hostName = "thinkman";

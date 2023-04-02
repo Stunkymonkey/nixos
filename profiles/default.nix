@@ -7,6 +7,7 @@
     ./clean
     ./gaming
     ./latex
+    ./media
     ./meeting
     ./nautilus
     ./powersave
