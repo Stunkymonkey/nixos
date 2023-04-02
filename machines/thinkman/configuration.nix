@@ -10,7 +10,6 @@
     ./system.nix
     ../../legacy/modules/desktop-default.nix
     ../../legacy/modules/desktop-development.nix
-    ../../legacy/modules/development.nix
   ];
 
   networking.hostName = "thinkman";

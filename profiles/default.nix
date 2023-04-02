@@ -5,6 +5,7 @@
     ./3d-design
     ./android
     ./clean
+    ./development
     ./filesystem
     ./gaming
     ./latex
