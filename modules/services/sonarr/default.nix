@@ -28,7 +28,7 @@ in
 
     webapps.apps.sonarr = {
       dashboard = {
-        name = "Sonarr";
+        name = "Series";
         category = "media";
         icon = "tv";
         link = "https://series.${domain}";
