@@ -17,17 +17,17 @@ in
 
     my.services.nginx.virtualHosts = [
       {
-        subdomain = "jellyfin";
+        subdomain = "media";
         inherit port;
       }
     ];
 
     webapps.apps.jellyfin = {
       dashboard = {
-        name = "Jellyfin";
+        name = "Media";
         category = "media";
         icon = "film";
-        link = "https://jellyfin.${domain}";
+        link = "https://media.${domain}";
       };
     };
   };
