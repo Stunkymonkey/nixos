@@ -6,6 +6,7 @@ in
 {
   my.system = {
     avahi.enable = true;
+    fonts.enable = true;
     kvm = {
       enable = true;
       cpuFlavor = "intel";
