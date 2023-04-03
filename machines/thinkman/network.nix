@@ -2,9 +2,16 @@
 { config, lib, ... }:
 {
   # hotfixes for dns settings
-  networking.extraHosts = ''
-    	192.168.178.60 stunkymonkey.de
-    	192.168.178.60 movies.stunkymonkey.de
-    	192.168.178.60 series.stunkymonkey.de
-  '';
+  networking.extraHosts =
+    let
+      serverle_ip = "192.168.178.60";
+    in
+    ''
+      ${serverle_ip} stunkymonkey.de
+      ${serverle_ip} media.stunkymonkey.de
+      ${serverle_ip} movies.stunkymonkey.de
+      ${serverle_ip} series.stunkymonkey.de
+      ${serverle_ip} subtitles.stunkymonkey.de
+      ${serverle_ip} indexer.stunkymonkey.de
+    '';
 }
