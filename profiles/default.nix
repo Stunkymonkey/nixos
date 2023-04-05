@@ -17,6 +17,7 @@
     ./sway
     ./sync
     ./update
+    ./usb-iso
     ./webcam
   ];
 }

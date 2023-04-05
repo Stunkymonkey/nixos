@@ -38,8 +38,6 @@ in
       ]))
       # linter
       shellcheck
-      # setup
-      woeusb-ng
     ];
   };
 }

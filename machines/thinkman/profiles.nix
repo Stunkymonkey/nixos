@@ -20,6 +20,7 @@ in
     sway.enable = true;
     sync.enable = true;
     update.enable = true;
+    usb-iso.enable = true;
     webcam.enable = true;
   };
 }
