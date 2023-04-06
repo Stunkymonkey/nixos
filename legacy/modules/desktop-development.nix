@@ -10,9 +10,8 @@
     gnome.gnome-font-viewer
     meld
     insomnia
-    unstable.qgis
+    qgis
     sqlitebrowser
-    unstable.sublime4
     (vscode-with-extensions.override {
       vscode = vscodium;
       vscodeExtensions =
