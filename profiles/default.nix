@@ -8,6 +8,7 @@
     ./development
     ./filesystem
     ./gaming
+    ./gnome
     ./latex
     ./media
     ./meeting

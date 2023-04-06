@@ -8,6 +8,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # make sure gnome parts are there for storing settings
+    my.profiles.gnome.enable = true;
+
     # enable trash & network-mount
     services.gvfs.enable = true;
 
