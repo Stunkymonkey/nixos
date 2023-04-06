@@ -5,6 +5,8 @@
     ./3d-design
     ./android
     ./clean
+    ./desktop-apps
+    ./desktop-dev
     ./development
     ./filesystem
     ./gaming

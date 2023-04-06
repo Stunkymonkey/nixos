@@ -8,8 +8,6 @@
     ./profiles.nix
     ./services.nix
     ./system.nix
-    ../../legacy/modules/desktop-default.nix
-    ../../legacy/modules/desktop-development.nix
   ];
 
   networking.hostName = "thinkman";
