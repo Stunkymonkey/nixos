@@ -1,5 +1,5 @@
 # taken from: https://github.com/drduh/YubiKey-Guide
-# nix build -f yubikey-installer.nix -o installer nixos-yubikey
+# nix build -f yubikey-installer.nix nixos-yubikey
 # sudo cp -v installer/iso/*.iso /dev/sdb; sync
 let
   configuration = { config, lib, pkgs, ... }:
