@@ -82,6 +82,7 @@ in
         category = "infra";
         icon = "heart-pulse";
         link = "https://monitoring.${domain}";
+        method = "get";
       };
     };
   };
