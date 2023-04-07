@@ -18,6 +18,9 @@ in
     owner = config.users.users.freshrss.name;
   };
   sops.secrets."photoprism/password" = { };
+  sops.secrets."grafana/password" = {
+    owner = config.users.users.grafana.name;
+  };
 
   # List services that you want to enable:
   my.services = {
@@ -100,6 +103,14 @@ in
     # self-hosted recipe manager
     tandoor-recipes = {
       enable = true;
+    };
+
+    prometheus = {
+      enable = true;
+    };
+    grafana = {
+      enable = true;
+      passwordFile = secrets."grafana/password".path;
     };
     # Webserver
     nginx = {
