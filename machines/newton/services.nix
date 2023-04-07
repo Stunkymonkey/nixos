@@ -47,9 +47,9 @@ in
       enable = true;
     };
     # sandbox video game
-    minecraft-server = {
-      enable = true;
-    };
+    # minecraft-server = {
+    #   enable = true;
+    # };
     # music streaming server
     navidrome = {
       enable = true;
