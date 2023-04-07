@@ -20,6 +20,7 @@
     ./paperless
     ./passworts
     ./photoprism
+    ./prometheus
     ./prowlarr
     ./radarr
     ./rss-bridge
