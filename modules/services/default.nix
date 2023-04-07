@@ -6,6 +6,7 @@
     ./blocky
     ./freshrss
     ./gitea
+    ./grafana
     ./hedgedoc
     ./homepage
     ./homer
@@ -29,4 +30,3 @@
     ./tandoor-recipes
   ];
 }
-
