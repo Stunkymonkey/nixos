@@ -112,6 +112,9 @@ in
       enable = true;
       passwordFile = secrets."grafana/password".path;
     };
+    loki = {
+      enable = true;
+    };
     # Webserver
     nginx = {
       enable = true;

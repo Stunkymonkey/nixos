@@ -12,6 +12,7 @@
     ./homer
     ./initrd-ssh
     ./jellyfin
+    ./loki
     ./minecraft-server
     ./mumble-server
     ./navidrome
