@@ -47,19 +47,7 @@ in
         };
       };
 
-      provision = {
-        enable = true;
-        datasources.settings.datasources = [
-          (lib.optionalAttrs config.services.prometheus.enable {
-            name = "Prometheus";
-            type = "prometheus";
-            url = "http://127.0.0.1:${toString config.services.prometheus.port}";
-            jsonData = {
-              timeInterval = config.services.prometheus.globalConfig.scrape_interval;
-            };
-          })
-        ];
-      };
+      provision.enable = true;
     };
 
     my.services.nginx.virtualHosts = [

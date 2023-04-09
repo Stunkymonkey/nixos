@@ -61,13 +61,25 @@ in
       ];
     };
 
-    services.grafana.provision.dashboards.settings.providers = [
-      {
-        name = "Node Exporter";
-        options.path = pkgs.node-exporter-dashboard;
-        disableDeletion = true;
-      }
-    ];
+    services.grafana.provision = {
+      datasources.settings.datasources = [
+        {
+          name = "Prometheus";
+          type = "prometheus";
+          url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+          jsonData = {
+            timeInterval = config.services.prometheus.globalConfig.scrape_interval;
+          };
+        }
+      ];
+      dashboards.settings.providers = [
+        {
+          name = "Node Exporter";
+          options.path = pkgs.node-exporter-dashboard;
+          disableDeletion = true;
+        }
+      ];
+    };
 
     my.services.nginx.virtualHosts = [
       {
