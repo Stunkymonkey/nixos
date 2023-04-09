@@ -23,6 +23,7 @@
     ./passworts
     ./photoprism
     ./prometheus
+    ./promtail
     ./prowlarr
     ./radarr
     ./rss-bridge

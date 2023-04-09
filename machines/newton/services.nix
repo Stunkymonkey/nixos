@@ -115,6 +115,9 @@ in
     loki = {
       enable = true;
     };
+    promtail = {
+      enable = true;
+    };
     # Webserver
     nginx = {
       enable = true;
