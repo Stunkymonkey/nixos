@@ -75,7 +75,7 @@ in
       dashboards.settings.providers = [
         {
           name = "Node Exporter";
-          options.path = pkgs.node-exporter-dashboard;
+          options.path = pkgs.grafana-dashboards.node-exporter;
           disableDeletion = true;
         }
       ];
