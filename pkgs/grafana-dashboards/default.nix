@@ -33,4 +33,11 @@ in
     version = "31";
     hash = "sha256-QsRHsnayYRRGc+2MfhaKGYpNdH02PesnR5b50MDzHIg=";
   };
+
+  nginx = buildGrafanaDashboard {
+    id = 12708;
+    pname = "nginx";
+    version = "1";
+    hash = "sha256-T1HqWbwt+i/We+Y2B7hcl3CijGxZF5QI38aPcXjk9y0=";
+  };
 })

@@ -203,6 +203,7 @@ in
     ;
     services.nginx = {
       enable = true;
+      statusPage = true; # For monitoring scraping.
 
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
@@ -224,20 +225,20 @@ in
         # some applications set it to wildcard, therefore this overrides it
         proxy_hide_header Access-Control-Allow-Origin;
         add_header Access-Control-Allow-Origin https://${config.networking.domain};
-  
+
         # Minimize information leaked to other domains
         add_header 'Referrer-Policy' 'strict-origin-when-cross-origin';
-  
+
         # Disable embedding as a frame
         add_header X-Frame-Options DENY;
-  
+
         # Prevent injection of code in other mime types (XSS Attacks)
         add_header X-Content-Type-Options nosniff;
-  
+
         # Enable XSS protection of the browser.
         # May be unnecessary when CSP is configured properly (see above)
         add_header X-XSS-Protection "1; mode=block";
-  
+
         # This might create errors
         proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
 
@@ -404,6 +405,36 @@ in
             inherit (cfg.acme) credentialsFile;
           };
         };
+    };
+
+    # services.prometheus = lib.mkIf cfg.monitoring.enable {
+    services.prometheus = {
+      exporters.nginx = {
+        enable = true;
+        listenAddress = "127.0.0.1";
+      };
+      scrapeConfigs = [
+        {
+          job_name = "nginx";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
+    };
+    services.grafana.provision = {
+      dashboards.settings.providers = [
+        {
+          name = "Nginx";
+          options.path = pkgs.grafana-dashboards.nginx;
+          disableDeletion = true;
+        }
+      ];
     };
   };
 }
