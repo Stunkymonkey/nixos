@@ -45,6 +45,10 @@ in
           port = 9100;
           listenAddress = "127.0.0.1";
         };
+        systemd = {
+          enable = true;
+          listenAddress = "127.0.0.1";
+        };
       };
 
       globalConfig = {
@@ -53,9 +57,30 @@ in
 
       scrapeConfigs = [
         {
-          job_name = config.networking.hostName;
+          job_name = "prometheus";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString cfg.port}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }];
+        }
+        {
+          job_name = "node";
           static_configs = [{
             targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }];
+        }
+        {
+          job_name = "systemd";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
           }];
         }
       ];
@@ -66,8 +91,11 @@ in
         {
           name = "Prometheus";
           type = "prometheus";
+          isDefault = true;
           url = "http://127.0.0.1:${toString config.services.prometheus.port}";
           jsonData = {
+            prometheusType = "Prometheus";
+            prometheusVersion = toString pkgs.prometheus.version;
             timeInterval = config.services.prometheus.globalConfig.scrape_interval;
           };
         }
