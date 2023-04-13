@@ -40,4 +40,11 @@ in
     version = "1";
     hash = "sha256-T1HqWbwt+i/We+Y2B7hcl3CijGxZF5QI38aPcXjk9y0=";
   };
+
+  # navidrome = buildGrafanaDashboard {
+  #   id = 18038;
+  #   pname = "navidrome";
+  #   version = "1";
+  #   hash = "sha256-MU890UAEI9wrnVIC/R0HkYwFa6mJ8Y7ESAWuaSQ8FQ8=";
+  # };
 })
