@@ -47,4 +47,11 @@ in
   #   version = "1";
   #   hash = "sha256-MU890UAEI9wrnVIC/R0HkYwFa6mJ8Y7ESAWuaSQ8FQ8=";
   # };
+
+  loki = buildGrafanaDashboard {
+    id = 14055;
+    pname = "loki";
+    version = "5";
+    hash = "sha256-9vfUGpypFNKm9T1F12Cqh8TIl0x3jSwv2fL9HVRLt3o=";
+  };
 })

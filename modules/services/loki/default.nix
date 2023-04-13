@@ -50,13 +50,37 @@ in
       };
     };
 
-    services.grafana.provision.datasources.settings.datasources = [
-      {
-        name = "Loki";
-        type = "loki";
-        access = "proxy";
-        url = "http://localhost:${toString cfg.port}";
-      }
-    ];
+    services.grafana.provision = {
+      datasources.settings.datasources = [
+        {
+          name = "Loki";
+          type = "loki";
+          access = "proxy";
+          url = "http://localhost:${toString cfg.port}";
+        }
+      ];
+      dashboards.settings.providers = [
+        {
+          name = "Loki";
+          options.path = pkgs.grafana-dashboards.loki;
+          disableDeletion = true;
+        }
+      ];
+    };
+    services.prometheus = {
+      scrapeConfigs = [
+        {
+          job_name = "loki";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
+    };
   };
 }
