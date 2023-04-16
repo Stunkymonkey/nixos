@@ -63,4 +63,11 @@ in
   }).overrideAttrs (self: super: {
     src = ./gitea.json; # sadly not yet updated to latest grafana
   });
+  grafana = (buildGrafanaDashboard {
+    id = 3590;
+    pname = "grafana";
+    version = "3";
+  }).overrideAttrs (self: super: {
+    src = ./grafana.json; # sadly only imported dashboards work
+  });
 })

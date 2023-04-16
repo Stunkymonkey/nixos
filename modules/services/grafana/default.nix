@@ -47,7 +47,32 @@ in
         };
       };
 
-      provision.enable = true;
+      provision = {
+        enable = true;
+        dashboards.settings.providers = [
+          {
+            name = "Grafana";
+            options.path = pkgs.grafana-dashboards.grafana;
+            disableDeletion = true;
+          }
+        ];
+      };
+    };
+
+    services.prometheus = {
+      scrapeConfigs = [
+        {
+          job_name = "grafana";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
     };
 
     my.services.nginx.virtualHosts = [
