@@ -33,6 +33,14 @@ in
     version = "31";
     hash = "sha256-QsRHsnayYRRGc+2MfhaKGYpNdH02PesnR5b50MDzHIg=";
   };
+  node-systemd = (buildGrafanaDashboard {
+    id = 1617;
+    pname = "node-systemd";
+    version = "1";
+    hash = "sha256-MEWU5rIqlbaGu3elqdSoMZfbk67WDnH0VWuC8FqZ8v8=";
+  }).overrideAttrs (self: super: {
+    src = ./node-systemd.json; # sadly only imported dashboards work
+  });
 
   nginx = buildGrafanaDashboard {
     id = 12708;

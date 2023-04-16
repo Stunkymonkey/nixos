@@ -111,6 +111,11 @@ in
           options.path = pkgs.grafana-dashboards.prometheus;
           disableDeletion = true;
         }
+        {
+          name = "Systemd";
+          options.path = pkgs.grafana-dashboards.node-systemd;
+          disableDeletion = true;
+        }
       ];
     };
 
