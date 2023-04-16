@@ -1,5 +1,5 @@
 # self-hosted git service
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.my.services.gitea;
   domain = config.networking.domain;
@@ -25,6 +25,7 @@ in
         service.DISABLE_REGISTRATION = true;
         ui.DEFAULT_THEME = "arc-green";
         log.LEVEL = "Warn";
+        metrics.ENABLED = config.services.prometheus.enable;
       };
       lfs.enable = true;
     };
@@ -41,6 +42,31 @@ in
       paths = [
         config.services.gitea.lfs.contentDir
         config.services.gitea.repositoryRoot
+      ];
+    };
+
+    services.prometheus = {
+      scrapeConfigs = [
+        {
+          job_name = "gitea";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
+    };
+    services.grafana.provision = {
+      dashboards.settings.providers = [
+        {
+          name = "Gitea";
+          options.path = pkgs.grafana-dashboards.gitea;
+          disableDeletion = true;
+        }
       ];
     };
 

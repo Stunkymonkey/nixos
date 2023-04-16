@@ -54,4 +54,13 @@ in
     version = "5";
     hash = "sha256-9vfUGpypFNKm9T1F12Cqh8TIl0x3jSwv2fL9HVRLt3o=";
   };
+
+  gitea = (buildGrafanaDashboard {
+    id = 13192;
+    pname = "gitea";
+    version = "1";
+    hash = "sha256-IAaI/HvMxcWE3PGQFK8avNjgj88DgcDvkWRcDAWSejM=";
+  }).overrideAttrs (self: super: {
+    src = ./gitea.json; # sadly not yet updated to latest grafana
+  });
 })
