@@ -63,6 +63,15 @@ in
   }).overrideAttrs (self: super: {
     src = ./gitea.json; # sadly not yet updated to latest grafana
   });
+
+  prometheus = (buildGrafanaDashboard {
+    id = 3662;
+    pname = "prometheus";
+    version = "2";
+    hash = "sha256-+nsi8/dYNvGVGV+ftfO1gSAQbO5GpZwW480T5mHMM4Q=";
+  }).overrideAttrs (self: super: {
+    src = ./prometheus.json; # sadly only imported dashboards work
+  });
   grafana = (buildGrafanaDashboard {
     id = 3590;
     pname = "grafana";

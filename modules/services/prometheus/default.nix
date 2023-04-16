@@ -106,6 +106,11 @@ in
           options.path = pkgs.grafana-dashboards.node-exporter;
           disableDeletion = true;
         }
+        {
+          name = "Prometheus";
+          options.path = pkgs.grafana-dashboards.prometheus;
+          disableDeletion = true;
+        }
       ];
     };
 
