@@ -8,6 +8,7 @@
     ./gitea
     ./grafana
     ./hedgedoc
+    ./home-assistant
     ./homepage
     ./homer
     ./initrd-ssh
