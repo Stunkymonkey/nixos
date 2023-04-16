@@ -48,12 +48,15 @@ in
   #   hash = "sha256-MU890UAEI9wrnVIC/R0HkYwFa6mJ8Y7ESAWuaSQ8FQ8=";
   # };
 
-  loki = buildGrafanaDashboard {
-    id = 14055;
+
+  loki = (buildGrafanaDashboard {
+    id = 13407;
     pname = "loki";
-    version = "5";
-    hash = "sha256-9vfUGpypFNKm9T1F12Cqh8TIl0x3jSwv2fL9HVRLt3o=";
-  };
+    version = "1";
+    hash = "sha256-1sxTDSEwi2O/Ce+rWqqhMvsYEJeELBfkb9W2R6cDjcU=";
+  }).overrideAttrs (self: super: {
+    src = ./loki.json; # sadly not yet updated to latest grafana
+  });
 
   gitea = (buildGrafanaDashboard {
     id = 13192;
