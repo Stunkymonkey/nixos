@@ -49,6 +49,15 @@ in
     hash = "sha256-T1HqWbwt+i/We+Y2B7hcl3CijGxZF5QI38aPcXjk9y0=";
   };
 
+  nextcloud = (buildGrafanaDashboard {
+    id = 9632;
+    pname = "nextcloud";
+    version = "1";
+    hash = "sha256-Z28Q/sMg3jxglkszAs83IpL8f4p9loNnTQzjc3S/SAQ=";
+  }).overrideAttrs (self: super: {
+    src = ./nextcloud.json; # sadly only imported dashboards work
+  });
+
   # navidrome = buildGrafanaDashboard {
   #   id = 18038;
   #   pname = "navidrome";

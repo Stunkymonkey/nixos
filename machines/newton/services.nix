@@ -14,6 +14,9 @@ in
   sops.secrets."nextcloud/password" = {
     owner = config.users.users.nextcloud.name;
   };
+  sops.secrets."nextcloud-exporter/password" = {
+    owner = config.users.users.nextcloud-exporter.name;
+  };
   sops.secrets."freshrss/password" = {
     owner = config.users.users.freshrss.name;
   };
@@ -59,6 +62,7 @@ in
     nextcloud = {
       enable = true;
       passwordFile = secrets."nextcloud/password".path;
+      exporterPasswordFile = secrets."nextcloud-exporter/password".path;
     };
     # document management system
     paperless = {

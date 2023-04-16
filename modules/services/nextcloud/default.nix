@@ -33,6 +33,21 @@ in
         'nextcloud' user.
       '';
     };
+
+    exporterPasswordFile = mkOption {
+      type = types.path;
+      example = "/var/lib/nextcloud/password.txt";
+      description = ''
+        Path to a file containing the admin's password, must be readable by
+        'nextcloud' user.
+      '';
+    };
+    exporterPort = mkOption {
+      type = types.port;
+      default = 9205;
+      example = 8080;
+      description = "Internal port for the exporter";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -104,6 +119,37 @@ in
       exclude = [
         # image previews can take up a lot of space
         "${config.services.nextcloud.home}/data/appdata_*/preview"
+      ];
+    };
+
+    services.prometheus.exporters.nextcloud = {
+      enable = true;
+      url = "https://cloud.${domain}";
+      username = cfg.admin;
+      passwordFile = cfg.exporterPasswordFile;
+      port = cfg.exporterPort;
+    };
+
+    services.prometheus.scrapeConfigs = [
+      {
+        job_name = "nextcloud";
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString cfg.exporterPort}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }
+        ];
+      }
+    ];
+    services.grafana.provision = {
+      dashboards.settings.providers = [
+        {
+          name = "Nextcloud";
+          options.path = pkgs.grafana-dashboards.nextcloud;
+          disableDeletion = true;
+        }
       ];
     };
 
