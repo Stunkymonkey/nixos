@@ -12,7 +12,7 @@ in
       type = types.port;
       default = 9090;
       example = 3002;
-      description = "Internal port";
+      description = "Internal prometheus port";
     };
 
     scrapeInterval = mkOption {
@@ -27,6 +27,52 @@ in
       default = "2y";
       example = "1m";
       description = "retention time";
+    };
+
+    rules = mkOption {
+      type = types.attrsOf
+        (types.submodule {
+          options = {
+            condition = mkOption {
+              type = types.str;
+              description = ''
+                Prometheus alert expression.
+              '';
+              example = "http://192.168.1.10:1234";
+              default = null;
+            };
+            description = mkOption {
+              type = types.str;
+              description = ''
+                Prometheus alert message.
+              '';
+              example = "Prometheus encountered value {{ $value }} with {{ $labels }}";
+              default = null;
+            };
+            labels = mkOption {
+              type = types.nullOr (types.attrsOf types.str);
+              description = ''
+                Additional alert labels.
+              '';
+              example = literalExpression ''
+                { severity = "page" };
+              '';
+              default = { };
+            };
+            time = lib.mkOption {
+              type = lib.types.str;
+              description = ''
+                Time until the alert is fired.
+              '';
+              example = "5m";
+              default = "2m";
+            };
+          };
+        });
+      description = ''
+        Defines the prometheus rules.
+      '';
+      default = { };
     };
   };
 
@@ -54,6 +100,25 @@ in
       globalConfig = {
         scrape_interval = cfg.scrapeInterval;
       };
+
+      ruleFiles = [
+        (pkgs.writeText "prometheus-rules.yml" (builtins.toJSON {
+          groups = [
+            {
+              name = "alerting-rules";
+              rules = lib.mapAttrsToList
+                (name: opts: {
+                  alert = name;
+                  expr = opts.condition;
+                  for = opts.time;
+                  labels = opts.labels;
+                  annotations.description = opts.description;
+                })
+                (cfg.rules);
+            }
+          ];
+        }))
+      ];
 
       scrapeConfigs = [
         {
@@ -119,6 +184,33 @@ in
       ];
     };
 
+    my.services.prometheus.rules = {
+      prometheus_too_many_restarts = {
+        condition = ''changes(process_start_time_seconds{job=~"prometheus|alertmanager"}[15m]) > 2'';
+        description = "Prometheus has restarted more than twice in the last 15 minutes. It might be crashlooping";
+      };
+
+      alert_manager_config_not_synced = {
+        condition = ''count(count_values("config_hash", alertmanager_config_hash)) > 1'';
+        description = "Configurations of AlertManager cluster instances are out of sync";
+      };
+
+      prometheus_not_connected_to_alertmanager = {
+        condition = "prometheus_notifications_alertmanagers_discovered < 1";
+        description = "Prometheus cannot connect the alertmanager\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
+      };
+
+      prometheus_rule_evaluation_failures = {
+        condition = "increase(prometheus_rule_evaluation_failures_total[3m]) > 0";
+        description = "Prometheus encountered {{ $value }} rule evaluation failures, leading to potentially ignored alerts.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
+      };
+
+      prometheus_template_expansion_failures = {
+        condition = "increase(prometheus_template_text_expansion_failures_total[3m]) > 0";
+        time = "0m";
+        description = "Prometheus encountered {{ $value }} template text expansion failures\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
+      };
+    };
     my.services.nginx.virtualHosts = [
       {
         subdomain = "monitoring";
