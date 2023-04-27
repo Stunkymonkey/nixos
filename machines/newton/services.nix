@@ -112,6 +112,9 @@ in
     prometheus = {
       enable = true;
     };
+    alertmanager = {
+      enable = true;
+    };
     grafana = {
       enable = true;
       passwordFile = secrets."grafana/password".path;

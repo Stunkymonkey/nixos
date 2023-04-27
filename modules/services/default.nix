@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./alertmanager
     ./backup
     ./bazarr
     ./blocky
