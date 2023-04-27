@@ -68,6 +68,20 @@ in
     # otherwise access to the log is denied
     users.users.promtail.extraGroups = [ "nginx" ];
 
+    my.services.prometheus.rules = {
+      promtail_request_errors = {
+        condition = ''100 * sum(rate(promtail_request_duration_seconds_count{status_code=~"5..|failed"}[1m])) by (namespace, job, route, instance) / sum(rate(promtail_request_duration_seconds_count[1m])) by (namespace, job, route, instance) > 10'';
+        time = "15m";
+        description = ''{{ $labels.job }} {{ $labels.route }} is experiencing {{ printf "%.2f" $value }}% errors'';
+      };
+
+      promtail_file_lagging = {
+        condition = ''abs(promtail_file_bytes_total - promtail_read_bytes_total) > 1e6'';
+        time = "15m";
+        description = ''{{ $labels.instance }} {{ $labels.job }} {{ $labels.path }} has been lagging by more than 1MB for more than 15m'';
+      };
+    };
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "log";
