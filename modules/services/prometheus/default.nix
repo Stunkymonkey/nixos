@@ -79,6 +79,7 @@ in
   config = lib.mkIf cfg.enable {
     services.prometheus = {
       enable = true;
+      webExternalUrl = "https://monitor.${domain}";
       inherit (cfg) port;
       listenAddress = "127.0.0.1";
 
@@ -211,19 +212,20 @@ in
         description = "Prometheus encountered {{ $value }} template text expansion failures\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
       };
     };
+
     my.services.nginx.virtualHosts = [
       {
-        subdomain = "monitoring";
+        subdomain = "monitor";
         inherit (cfg) port;
       }
     ];
 
-    webapps.apps.prometheus = {
-      dashboard = {
+    webapps.apps = {
+      prometheus.dashboard = {
         name = "Monitoring";
         category = "infra";
         icon = "heart-pulse";
-        link = "https://monitoring.${domain}";
+        link = "https://monitor.${domain}";
         method = "get";
       };
     };
