@@ -25,5 +25,21 @@ in
         };
       };
     };
+
+    # monitoring
+    services.prometheus.exporters.smartctl.enable = config.services.prometheus.enable;
+    services.prometheus.scrapeConfigs = [
+      {
+        job_name = "smartctl";
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.smartctl.port}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }
+        ];
+      }
+    ];
   };
 }
