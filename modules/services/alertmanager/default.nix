@@ -71,6 +71,20 @@ in
         }
       ];
     };
+
+    services.grafana.provision = {
+      dashboards.settings.providers = [
+        {
+          name = "Alertmanager";
+          options.path = pkgs.grafana-dashboards.alertmanager;
+          disableDeletion = true;
+        }
+      ];
+    };
+
+    # for mail delivery
+    services.postfix.enable = true;
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "alerts";

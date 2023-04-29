@@ -75,6 +75,13 @@ in
     src = ./loki.json; # sadly not yet updated to latest grafana
   });
 
+  alertmanager = buildGrafanaDashboard {
+    id = 9578;
+    pname = "alertmanager";
+    version = "4";
+    hash = "sha256-/scCKBKqTjRKKImIrEYLBKGweOUnkx+QsD5yLfdXW5o=";
+  };
+
   gitea = (buildGrafanaDashboard {
     id = 13192;
     pname = "gitea";
