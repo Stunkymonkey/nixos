@@ -24,6 +24,9 @@ in
   sops.secrets."grafana/password" = {
     owner = config.users.users.grafana.name;
   };
+  sops.secrets."matrix-bot/password" = {
+    owner = config.systemd.services.go-neb.serviceConfig.User;
+  };
 
   # List services that you want to enable:
   my.services = {
@@ -114,6 +117,10 @@ in
     };
     alertmanager = {
       enable = true;
+    };
+    matrix-bot = {
+      enable = true;
+      PasswortFile = secrets."matrix-bot/password".path;
     };
     grafana = {
       enable = true;

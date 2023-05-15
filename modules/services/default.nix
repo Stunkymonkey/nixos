@@ -16,6 +16,7 @@
     ./jellyfin
     ./loki
     ./minecraft-server
+    ./matrix-bot
     ./mumble-server
     ./navidrome
     ./nextcloud
