@@ -20,9 +20,10 @@
 
   systemd.services."reconnect-wifi" = {
     script = ''
-      set -eu
+      set +e  # allow exit codes other then zero to check if online
+      set -u
 
-      ${pkgs.iputils.out}/bin/ping -q -w 5 -c 2 192.168.178.1 2> /dev/null
+      ${pkgs.networkmanager}/bin/nm-online -t 10
 
       if [ $? != 0 ]
       then
