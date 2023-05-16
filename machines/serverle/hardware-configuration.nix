@@ -31,7 +31,4 @@
     # remove with 23.05
     kernelPackages = pkgs.unstable.linuxKernel.packages.linux_rpi4;
   };
-
-  # Fix wifi disconnect
-  networking.networkmanager.wifi.powersave = false;
 }
