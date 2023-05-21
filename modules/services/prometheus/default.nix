@@ -38,7 +38,7 @@ in
               description = ''
                 Prometheus alert expression.
               '';
-              example = "http://192.168.1.10:1234";
+              example = ''disk_used_percent{mode!="ro"} >= 90'';
               default = null;
             };
             description = mkOption {
