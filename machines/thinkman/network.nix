@@ -13,5 +13,6 @@
       ${serverle_ip} series.stunkymonkey.de
       ${serverle_ip} subtitles.stunkymonkey.de
       ${serverle_ip} indexer.stunkymonkey.de
+      ${serverle_ip} download.stunkymonkey.de
     '';
 }
