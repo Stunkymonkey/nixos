@@ -12,7 +12,6 @@ in
       default = 9093;
       example = 3002;
       description = "Internal alertmanager port";
-
     };
   };
 
@@ -58,6 +57,7 @@ in
         }
       ];
     };
+
     services.grafana.provision = {
       datasources.settings.datasources = [
         {

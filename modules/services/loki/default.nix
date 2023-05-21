@@ -14,6 +14,52 @@ in
       example = 3002;
       description = "Internal port";
     };
+
+    rules = mkOption {
+      type = types.attrsOf
+        (types.submodule {
+          options = {
+            condition = mkOption {
+              type = types.str;
+              description = ''
+                Loki alert expression.
+              '';
+              example = ''count_over_time({job=~"secure"} |="sshd[" |~": Failed|: Invalid|: Connection closed by authenticating user" | __error__="" [15m]) > 15'';
+              default = null;
+            };
+            description = mkOption {
+              type = types.str;
+              description = ''
+                Loki alert message.
+              '';
+              example = "Prometheus encountered value {{ $value }} with {{ $labels }}";
+              default = null;
+            };
+            labels = mkOption {
+              type = types.nullOr (types.attrsOf types.str);
+              description = ''
+                Additional alert labels.
+              '';
+              example = literalExpression ''
+                { severity = "page" };
+              '';
+              default = { };
+            };
+            time = lib.mkOption {
+              type = lib.types.str;
+              description = ''
+                Time until the alert is fired.
+              '';
+              example = "5m";
+              default = "2m";
+            };
+          };
+        });
+      description = ''
+        Defines the loki rules.
+      '';
+      default = { };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -27,12 +73,38 @@ in
         auth_enabled = false;
 
         common = {
-          ring = {
-            instance_addr = "127.0.0.1";
-            kvstore.store = "inmemory";
-          };
+          instance_addr = "127.0.0.1";
+          ring.kvstore.store = "inmemory";
           replication_factor = 1;
           path_prefix = "/tmp/loki";
+        };
+
+        ruler = lib.mkIf config.my.services.alertmanager.enable {
+          storage = {
+            type = "local";
+            local = {
+              # having the "fake" directory is important, because loki is running in single-tenant mode
+              directory = (pkgs.writeTextDir "fake/loki-rules.yml" (builtins.toJSON {
+                groups = [
+                  {
+                    name = "alerting-rules";
+                    rules = lib.mapAttrsToList
+                      (name: opts: {
+                        alert = name;
+                        expr = opts.condition;
+                        for = opts.time;
+                        labels = opts.labels;
+                        annotations.description = opts.description;
+                      })
+                      (cfg.rules);
+                  }
+                ];
+              }));
+            };
+          };
+
+          alertmanager_url = "http://127.0.0.1:${toString config.my.services.alertmanager.port}";
+          enable_alertmanager_v2 = true;
         };
 
         schema_config = {
@@ -56,7 +128,7 @@ in
           name = "Loki";
           type = "loki";
           access = "proxy";
-          url = "http://localhost:${toString cfg.port}";
+          url = "http://127.0.0.1:${toString cfg.port}";
         }
       ];
       dashboards.settings.providers = [
@@ -67,6 +139,14 @@ in
         }
       ];
     };
+
+    my.services.loki.rules = {
+      HighLogRate = {
+        condition = ''sum by (host) (rate({unit="loki.service"}[1m])) > 60'';
+        description = "Loki has a high logging rate";
+      };
+    };
+
     services.prometheus = {
       scrapeConfigs = [
         {
