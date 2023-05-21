@@ -141,7 +141,7 @@ in
     };
 
     my.services.loki.rules = {
-      HighLogRate = {
+      loki_highLogRate = {
         condition = ''sum by (host) (rate({unit="loki.service"}[1m])) > 60'';
         description = "Loki has a high logging rate";
       };

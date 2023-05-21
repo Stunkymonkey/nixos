@@ -25,5 +25,12 @@ in
     # by setting an hashed password in the `users.users.felix` block as `initialHashedPassword`.
     # additionally needed by deploy-rs
     security.sudo.wheelNeedsPassword = false;
+
+    my.services.loki.rules = {
+      sshd_closed = {
+        condition = ''count_over_time({unit="sshd.service"} |~ "Connection closed by authenticating user" [15m]) > 15'';
+        description = "More then 15 users have tried loggin in without success";
+      };
+    };
   };
 }
