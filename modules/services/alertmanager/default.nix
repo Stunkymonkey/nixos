@@ -85,6 +85,49 @@ in
     # for mail delivery
     services.postfix.enable = true;
 
+    services.go-neb.config.services = [
+      {
+        ID = "alertmanager_service";
+        Type = "alertmanager";
+        UserId = config.my.services.matrix-bot.Username;
+        Config = {
+          # url contains "alertmanager_service" encoded as base64
+          webhook_url = "http://localhost:4050/services/hooks/YWxlcnRtYW5hZ2VyX3NlcnZpY2U";
+          rooms = {
+            "${config.my.services.matrix-bot.RoomID}" = {
+              #bots:nixos.org
+              text_template = ''
+                {{range .Alerts -}} [{{ .Status }}] {{index .Labels "alertname" }}: {{index .Annotations "description"}} {{ end -}}
+              '';
+              # $$severity otherwise envsubst replaces $severity with an empty string
+              html_template = ''
+                {{range .Alerts -}}
+                  {{ $$severity := index .Labels "severity" }}
+                  {{ if eq .Status "firing" }}
+                    {{ if eq $$severity "critical"}}
+                      <font color='red'><b>[FIRING - CRITICAL]</b></font>
+                    {{ else if eq $$severity "warning"}}
+                      <font color='orange'><b>[FIRING - WARNING]</b></font>
+                    {{ else }}
+                      <b>[FIRING - {{ $$severity }}]</b>
+                    {{ end }}
+                  {{ else }}
+                    <font color='green'><b>[RESOLVED]</b></font>
+                  {{ end }}
+                  {{ index .Labels "alertname"}}: {{ index .Annotations "summary"}}
+                  (
+                    <a href="{{ index .Annotations "grafana" }}">📈 Grafana</a>,
+                    <a href="{{ .GeneratorURL }}">🔥 Prometheus</a>,
+                    <a href="{{ .SilenceURL }}">🔕 Silence</a>
+                  )<br/>
+                {{end -}}'';
+              msg_type = "m.text"; # Must be either `m.text` or `m.notice`
+            };
+          };
+        };
+      }
+    ];
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "alerts";

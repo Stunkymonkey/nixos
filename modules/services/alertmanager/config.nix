@@ -19,6 +19,12 @@
           to = "server@buehler.rocks";
         }
       ];
+      webhook_configs = [
+        {
+          url = "http://localhost:4050/services/hooks/YWxlcnRtYW5hZ2VyX3NlcnZpY2U";
+          send_resolved = true;
+        }
+      ];
     }
   ];
 }
