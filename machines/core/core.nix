@@ -23,6 +23,7 @@
     nmap
     nmon
     pciutils
+    progress
     pv
     reptyr
     rsync
