@@ -28,8 +28,8 @@ in
 
     my.services.loki.rules = {
       sshd_closed = {
-        condition = ''count_over_time({unit="sshd.service"} |~ "Connection closed by authenticating user" [15m]) > 15'';
-        description = "More then 15 users have tried loggin in without success";
+        condition = ''count_over_time({unit="sshd.service"} |~ "Connection closed by authenticating user" [15m]) > 25'';
+        description = "More then 25 users have tried loggin in without success";
       };
     };
   };
