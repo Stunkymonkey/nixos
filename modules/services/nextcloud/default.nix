@@ -69,21 +69,21 @@ in
       };
 
       extraApps = {
-        calendar = let version = "4.1.0"; in pkgs.fetchNextcloudApp {
+        calendar = let version = "4.3.4"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud-releases/calendar/releases/download/v${version}/calendar-v${version}.tar.gz";
-          sha256 = "sha256-KALFhCNjofFQMntv3vyL0TJxqD/mBkeDpxt8JV4CPAM=";
+          sha256 = "sha256-O/OcUMfOGCNaeZcITX4QSXGi76MUjmCz+5PZNg2CQV4=";
         };
-        contacts = let version = "5.0.1"; in pkgs.fetchNextcloudApp {
+        contacts = let version = "5.2.0"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud-releases/contacts/releases/download/v${version}/contacts-v${version}.tar.gz";
-          sha256 = "sha256-aygqBo4T/13Sz38yGA95Su85woDPt98Bui9LhyQJ59U=";
+          sha256 = "sha256-s2st8QZaLmkju5XxfwFEPonB+6jZ3wsJATW9e+qguOU=";
         };
-        tasks = let version = "0.14.5"; in pkgs.fetchNextcloudApp {
+        tasks = let version = "0.15.0"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud/tasks/releases/download/v${version}/tasks.tar.gz";
-          sha256 = "sha256-pbcw6bHv1Za+F351hDMGkMqeaAw4On8E146dak0boUo=";
+          sha256 = "sha256-zMMqtEWiXmhB1C2IeWk8hgP7eacaXLkT7Tgi4NK6PCg=";
         };
-        deck = let version = "1.8.2"; in pkgs.fetchNextcloudApp {
+        deck = let version = "1.9.1"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud/deck/releases/download/v${version}/deck.tar.gz";
-          sha256 = "sha256-aH0yzqUUAgdtJfwWoKsWV7BeplUqVkNCTyHfyQSvbro=";
+          sha256 = "sha256-88ZaPar2d9wUyelAWM7eYY3z01jtKYVkCeI+xxvttw4=";
         };
       };
     };
