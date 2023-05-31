@@ -58,13 +58,14 @@ in
     src = ./nextcloud.json; # sadly only imported dashboards work
   });
 
-  # navidrome = buildGrafanaDashboard {
-  #   id = 18038;
-  #   pname = "navidrome";
-  #   version = "1";
-  #   hash = "sha256-MU890UAEI9wrnVIC/R0HkYwFa6mJ8Y7ESAWuaSQ8FQ8=";
-  # };
-
+  navidrome = (buildGrafanaDashboard {
+    id = 18038;
+    pname = "navidrome";
+    version = "1";
+    hash = "sha256-MU890UAEI9wrnVIC/R0HkYwFa6mJ8Y7ESAWuaSQ8FQ8=";
+  }).overrideAttrs (self: super: {
+    src = ./navidrome.json; # sadly data source is not detected
+  });
 
   loki = (buildGrafanaDashboard {
     id = 13407;

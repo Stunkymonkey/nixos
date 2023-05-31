@@ -10,7 +10,9 @@ in
 
     settings = mkOption {
       type = (pkgs.formats.json { }).type;
-      default = { };
+      default = {
+        EnableSharing = true;
+      };
       example = {
         "LastFM.ApiKey" = "MYKEY";
         "LastFM.Secret" = "MYSECRET";
@@ -45,7 +47,7 @@ in
         Address = "127.0.0.1";
         MusicFolder = cfg.musicFolder;
         LogLevel = "info";
-        # Prometheus.Enabled = config.services.prometheus.enable;
+        Prometheus.Enabled = config.services.prometheus.enable;
       };
     };
 
@@ -56,31 +58,30 @@ in
       }
     ];
 
-    # TODO enable in 23.05
-    # services.prometheus = {
-    #   scrapeConfigs = [
-    #     {
-    #       job_name = "navidrome";
-    #       static_configs = [
-    #         {
-    #           targets = [ "127.0.0.1:${toString cfg.port}" ];
-    #           labels = {
-    #             instance = config.networking.hostName;
-    #           };
-    #         }
-    #       ];
-    #     }
-    #   ];
-    # };
-    # services.grafana.provision = {
-    #   dashboards.settings.providers = [
-    #     {
-    #       name = "Navidrome";
-    #       options.path = pkgs.grafana-dashboards.navidrome;
-    #       disableDeletion = true;
-    #     }
-    #   ];
-    # };
+    services.prometheus = {
+      scrapeConfigs = [
+        {
+          job_name = "navidrome";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
+    };
+    services.grafana.provision = {
+      dashboards.settings.providers = [
+        {
+          name = "Navidrome";
+          options.path = pkgs.grafana-dashboards.navidrome;
+          disableDeletion = true;
+        }
+      ];
+    };
 
     webapps.apps.navidrome = {
       dashboard = {
