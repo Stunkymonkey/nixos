@@ -25,10 +25,9 @@ in
       dockerSocket.enable = true;
 
       # Allow DNS resolution in the default network
-      defaultNetwork.dnsname.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
 
-      # TODO enable in NixOS 23.05
-      # autoPrune.enable = true;
+      autoPrune.enable = true;
     };
   };
 }

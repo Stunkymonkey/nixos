@@ -21,6 +21,6 @@ in
       arc-kde-theme
       arc-theme
     ];
-    qt5.platformTheme = "qt5ct";
+    qt.platformTheme = "qt5ct";
   };
 }

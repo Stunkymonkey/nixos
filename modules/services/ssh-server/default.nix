@@ -13,8 +13,10 @@ in
       # Enable the OpenSSH daemon.
       enable = true;
       # Be more secure
-      permitRootLogin = "no";
-      passwordAuthentication = false;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
     };
 
     # Opens the relevant UDP ports.

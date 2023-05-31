@@ -30,13 +30,14 @@ in
             ms-azuretools.vscode-docker
             ms-python.python
             ms-vscode-remote.remote-ssh
+            equinusocio.vsc-material-theme
           ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-            {
-              name = "vsc-material-theme"; # TODO included in 23.05
-              publisher = "Equinusocio";
-              version = "33.8.0";
-              sha256 = "sha256-+I4AUwsrElT62XNvmuAC2iBfHfjNYY0bmAqzQvfwUYM=";
-            }
+            # {
+            #   name = "vsc-material-theme";
+            #   publisher = "Equinusocio";
+            #   version = "33.8.0";
+            #   sha256 = "sha256-+I4AUwsrElT62XNvmuAC2iBfHfjNYY0bmAqzQvfwUYM=";
+            # }
           ];
       })
     ];

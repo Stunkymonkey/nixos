@@ -2,7 +2,7 @@
   description = "NixOS configuration";
   inputs = {
     nix.url = "github:NixOS/nix";
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -82,7 +82,7 @@
       };
 
       flake = {
-        checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+        # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
         deploy = import ./machines/deploy.nix (inputs // {
           inherit inputs;

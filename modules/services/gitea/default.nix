@@ -18,9 +18,11 @@ in
   config = lib.mkIf cfg.enable {
     services.gitea = {
       enable = true;
-      httpPort = cfg.port;
-      rootUrl = "https://code.${domain}";
       settings = {
+        server = {
+          HTTP_PORT = cfg.port;
+          ROOT_URL = "https://code.${domain}";
+        };
         session.COOKIE_SECURE = true;
         service.DISABLE_REGISTRATION = true;
         ui.DEFAULT_THEME = "arc-green";

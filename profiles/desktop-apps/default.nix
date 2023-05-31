@@ -14,7 +14,7 @@ in
       ghostwriter
       (gimp-with-plugins.override {
         plugins = with gimpPlugins; [
-          resynthesizer
+          # resynthesizer # disabled because broken with python3
         ];
       })
       keepassxc

@@ -53,7 +53,7 @@ in
   config = lib.mkIf cfg.enable {
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud25;
+      package = pkgs.nextcloud26;
       hostName = "cloud.${domain}";
       maxUploadSize = cfg.maxSize;
       autoUpdateApps.enable = true;

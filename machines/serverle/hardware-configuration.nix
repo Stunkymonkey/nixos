@@ -28,7 +28,5 @@
     };
     # Kernel configuration
     kernelParams = [ "cma=64M" "console=tty0" ];
-    # remove with 23.05
-    kernelPackages = pkgs.unstable.linuxKernel.packages.linux_rpi4;
   };
 }
