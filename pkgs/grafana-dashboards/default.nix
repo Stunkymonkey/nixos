@@ -67,6 +67,13 @@ in
     src = ./navidrome.json; # sadly data source is not detected
   });
 
+  cadvisor = buildGrafanaDashboard {
+    id = 10619;
+    pname = "cadvisor";
+    version = "1";
+    hash = "sha256-T1HqWbwt+i/Wa+Y2B7hclaCijGxZF5QI38aPcXjk9y0=";
+  };
+
   loki = (buildGrafanaDashboard {
     id = 13407;
     pname = "loki";
