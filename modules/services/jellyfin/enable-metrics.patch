@@ -1,0 +1,13 @@
+diff --git a/MediaBrowser.Model/Configuration/ServerConfiguration.cs b/MediaBrowser.Model/Configuration/ServerConfiguration.cs
+index 07f02d1879..0f1c2e0cb8 100644
+--- a/MediaBrowser.Model/Configuration/ServerConfiguration.cs
++++ b/MediaBrowser.Model/Configuration/ServerConfiguration.cs
+@@ -66,7 +66,7 @@ namespace MediaBrowser.Model.Configuration
+         /// <summary>
+         /// Gets or sets a value indicating whether to enable prometheus metrics exporting.
+         /// </summary>
+-        public bool EnableMetrics { get; set; } = false;
++        public bool EnableMetrics { get; set; } = true;
+ 
+         public bool EnableNormalizedItemByNameIds { get; set; } = true;
+ 
