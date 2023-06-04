@@ -21,10 +21,10 @@ in
       sshKeyFile = secrets."borgbackup/ssh_key".path;
     };
 
-    dyndns = {
-      enable = true;
-      passwordFile = secrets."dyndns/password".path;
-    };
+    # dyndns = {
+    #   enable = true;
+    #   passwordFile = secrets."dyndns/password".path;
+    # };
 
     prowlarr = {
       enable = true;
@@ -44,6 +44,9 @@ in
     };
 
     jellyfin = {
+      enable = true;
+    };
+    jellyseerr = {
       enable = true;
     };
     # Dashboard
