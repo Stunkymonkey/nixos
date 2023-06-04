@@ -15,6 +15,7 @@
     ./homer
     ./initrd-ssh
     ./jellyfin
+    ./jellyseerr
     ./loki
     ./minecraft-server
     ./matrix-bot
