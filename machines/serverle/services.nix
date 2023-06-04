@@ -26,6 +26,10 @@ in
     #   passwordFile = secrets."dyndns/password".path;
     # };
 
+    blocky = {
+      enable = true;
+    };
+
     prowlarr = {
       enable = true;
     };

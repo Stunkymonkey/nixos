@@ -58,6 +58,13 @@ in
     src = ./nextcloud.json; # sadly only imported dashboards work
   });
 
+  blocky = buildGrafanaDashboard {
+    id = 13768;
+    pname = "blocky";
+    version = "3";
+    hash = "sha256-T1HqWbwt+i/Wa+Y2B7hcl3CijGxZF5aI38aPcXjk9y0=";
+  };
+
   navidrome = (buildGrafanaDashboard {
     id = 18038;
     pname = "navidrome";
