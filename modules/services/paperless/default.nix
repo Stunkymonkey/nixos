@@ -38,6 +38,8 @@ in
       } // cfg.extraConfig;
     };
 
+    # monitoring is not really usefull, because it only contains the http-worker infos -> skipped for now
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "docs";
