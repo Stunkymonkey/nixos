@@ -19,7 +19,8 @@ in
 
   config = lib.mkIf cfg.enable {
     services.aria2 = {
-      # enable = true;
+      enable = true;
+      openPorts = true;
       inherit (cfg) downloadDir;
     };
 
