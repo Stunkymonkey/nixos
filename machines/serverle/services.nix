@@ -7,6 +7,7 @@ in
   sops.secrets."acme/inwx" = { };
   sops.secrets."borgbackup/password" = { };
   sops.secrets."borgbackup/ssh_key" = { };
+  sops.secrets."dyndns/password" = { };
   sops.secrets."sso/auth-key" = { };
   sops.secrets."sso/felix/password-hash" = { };
   sops.secrets."sso/felix/totp-secret" = { };
@@ -18,6 +19,11 @@ in
       OnFailureMail = "server@buehler.rocks";
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/ssh_key".path;
+    };
+
+    dyndns = {
+      enable = true;
+      passwordFile = secrets."dyndns/password".path;
     };
 
     prowlarr = {

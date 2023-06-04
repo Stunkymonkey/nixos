@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./disks.nix
-    ./dyndns.nix
     ./network.nix
     ./services.nix
     ./syncthing.nix

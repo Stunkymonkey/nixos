@@ -6,6 +6,7 @@
     ./backup
     ./bazarr
     ./blocky
+    ./dyndns
     ./freshrss
     ./gitea
     ./grafana
