@@ -67,6 +67,16 @@ in
     src = ./navidrome.json; # sadly data source is not detected
   });
 
+  # taken from https://gitlab.archlinux.org/archlinux/infrastructure/-/blob/master/roles/grafana/files/dashboards/Hedgedoc.json?ref_type=heads
+  hedgedoc = (buildGrafanaDashboard {
+    id = -1;
+    pname = "hedgedoc";
+    version = "1";
+    hash = lib.fakeSha256;
+  }).overrideAttrs (self: super: {
+    src = ./hedgedoc.json; # sadly data source is not detected
+  });
+
   cadvisor = buildGrafanaDashboard {
     id = 10619;
     pname = "cadvisor";

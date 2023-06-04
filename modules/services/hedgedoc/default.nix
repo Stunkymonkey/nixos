@@ -50,6 +50,30 @@ in
     #systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "/var/lib/hedgedoc";
     systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "hedgedoc";
 
+    services.prometheus = {
+      scrapeConfigs = [
+        {
+          job_name = "hedgedoc";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
+    };
+
+    services.grafana.provision.dashboards.settings.providers = [
+      {
+        name = "Hedgedoc";
+        options.path = pkgs.grafana-dashboards.hedgedoc;
+        disableDeletion = true;
+      }
+    ];
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "notes";
