@@ -2,6 +2,7 @@
 {
   imports = [
     ./alertmanager
+    ./aria2
     ./backup
     ./bazarr
     ./blocky
