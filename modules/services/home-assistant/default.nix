@@ -104,9 +104,27 @@ in
       ] ++ cfg.extraComponents;
     };
 
+    # services.prometheus.scrapeConfigs = [
+    #   {
+    #     job_name = "home-assistant";
+    #     metrics_path = "/api/prometheus";
+
+    #     authorization.credentials: "your.longlived.token";
+
+    #     static_configs = [
+    #       {
+    #         targets = [ "127.0.0.1:${toString cfg.port}" ];
+    #         labels = {
+    #           instance = config.networking.hostName;
+    #         };
+    #       }
+    #     ];
+    #   }
+    # ];
+
     my.services.nginx.virtualHosts = [
       {
-        subdomain = "monitoring";
+        subdomain = "automation";
         inherit (cfg) port;
       }
     ];
