@@ -54,9 +54,16 @@
 
       systems = [ "x86_64-linux" "aarch64-linux" ];
 
-      perSystem = { self', inputs', config, pkgs, ... }: {
+      perSystem = { self', inputs', config, pkgs, system, ... }: {
         # make pkgs available to all `perSystem` functions
-        _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          # prevent rebuilding deploy-rs everytime when nixpkgs changes
+          overlays = [
+            deploy-rs.overlay
+            (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+          ];
+        };
 
         # enable pre-commit checks
         pre-commit.settings = {
@@ -82,6 +89,7 @@
       };
 
       flake = {
+        # currently disabled, because this causes rebuilds
         # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
         deploy = import ./machines/deploy.nix (inputs // {
