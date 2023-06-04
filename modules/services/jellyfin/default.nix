@@ -49,7 +49,7 @@ in
       dashboard = {
         name = "Media";
         category = "media";
-        icon = "film";
+        icon = "eye";
         link = "https://media.${domain}";
       };
     };
