@@ -85,19 +85,6 @@ in
 
       inherit (cfg) retentionTime;
 
-      exporters = {
-        node = {
-          enable = true;
-          enabledCollectors = [ "systemd" ];
-          port = 9100;
-          listenAddress = "127.0.0.1";
-        };
-        systemd = {
-          enable = true;
-          listenAddress = "127.0.0.1";
-        };
-      };
-
       globalConfig = {
         scrape_interval = cfg.scrapeInterval;
       };
@@ -131,26 +118,10 @@ in
             };
           }];
         }
-        {
-          job_name = "node";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
-            labels = {
-              instance = config.networking.hostName;
-            };
-          }];
-        }
-        {
-          job_name = "systemd";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}" ];
-            labels = {
-              instance = config.networking.hostName;
-            };
-          }];
-        }
       ];
     };
+
+    my.services.node-exporter.enable = true;
 
     services.grafana.provision = {
       datasources.settings.datasources = [
@@ -168,18 +139,8 @@ in
       ];
       dashboards.settings.providers = [
         {
-          name = "Node Exporter";
-          options.path = pkgs.grafana-dashboards.node-exporter;
-          disableDeletion = true;
-        }
-        {
           name = "Prometheus";
           options.path = pkgs.grafana-dashboards.prometheus;
-          disableDeletion = true;
-        }
-        {
-          name = "Systemd";
-          options.path = pkgs.grafana-dashboards.node-systemd;
           disableDeletion = true;
         }
       ];

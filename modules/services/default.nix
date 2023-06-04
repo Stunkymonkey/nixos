@@ -24,6 +24,7 @@
     ./navidrome
     ./nextcloud
     ./nginx
+    ./node-exporter
     ./octoprint
     ./paperless
     ./passworts
