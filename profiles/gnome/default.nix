@@ -27,6 +27,7 @@ in
       gnome.dconf-editor
       gnome.eog
       gnome.file-roller
+      gnome.gnome-calculator
       polkit_gnome
       xdg-utils
     ];
