@@ -72,6 +72,13 @@ in
       ];
     };
 
+    my.services.prometheus.rules = {
+      gitea = {
+        condition = ''rate(promhttp_metric_handler_requests_total{job="gitea", code="500"}[5m]) > 3'';
+        description = "{{$labels.instance}}: gitea instances error rate went up: {{$value}} errors in 5 minutes";
+      };
+    };
+
     webapps.apps.gitea = {
       dashboard = {
         name = "Code";
