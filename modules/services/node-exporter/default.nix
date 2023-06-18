@@ -1,5 +1,5 @@
 # monitoring system services
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.my.services.node-exporter;
   domain = config.networking.domain;
@@ -14,7 +14,13 @@ in
       exporters = {
         node = {
           enable = true;
-          enabledCollectors = [ "systemd" ];
+          enabledCollectors = [
+            "systemd"
+            "textfile"
+          ];
+          extraFlags = [
+            "--collector.textfile.directory=/etc/prometheus-node-exporter-text-files"
+          ];
           port = 9100;
           listenAddress = "127.0.0.1";
         };
@@ -46,6 +52,26 @@ in
       ];
     };
 
+    # inputs == flake inputs in configurations.nix
+    environment.etc =
+      let
+        inputsWithDate = lib.filterAttrs (_: input: input ? lastModified) inputs;
+        flakeAttrs = input: (lib.mapAttrsToList (n: v: ''${n}="${v}"'')
+          (lib.filterAttrs (n: v: (builtins.typeOf v) == "string") input));
+        lastModified = name: input: ''
+          flake_input_last_modified{input="${name}",${lib.concatStringsSep "," (flakeAttrs input)}} ${toString input.lastModified}'';
+      in
+      {
+        "prometheus-node-exporter-text-files/flake-inputs.prom" = {
+          mode = "0555";
+          text = ''
+            # HELP flake_registry_last_modified Last modification date of flake input in unixtime
+            # TYPE flake_input_last_modified gauge
+            ${lib.concatStringsSep "\n" (lib.mapAttrsToList lastModified inputsWithDate)}
+          '';
+        };
+      };
+
     services.grafana.provision = {
       dashboards.settings.providers = [
         {
@@ -62,6 +88,10 @@ in
     };
 
     my.services.prometheus.rules = {
+      nixpkgs_out_of_date = {
+        condition = ''(time() - flake_input_last_modified{input="nixpkgs"}) / (60 * 60 * 24) > 7'';
+        description = "{{$labels.host}}: nixpkgs flake is older than a week";
+      };
       # disk space
       filesystem_full_shortly = {
         condition = "predict_linear(node_filesystem_free[1h], (4 * 60 * 60)) < 0";
