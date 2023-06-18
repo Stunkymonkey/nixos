@@ -83,6 +83,13 @@ in
       ];
     };
 
+    my.services.prometheus.rules = {
+      navidrome_not_enough_albums = {
+        condition = ''http_navidrome_album_count != 1'';
+        description = "navidrome: not enough albums as expected: {{$value}}";
+      };
+    };
+
     webapps.apps.navidrome = {
       dashboard = {
         name = "Music";
