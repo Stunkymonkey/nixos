@@ -128,6 +128,13 @@ in
       }
     ];
 
+    my.services.prometheus.rules = {
+      alerts_silences_changed = {
+        condition = ''abs(delta(alertmanager_silences{state="active"}[1h])) >= 1'';
+        description = "alertmanager: number of active silences has changed: {{$value}}";
+      };
+    };
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "alerts";
