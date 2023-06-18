@@ -100,7 +100,10 @@ in
                   expr = opts.condition;
                   for = opts.time;
                   labels = opts.labels;
-                  annotations.description = opts.description;
+                  annotations = {
+                    description = opts.description;
+                    grafana = lib.optionalString config.services.grafana.enable "https://visualization.${domain}";
+                  };
                 })
                 (cfg.rules);
             }
