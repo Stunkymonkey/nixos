@@ -161,5 +161,16 @@ in
         yearly = 2;
       };
     };
+
+    my.services.prometheus.rules = {
+      borgbackup_execution_missing = {
+        condition = ''time() - systemd_timer_last_trigger_seconds{name="borgbackup-job-hetzner.timer"} >= (60 * 60 * (24 + 1))'';
+        description = "{{$labels.instance}}: last backup was 25 hours ago please check.";
+      };
+      borgbackup_last_execution = {
+        condition = ''systemd_unit_state{state="failed", name="borgbackup-job-hetzner.timer"} >= 1'';
+        description = "{{$labels.instance}}: last backup was not successfull please check.";
+      };
+    };
   };
 }
