@@ -29,5 +29,12 @@ in
     };
 
     users.groups."voice-buehler-rocks".members = [ "murmur" "nginx" ];
+
+    my.services.prometheus.rules = {
+      mumble_not_running = {
+        condition = ''systemd_unit_state{name="murmur.service", state!="active"} > 0'';
+        description = "{{$labels.host}} should have a running {{$labels.name}}";
+      };
+    };
   };
 }
