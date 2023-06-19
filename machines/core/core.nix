@@ -22,6 +22,7 @@
     mtr
     nmap
     nmon
+    ouch # de-/compress
     pciutils
     progress
     pv
