@@ -9,7 +9,7 @@ let
     header = false;
     footer = false;
     connectivityCheck = true;
-    colums = "auto";
+    columns = "auto";
     services = config.lib.webapps.homerServices;
   };
 in

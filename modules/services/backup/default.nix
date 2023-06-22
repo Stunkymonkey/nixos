@@ -43,7 +43,7 @@ in
     };
     OnFailureMail = mkOption {
       type = types.nullOr (types.str);
-      description = lib.mdDoc "Mail adress where to send the error report";
+      description = lib.mdDoc "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";
     };
@@ -169,7 +169,7 @@ in
       };
       borgbackup_last_execution = {
         condition = ''systemd_unit_state{state="failed", name="borgbackup-job-hetzner.timer"} >= 1'';
-        description = "{{$labels.instance}}: last backup was not successfull please check.";
+        description = "{{$labels.instance}}: last backup was not successful please check.";
       };
     };
   };

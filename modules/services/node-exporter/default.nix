@@ -168,7 +168,7 @@ in
         description = "Host SystemD service crashed (instance {{ $labels.instance }})";
       };
       # time
-      clock_not_syncronising = {
+      clock_not_synchronising = {
         condition = ''min_over_time(node_timex_sync_status[1m]) == 0 and node_timex_maxerror_seconds >= 16'';
         description = ''Clock not synchronising.\n  VALUE = {{ $value }}'';
       };

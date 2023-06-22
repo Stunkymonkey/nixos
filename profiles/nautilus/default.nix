@@ -21,7 +21,7 @@ in
 
     services.gnome.glib-networking.enable = true; # network-mount
 
-    # default-programms
+    # default-programs
     xdg.mime.enable = true;
     xdg.icons.enable = true;
 

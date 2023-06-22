@@ -1,3 +1,3 @@
-# things to consider when availble in the next release:
+# things to consider when available in the next release:
 
 - systemd-repart

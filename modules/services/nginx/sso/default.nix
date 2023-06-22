@@ -24,7 +24,7 @@ in
     configuration = mkOption {
       type = types.attrsOf types.unspecified;
       default = { };
-      example = literalExample ''
+      example = literalExpression ''
         {
           listen = { addr = "127.0.0.1"; port = 8080; };
 

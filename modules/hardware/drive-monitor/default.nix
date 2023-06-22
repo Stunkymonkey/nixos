@@ -8,7 +8,7 @@ in
 
     OnFailureMail = mkOption {
       type = types.nullOr (types.str);
-      description = lib.mdDoc "Mail adress where to send the error report";
+      description = lib.mdDoc "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";
     };

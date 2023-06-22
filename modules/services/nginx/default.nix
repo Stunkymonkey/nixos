@@ -35,7 +35,7 @@ let
       };
       extraConfig = mkOption {
         type = types.attrs; # FIXME: forward type of virtualHosts
-        example = litteralExample ''
+        example = literalExpression ''
           {
             locations."/socket" = {
               proxyPass = "http://127.0.0.1:8096/";
@@ -69,7 +69,7 @@ in
     virtualHosts = mkOption {
       type = types.listOf virtualHostOption;
       default = [ ];
-      example = litteralExample ''
+      example = literalExpression ''
         [
           {
             subdomain = "gitea";
@@ -130,7 +130,7 @@ in
             };
           };
         });
-        example = litteralExample ''
+        example = literalExpression ''
           {
             alice = {
               passwordHashFile = "/var/lib/nginx-sso/alice/password-hash.txt";
@@ -142,7 +142,7 @@ in
       };
       groups = mkOption {
         type = with types; attrsOf (listOf str);
-        example = litteralExample ''
+        example = literalExpression ''
           {
             root = [ "alice" ];
             users = [ "alice" "bob" ];
