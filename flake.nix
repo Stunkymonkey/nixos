@@ -70,6 +70,10 @@
           hooks = {
             shellcheck.enable = true;
             nixpkgs-fmt.enable = true;
+            typos = {
+              enable = true;
+              excludes = [ "secrets\\.yaml" ];
+            };
           };
         };
 
@@ -81,6 +85,7 @@
             # formatters
             pkgs.shellcheck
             pkgs.nixpkgs-fmt
+            pkgs.typos
           ];
           shellHook = ''
             ${config.pre-commit.installationScript}
