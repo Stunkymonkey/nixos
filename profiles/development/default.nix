@@ -38,6 +38,7 @@ in
       ]))
       # linter
       shellcheck
+      typos
     ];
   };
 }
