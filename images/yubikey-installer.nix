@@ -86,7 +86,9 @@ let
 
       environment.systemPackages = [
         # Tools for backing up keys
-        paperkey
+        paperkey # codes
+        qrencode # qr-code
+        dmtx-utils # datamatrix
         pgpdump
         parted
         cryptsetup
