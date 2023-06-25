@@ -5,6 +5,7 @@
     ./aria2
     ./backup
     ./bazarr
+    ./blackbox
     ./blocky
     ./dyndns
     ./freshrss

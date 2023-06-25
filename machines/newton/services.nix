@@ -132,6 +132,9 @@ in
     promtail = {
       enable = true;
     };
+    blackbox = {
+      enable = true;
+    };
     # Webserver
     nginx = {
       enable = true;

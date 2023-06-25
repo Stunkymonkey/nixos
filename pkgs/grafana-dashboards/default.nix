@@ -124,11 +124,21 @@ in
   }).overrideAttrs (self: super: {
     src = ./prometheus.json; # sadly only imported dashboards work
   });
+
   grafana = (buildGrafanaDashboard {
     id = 3590;
     pname = "grafana";
     version = "3";
   }).overrideAttrs (self: super: {
     src = ./grafana.json; # sadly only imported dashboards work
+  });
+
+  blackbox = (buildGrafanaDashboard {
+    id = 13659;
+    pname = "blackbox";
+    version = "1";
+    hash = "sha256-nnBFWFDAqKUqTOYxOrkRPlVla4ioQZ6rqEqakdzUj1Q=";
+  }).overrideAttrs (self: super: {
+    src = ./blackbox.json; # sadly only imported dashboards work
   });
 })
