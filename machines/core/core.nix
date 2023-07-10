@@ -40,5 +40,4 @@
   ];
 
   time.timeZone = "Europe/Berlin";
-  services.timesyncd.enable = true;
 }
