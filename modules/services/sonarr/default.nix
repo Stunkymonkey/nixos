@@ -26,6 +26,11 @@ in
       }
     ];
 
+    my.services.exportarr.sonarr = {
+      port = port + 1;
+      url = "http://127.0.0.1:${toString port}";
+    };
+
     webapps.apps.sonarr = {
       dashboard = {
         name = "Series";

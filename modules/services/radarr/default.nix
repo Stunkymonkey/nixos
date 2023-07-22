@@ -26,6 +26,11 @@ in
       }
     ];
 
+    my.services.exportarr.radarr = {
+      port = port + 1;
+      url = "http://127.0.0.1:${toString port}";
+    };
+
     webapps.apps.radarr = {
       dashboard = {
         name = "Movies";

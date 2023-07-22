@@ -36,6 +36,11 @@ in
       }
     ];
 
+    my.services.exportarr.prowlarr = {
+      port = port + 1;
+      url = "http://127.0.0.1:${toString port}";
+    };
+
     webapps.apps.prowlarr = {
       dashboard = {
         name = "Indexer";
