@@ -164,7 +164,8 @@ in
       };
       # systemd
       systemd_crashed = {
-        condition = ''node_systemd_unit_state{state="failed"} == 1'';
+        # ignore user services
+        condition = ''node_systemd_unit_state{state="failed", name!~"user@\\d+.service"} == 1'';
         description = "Host SystemD service crashed (instance {{ $labels.instance }})";
       };
       # time
