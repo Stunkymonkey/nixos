@@ -8,6 +8,13 @@ in
 {
   options.my.services.prowlarr = with lib; {
     enable = mkEnableOption "Prowlarr for indexing";
+
+    apiKeyFile = lib.mkOption {
+      type = lib.types.path;
+      description = lib.mdDoc ''
+        File containing the api-key.
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -39,7 +46,20 @@ in
     my.services.exportarr.prowlarr = {
       port = port + 1;
       url = "http://127.0.0.1:${toString port}";
+      apiKeyFile = cfg.apiKeyFile;
     };
+
+    services.prometheus.scrapeConfigs = [
+      {
+        job_name = "prowlarr";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString port + 1}" ];
+          labels = {
+            instance = config.networking.hostName;
+          };
+        }];
+      }
+    ];
 
     webapps.apps.prowlarr = {
       dashboard = {

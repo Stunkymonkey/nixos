@@ -4,16 +4,17 @@ let
 
   mkExportarrService = name: conf:
     let
-      exportarrEnvironment = {
+      exportarrEnvironment = (
+        lib.mapAttrs (_: toString) conf.environment
+      ) // {
         PORT = toString conf.port;
         URL = conf.url;
-      } // (
-        lib.mapAttrs (_: toString) conf.environment
-      );
+        API_KEY_FILE = lib.mkIf (conf.apiKeyFile != null) "%d/api-key";
+      };
     in
     lib.nameValuePair "exportarr-${name}" {
       description = "Exportarr Service ${name}";
-      script = ''exec ${conf.package}/bin/exportarr "$@"'';
+      script = ''exec ${conf.package}/bin/exportarr ${name} "$@"'';
       serviceConfig = {
         Restart = "on-failure";
         User = "exportarr-${name}";
@@ -22,6 +23,9 @@ let
         StateDirectory = "exportarr-${name}";
         WorkingDirectory = "/var/lib/exportarr-${name}";
         RuntimeDirectory = "exportarr-${name}";
+
+        LoadCredential = lib.optionalString (conf.apiKeyFile != null)
+          "api-key:${conf.apiKeyFile}";
 
         CapabilityBoundingSet = "";
         LockPersonality = true;
@@ -88,6 +92,14 @@ in
             '';
           };
 
+          apiKeyFile = lib.mkOption {
+            type = lib.types.nullOr lib.types.path;
+            default = null;
+            description = lib.mdDoc ''
+              File containing the api-key.
+            '';
+          };
+
           package = lib.mkPackageOptionMD pkgs "exportarr" { };
 
           environment = lib.mkOption {
@@ -97,7 +109,6 @@ in
               See [the configuration guide](https://github.com/onedr0p/exportarr#configuration) for available options.
             '';
             example = {
-              API_KEY_FILE = "/run/secrets/exportarr";
               PROWLARR__BACKFILL = true;
             };
           };
@@ -107,6 +118,12 @@ in
   };
 
   config = lib.mkIf (cfg != { }) {
+    assertions = lib.mapAttrsToList
+      (name: config: {
+        assertion = builtins.elem name [ "sonarr" "radarr" "lidarr" "prowlarr" "readarr" "sabnzbd" ];
+        message = "exportarr does not support this service.";
+      })
+      cfg;
     systemd.services = lib.mapAttrs' mkExportarrService cfg;
   };
 }

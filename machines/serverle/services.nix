@@ -11,6 +11,9 @@ in
   sops.secrets."sso/auth-key" = { };
   sops.secrets."sso/felix/password-hash" = { };
   sops.secrets."sso/felix/totp-secret" = { };
+  sops.secrets."prowlarr/apikey" = { };
+  sops.secrets."radarr/apikey" = { };
+  sops.secrets."sonarr/apikey" = { };
 
   # List services that you want to enable:
   my.services = {
@@ -32,12 +35,15 @@ in
 
     prowlarr = {
       enable = true;
+      apiKeyFile = secrets."prowlarr/apikey".path;
     };
     radarr = {
       enable = true;
+      apiKeyFile = secrets."radarr/apikey".path;
     };
     sonarr = {
       enable = true;
+      apiKeyFile = secrets."sonarr/apikey".path;
     };
     bazarr = {
       enable = true;

@@ -26,11 +26,6 @@ in
       }
     ];
 
-    my.services.exportarr.bazarr = {
-      port = port + 1;
-      url = "http://127.0.0.1:${toString port}";
-    };
-
     webapps.apps.bazarr = {
       dashboard = {
         name = "Subtitles";
