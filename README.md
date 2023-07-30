@@ -1,9 +1,10 @@
 # nixos-config [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
 This repository holds my NixOS configuration.
-It is fully reproducible, flakes based, and position-independent, meaning there is no moving around of `configuration.nix`.
+It is fully reproducible, flakes based, and position-independent, ...
 
 used flakes:
+
 - image generation: [nixos-generators](https://github.com/nix-community/nixos-generators)
 - disk formatting: [disko](https://github.com/nix-community/disko)
 - secrets: [sops-nix](https://github.com/Mic92/sops-nix)
@@ -12,7 +13,7 @@ used flakes:
 
 ## structure
 
-```
+```text
 .
 ├── images       # custom image generations
 ├── machines     # machine definitions
@@ -25,27 +26,32 @@ used flakes:
 ## usage
 
 updating:
+
 ```bash
 nix flake update
 ```
 
 deployment:
+
 ```bash
 deploy .#myHost
 ```
 
 secrets:
+
 ```bash
 sops ./machines/myHost/secrets.yaml
 ```
 
 images:
+
 ```bash
 nix build .#install-iso
 nix build .#aarch64-install --system aarch64-linux
 ```
 
 ## inspired by
+
 - [Nix config by Mic92](https://github.com/Mic92/dotfiles)
 - [Nix config by ambroisie](https://github.com/ambroisie/nix-config)
 - [Nix config by pborzenkov](https://github.com/pborzenkov/nix-config)

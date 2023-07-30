@@ -74,6 +74,7 @@
               enable = true;
               excludes = [ "secrets\\.yaml" ];
             };
+            markdownlint.enable = true;
           };
         };
 

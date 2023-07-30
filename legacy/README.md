@@ -1,4 +1,5 @@
 # My personal NixOS-configuration
+
 work in progress...
 
 get internet
