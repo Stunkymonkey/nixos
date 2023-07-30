@@ -1,4 +1,4 @@
-# nixos-config [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+# nixos-config [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)![CI](https://github.com/Stunkymonkey/nixos/actions/workflows/nix.yml/badge.svg)
 
 This repository holds my NixOS configuration.
 It is fully reproducible, flakes based, and position-independent, ...
