@@ -1,3 +1,5 @@
+---
+
 keys:
   - &admin_felix age1hf8m9upp00dr7qv2kmqdr50fpvd9ejzkfu8yknqnuda2aas2tvrs4l3u7m
   - &thinkman age1spt854cdscqs757a8kazth52rv4p9udh54suw9lpzlqg5savyapq2u0c03
@@ -7,15 +9,15 @@ creation_rules:
   - path_regex: thinkman/secrets.yaml$
     key_groups:
       - age:
-        - *admin_felix
-        - *thinkman
+          - *admin_felix
+          - *thinkman
   - path_regex: newton/secrets.yaml$
     key_groups:
       - age:
-        - *admin_felix
-        - *newton
+          - *admin_felix
+          - *newton
   - path_regex: serverle/secrets.yaml$
     key_groups:
       - age:
-        - *admin_felix
-        - *serverle
+          - *admin_felix
+          - *serverle

@@ -75,6 +75,10 @@
               excludes = [ "secrets\\.yaml" ];
             };
             markdownlint.enable = true;
+            yamllint = {
+              enable = true;
+              excludes = [ "secrets\\.yaml" ];
+            };
           };
         };
 
