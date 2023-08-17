@@ -3,10 +3,11 @@
 set -eux -o pipefail
 
 BASE="$(dirname "$(readlink -f "$0")")"
+# shellcheck source=legacy/helpers.sh
 . "${BASE}/helpers.sh"
 
 export HOST=serverle
-export DRIVE_ROOT=/dev/disk/by-id/usb-Seagate_Expansion_2HC015KJ-0\:0
+export DRIVE_ROOT="/dev/disk/by-id/usb-Seagate_Expansion_2HC015KJ-0:0"
 
 export NIXOS_FILES="${NIXOS_FILES:-$PWD}"
 export CHROOT_BASE="/mnt/newroot-${HOST}"

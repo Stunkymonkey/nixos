@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ask_if_sure(){
 	while true; do
-		read -p "reinstall & ERASE ALL DATA? [y/n] " yn
+		read -r -p "reinstall & ERASE ALL DATA? [y/n] " yn
 		case $yn in
 			[Yy]* ) break;;
 			[Nn]* ) exit 1;;
@@ -36,7 +36,7 @@ blk_info_uuid(){
 #
 # If you want to get asked for every password, just remove this function
 cryptsetup(){
-	command cryptsetup $* --key-file /tmp/passwd -q
+	command cryptsetup "$@" --key-file /tmp/passwd -q
 }
 
 install_os(){
@@ -47,7 +47,7 @@ install_os(){
 luks_close(){
 	local drive="${1?}"
 
-	if cryptsetup status "${drive}" &>/dev/null; then
+	if cryptsetup status "${drive}" > /dev/null 2>&1; then
 		cryptsetup close "${drive}"
 	fi
 }

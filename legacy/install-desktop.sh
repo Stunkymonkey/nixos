@@ -3,6 +3,7 @@
 set -eux -o pipefail
 
 BASE="$(dirname "$(readlink -f "$0")")"
+# shellcheck source=legacy/helpers.sh
 . "${BASE}/helpers.sh"
 
 export HOST=thinkman
