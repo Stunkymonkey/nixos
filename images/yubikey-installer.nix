@@ -70,7 +70,7 @@ let
       # USB stick, nothing is mistakenly written to persistent storage.
       boot.kernelParams = [ "copytoram" ];
       # Secure defaults
-      boot.cleanTmpDir = true;
+      boot.tmp.cleanOnBoot = true;
       boot.kernel.sysctl = { "kernel.unprivileged_bpf_disabled" = 1; };
 
       services.pcscd.enable = true;
@@ -99,7 +99,7 @@ let
         yubikey-personalization
         yubikey-personalization-gui
         yubico-piv-tool
-        yubioath-desktop
+        yubioath-flutter
 
         # Testing
         ent
