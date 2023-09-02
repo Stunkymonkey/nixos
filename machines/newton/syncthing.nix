@@ -3,6 +3,15 @@
   sops.secrets."syncthing/key" = { };
   sops.secrets."syncthing/cert" = { };
 
+  # make sure folders exist writable
+  systemd.tmpfiles.rules = [
+    "d /srv/data/ 0755 syncthing syncthing"
+    "d /srv/data/computer 0755 syncthing syncthing"
+    "d /srv/data/phone 0755 syncthing syncthing"
+    "d /srv/data/music 0755 syncthing syncthing"
+    "d /srv/data/photos 0755 syncthing syncthing"
+  ];
+
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
