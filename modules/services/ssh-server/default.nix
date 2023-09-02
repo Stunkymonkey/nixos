@@ -13,10 +13,7 @@ in
       # Enable the OpenSSH daemon.
       enable = true;
       # Be more secure
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-      };
+      settings.PasswordAuthentication = false;
     };
 
     # Opens the relevant UDP ports.
