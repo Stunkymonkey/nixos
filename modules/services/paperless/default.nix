@@ -21,6 +21,12 @@ in
       description = "Internal port for webui";
     };
 
+    mediaDir = mkOption {
+      type = types.path;
+      description = "Password for the defaultUser for FreshRSS.";
+      example = "/run/secrets/freshrss";
+    };
+
     extraConfig = mkOption {
       type = types.attrs;
       default = { };
@@ -31,8 +37,7 @@ in
   config = lib.mkIf cfg.enable {
     services.paperless = {
       enable = true;
-      inherit (cfg) port;
-      mediaDir = "/srv/data/docs";
+      inherit (cfg) port mediaDir;
       extraConfig = {
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
       } // cfg.extraConfig;
