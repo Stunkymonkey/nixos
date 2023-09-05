@@ -17,12 +17,6 @@
     gnupg.sshKeyPaths = [ ];
   };
 
-  # Nix
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };
-
   system = {
     stateVersion = "23.05";
     autoUpgrade.enable = true;
