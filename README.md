@@ -100,7 +100,7 @@ used flakes:
             ```bash
             echo "my-super-safe-password" > /tmp/disk.key
             temp=$(mktemp -d)
-            printf '%M %p\n'
+            find $temp -printf '%M %p\n'
             ```
 
             should result in something looking like this
