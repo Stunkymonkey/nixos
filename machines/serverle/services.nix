@@ -22,6 +22,7 @@ in
       OnFailureMail = "server@buehler.rocks";
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/ssh_key".path;
+      paths = [ "/" ];
     };
 
     # dyndns = {

@@ -14,6 +14,7 @@ in
       OnFailureNotification = true;
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/ssh_key".path;
+      paths = [ "/" ];
     };
   };
 }
