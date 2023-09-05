@@ -10,7 +10,6 @@ in
 
     downloadDir = mkOption {
       type = types.path;
-      default = "/srv/data/tmp/aria2/";
       description = mdDoc ''
         Directory to store downloaded files.
       '';

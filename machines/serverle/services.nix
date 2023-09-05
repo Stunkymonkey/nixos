@@ -29,6 +29,11 @@ in
     #   passwordFile = secrets."dyndns/password".path;
     # };
 
+    # aria2 = {
+    #   enable = true;
+    #   downloadDir = "/data/tmp/aria2/";
+    # };
+
     blocky = {
       enable = true;
     };
