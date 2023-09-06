@@ -101,8 +101,8 @@ in
         "/var/run"
         "/var/tmp"
 
-        "/srv/data/tmp"
-        "/srv/data/todo"
+        "/data/tmp"
+        "/data/todo"
 
         "/home/*/.cache"
         "/home/*/.gvfs"

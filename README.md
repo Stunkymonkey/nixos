@@ -131,8 +131,6 @@ used flakes:
             root@<host>
         ```
 
-</details>
-
 ## Inspired by
 
 - [Nix config by Mic92](https://github.com/Mic92/dotfiles)
