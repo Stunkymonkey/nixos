@@ -89,8 +89,8 @@ in
 
     my.services.prometheus.rules = {
       nixpkgs_out_of_date = {
-        condition = ''(time() - flake_input_last_modified{input="nixpkgs"}) / (60 * 60 * 24) > 7'';
-        description = "{{$labels.host}}: nixpkgs flake is older than a week";
+        condition = ''(time() - flake_input_last_modified{input="nixpkgs"}) / (60 * 60 * 24) > 14'';
+        description = "{{$labels.host}}: nixpkgs flake is older than two weeks";
       };
       # disk space
       filesystem_full_shortly = {
