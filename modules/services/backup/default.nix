@@ -126,7 +126,7 @@ in
       compression = "auto,zstd";
 
       postHook = ''
-        if [[ $exitStatus != 0 ]]; then
+        if (( $exitStatus > 1 )); then
       '' + lib.optionalString cfg.OnFailureNotification ''
         # iterate over all logged in users
         for user in $(users); do
