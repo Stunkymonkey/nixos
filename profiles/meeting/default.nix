@@ -9,8 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      # TODO revert fix: https://github.com/NixOS/nixpkgs/issues/238416
-      (element-desktop.override { electron = pkgs.electron_24; })
+      element-desktop
       mumble
       nheko
       teamspeak_client
