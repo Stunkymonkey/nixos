@@ -99,8 +99,8 @@ in
         };
       };
       BlackboxSlowProbe = {
-        condition = ''avg_over_time(probe_duration_seconds[1m]) > 1'';
-        description = "Blackbox probe took more than 1s to complete\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
+        condition = ''avg_over_time(probe_duration_seconds[1m]) > 2'';
+        description = "Blackbox probe took more than 2s to complete\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
         time = "1m";
         labels = {
           severity = "warning";
@@ -128,8 +128,8 @@ in
         };
       };
       BlackboxProbeSlowHttp = {
-        condition = ''avg_over_time(probe_http_duration_seconds[1m]) > 1'';
-        description = "HTTP request took more than 1s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
+        condition = ''avg_over_time(probe_http_duration_seconds[1m]) > 2'';
+        description = "HTTP request took more than 2s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
         time = "1m";
         labels = {
           severity = "warning";
