@@ -60,7 +60,7 @@ in
     # music streaming server
     navidrome = {
       enable = true;
-      musicFolder = "/srv/data/music";
+      musicFolder = "/data/music";
     };
     # self-hosted cloud
     nextcloud = {
@@ -73,7 +73,7 @@ in
       enable = true;
       passwordFile = secrets."paperless/password".path;
       extraConfig.PAPERLESS_ADMIN_USER = "felix";
-      mediaDir = "/srv/data/docs";
+      mediaDir = "/data/docs";
     };
     # RSS aggregator and reader
     freshrss = {
@@ -97,7 +97,7 @@ in
     photoprism = {
       enable = true;
       passwordFile = secrets."photoprism/password".path;
-      originalsPath = "/srv/data/photos";
+      originalsPath = "/data/photos";
       settings = {
         PHOTOPRISM_ADMIN_USER = "felix";
         PHOTOPRISM_SPONSOR = "true";

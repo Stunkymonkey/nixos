@@ -5,11 +5,11 @@
 
   # make sure folders exist writable
   systemd.tmpfiles.rules = [
-    "d /srv/data/ 0755 syncthing syncthing"
-    "d /srv/data/computer 0755 syncthing syncthing"
-    "d /srv/data/phone 0755 syncthing syncthing"
-    "d /srv/data/music 0755 syncthing syncthing"
-    "d /srv/data/photos 0755 syncthing syncthing"
+    "d /data/ 0755 syncthing syncthing"
+    "d /data/computer 0755 syncthing syncthing"
+    "d /data/phone 0755 syncthing syncthing"
+    "d /data/music 0755 syncthing syncthing"
+    "d /data/photos 0755 syncthing syncthing"
   ];
 
   services.syncthing = {
@@ -37,7 +37,7 @@
     folders = {
       "Computer" = {
         id = "djdxo-1akub";
-        path = "/srv/data/computer";
+        path = "/data/computer";
         devices = [
           "thinkman"
           "birdman"
@@ -46,7 +46,7 @@
       };
       "Phone" = {
         id = "4hds7-gpypp";
-        path = "/srv/data/phone";
+        path = "/data/phone";
         devices = [
           "thinkman"
           "birdman"
@@ -55,7 +55,7 @@
       };
       "Music" = {
         id = "mphdq-n6q7y";
-        path = "/srv/data/music";
+        path = "/data/music";
         watch = false;
         devices = [
           "thinkman"
@@ -65,7 +65,7 @@
       };
       "Pictures" = {
         id = "cujyo-yiabu";
-        path = "/srv/data/photos";
+        path = "/data/photos";
         watch = false;
         devices = [
           "thinkman"

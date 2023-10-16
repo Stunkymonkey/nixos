@@ -52,12 +52,12 @@
             mountpoint = "/";
           };
         };
-        srv = {
+        data = {
           size = "350G";
           content = {
             type = "filesystem";
             format = "ext4";
-            mountpoint = "/srv";
+            mountpoint = "/data";
           };
         };
         swap = {
