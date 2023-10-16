@@ -7,7 +7,7 @@ let
 in
 {
   options.my.services.radarr = with lib; {
-    enable = mkEnableOption "Sonarr for films management";
+    enable = mkEnableOption "Radarr for films management";
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;
