@@ -53,7 +53,7 @@
           };
         };
         data = {
-          size = "350G";
+          size = "400G";
           content = {
             type = "filesystem";
             format = "ext4";
