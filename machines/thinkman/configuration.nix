@@ -2,7 +2,6 @@
 {
   imports = [
     ./boot.nix
-    ./disks.nix
     ./hardware-configuration.nix
     ./network.nix
     ./profiles.nix
@@ -11,6 +10,10 @@
   ];
 
   networking.hostName = "thinkman";
+
+  disko.devices = import ./disko-config.nix {
+    disks = [ "/dev/disk/by-id/nvme-eui.0025385b01410682" ];
+  };
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
