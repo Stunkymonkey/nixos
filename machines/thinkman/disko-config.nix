@@ -28,7 +28,7 @@
               content = {
                 type = "luks";
                 name = "encrypted";
-                extraOpenArgs = [ "--allow-discards" ];
+                settings.allowDiscards = true;
                 passwordFile = "/tmp/disk.key";
                 content = {
                   type = "lvm_pv";
