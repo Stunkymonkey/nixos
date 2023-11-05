@@ -53,7 +53,7 @@ in
   config = lib.mkIf cfg.enable {
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud26;
+      package = pkgs.nextcloud27;
       hostName = "cloud.${domain}";
       maxUploadSize = cfg.maxSize;
       autoUpdateApps.enable = true;
@@ -69,21 +69,21 @@ in
       };
 
       extraApps = {
-        calendar = let version = "4.3.4"; in pkgs.fetchNextcloudApp {
+        calendar = let version = "4.5.2"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud-releases/calendar/releases/download/v${version}/calendar-v${version}.tar.gz";
-          sha256 = "sha256-O/OcUMfOGCNaeZcITX4QSXGi76MUjmCz+5PZNg2CQV4=";
+          sha256 = "sha256-n7GjgAyw2SLoZTEfakmI3IllWUk6o1MF89Zt3WGhR6A=";
         };
-        contacts = let version = "5.2.0"; in pkgs.fetchNextcloudApp {
+        contacts = let version = "5.4.2"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud-releases/contacts/releases/download/v${version}/contacts-v${version}.tar.gz";
-          sha256 = "sha256-s2st8QZaLmkju5XxfwFEPonB+6jZ3wsJATW9e+qguOU=";
+          sha256 = "sha256-IkKHJ3MY/UPZqa4H86WGOEOypffMIHyJ9WvMqkq/4t8=";
         };
         tasks = let version = "0.15.0"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud/tasks/releases/download/v${version}/tasks.tar.gz";
           sha256 = "sha256-zMMqtEWiXmhB1C2IeWk8hgP7eacaXLkT7Tgi4NK6PCg=";
         };
-        deck = let version = "1.9.1"; in pkgs.fetchNextcloudApp {
+        deck = let version = "1.11.0"; in pkgs.fetchNextcloudApp {
           url = "https://github.com/nextcloud/deck/releases/download/v${version}/deck.tar.gz";
-          sha256 = "sha256-88ZaPar2d9wUyelAWM7eYY3z01jtKYVkCeI+xxvttw4=";
+          sha256 = "sha256-stb9057pP8WXIhztNl7H8ymLqSZzSulgKgB2cbib2pQ=";
         };
       };
     };
