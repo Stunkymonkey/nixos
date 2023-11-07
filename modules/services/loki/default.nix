@@ -2,7 +2,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.loki;
-  domain = config.networking.domain;
 in
 {
   options.my.services.loki = with lib; {

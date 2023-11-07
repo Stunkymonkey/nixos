@@ -1,8 +1,7 @@
 # adjusted from: https://github.com/NixOS/nixos-org-configurations/blob/master/delft/eris/alertmanager-matrix-forwarder.nix
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.matrix-bot;
-  domain = config.networking.domain;
 in
 {
   options.my.services.matrix-bot = with lib; {

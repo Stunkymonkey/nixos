@@ -1,5 +1,5 @@
 # a password-generator using the marokov model
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.passworts;
   domain = config.networking.domain;

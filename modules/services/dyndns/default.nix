@@ -1,5 +1,5 @@
 # running dyndns updates
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.dyndns;
   domain = config.networking.domain;

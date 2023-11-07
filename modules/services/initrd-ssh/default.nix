@@ -1,5 +1,5 @@
 # The Free Software Media System
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.initrd-ssh;
 in

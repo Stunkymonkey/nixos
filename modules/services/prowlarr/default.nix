@@ -1,5 +1,5 @@
 # manages indexes
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.prowlarr;
   domain = config.networking.domain;

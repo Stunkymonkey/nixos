@@ -1,8 +1,5 @@
 # enabled profiles
-{ config, lib, ... }:
-let
-  secrets = config.sops.secrets;
-in
+{ ... }:
 {
   my.profiles = {
     "3d-design".enable = true;

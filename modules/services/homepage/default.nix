@@ -1,5 +1,5 @@
 # My own personal homepage
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, inputs, ... }:
 let
   cfg = config.my.services.homepage;
   domain = config.networking.domain;

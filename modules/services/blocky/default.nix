@@ -2,7 +2,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.blocky;
-  domain = config.networking.domain;
 in
 {
   options.my.services.blocky = with lib; {

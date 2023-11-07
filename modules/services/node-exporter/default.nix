@@ -2,7 +2,6 @@
 { config, lib, pkgs, inputs, ... }:
 let
   cfg = config.my.services.node-exporter;
-  domain = config.networking.domain;
 in
 {
   options.my.services.node-exporter = with lib; {
@@ -57,7 +56,7 @@ in
       let
         inputsWithDate = lib.filterAttrs (_: input: input ? lastModified) inputs;
         flakeAttrs = input: (lib.mapAttrsToList (n: v: ''${n}="${v}"'')
-          (lib.filterAttrs (n: v: (builtins.typeOf v) == "string") input));
+          (lib.filterAttrs (_n: v: (builtins.typeOf v) == "string") input));
         lastModified = name: input: ''
           flake_input_last_modified{input="${name}",${lib.concatStringsSep "," (flakeAttrs input)}} ${toString input.lastModified}'';
       in

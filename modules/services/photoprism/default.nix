@@ -1,5 +1,5 @@
 # self-hosted photo gallery
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.photoprism;
   domain = config.networking.domain;

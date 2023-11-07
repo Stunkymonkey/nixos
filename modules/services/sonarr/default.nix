@@ -1,5 +1,5 @@
 # manages and downloads series
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.sonarr;
   domain = config.networking.domain;

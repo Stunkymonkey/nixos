@@ -2,7 +2,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.blackbox;
-  domain = config.networking.domain;
   blackBoxConfig = {
     modules = {
       http_2xx = {

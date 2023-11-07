@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   nix = {
     daemonCPUSchedPolicy = "idle";

@@ -1,5 +1,5 @@
 # Deployed services
-{ config, lib, ... }:
+{ config, ... }:
 let
   secrets = config.sops.secrets;
 in

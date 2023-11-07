@@ -1,5 +1,5 @@
 # 3d-printing software
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.octoprint;
 in
@@ -9,7 +9,7 @@ in
 
     plugins = mkOption {
       type = types.functionTo (types.listOf types.package);
-      default = plugins: [ ];
+      default = [ ];
       defaultText = literalExpression "plugins: []";
       example = literalExpression "plugins: with plugins; [ themeify stlviewer ]";
       description = lib.mdDoc "Additional plugins to be used. Available plugins are passed through the plugins input.";

@@ -1,7 +1,7 @@
-{ self, lib, ... }:
+{ self, ... }:
 let
-  inherit (self.inputs) nixos-generators nur;
-  defaultModule = { ... }: {
+  inherit (self.inputs) nixos-generators;
+  defaultModule = {
     imports = [
       ./base-config.nix
     ];
@@ -11,7 +11,6 @@ in
 {
   perSystem =
     { pkgs
-    , self'
     , ...
     }:
     {

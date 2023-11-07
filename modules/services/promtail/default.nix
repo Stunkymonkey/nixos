@@ -1,5 +1,5 @@
 # # log forwarding
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.promtail;
   domain = config.networking.domain;

@@ -1,5 +1,5 @@
 # manages and downloads subtitles
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.bazarr;
   domain = config.networking.domain;

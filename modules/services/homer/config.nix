@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 {
   options.webapps = {
@@ -124,6 +124,6 @@
             });
           }
         );
-      my.services.blackbox.http_endpoints = lib.mapAttrsToList (key: value: value.dashboard.link) config.webapps.apps ++ [ "https://${config.networking.domain}/" ];
+      my.services.blackbox.http_endpoints = lib.mapAttrsToList (_key: value: value.dashboard.link) config.webapps.apps ++ [ "https://${config.networking.domain}/" ];
     };
 }

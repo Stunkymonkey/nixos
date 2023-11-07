@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   boot.loader = {
     timeout = 1;

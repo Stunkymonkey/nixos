@@ -6,7 +6,7 @@ let
   inherit (pkgs) stdenv fetchurl;
 in
 
-lib.makeScope pkgs.newScope (self:
+lib.makeScope pkgs.newScope (_self:
 let
   buildGrafanaDashboard = args: stdenv.mkDerivation (args // {
     pname = "grafana-dashboard-${args.pname}-${toString args.id}";
@@ -38,7 +38,7 @@ in
     pname = "node-systemd";
     version = "1";
     hash = "sha256-MEWU5rIqlbaGu3elqdSoMZfbk67WDnH0VWuC8FqZ8v8=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./node-systemd.json; # sadly only imported dashboards work
   });
 
@@ -54,7 +54,7 @@ in
     pname = "nextcloud";
     version = "1";
     hash = "sha256-Z28Q/sMg3jxglkszAs83IpL8f4p9loNnTQzjc3S/SAQ=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./nextcloud.json; # sadly only imported dashboards work
   });
 
@@ -70,7 +70,7 @@ in
     pname = "navidrome";
     version = "1";
     hash = "sha256-MU890UAEI9wrnVIC/R0HkYwFa6mJ8Y7ESAWuaSQ8FQ8=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./navidrome.json; # sadly data source is not detected
   });
 
@@ -80,7 +80,7 @@ in
     pname = "hedgedoc";
     version = "1";
     hash = lib.fakeSha256;
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./hedgedoc.json; # sadly data source is not detected
   });
 
@@ -96,7 +96,7 @@ in
     pname = "loki";
     version = "1";
     hash = "sha256-1sxTDSEwi2O/Ce+rWqqhMvsYEJeELBfkb9W2R6cDjcU=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./loki.json; # sadly not yet updated to latest grafana
   });
 
@@ -112,7 +112,7 @@ in
     pname = "gitea";
     version = "1";
     hash = "sha256-IAaI/HvMxcWE3PGQFK8avNjgj88DgcDvkWRcDAWSejM=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./gitea.json; # sadly not yet updated to latest grafana
   });
 
@@ -121,7 +121,7 @@ in
     pname = "prometheus";
     version = "2";
     hash = "sha256-+nsi8/dYNvGVGV+ftfO1gSAQbO5GpZwW480T5mHMM4Q=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./prometheus.json; # sadly only imported dashboards work
   });
 
@@ -129,7 +129,7 @@ in
     id = 3590;
     pname = "grafana";
     version = "3";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./grafana.json; # sadly only imported dashboards work
   });
 
@@ -138,7 +138,7 @@ in
     pname = "blackbox";
     version = "1";
     hash = "sha256-nnBFWFDAqKUqTOYxOrkRPlVla4ioQZ6rqEqakdzUj1Q=";
-  }).overrideAttrs (self: super: {
+  }).overrideAttrs (_: {
     src = ./blackbox.json; # sadly only imported dashboards work
   });
 })

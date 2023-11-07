@@ -10,7 +10,7 @@ let
     disko
     ;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
-  overlay-unstable = final: prev: {
+  overlay-unstable = final: _prev: {
     unstable = import nixpkgs-unstable {
       inherit (final) system;
       config.allowUnfree = true;

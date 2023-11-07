@@ -1,5 +1,5 @@
 # manages and downloads films
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.radarr;
   domain = config.networking.domain;

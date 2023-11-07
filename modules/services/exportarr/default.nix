@@ -73,7 +73,7 @@ in
       };
     '';
     type = lib.types.attrsOf (lib.types.submodule (
-      { name, config, ... }: {
+      { ... }: {
         options = {
           # enable = lib.mkEnableOption "exportarr-${name}";
           port = lib.mkOption {
@@ -119,7 +119,7 @@ in
 
   config = lib.mkIf (cfg != { }) {
     assertions = lib.mapAttrsToList
-      (name: config: {
+      (name: _config: {
         assertion = builtins.elem name [ "sonarr" "radarr" "lidarr" "prowlarr" "readarr" "sabnzbd" ];
         message = "exportarr does not support this service.";
       })

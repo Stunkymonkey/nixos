@@ -1,5 +1,5 @@
 # document management system
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.my.services.paperless;
   domain = config.networking.domain;

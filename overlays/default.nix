@@ -1,9 +1,9 @@
 # overlays for nixpkgs
-self: super:
+_self: _super:
 {
-  # freshrss = super.freshrss.overrideAttrs (old: {
+  # freshrss = _super.freshrss.overrideAttrs (old: {
   #   version = "1.21.0";
-  #   src = super.fetchFromGitHub {
+  #   src = _super.fetchFromGitHub {
   #     owner = "FreshRSS";
   #     repo = "FreshRSS";
   #     rev = "1.21.0";

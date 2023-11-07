@@ -1,5 +1,4 @@
 # Configuration that spans across system and home, or are collections of modules
-{ ... }:
 {
   imports = [
     ./3d-design
