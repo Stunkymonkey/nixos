@@ -68,17 +68,21 @@
         # enable pre-commit checks
         pre-commit.settings = {
           hooks = {
-            shellcheck.enable = true;
+            deadnix.enable = true;
+            markdownlint.enable = true;
             nixpkgs-fmt.enable = true;
+            shellcheck.enable = true;
             typos = {
               enable = true;
               excludes = [ "secrets\\.yaml" ];
             };
-            markdownlint.enable = true;
             yamllint = {
               enable = true;
               excludes = [ "secrets\\.yaml" ];
             };
+          };
+          settings = {
+            deadnix.noLambdaPatternNames = true;
           };
         };
 
@@ -88,8 +92,9 @@
             inputs'.deploy-rs.packages.deploy-rs
             inputs'.disko.packages.disko
             # formatters
-            pkgs.shellcheck
+            pkgs.deadnix
             pkgs.nixpkgs-fmt
+            pkgs.shellcheck
             pkgs.typos
           ];
           shellHook = ''
