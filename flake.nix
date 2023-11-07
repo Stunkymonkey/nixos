@@ -72,6 +72,7 @@
             markdownlint.enable = true;
             nixpkgs-fmt.enable = true;
             shellcheck.enable = true;
+            statix.enable = true;
             typos = {
               enable = true;
               excludes = [ "secrets\\.yaml" ];
@@ -95,6 +96,7 @@
             pkgs.deadnix
             pkgs.nixpkgs-fmt
             pkgs.shellcheck
+            pkgs.statix
             pkgs.typos
           ];
           shellHook = ''
