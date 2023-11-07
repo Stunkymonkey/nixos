@@ -1,5 +1,5 @@
 # network settings
-{ ... }:
+_:
 {
   # hotfixes for dns settings
   networking.extraHosts =

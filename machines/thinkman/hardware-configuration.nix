@@ -1,4 +1,4 @@
-{ ... }:
+_:
 let
   cpuFlavor = "intel";
 in
@@ -18,7 +18,7 @@ in
     };
     firmware = {
       enable = true;
-      cpuFlavor = cpuFlavor;
+      inherit cpuFlavor;
     };
     graphics.cpuFlavor = cpuFlavor;
     keychron.enable = true;

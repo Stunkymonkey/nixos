@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.tandoor-recipes;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.tandoor-recipes = with lib; {
@@ -18,7 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     services.tandoor-recipes = {
       enable = true;
-      port = cfg.port;
+      inherit (cfg) port;
     };
 
     # Proxy to Tandoor-Recipes

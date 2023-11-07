@@ -1,5 +1,5 @@
 # enabled profiles
-{ ... }:
+_:
 {
   my.profiles = {
     "3d-design".enable = true;

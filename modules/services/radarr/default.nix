@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.radarr;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
   port = 7878;
 in
 {
@@ -36,7 +36,7 @@ in
     my.services.exportarr.radarr = {
       port = port + 1;
       url = "http://127.0.0.1:${toString port}";
-      apiKeyFile = cfg.apiKeyFile;
+      inherit (cfg) apiKeyFile;
     };
 
     services.prometheus.scrapeConfigs = [

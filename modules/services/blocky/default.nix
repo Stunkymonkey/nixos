@@ -15,7 +15,7 @@ in
     };
 
     settings = mkOption {
-      type = (pkgs.formats.json { }).type;
+      inherit (pkgs.formats.json { }) type;
       default = { };
       example = literalExpression ''
         { ports.http = "8053" };

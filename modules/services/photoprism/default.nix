@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.photoprism;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.photoprism = {
@@ -49,10 +49,7 @@ in
   config = lib.mkIf cfg.enable {
     services.photoprism = {
       enable = true;
-      passwordFile = cfg.passwordFile;
-      port = cfg.port;
-      originalsPath = cfg.originalsPath;
-      settings = cfg.settings;
+      inherit (cfg) passwordFile port originalsPath settings;
     };
 
     my.services.nginx.virtualHosts = [

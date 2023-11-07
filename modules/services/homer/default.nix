@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.homer;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 
   homeConfig = {
     title = "Dashboard";

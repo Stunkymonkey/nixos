@@ -73,7 +73,7 @@ in
       };
     '';
     type = lib.types.attrsOf (lib.types.submodule (
-      { ... }: {
+      _: {
         options = {
           # enable = lib.mkEnableOption "exportarr-${name}";
           port = lib.mkOption {

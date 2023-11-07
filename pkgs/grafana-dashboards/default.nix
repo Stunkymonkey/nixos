@@ -13,7 +13,7 @@ let
     inherit (args) version;
     src = fetchurl {
       url = "https://grafana.com/api/dashboards/${toString args.id}/revisions/${args.version}/download";
-      hash = args.hash;
+      inherit (args) hash;
     };
     dontUnpack = true;
     installPhase = ''

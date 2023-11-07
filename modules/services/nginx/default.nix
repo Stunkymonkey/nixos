@@ -250,8 +250,8 @@ in
       virtualHosts =
         let
           genAttrs' = values: f: lib.listToAttrs (map f values);
-          domain = config.networking.domain;
-          mkVHost = ({ subdomain, ... } @ args: lib.nameValuePair
+          inherit (config.networking) domain;
+          mkVHost = { subdomain, ... } @ args: lib.nameValuePair
             "${subdomain}.${domain}"
             (lib.foldl lib.recursiveUpdate { } [
               # Base configuration
@@ -309,7 +309,7 @@ in
                 };
               })
             ])
-          );
+          ;
         in
         genAttrs' cfg.virtualHosts mkVHost;
       sso = {
@@ -396,7 +396,7 @@ in
       # Use DNS wildcard certificate
       certs =
         let
-          domain = config.networking.domain;
+          inherit (config.networking) domain;
         in
         with pkgs;
         {

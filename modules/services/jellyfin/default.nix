@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.jellyfin;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
   port = 8096;
   # enable monitoring
   jellyfin-with-metrics = pkgs.jellyfin.overrideAttrs (attrs: {

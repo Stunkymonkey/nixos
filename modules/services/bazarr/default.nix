@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.bazarr;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
   port = 6767;
 in
 {

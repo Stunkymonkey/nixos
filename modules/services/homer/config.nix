@@ -113,14 +113,11 @@
                 apps);
           in
           {
-            name = cat.name;
+            inherit (cat) name;
             items = lib.forEach catApps (a: {
-              name = a.dashboard.name;
+              inherit (a.dashboard) name link type method;
               icon = lib.optionalString (a.dashboard.icon != null) "fas fa-${a.dashboard.icon}";
-              url = a.dashboard.link;
               target = "_blank";
-              type = a.dashboard.type;
-              method = a.dashboard.method;
             });
           }
         );

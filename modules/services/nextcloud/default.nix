@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.nextcloud;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.nextcloud = with lib; {
@@ -60,7 +60,7 @@ in
       config = {
         adminuser = cfg.admin;
         adminpassFile = cfg.passwordFile;
-        defaultPhoneRegion = cfg.defaultPhoneRegion;
+        inherit (cfg) defaultPhoneRegion;
 
         overwriteProtocol = "https"; # Nginx only allows SSL
 

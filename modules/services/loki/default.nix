@@ -83,22 +83,21 @@ in
             type = "local";
             local = {
               # having the "fake" directory is important, because loki is running in single-tenant mode
-              directory = (pkgs.writeTextDir "fake/loki-rules.yml" (builtins.toJSON {
+              directory = pkgs.writeTextDir "fake/loki-rules.yml" (builtins.toJSON {
                 groups = [
                   {
                     name = "alerting-rules";
                     rules = lib.mapAttrsToList
                       (name: opts: {
                         alert = name;
-                        expr = opts.condition;
+                        inherit (opts) condition labels;
                         for = opts.time;
-                        labels = opts.labels;
                         annotations.description = opts.description;
                       })
-                      (cfg.rules);
+                      cfg.rules;
                   }
                 ];
-              }));
+              });
             };
           };
 

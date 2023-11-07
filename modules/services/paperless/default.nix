@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.paperless;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.paperless = with lib; {

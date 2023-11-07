@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   boot.loader = {
     timeout = 1;

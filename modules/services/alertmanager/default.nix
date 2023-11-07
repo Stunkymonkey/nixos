@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.alertmanager;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.alertmanager = with lib; {
@@ -29,7 +29,7 @@ in
       alertmanager = {
         enable = true;
         listenAddress = "127.0.0.1";
-        port = cfg.port;
+        inherit (cfg) port;
         configuration = import ./config.nix;
         webExternalUrl = "https://alerts.${domain}";
         # fix issue: https://gitlab.com/gitlab-org/omnibus-gitlab/-/issues/4556

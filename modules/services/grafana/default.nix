@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.grafana;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.grafana = with lib; {

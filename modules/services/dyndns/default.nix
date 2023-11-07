@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.dyndns;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.dyndns = with lib; {
@@ -25,8 +25,7 @@ in
     services.ddclient = {
       enable = true;
       server = "dyndns.inwx.com";
-      username = cfg.username;
-      passwordFile = cfg.passwordFile;
+      inherit (cfg) username passwordFile;
       domains = [ "serverle.${domain}" ];
       ipv6 = true;
     };

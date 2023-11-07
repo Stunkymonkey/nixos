@@ -61,7 +61,7 @@
           # prevent rebuilding deploy-rs everytime when nixpkgs changes
           overlays = [
             deploy-rs.overlay
-            (_self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+            (_self: super: { deploy-rs = { inherit (pkgs) deploy-rs; inherit (super.deploy-rs) lib; }; })
           ];
         };
 

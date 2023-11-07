@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.gitea;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.gitea = with lib; {

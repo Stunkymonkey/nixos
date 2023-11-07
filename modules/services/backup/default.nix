@@ -42,7 +42,7 @@ in
       default = false;
     };
     OnFailureMail = mkOption {
-      type = types.nullOr (types.str);
+      type = types.nullOr types.str;
       description = lib.mdDoc "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";
@@ -122,7 +122,7 @@ in
       environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i ${cfg.sshKeyFile} -p ${toString cfg.sshPort}";
       repo = "${cfg.sshUser}@${cfg.sshHost}:${config.networking.hostName}/";
 
-      doInit = cfg.doInit;
+      inherit (cfg) doInit;
       compression = "auto,zstd";
 
       postHook = ''

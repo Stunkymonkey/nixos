@@ -2,14 +2,14 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.navidrome;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.navidrome = with lib; {
     enable = mkEnableOption "Navidrome Music Server";
 
     settings = mkOption {
-      type = (pkgs.formats.json { }).type;
+      inherit (pkgs.formats.json { }) type;
       default = {
         EnableSharing = true;
       };

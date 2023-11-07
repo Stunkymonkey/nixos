@@ -2,14 +2,14 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.hedgedoc;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.hedgedoc = with lib; {
     enable = mkEnableOption "Hedgedoc Music Server";
 
     settings = mkOption {
-      type = (pkgs.formats.json { }).type;
+      inherit (pkgs.formats.json { }) type;
       default = { };
       example = {
         "LastFM.ApiKey" = "MYKEY";

@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.aria2;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.aria2 = with lib; {

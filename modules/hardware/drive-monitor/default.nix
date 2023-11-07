@@ -7,7 +7,7 @@ in
     enable = mkEnableOption "drive-monitor configuration";
 
     OnFailureMail = mkOption {
-      type = types.nullOr (types.str);
+      type = types.nullOr types.str;
       description = lib.mdDoc "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";

@@ -2,7 +2,7 @@
 { config, lib, inputs, ... }:
 let
   cfg = config.my.services.homepage;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.homepage = with lib; {

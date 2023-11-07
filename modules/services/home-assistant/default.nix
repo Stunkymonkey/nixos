@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.home-assistant;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.home-assistant = with lib; {
@@ -83,14 +83,12 @@ in
     services.home-assistant = {
       enable = true;
 
-      package = cfg.package;
+      inherit (cfg) package;
 
       config = {
         homeassistant = {
           name = "Home";
-          latitude = cfg.latitude;
-          longitude = cfg.longitude;
-          elevation = cfg.elevation;
+          inherit (cfg) latitude longitude elevation;
           unit_system = "metric";
           time_zone = cfg.timezone;
         };

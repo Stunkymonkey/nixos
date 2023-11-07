@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.promtail;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.promtail = with lib; {

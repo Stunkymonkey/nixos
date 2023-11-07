@@ -2,7 +2,7 @@
 { config, lib, ... }:
 let
   cfg = config.my.services.sonarr;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
   port = 8989;
 in
 {
@@ -36,7 +36,7 @@ in
     my.services.exportarr.sonarr = {
       port = port + 1;
       url = "http://127.0.0.1:${toString port}";
-      apiKeyFile = cfg.apiKeyFile;
+      inherit (cfg) apiKeyFile;
     };
 
     services.prometheus.scrapeConfigs = [

@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.my.services.prometheus;
-  domain = config.networking.domain;
+  inherit (config.networking) domain;
 in
 {
   options.my.services.prometheus = with lib; {
@@ -100,13 +100,13 @@ in
                   alert = name;
                   expr = opts.condition;
                   for = opts.time;
-                  labels = opts.labels;
+                  inherit (opts) labels;
                   annotations = {
-                    description = opts.description;
+                    inherit (opts) description;
                     grafana = lib.optionalString config.services.grafana.enable "https://visualization.${domain}";
                   };
                 })
-                (cfg.rules);
+                cfg.rules;
             }
           ];
         }))
