@@ -40,6 +40,7 @@
     nix-prefetch
     nix-update
     nixpkgs-fmt
+    nixpkgs-hammering
     nixpkgs-review
   ];
 }
