@@ -37,10 +37,10 @@
       type = lib.types.attrsOf
         (lib.types.submodule {
           options = {
-            dashboard.link = lib.mkOption {
+            dashboard.url = lib.mkOption {
               type = lib.types.nullOr lib.types.str;
               description = ''
-                Link to webapp
+                Url to webapp
               '';
               example = "http://192.168.1.10:1234";
               default = null;
@@ -121,6 +121,6 @@
             });
           }
         );
-      my.services.blackbox.http_endpoints = lib.mapAttrsToList (_key: value: value.dashboard.link) config.webapps.apps ++ [ "https://${config.networking.domain}/" ];
+      my.services.blackbox.http_endpoints = lib.mapAttrsToList (_key: value: value.dashboard.url) config.webapps.apps ++ [ "https://${config.networking.domain}/" ];
     };
 }
