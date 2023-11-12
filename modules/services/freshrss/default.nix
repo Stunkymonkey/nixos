@@ -38,7 +38,6 @@ in
   config = lib.mkIf cfg.enable {
     services.freshrss = {
       enable = true;
-      package = pkgs.unstable.freshrss;
       baseUrl = "https://news.${domain}";
       inherit (cfg) language passwordFile defaultUser;
     };
