@@ -27,6 +27,7 @@ let
     {
       imports = [
         ({ pkgs, ... }: {
+          nixpkgs.config.allowUnfree = true;
           nixpkgs.overlays = [
             overlay-unstable
             (import ../overlays)

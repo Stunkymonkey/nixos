@@ -19,7 +19,6 @@
 
     extraOptions = ''
       experimental-features = nix-command flakes
-      warn-dirty = false
     '';
 
     registry = {
@@ -27,7 +26,6 @@
       unstable.flake = inputs.nixpkgs-unstable;
     };
   };
-  nixpkgs.config.allowUnfree = true;
 
   # auto upgrade with own flakes
   system.autoUpgrade = {
