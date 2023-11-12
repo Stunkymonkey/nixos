@@ -9,7 +9,6 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.gnome-disks.enable = true;
-    services.udisks2.enable = true;
 
     xdg.mime.enable = true;
 
@@ -17,9 +16,12 @@ in
     programs.dconf.enable = true;
 
     # gnome services
-    services.dbus.packages = [ pkgs.dconf ];
-    services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
-    services.gnome.gnome-keyring.enable = true;
+    services = {
+      udisks2.enable = true;
+      dbus.packages = [ pkgs.dconf ];
+      udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+      gnome.gnome-keyring.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
       glib

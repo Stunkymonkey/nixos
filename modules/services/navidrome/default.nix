@@ -39,15 +39,49 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.navidrome = {
-      enable = true;
+    services = {
+      navidrome = {
+        enable = true;
 
-      settings = cfg.settings // {
-        Port = cfg.port;
-        Address = "127.0.0.1";
-        MusicFolder = cfg.musicFolder;
-        LogLevel = "info";
-        Prometheus.Enabled = config.services.prometheus.enable;
+        settings = cfg.settings // {
+          Port = cfg.port;
+          Address = "127.0.0.1";
+          MusicFolder = cfg.musicFolder;
+          LogLevel = "info";
+          Prometheus.Enabled = config.services.prometheus.enable;
+        };
+      };
+
+      prometheus = {
+        scrapeConfigs = [
+          {
+            job_name = "navidrome";
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
+          }
+        ];
+      };
+      grafana.provision = {
+        dashboards.settings.providers = [
+          {
+            name = "Navidrome";
+            options.path = pkgs.grafana-dashboards.navidrome;
+            disableDeletion = true;
+          }
+        ];
+      };
+    };
+
+    my.services.prometheus.rules = {
+      navidrome_not_enough_albums = {
+        condition = ''http_navidrome_album_count != 1'';
+        description = "navidrome: not enough albums as expected: {{$value}}";
       };
     };
 
@@ -57,38 +91,6 @@ in
         inherit (cfg) port;
       }
     ];
-
-    services.prometheus = {
-      scrapeConfigs = [
-        {
-          job_name = "navidrome";
-          static_configs = [
-            {
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }
-          ];
-        }
-      ];
-    };
-    services.grafana.provision = {
-      dashboards.settings.providers = [
-        {
-          name = "Navidrome";
-          options.path = pkgs.grafana-dashboards.navidrome;
-          disableDeletion = true;
-        }
-      ];
-    };
-
-    my.services.prometheus.rules = {
-      navidrome_not_enough_albums = {
-        condition = ''http_navidrome_album_count != 1'';
-        description = "navidrome: not enough albums as expected: {{$value}}";
-      };
-    };
 
     webapps.apps.navidrome = {
       dashboard = {

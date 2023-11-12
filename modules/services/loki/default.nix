@@ -62,80 +62,98 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.loki = {
-      enable = true;
-      configuration = {
-        server = {
-          http_listen_address = "127.0.0.1";
-          http_listen_port = cfg.port;
-        };
-        auth_enabled = false;
+    services = {
+      loki = {
+        enable = true;
+        configuration = {
+          server = {
+            http_listen_address = "127.0.0.1";
+            http_listen_port = cfg.port;
+          };
+          auth_enabled = false;
 
-        common = {
-          instance_addr = "127.0.0.1";
-          ring.kvstore.store = "inmemory";
-          replication_factor = 1;
-          path_prefix = "/tmp/loki";
-        };
-
-        ruler = lib.mkIf config.my.services.alertmanager.enable {
-          storage = {
-            type = "local";
-            local = {
-              # having the "fake" directory is important, because loki is running in single-tenant mode
-              directory = pkgs.writeTextDir "fake/loki-rules.yml" (builtins.toJSON {
-                groups = [
-                  {
-                    name = "alerting-rules";
-                    rules = lib.mapAttrsToList
-                      (name: opts: {
-                        alert = name;
-                        inherit (opts) condition labels;
-                        for = opts.time;
-                        annotations.description = opts.description;
-                      })
-                      cfg.rules;
-                  }
-                ];
-              });
-            };
+          common = {
+            instance_addr = "127.0.0.1";
+            ring.kvstore.store = "inmemory";
+            replication_factor = 1;
+            path_prefix = "/tmp/loki";
           };
 
-          alertmanager_url = "http://127.0.0.1:${toString config.my.services.alertmanager.port}";
-          enable_alertmanager_v2 = true;
-        };
-
-        schema_config = {
-          configs = [{
-            from = "2020-05-15";
-            store = "boltdb-shipper";
-            object_store = "filesystem";
-            schema = "v11";
-            index = {
-              prefix = "index_";
-              period = "24h";
+          ruler = lib.mkIf config.my.services.alertmanager.enable {
+            storage = {
+              type = "local";
+              local = {
+                # having the "fake" directory is important, because loki is running in single-tenant mode
+                directory = pkgs.writeTextDir "fake/loki-rules.yml" (builtins.toJSON {
+                  groups = [
+                    {
+                      name = "alerting-rules";
+                      rules = lib.mapAttrsToList
+                        (name: opts: {
+                          alert = name;
+                          inherit (opts) condition labels;
+                          for = opts.time;
+                          annotations.description = opts.description;
+                        })
+                        cfg.rules;
+                    }
+                  ];
+                });
+              };
             };
-          }];
+
+            alertmanager_url = "http://127.0.0.1:${toString config.my.services.alertmanager.port}";
+            enable_alertmanager_v2 = true;
+          };
+
+          schema_config = {
+            configs = [{
+              from = "2020-05-15";
+              store = "boltdb-shipper";
+              object_store = "filesystem";
+              schema = "v11";
+              index = {
+                prefix = "index_";
+                period = "24h";
+              };
+            }];
+          };
         };
       };
-    };
 
-    services.grafana.provision = {
-      datasources.settings.datasources = [
-        {
-          name = "Loki";
-          type = "loki";
-          access = "proxy";
-          url = "http://127.0.0.1:${toString cfg.port}";
-        }
-      ];
-      dashboards.settings.providers = [
-        {
-          name = "Loki";
-          options.path = pkgs.grafana-dashboards.loki;
-          disableDeletion = true;
-        }
-      ];
+      grafana.provision = {
+        datasources.settings.datasources = [
+          {
+            name = "Loki";
+            type = "loki";
+            access = "proxy";
+            url = "http://127.0.0.1:${toString cfg.port}";
+          }
+        ];
+        dashboards.settings.providers = [
+          {
+            name = "Loki";
+            options.path = pkgs.grafana-dashboards.loki;
+            disableDeletion = true;
+          }
+        ];
+      };
+
+      prometheus = {
+        scrapeConfigs = [
+          {
+            job_name = "loki";
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
+          }
+        ];
+      };
     };
 
     my.services.loki.rules = {
@@ -143,22 +161,6 @@ in
         condition = ''sum by (host) (rate({unit="loki.service"}[1m])) > 60'';
         description = "Loki has a high logging rate";
       };
-    };
-
-    services.prometheus = {
-      scrapeConfigs = [
-        {
-          job_name = "loki";
-          static_configs = [
-            {
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }
-          ];
-        }
-      ];
     };
   };
 }

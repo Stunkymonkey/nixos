@@ -42,40 +42,49 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.prometheus.exporters.blackbox = {
-      enable = true;
-      configFile = pkgs.writeText "blackbox-config.yml" (builtins.toJSON blackBoxConfig);
-    };
+    services = {
+      prometheus.exporters.blackbox = {
+        enable = true;
+        configFile = pkgs.writeText "blackbox-config.yml" (builtins.toJSON blackBoxConfig);
+      };
 
-    # relabels as in https://github.com/prometheus/blackbox_exporter#prometheus-configuration
-    services.prometheus = {
-      scrapeConfigs = [
+      # relabels as in https://github.com/prometheus/blackbox_exporter#prometheus-configuration
+      prometheus = {
+        scrapeConfigs = [
+          {
+            job_name = "blackbox";
+            metrics_path = "/probe";
+            params.module = [ "http_2xx" ];
+            static_configs = [
+              {
+                targets = cfg.http_endpoints;
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
+            relabel_configs = [
+              {
+                source_labels = [ "__address__" ];
+                target_label = "__param_target";
+              }
+              {
+                source_labels = [ "__param_target" ];
+                target_label = "instance";
+              }
+              {
+                target_label = "__address__";
+                replacement = "127.0.0.1:${toString config.services.prometheus.exporters.blackbox.port}";
+              }
+            ];
+          }
+        ];
+      };
+      grafana.provision.dashboards.settings.providers = [
         {
-          job_name = "blackbox";
-          metrics_path = "/probe";
-          params.module = [ "http_2xx" ];
-          static_configs = [
-            {
-              targets = cfg.http_endpoints;
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }
-          ];
-          relabel_configs = [
-            {
-              source_labels = [ "__address__" ];
-              target_label = "__param_target";
-            }
-            {
-              source_labels = [ "__param_target" ];
-              target_label = "instance";
-            }
-            {
-              target_label = "__address__";
-              replacement = "127.0.0.1:${toString config.services.prometheus.exporters.blackbox.port}";
-            }
-          ];
+          name = "Blackbox";
+          options.path = pkgs.grafana-dashboards.blackbox;
+          disableDeletion = true;
         }
       ];
     };
@@ -143,12 +152,5 @@ in
         };
       };
     };
-    services.grafana.provision.dashboards.settings.providers = [
-      {
-        name = "Blackbox";
-        options.path = pkgs.grafana-dashboards.blackbox;
-        disableDeletion = true;
-      }
-    ];
   };
 }

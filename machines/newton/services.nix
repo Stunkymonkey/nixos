@@ -4,28 +4,30 @@ let
   inherit (config.sops) secrets;
 in
 {
-  sops.secrets."acme/inwx" = { };
-  sops.secrets."borgbackup/password" = { };
-  sops.secrets."borgbackup/ssh_key" = { };
-  sops.secrets."sso/auth-key" = { };
-  sops.secrets."sso/felix/password-hash" = { };
-  sops.secrets."sso/felix/totp-secret" = { };
-  sops.secrets."paperless/password" = { };
-  sops.secrets."nextcloud/password" = {
-    owner = config.users.users.nextcloud.name;
-  };
-  sops.secrets."nextcloud-exporter/password" = {
-    owner = config.users.users.nextcloud-exporter.name;
-  };
-  sops.secrets."freshrss/password" = {
-    owner = config.users.users.freshrss.name;
-  };
-  sops.secrets."photoprism/password" = { };
-  sops.secrets."grafana/password" = {
-    owner = config.users.users.grafana.name;
-  };
-  sops.secrets."matrix-bot/password" = {
-    owner = config.systemd.services.go-neb.serviceConfig.User;
+  sops.secrets = {
+    "acme/inwx" = { };
+    "borgbackup/password" = { };
+    "borgbackup/ssh_key" = { };
+    "sso/auth-key" = { };
+    "sso/felix/password-hash" = { };
+    "sso/felix/totp-secret" = { };
+    "paperless/password" = { };
+    "nextcloud/password" = {
+      owner = config.users.users.nextcloud.name;
+    };
+    "nextcloud-exporter/password" = {
+      owner = config.users.users.nextcloud-exporter.name;
+    };
+    "freshrss/password" = {
+      owner = config.users.users.freshrss.name;
+    };
+    "photoprism/password" = { };
+    "grafana/password" = {
+      owner = config.users.users.grafana.name;
+    };
+    "matrix-bot/password" = {
+      owner = config.systemd.services.go-neb.serviceConfig.User;
+    };
   };
 
   # List services that you want to enable:

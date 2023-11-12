@@ -25,108 +25,110 @@ in
       }
     ];
 
-    services.prometheus = {
-      alertmanager = {
-        enable = true;
-        listenAddress = "127.0.0.1";
-        inherit (cfg) port;
-        configuration = import ./config.nix;
-        webExternalUrl = "https://alerts.${domain}";
-        # fix issue: https://gitlab.com/gitlab-org/omnibus-gitlab/-/issues/4556
-        extraFlags = [ "--cluster.advertise-address 127.0.0.1:${toString cfg.port}" ];
+    services = {
+      prometheus = {
+        alertmanager = {
+          enable = true;
+          listenAddress = "127.0.0.1";
+          inherit (cfg) port;
+          configuration = import ./config.nix;
+          webExternalUrl = "https://alerts.${domain}";
+          # fix issue: https://gitlab.com/gitlab-org/omnibus-gitlab/-/issues/4556
+          extraFlags = [ "--cluster.advertise-address 127.0.0.1:${toString cfg.port}" ];
+        };
+
+        alertmanagers = [
+          {
+            static_configs = [
+              {
+                targets = [ "localhost:${toString cfg.port}" ];
+              }
+            ];
+          }
+        ];
+        scrapeConfigs = [
+          {
+            job_name = "alertmanager";
+            static_configs = [{
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }];
+          }
+        ];
       };
 
-      alertmanagers = [
-        {
-          static_configs = [
-            {
-              targets = [ "localhost:${toString cfg.port}" ];
-            }
-          ];
-        }
-      ];
-      scrapeConfigs = [
-        {
-          job_name = "alertmanager";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString cfg.port}" ];
-            labels = {
-              instance = config.networking.hostName;
+      grafana.provision = {
+        datasources.settings.datasources = [
+          {
+            name = "Alertmanager";
+            type = "alertmanager";
+            url = "http://127.0.0.1:${toString cfg.port}";
+            jsonData = {
+              implementation = "prometheus";
+              handleGrafanaManagedAlerts = config.services.prometheus.enable;
             };
-          }];
-        }
-      ];
-    };
+          }
+        ];
+      };
 
-    services.grafana.provision = {
-      datasources.settings.datasources = [
+      grafana.provision = {
+        dashboards.settings.providers = [
+          {
+            name = "Alertmanager";
+            options.path = pkgs.grafana-dashboards.alertmanager;
+            disableDeletion = true;
+          }
+        ];
+      };
+
+      # for mail delivery
+      postfix.enable = true;
+
+      go-neb.config.services = [
         {
-          name = "Alertmanager";
-          type = "alertmanager";
-          url = "http://127.0.0.1:${toString cfg.port}";
-          jsonData = {
-            implementation = "prometheus";
-            handleGrafanaManagedAlerts = config.services.prometheus.enable;
-          };
-        }
-      ];
-    };
-
-    services.grafana.provision = {
-      dashboards.settings.providers = [
-        {
-          name = "Alertmanager";
-          options.path = pkgs.grafana-dashboards.alertmanager;
-          disableDeletion = true;
-        }
-      ];
-    };
-
-    # for mail delivery
-    services.postfix.enable = true;
-
-    services.go-neb.config.services = [
-      {
-        ID = "alertmanager_service";
-        Type = "alertmanager";
-        UserId = config.my.services.matrix-bot.Username;
-        Config = {
-          # url contains "alertmanager_service" encoded as base64
-          webhook_url = "http://localhost:4050/services/hooks/YWxlcnRtYW5hZ2VyX3NlcnZpY2U";
-          rooms = {
-            "${config.my.services.matrix-bot.RoomID}" = {
-              #bots:nixos.org
-              text_template = ''
-                {{range .Alerts -}} [{{ .Status }}] {{index .Labels "alertname" }}: {{index .Annotations "description"}} {{ end -}}
-              '';
-              # $$severity otherwise envsubst replaces $severity with an empty string
-              html_template = ''
-                {{range .Alerts -}}
-                  {{ $$severity := index .Labels "severity" }}
-                  {{ if eq .Status "firing" }}
-                    {{ if eq $$severity "critical"}}
-                      <font color='red'><b>[FIRING - CRITICAL]</b></font>
-                    {{ else if eq $$severity "warning"}}
-                      <font color='orange'><b>[FIRING - WARNING]</b></font>
+          ID = "alertmanager_service";
+          Type = "alertmanager";
+          UserId = config.my.services.matrix-bot.Username;
+          Config = {
+            # url contains "alertmanager_service" encoded as base64
+            webhook_url = "http://localhost:4050/services/hooks/YWxlcnRtYW5hZ2VyX3NlcnZpY2U";
+            rooms = {
+              "${config.my.services.matrix-bot.RoomID}" = {
+                #bots:nixos.org
+                text_template = ''
+                  {{range .Alerts -}} [{{ .Status }}] {{index .Labels "alertname" }}: {{index .Annotations "description"}} {{ end -}}
+                '';
+                # $$severity otherwise envsubst replaces $severity with an empty string
+                html_template = ''
+                  {{range .Alerts -}}
+                    {{ $$severity := index .Labels "severity" }}
+                    {{ if eq .Status "firing" }}
+                      {{ if eq $$severity "critical"}}
+                        <font color='red'><b>[FIRING - CRITICAL]</b></font>
+                      {{ else if eq $$severity "warning"}}
+                        <font color='orange'><b>[FIRING - WARNING]</b></font>
+                      {{ else }}
+                        <b>[FIRING - {{ $$severity }}]</b>
+                      {{ end }}
                     {{ else }}
-                      <b>[FIRING - {{ $$severity }}]</b>
+                      <font color='green'><b>[RESOLVED]</b></font>
                     {{ end }}
-                  {{ else }}
-                    <font color='green'><b>[RESOLVED]</b></font>
-                  {{ end }}
-                  {{ index .Labels "alertname"}}: {{ index .Annotations "summary"}}
-                  (
-                    <a href="{{ index .Annotations "grafana" }}">📈 Grafana</a>,
-                    <a href="{{ .GeneratorURL }}">🔥 Prometheus</a>,
-                    <a href="{{ .SilenceURL }}">🔕 Silence</a>
-                  )<br/>
-                {{end -}}'';
-              msg_type = "m.text"; # Must be either `m.text` or `m.notice`
+                    {{ index .Labels "alertname"}}: {{ index .Annotations "summary"}}
+                    (
+                      <a href="{{ index .Annotations "grafana" }}">📈 Grafana</a>,
+                      <a href="{{ .GeneratorURL }}">🔥 Prometheus</a>,
+                      <a href="{{ .SilenceURL }}">🔕 Silence</a>
+                    )<br/>
+                  {{end -}}'';
+                msg_type = "m.text"; # Must be either `m.text` or `m.notice`
+              };
             };
           };
-        };
-      }
-    ];
+        }
+      ];
+    };
 
     my.services.prometheus.rules = {
       alerts_silences_changed = {

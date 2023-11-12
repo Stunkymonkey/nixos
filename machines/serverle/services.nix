@@ -4,16 +4,18 @@ let
   inherit (config.sops) secrets;
 in
 {
-  sops.secrets."acme/inwx" = { };
-  sops.secrets."borgbackup/password" = { };
-  sops.secrets."borgbackup/ssh_key" = { };
-  sops.secrets."dyndns/password" = { };
-  sops.secrets."sso/auth-key" = { };
-  sops.secrets."sso/felix/password-hash" = { };
-  sops.secrets."sso/felix/totp-secret" = { };
-  sops.secrets."prowlarr/apikey" = { };
-  sops.secrets."radarr/apikey" = { };
-  sops.secrets."sonarr/apikey" = { };
+  sops.secrets = {
+    "acme/inwx" = { };
+    "borgbackup/password" = { };
+    "borgbackup/ssh_key" = { };
+    "dyndns/password" = { };
+    "sso/auth-key" = { };
+    "sso/felix/password-hash" = { };
+    "sso/felix/totp-secret" = { };
+    "prowlarr/apikey" = { };
+    "radarr/apikey" = { };
+    "sonarr/apikey" = { };
+  };
 
   # List services that you want to enable:
   my.services = {

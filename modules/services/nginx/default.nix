@@ -153,8 +153,7 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    assertions = [ ]
-      ++ (lib.flip builtins.map cfg.virtualHosts ({ subdomain, ... } @ args:
+    assertions = lib.flip builtins.map cfg.virtualHosts ({ subdomain, ... } @ args:
       let
         conflicts = [ "port" "root" ];
         optionsNotNull = builtins.map (v: args.${v} != null) conflicts;
@@ -167,7 +166,7 @@ in
             lib.concatStringsSep ", " (builtins.map (v: "'${v}'") conflicts)
           } configured.
         '';
-      }))
+      })
       #      ++ (
       #      let
       #        ports = lib.my.mapFilter
@@ -201,184 +200,219 @@ in
       #      map mkAssertion nonUniques
       #    )
     ;
-    services.nginx = {
-      enable = true;
-      statusPage = true; # For monitoring scraping.
-
-      recommendedGzipSettings = true;
-      recommendedOptimisation = true;
-      recommendedTlsSettings = true;
-      recommendedProxySettings = true;
-      recommendedBrotliSettings = true;
-
-      # Only allow PFS-enabled ciphers with AES256
-      sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
-
-      commonHttpConfig = ''
-        # Add HSTS header with preloading to HTTPS requests.
-        # Adding this header to HTTP requests is discouraged
-        map $scheme $hsts_header {
-            https   "max-age=31536000; includeSubdomains; preload";
-        }
-        add_header Strict-Transport-Security $hsts_header;
-
-        # CORS header
-        # some applications set it to wildcard, therefore this overrides it
-        proxy_hide_header Access-Control-Allow-Origin;
-        add_header Access-Control-Allow-Origin https://${config.networking.domain};
-
-        # Minimize information leaked to other domains
-        add_header 'Referrer-Policy' 'strict-origin-when-cross-origin';
-
-        # Disable embedding as a frame
-        add_header X-Frame-Options DENY;
-
-        # Prevent injection of code in other mime types (XSS Attacks)
-        add_header X-Content-Type-Options nosniff;
-
-        # Enable XSS protection of the browser.
-        # May be unnecessary when CSP is configured properly (see above)
-        add_header X-XSS-Protection "1; mode=block";
-
-        # This might create errors
-        proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
-
-        # Enable CSP for your services.
-        #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
-      '';
-
-      virtualHosts =
-        let
-          genAttrs' = values: f: lib.listToAttrs (map f values);
-          inherit (config.networking) domain;
-          mkVHost = { subdomain, ... } @ args: lib.nameValuePair
-            "${subdomain}.${domain}"
-            (lib.foldl lib.recursiveUpdate { } [
-              # Base configuration
-              {
-                forceSSL = true;
-                useACMEHost = domain;
-              }
-              # Proxy to port
-              (lib.optionalAttrs (args.port != null) {
-                locations."/".proxyPass =
-                  "http://127.0.0.1:${toString args.port}";
-                # TODO make ipv6 possible
-                # http://[::1]:${toString args.port};
-              })
-              # Serve filesystem content
-              (lib.optionalAttrs (args.root != null) {
-                inherit (args) root;
-              })
-              # VHost specific configuration
-              args.extraConfig
-              # SSO configuration
-              (lib.optionalAttrs args.sso.enable {
-                extraConfig = (args.extraConfig.extraConfig or "") + ''
-                  error_page 401 = @error401;
-                '';
-                locations."@error401".return = ''
-                  302 https://${cfg.sso.subdomain}.${config.networking.domain}/login?go=$scheme://$http_host$request_uri
-                '';
-                locations."/" = {
-                  extraConfig =
-                    (args.extraConfig.locations."/".extraConfig or "") + ''
-                      # Use SSO
-                      auth_request /sso-auth;
-                      # Set username through header
-                      auth_request_set $username $upstream_http_x_username;
-                      proxy_set_header X-User $username;
-                      # Renew SSO cookie on request
-                      auth_request_set $cookie $upstream_http_set_cookie;
-                      add_header Set-Cookie $cookie;
-                    '';
-                };
-                locations."/sso-auth" = {
-                  proxyPass = "http://localhost:${toString cfg.sso.port}/auth";
-                  extraConfig = ''
-                    # Do not allow requests from outside
-                    internal;
-                    # Do not forward the request body
-                    proxy_pass_request_body off;
-                    proxy_set_header Content-Length "";
-                    # Set X-Application according to subdomain for matching
-                    proxy_set_header X-Application "${subdomain}";
-                    # Set origin URI for matching
-                    proxy_set_header X-Origin-URI $request_uri;
-                  '';
-                };
-              })
-            ])
-          ;
-        in
-        genAttrs' cfg.virtualHosts mkVHost;
-      sso = {
+    services = {
+      nginx = {
         enable = true;
-        configuration = {
-          listen = {
-            addr = "127.0.0.1";
-            inherit (cfg.sso) port;
-          };
-          audit_log = {
-            target = [
-              "fd://stdout"
-            ];
-            events = [
-              "access_denied"
-              "login_success"
-              "login_failure"
-              "logout"
-              "validate"
-            ];
-            headers = [
-              "x-origin-uri"
-              "x-application"
-            ];
-          };
-          cookie = {
-            domain = ".${config.networking.domain}";
-            secure = true;
-            authentication_key = {
-              _secret = cfg.sso.authKeyFile;
-            };
-          };
-          login = {
-            title = "Bühlers's SSO";
-            default_method = "simple";
-            hide_mfa_field = false;
-            names = {
-              simple = "Username / Password";
-            };
-          };
-          providers = {
-            simple =
-              let
-                applyUsers = lib.flip lib.mapAttrs cfg.sso.users;
-              in
-              {
-                users = applyUsers (_: v: { _secret = v.passwordHashFile; });
-                mfa = applyUsers (_: v: [{
-                  provider = "totp";
-                  attributes = {
-                    secret = {
-                      _secret = v.totpSecretFile;
+        statusPage = true; # For monitoring scraping.
+
+        recommendedGzipSettings = true;
+        recommendedOptimisation = true;
+        recommendedTlsSettings = true;
+        recommendedProxySettings = true;
+        recommendedBrotliSettings = true;
+
+        # Only allow PFS-enabled ciphers with AES256
+        sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
+
+        commonHttpConfig = ''
+          # Add HSTS header with preloading to HTTPS requests.
+          # Adding this header to HTTP requests is discouraged
+          map $scheme $hsts_header {
+              https   "max-age=31536000; includeSubdomains; preload";
+          }
+          add_header Strict-Transport-Security $hsts_header;
+
+          # CORS header
+          # some applications set it to wildcard, therefore this overrides it
+          proxy_hide_header Access-Control-Allow-Origin;
+          add_header Access-Control-Allow-Origin https://${config.networking.domain};
+
+          # Minimize information leaked to other domains
+          add_header 'Referrer-Policy' 'strict-origin-when-cross-origin';
+
+          # Disable embedding as a frame
+          add_header X-Frame-Options DENY;
+
+          # Prevent injection of code in other mime types (XSS Attacks)
+          add_header X-Content-Type-Options nosniff;
+
+          # Enable XSS protection of the browser.
+          # May be unnecessary when CSP is configured properly (see above)
+          add_header X-XSS-Protection "1; mode=block";
+
+          # This might create errors
+          proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+          # Enable CSP for your services.
+          #add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+        '';
+
+        virtualHosts =
+          let
+            genAttrs' = values: f: lib.listToAttrs (map f values);
+            inherit (config.networking) domain;
+            mkVHost = { subdomain, ... } @ args: lib.nameValuePair
+              "${subdomain}.${domain}"
+              (lib.foldl lib.recursiveUpdate { } [
+                # Base configuration
+                {
+                  forceSSL = true;
+                  useACMEHost = domain;
+                }
+                # Proxy to port
+                (lib.optionalAttrs (args.port != null) {
+                  locations."/".proxyPass =
+                    "http://127.0.0.1:${toString args.port}";
+                  # TODO make ipv6 possible
+                  # http://[::1]:${toString args.port};
+                })
+                # Serve filesystem content
+                (lib.optionalAttrs (args.root != null) {
+                  inherit (args) root;
+                })
+                # VHost specific configuration
+                args.extraConfig
+                # SSO configuration
+                (lib.optionalAttrs args.sso.enable {
+                  extraConfig = (args.extraConfig.extraConfig or "") + ''
+                    error_page 401 = @error401;
+                  '';
+                  locations = {
+                    "@error401".return = ''
+                      302 https://${cfg.sso.subdomain}.${config.networking.domain}/login?go=$scheme://$http_host$request_uri
+                    '';
+                    "/" = {
+                      extraConfig =
+                        (args.extraConfig.locations."/".extraConfig or "") + ''
+                          # Use SSO
+                          auth_request /sso-auth;
+                          # Set username through header
+                          auth_request_set $username $upstream_http_x_username;
+                          proxy_set_header X-User $username;
+                          # Renew SSO cookie on request
+                          auth_request_set $cookie $upstream_http_set_cookie;
+                          add_header Set-Cookie $cookie;
+                        '';
+                    };
+                    "/sso-auth" = {
+                      proxyPass = "http://localhost:${toString cfg.sso.port}/auth";
+                      extraConfig = ''
+                        # Do not allow requests from outside
+                        internal;
+                        # Do not forward the request body
+                        proxy_pass_request_body off;
+                        proxy_set_header Content-Length "";
+                        # Set X-Application according to subdomain for matching
+                        proxy_set_header X-Application "${subdomain}";
+                        # Set origin URI for matching
+                        proxy_set_header X-Origin-URI $request_uri;
+                      '';
                     };
                   };
-                }]);
-                inherit (cfg.sso) groups;
+                })
+              ])
+            ;
+          in
+          genAttrs' cfg.virtualHosts mkVHost;
+        sso = {
+          enable = true;
+          configuration = {
+            listen = {
+              addr = "127.0.0.1";
+              inherit (cfg.sso) port;
+            };
+            audit_log = {
+              target = [
+                "fd://stdout"
+              ];
+              events = [
+                "access_denied"
+                "login_success"
+                "login_failure"
+                "logout"
+                "validate"
+              ];
+              headers = [
+                "x-origin-uri"
+                "x-application"
+              ];
+            };
+            cookie = {
+              domain = ".${config.networking.domain}";
+              secure = true;
+              authentication_key = {
+                _secret = cfg.sso.authKeyFile;
               };
-          };
-          acl = {
-            rule_sets = [
-              {
-                rules = [{ field = "x-application"; present = true; }];
-                allow = [ "@root" ];
-              }
-            ];
+            };
+            login = {
+              title = "Bühlers's SSO";
+              default_method = "simple";
+              hide_mfa_field = false;
+              names = {
+                simple = "Username / Password";
+              };
+            };
+            providers = {
+              simple =
+                let
+                  applyUsers = lib.flip lib.mapAttrs cfg.sso.users;
+                in
+                {
+                  users = applyUsers (_: v: { _secret = v.passwordHashFile; });
+                  mfa = applyUsers (_: v: [{
+                    provider = "totp";
+                    attributes = {
+                      secret = {
+                        _secret = v.totpSecretFile;
+                      };
+                    };
+                  }]);
+                  inherit (cfg.sso) groups;
+                };
+            };
+            acl = {
+              rule_sets = [
+                {
+                  rules = [{ field = "x-application"; present = true; }];
+                  allow = [ "@root" ];
+                }
+              ];
+            };
           };
         };
       };
+
+      # services.prometheus = lib.mkIf cfg.monitoring.enable {
+      prometheus = {
+        exporters.nginx = {
+          enable = true;
+          listenAddress = "127.0.0.1";
+        };
+        scrapeConfigs = [
+          {
+            job_name = "nginx";
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
+          }
+        ];
+      };
+      grafana.provision = {
+        dashboards.settings.providers = [
+          {
+            name = "Nginx";
+            options.path = pkgs.grafana-dashboards.nginx;
+            disableDeletion = true;
+          }
+        ];
+      };
     };
+
     my.services.nginx.virtualHosts = [
       {
         subdomain = "login";
@@ -406,36 +440,6 @@ in
             inherit (cfg.acme) credentialsFile;
           };
         };
-    };
-
-    # services.prometheus = lib.mkIf cfg.monitoring.enable {
-    services.prometheus = {
-      exporters.nginx = {
-        enable = true;
-        listenAddress = "127.0.0.1";
-      };
-      scrapeConfigs = [
-        {
-          job_name = "nginx";
-          static_configs = [
-            {
-              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }
-          ];
-        }
-      ];
-    };
-    services.grafana.provision = {
-      dashboards.settings.providers = [
-        {
-          name = "Nginx";
-          options.path = pkgs.grafana-dashboards.nginx;
-          disableDeletion = true;
-        }
-      ];
     };
   };
 }

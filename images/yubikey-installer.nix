@@ -65,13 +65,15 @@ let
       # Uncomment this to disable compression and speed up image creation time
       #isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
-      boot.kernelPackages = linuxPackages_latest;
-      # Always copytoram so that, if the image is booted from, e.g., a
-      # USB stick, nothing is mistakenly written to persistent storage.
-      boot.kernelParams = [ "copytoram" ];
-      # Secure defaults
-      boot.tmp.cleanOnBoot = true;
-      boot.kernel.sysctl = { "kernel.unprivileged_bpf_disabled" = 1; };
+      boot = {
+        kernelPackages = linuxPackages_latest;
+        # Always copytoram so that, if the image is booted from, e.g., a
+        # USB stick, nothing is mistakenly written to persistent storage.
+        kernelParams = [ "copytoram" ];
+        # Secure defaults
+        tmp.cleanOnBoot = true;
+        kernel.sysctl = { "kernel.unprivileged_bpf_disabled" = 1; };
+      };
 
       services.pcscd.enable = true;
       services.udev.packages = [ yubikey-personalization ];
@@ -121,14 +123,16 @@ let
       # Disable networking so the system is air-gapped
       # Comment all of these lines out if you'll need internet access
       boot.initrd.network.enable = false;
-      networking.dhcpcd.enable = false;
-      networking.dhcpcd.allowInterfaces = [ ];
-      networking.interfaces = { };
-      networking.firewall.enable = true;
-      networking.useDHCP = false;
-      networking.useNetworkd = false;
-      networking.wireless.enable = false;
-      networking.networkmanager.enable = lib.mkForce false;
+      networking = {
+        dhcpcd.enable = false;
+        dhcpcd.allowInterfaces = [ ];
+        interfaces = { };
+        firewall.enable = true;
+        useDHCP = false;
+        useNetworkd = false;
+        wireless.enable = false;
+        networkmanager.enable = lib.mkForce false;
+      };
 
       # Unset history so it's never stored
       # Set GNUPGHOME to an ephemeral location and configure GPG with the

@@ -37,53 +37,55 @@
       type = lib.types.attrsOf
         (lib.types.submodule {
           options = {
-            dashboard.url = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              description = ''
-                Url to webapp
-              '';
-              example = "http://192.168.1.10:1234";
-              default = null;
-            };
-            dashboard.name = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              description = ''
-                Application name.
-              '';
-              example = "App";
-              default = null;
-            };
-            dashboard.category = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              description = ''
-                App category tag.
-              '';
-              example = "app";
-              default = null;
-            };
-            dashboard.icon = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              description = ''
-                Font Awesome application icon.
-              '';
-              example = "rss";
-              default = null;
-            };
-            dashboard.type = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              description = ''
-                application type.
-              '';
-              example = "Ping";
-              default = "Ping";
-            };
-            dashboard.method = lib.mkOption {
-              type = lib.types.enum [ "get" "head" ];
-              description = ''
-                method of request used
-              '';
-              example = "get";
-              default = "head";
+            dashboard = {
+              url = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                description = ''
+                  Url to webapp
+                '';
+                example = "http://192.168.1.10:1234";
+                default = null;
+              };
+              name = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                description = ''
+                  Application name.
+                '';
+                example = "App";
+                default = null;
+              };
+              category = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                description = ''
+                  App category tag.
+                '';
+                example = "app";
+                default = null;
+              };
+              icon = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                description = ''
+                  Font Awesome application icon.
+                '';
+                example = "rss";
+                default = null;
+              };
+              type = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                description = ''
+                  application type.
+                '';
+                example = "Ping";
+                default = "Ping";
+              };
+              method = lib.mkOption {
+                type = lib.types.enum [ "get" "head" ];
+                description = ''
+                  method of request used
+                '';
+                example = "get";
+                default = "head";
+              };
             };
           };
         });

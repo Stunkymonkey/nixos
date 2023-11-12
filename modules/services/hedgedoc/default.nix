@@ -31,48 +31,51 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.hedgedoc = {
-      enable = true;
+    services = {
+      hedgedoc = {
+        enable = true;
 
-      settings = {
-        domain = "notes.${domain}";
-        inherit (cfg) port;
-        host = "127.0.0.1";
-        protocolUseSSL = true;
-        db = {
-          dialect = "sqlite";
-          storage = "/var/lib/hedgedoc/hedgedoc.sqlite";
-        };
-      } // cfg.settings;
-    };
+        settings = {
+          domain = "notes.${domain}";
+          inherit (cfg) port;
+          host = "127.0.0.1";
+          protocolUseSSL = true;
+          db = {
+            dialect = "sqlite";
+            storage = "/var/lib/hedgedoc/hedgedoc.sqlite";
+          };
+        } // cfg.settings;
+      };
 
-    # temporary fix for: https://github.com/NixOS/nixpkgs/issues/198250
-    #systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "/var/lib/hedgedoc";
-    systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "hedgedoc";
+      prometheus = {
+        scrapeConfigs = [
+          {
+            job_name = "hedgedoc";
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
+          }
+        ];
+      };
 
-    services.prometheus = {
-      scrapeConfigs = [
+      grafana.provision.dashboards.settings.providers = [
         {
-          job_name = "hedgedoc";
-          static_configs = [
-            {
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }
-          ];
+          name = "Hedgedoc";
+          options.path = pkgs.grafana-dashboards.hedgedoc;
+          disableDeletion = true;
         }
       ];
     };
 
-    services.grafana.provision.dashboards.settings.providers = [
-      {
-        name = "Hedgedoc";
-        options.path = pkgs.grafana-dashboards.hedgedoc;
-        disableDeletion = true;
-      }
-    ];
+    # TODO remove for 23.11
+    # temporary fix for: https://github.com/NixOS/nixpkgs/issues/198250
+    #systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "/var/lib/hedgedoc";
+    systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "hedgedoc";
 
     my.services.nginx.virtualHosts = [
       {
