@@ -26,7 +26,7 @@ in
         name = "RSS-Bridge";
         category = "other";
         icon = "rss";
-        link = "https://${domain}";
+        url = "https://${domain}";
       };
     };
   };

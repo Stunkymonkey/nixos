@@ -33,7 +33,7 @@ in
         name = "Passworts";
         category = "other";
         icon = "lock";
-        link = "https://passworts.${domain}";
+        url = "https://passworts.${domain}";
       };
     };
   };

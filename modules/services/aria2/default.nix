@@ -39,7 +39,7 @@ in
         name = "Download";
         category = "app";
         icon = "download";
-        link = "https://download.${domain}";
+        url = "https://download.${domain}";
       };
     };
   };

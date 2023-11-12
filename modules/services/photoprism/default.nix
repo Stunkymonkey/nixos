@@ -69,7 +69,7 @@ in
         name = "Photos";
         category = "media";
         icon = "image";
-        link = "https://photos.${domain}/library/login";
+        url = "https://photos.${domain}/library/login";
         method = "get";
       };
     };

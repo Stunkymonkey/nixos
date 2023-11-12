@@ -56,7 +56,7 @@ in
         name = "Series";
         category = "media";
         icon = "tv";
-        link = "https://series.${domain}";
+        url = "https://series.${domain}";
       };
     };
   };

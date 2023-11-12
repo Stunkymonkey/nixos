@@ -57,7 +57,7 @@ in
         name = "News";
         category = "app";
         icon = "newspaper";
-        link = "https://news.${domain}";
+        url = "https://news.${domain}";
       };
     };
   };

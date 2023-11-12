@@ -95,7 +95,7 @@ in
         name = "Music";
         category = "media";
         icon = "music";
-        link = "https://music.${domain}/app/#/login";
+        url = "https://music.${domain}/app/#/login";
       };
     };
   };

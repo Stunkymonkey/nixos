@@ -190,7 +190,7 @@ in
         name = "Monitoring";
         category = "infra";
         icon = "heart-pulse";
-        link = "https://monitor.${domain}";
+        url = "https://monitor.${domain}";
         method = "get";
       };
     };

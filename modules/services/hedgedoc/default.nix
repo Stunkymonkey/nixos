@@ -86,7 +86,7 @@ in
         name = "Notes";
         category = "app";
         icon = "edit";
-        link = "https://notes.${domain}";
+        url = "https://notes.${domain}";
       };
     };
   };

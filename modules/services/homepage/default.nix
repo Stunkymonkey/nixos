@@ -23,7 +23,7 @@ in
         name = "Homepage";
         category = "other";
         icon = "blog";
-        link = "https://blog.${domain}";
+        url = "https://blog.${domain}";
       };
     };
   };

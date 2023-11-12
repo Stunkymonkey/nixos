@@ -31,7 +31,7 @@ in
         name = "Subtitles";
         category = "app";
         icon = "closed-captioning";
-        link = "https://subtitles.${domain}";
+        url = "https://subtitles.${domain}";
       };
     };
   };

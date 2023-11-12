@@ -147,7 +147,7 @@ in
         name = "Alerting";
         category = "infra";
         icon = "bell";
-        link = "https://alerts.${domain}";
+        url = "https://alerts.${domain}";
         method = "get";
       };
     };

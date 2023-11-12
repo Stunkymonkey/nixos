@@ -158,7 +158,7 @@ in
         name = "Cloud";
         category = "media";
         icon = "cloud";
-        link = "https://cloud.${domain}/login";
+        url = "https://cloud.${domain}/login";
       };
     };
   };

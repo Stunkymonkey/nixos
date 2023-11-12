@@ -84,7 +84,7 @@ in
         name = "Code";
         category = "app";
         icon = "code-branch";
-        link = "https://code.${domain}";
+        url = "https://code.${domain}";
       };
     };
   };

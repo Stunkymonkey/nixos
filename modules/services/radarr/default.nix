@@ -56,7 +56,7 @@ in
         name = "Movies";
         category = "media";
         icon = "film";
-        link = "https://movies.${domain}";
+        url = "https://movies.${domain}";
       };
     };
   };

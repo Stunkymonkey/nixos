@@ -57,7 +57,7 @@ in
         name = "Documents";
         category = "media";
         icon = "book";
-        link = "https://docs.${domain}";
+        url = "https://docs.${domain}";
       };
     };
   };

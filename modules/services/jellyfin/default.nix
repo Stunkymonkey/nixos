@@ -50,7 +50,7 @@ in
         name = "Media";
         category = "media";
         icon = "eye";
-        link = "https://media.${domain}";
+        url = "https://media.${domain}";
       };
     };
   };

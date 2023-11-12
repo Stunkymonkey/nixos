@@ -115,7 +115,7 @@
           {
             inherit (cat) name;
             items = lib.forEach catApps (a: {
-              inherit (a.dashboard) name link type method;
+              inherit (a.dashboard) method name type url;
               icon = lib.optionalString (a.dashboard.icon != null) "fas fa-${a.dashboard.icon}";
               target = "_blank";
             });

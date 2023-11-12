@@ -87,7 +87,7 @@ in
         name = "Visualization";
         category = "infra";
         icon = "chart-line";
-        link = "https://visualization.${domain}";
+        url = "https://visualization.${domain}";
       };
     };
   };

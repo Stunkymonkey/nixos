@@ -34,7 +34,7 @@ in
         name = "Recipes";
         category = "app";
         icon = "utensils";
-        link = "https://recipes.${domain}";
+        url = "https://recipes.${domain}";
       };
     };
   };

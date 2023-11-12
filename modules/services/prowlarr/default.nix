@@ -66,7 +66,7 @@ in
         name = "Indexer";
         category = "app";
         icon = "sync-alt";
-        link = "https://indexer.${domain}";
+        url = "https://indexer.${domain}";
       };
     };
   };

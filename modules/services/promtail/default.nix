@@ -94,7 +94,7 @@ in
         name = "Logging";
         category = "infra";
         icon = "book";
-        link = "https://log.${domain}";
+        url = "https://log.${domain}";
       };
     };
   };

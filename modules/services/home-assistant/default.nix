@@ -139,7 +139,7 @@ in
         name = "Home-Automation";
         category = "Infra";
         icon = "house-signal";
-        link = "https://automation.${domain}";
+        url = "https://automation.${domain}";
       };
     };
   };

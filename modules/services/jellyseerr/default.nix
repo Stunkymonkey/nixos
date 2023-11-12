@@ -30,7 +30,7 @@ in
         name = "View";
         category = "media";
         icon = "users-viewfinder";
-        link = "https://view.${domain}";
+        url = "https://view.${domain}";
       };
     };
   };
