@@ -103,32 +103,29 @@ in
             "::1"
           ];
         };
+        prometheus.requires_auth = false;
       };
 
       extraComponents = [
         "backup"
-        "deutsche_bahn"
         "prometheus"
       ] ++ cfg.extraComponents;
     };
 
-    # services.prometheus.scrapeConfigs = [
-    #   {
-    #     job_name = "home-assistant";
-    #     metrics_path = "/api/prometheus";
-
-    #     authorization.credentials: "your.longlived.token";
-
-    #     static_configs = [
-    #       {
-    #         targets = [ "127.0.0.1:${toString cfg.port}" ];
-    #         labels = {
-    #           instance = config.networking.hostName;
-    #         };
-    #       }
-    #     ];
-    #   }
-    # ];
+    services.prometheus.scrapeConfigs = [
+      {
+        job_name = "home-assistant";
+        metrics_path = "/api/prometheus";
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString cfg.port}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }
+        ];
+      }
+    ];
 
     my.services.prometheus.rules = {
       homeassistant = {
