@@ -93,7 +93,7 @@ in
           unit_system = "metric";
           time_zone = cfg.timezone;
           external_url = "https://automation.${domain}";
-          internal_url = "http://127.0.0.1:${cfg.port}";
+          internal_url = "http://127.0.0.1:${toString cfg.port}";
         };
         http = {
           server_port = cfg.port;
