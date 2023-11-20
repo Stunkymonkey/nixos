@@ -37,6 +37,10 @@ in
     #   downloadDir = "/data/tmp/aria2/";
     # };
 
+    home-assistant = {
+      enable = true;
+    };
+
     blocky = {
       enable = true;
     };
