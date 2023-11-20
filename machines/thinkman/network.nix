@@ -8,12 +8,13 @@ _:
     in
     ''
       ${serverle_ip} stunkymonkey.de
+      ${serverle_ip} automation.stunkymonkey.de
+      ${serverle_ip} download.stunkymonkey.de
+      ${serverle_ip} indexer.stunkymonkey.de
       ${serverle_ip} media.stunkymonkey.de
       ${serverle_ip} movies.stunkymonkey.de
       ${serverle_ip} series.stunkymonkey.de
       ${serverle_ip} subtitles.stunkymonkey.de
-      ${serverle_ip} indexer.stunkymonkey.de
-      ${serverle_ip} download.stunkymonkey.de
       ${serverle_ip} view.stunkymonkey.de
     '';
 }
