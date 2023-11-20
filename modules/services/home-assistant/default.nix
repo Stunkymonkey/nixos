@@ -86,13 +86,23 @@ in
       inherit (cfg) package;
 
       config = {
+        default_config = { };
         homeassistant = {
           name = "Home";
           inherit (cfg) latitude longitude elevation;
           unit_system = "metric";
           time_zone = cfg.timezone;
+          external_url = "https://automation.${domain}";
+          internal_url = "http://127.0.0.1:${cfg.port}";
         };
-        http.server_port = cfg.port;
+        http = {
+          server_port = cfg.port;
+          use_x_forwarded_for = true;
+          trusted_proxies = [
+            "127.0.0.1"
+            "::1"
+          ];
+        };
       };
 
       extraComponents = [
@@ -131,13 +141,21 @@ in
       {
         subdomain = "automation";
         inherit (cfg) port;
+        extraConfig = {
+          locations."/" = {
+            proxyWebsockets = true;
+            extraConfig = ''
+              proxy_buffering off;
+            '';
+          };
+        };
       }
     ];
 
     webapps.apps.home-assistant = {
       dashboard = {
         name = "Home-Automation";
-        category = "Infra";
+        category = "infra";
         icon = "house-signal";
         url = "https://automation.${domain}";
       };
