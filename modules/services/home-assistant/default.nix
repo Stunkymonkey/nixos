@@ -80,52 +80,56 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.home-assistant = {
-      enable = true;
+    services = {
+      home-assistant = {
+        enable = true;
 
-      inherit (cfg) package;
+        inherit (cfg) package;
 
-      config = {
-        default_config = { };
-        homeassistant = {
-          name = "Home";
-          inherit (cfg) latitude longitude elevation;
-          unit_system = "metric";
-          time_zone = cfg.timezone;
-          external_url = "https://automation.${domain}";
-          internal_url = "http://127.0.0.1:${toString cfg.port}";
+        config = {
+          default_config = { };
+          homeassistant = {
+            name = "Home";
+            inherit (cfg) latitude longitude elevation;
+            unit_system = "metric";
+            time_zone = cfg.timezone;
+            external_url = "https://automation.${domain}";
+            internal_url = "http://127.0.0.1:${toString cfg.port}";
+          };
+          http = {
+            server_port = cfg.port;
+            use_x_forwarded_for = true;
+            trusted_proxies = [
+              "127.0.0.1"
+              "::1"
+            ];
+          };
+          prometheus.requires_auth = false;
         };
-        http = {
-          server_port = cfg.port;
-          use_x_forwarded_for = true;
-          trusted_proxies = [
-            "127.0.0.1"
-            "::1"
-          ];
-        };
-        prometheus.requires_auth = false;
+
+        extraComponents = [
+          "backup"
+          "prometheus"
+        ] ++ cfg.extraComponents;
       };
 
-      extraComponents = [
-        "backup"
-        "prometheus"
-      ] ++ cfg.extraComponents;
-    };
+      prometheus.scrapeConfigs = [
+        {
+          job_name = "home-assistant";
+          metrics_path = "/api/prometheus";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
+        }
+      ];
 
-    services.prometheus.scrapeConfigs = [
-      {
-        job_name = "home-assistant";
-        metrics_path = "/api/prometheus";
-        static_configs = [
-          {
-            targets = [ "127.0.0.1:${toString cfg.port}" ];
-            labels = {
-              instance = config.networking.hostName;
-            };
-          }
-        ];
-      }
-    ];
+      esphome.enable = true;
+    };
 
     my.services.prometheus.rules = {
       homeassistant = {
@@ -147,14 +151,35 @@ in
           };
         };
       }
+      {
+        subdomain = "esphome";
+        inherit (config.services.esphome) port;
+        extraConfig = {
+          locations."/" = {
+            proxyWebsockets = true;
+          };
+        };
+      }
     ];
 
-    webapps.apps.home-assistant = {
-      dashboard = {
-        name = "Home-Automation";
-        category = "infra";
-        icon = "house-signal";
-        url = "https://automation.${domain}";
+    webapps.apps = {
+      home-assistant = {
+        dashboard = {
+          name = "Home-Automation";
+          category = "infra";
+          icon = "house-signal";
+          url = "https://automation.${domain}";
+          method = "get";
+        };
+      };
+      esphome = {
+        dashboard = {
+          name = "Home-Firmware";
+          category = "infra";
+          icon = "house-laptop";
+          url = "https://esphome.${domain}";
+          method = "get";
+        };
       };
     };
   };
