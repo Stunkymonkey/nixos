@@ -37,7 +37,7 @@ in
     #   downloadDir = "/data/tmp/aria2/";
     # };
 
-    home-assistant = {
+    home-automation = {
       enable = true;
     };
 

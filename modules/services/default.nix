@@ -13,7 +13,7 @@
     ./gitea
     ./grafana
     ./hedgedoc
-    ./home-assistant
+    ./home-automation
     ./homepage
     ./homer
     ./initrd-ssh

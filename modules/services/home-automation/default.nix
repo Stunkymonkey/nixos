@@ -1,11 +1,11 @@
 # home automation
 { config, lib, pkgs, ... }:
 let
-  cfg = config.my.services.home-assistant;
+  cfg = config.my.services.home-automation;
   inherit (config.networking) domain;
 in
 {
-  options.my.services.home-assistant = with lib; {
+  options.my.services.home-automation = with lib; {
     enable = mkEnableOption "home-assistant server";
 
     package = lib.mkPackageOption pkgs "home-assistant" { };
