@@ -4,14 +4,14 @@ let
   cfg = config.my.services.octoprint;
 in
 {
-  options.my.services.octoprint = with lib; {
-    enable = mkEnableOption "Octoprint Server";
+  options.my.services.octoprint = {
+    enable = lib.mkEnableOption "Octoprint Server";
 
-    plugins = mkOption {
-      type = types.functionTo (types.listOf types.package);
+    plugins = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
       default = [ ];
-      defaultText = literalExpression "plugins: []";
-      example = literalExpression "plugins: with plugins; [ themeify stlviewer ]";
+      defaultText = lib.literalExpression "plugins: []";
+      example = lib.literalExpression "plugins: with plugins; [ themeify stlviewer ]";
       description = lib.mdDoc "Additional plugins to be used. Available plugins are passed through the plugins input.";
     };
   };
