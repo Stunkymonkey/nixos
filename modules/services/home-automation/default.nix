@@ -109,6 +109,7 @@ in
 
         extraComponents = [
           "backup"
+          "esphome"
           "prometheus"
         ] ++ cfg.extraComponents;
       };
