@@ -18,9 +18,7 @@ in
     {
       virtualisation.libvirtd.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        virt-manager
-      ];
+      programs.virt-manager.enable = true;
     }
 
     # Intel CPU
