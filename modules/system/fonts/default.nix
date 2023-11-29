@@ -21,7 +21,7 @@ in
         monospace = [ "Ubuntu Mono" ];
       };
 
-      fonts = with pkgs; [
+      packages = with pkgs; [
         cantarell-fonts # gnome default
         fira
         fira-code # coding

@@ -17,7 +17,7 @@ in
       fritzing
       gnome.gnome-font-viewer
       meld
-      unstable.bruno
+      bruno
       qgis
       sqlitebrowser
       (vscode-with-extensions.override {

@@ -19,7 +19,7 @@
       "video" # screen control
       "wheel" # `sudo` for the user.
     ];
-    passwordFile = config.sops.secrets."users/felix/password".path;
+    hashedPasswordFile = config.sops.secrets."users/felix/password".path;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFx6OLwL9MbkD3mnMsv+xrzZHN/rwCTgVs758SCLG0h felix@thinkman" ];
   };
 

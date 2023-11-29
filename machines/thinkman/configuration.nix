@@ -22,7 +22,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   system = {
-    stateVersion = "22.11";
+    stateVersion = "23.11";
     autoUpgrade.enable = true;
   };
 }
