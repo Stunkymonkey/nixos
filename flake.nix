@@ -75,7 +75,7 @@
             statix.enable = true;
             typos = {
               enable = true;
-              excludes = [ "secrets\\.yaml" ];
+              excludes = [ "secrets\\.yaml" "\\.sops\\.yaml" ];
             };
             yamllint = {
               enable = true;
