@@ -43,7 +43,7 @@ in
       } // cfg.extraConfig;
     };
 
-    # monitoring is not really usefull, because it only contains the http-worker infos -> skipped for now
+    # monitoring is not really useful, because it only contains the http-worker infos -> skipped for now
 
     my.services.nginx.virtualHosts = [
       {
