@@ -33,7 +33,7 @@ in
         # mplus-outline-fonts.githubRelease # microsoft fonts
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         noto-fonts-extra
         ubuntu_font_family
         unifont # unicode fallback
