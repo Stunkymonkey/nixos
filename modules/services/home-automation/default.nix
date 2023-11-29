@@ -110,6 +110,7 @@ in
         extraComponents = [
           "backup"
           "esphome"
+          "shelly"
           "prometheus"
         ] ++ cfg.extraComponents;
       };
@@ -130,6 +131,14 @@ in
       ];
 
       esphome.enable = true;
+    };
+
+    # TODO remove after merge + backport: https://github.com/NixOS/nixpkgs/pull/270519
+    systemd.services.esphome.serviceConfig = {
+      ProtectHostname = lib.mkForce false;
+      ProtectKernelLogs = lib.mkForce false;
+      ProtectKernelTunables = lib.mkForce false;
+      ProcSubset = lib.mkForce "all";
     };
 
     my.services.prometheus.rules = {
