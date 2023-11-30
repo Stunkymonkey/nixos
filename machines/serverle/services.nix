@@ -6,15 +6,16 @@ in
 {
   sops.secrets = {
     "acme/inwx" = { };
+    "bazarr/apikey" = { };
     "borgbackup/password" = { };
     "borgbackup/ssh_key" = { };
     "dyndns/password" = { };
-    "sso/auth-key" = { };
-    "sso/felix/password-hash" = { };
-    "sso/felix/totp-secret" = { };
     "prowlarr/apikey" = { };
     "radarr/apikey" = { };
     "sonarr/apikey" = { };
+    "sso/auth-key" = { };
+    "sso/felix/password-hash" = { };
+    "sso/felix/totp-secret" = { };
   };
 
   # List services that you want to enable:
@@ -59,6 +60,7 @@ in
     };
     bazarr = {
       enable = true;
+      apiKeyFile = secrets."bazarr/apikey".path;
     };
 
     ssh-server = {
