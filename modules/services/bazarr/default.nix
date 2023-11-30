@@ -8,11 +8,37 @@ in
 {
   options.my.services.bazarr = with lib; {
     enable = mkEnableOption "Bazarr for subtitle management";
+
+    apiKeyFile = lib.mkOption {
+      type = lib.types.path;
+      description = lib.mdDoc ''
+        File containing the api-key.
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    services.bazarr = {
-      enable = true;
+    services = {
+      bazarr = {
+        enable = true;
+      };
+      prometheus.exporters.exportarr-bazarr = {
+        inherit (config.services.prometheus) enable;
+        port = port + 1;
+        url = "http://127.0.0.1:${toString port}";
+        inherit (cfg) apiKeyFile;
+      };
+      prometheus.scrapeConfigs = [
+        {
+          job_name = "bazarr";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString port + 1}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }];
+        }
+      ];
     };
 
     systemd.services.bazarr = {

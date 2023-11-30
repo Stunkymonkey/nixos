@@ -18,19 +18,28 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.prowlarr = {
-      enable = true;
+    services = {
+      prowlarr = {
+        enable = true;
+      };
+      prometheus.exporters.exportarr-prowlarr = {
+        inherit (config.services.prometheus) enable;
+        port = port + 1;
+        url = "http://127.0.0.1:${toString port}";
+        inherit (cfg) apiKeyFile;
+      };
+      prometheus.scrapeConfigs = [
+        {
+          job_name = "prowlarr";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString port + 1}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }];
+        }
+      ];
     };
-    # # ugly fix for service not having a homedirectory
-    # users.users.prowlarr = {
-    #   isSystemUser = true;
-    #   home = "/var/lib/prowlarr";
-    #   group = "prowlarr";
-    #   uid = 61654;
-    # };
-    # users.groups.prowlarr = {
-    #   gid = 61654;
-    # };
 
     systemd.services.prowlarr = {
       after = [ "network-online.target" ];
@@ -40,24 +49,6 @@ in
       {
         subdomain = "indexer";
         inherit port;
-      }
-    ];
-
-    my.services.exportarr.prowlarr = {
-      port = port + 1;
-      url = "http://127.0.0.1:${toString port}";
-      inherit (cfg) apiKeyFile;
-    };
-
-    services.prometheus.scrapeConfigs = [
-      {
-        job_name = "prowlarr";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString port + 1}" ];
-          labels = {
-            instance = config.networking.hostName;
-          };
-        }];
       }
     ];
 

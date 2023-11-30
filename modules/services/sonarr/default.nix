@@ -18,8 +18,27 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.sonarr = {
-      enable = true;
+    services = {
+      sonarr = {
+        enable = true;
+      };
+      prometheus.exporters.exportarr-sonarr = {
+        inherit (config.services.prometheus) enable;
+        port = port + 1;
+        url = "http://127.0.0.1:${toString port}";
+        inherit (cfg) apiKeyFile;
+      };
+      prometheus.scrapeConfigs = [
+        {
+          job_name = "sonarr";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString port + 1}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }];
+        }
+      ];
     };
 
     systemd.services.sonarr = {
@@ -30,24 +49,6 @@ in
       {
         subdomain = "series";
         inherit port;
-      }
-    ];
-
-    my.services.exportarr.sonarr = {
-      port = port + 1;
-      url = "http://127.0.0.1:${toString port}";
-      inherit (cfg) apiKeyFile;
-    };
-
-    services.prometheus.scrapeConfigs = [
-      {
-        job_name = "sonarr";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString port + 1}" ];
-          labels = {
-            instance = config.networking.hostName;
-          };
-        }];
       }
     ];
 

@@ -7,7 +7,7 @@ let
 in
 {
   options.my.services.radarr = with lib; {
-    enable = mkEnableOption "Radarr for films management";
+    enable = mkEnableOption "Radarr for film management";
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;
@@ -18,8 +18,27 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.radarr = {
-      enable = true;
+    services = {
+      radarr = {
+        enable = true;
+      };
+      prometheus.exporters.exportarr-radarr = {
+        inherit (config.services.prometheus) enable;
+        port = port + 1;
+        url = "http://127.0.0.1:${toString port}";
+        inherit (cfg) apiKeyFile;
+      };
+      prometheus.scrapeConfigs = [
+        {
+          job_name = "radarr";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString port + 1}" ];
+            labels = {
+              instance = config.networking.hostName;
+            };
+          }];
+        }
+      ];
     };
 
     systemd.services.radarr = {
@@ -30,24 +49,6 @@ in
       {
         subdomain = "movies";
         inherit port;
-      }
-    ];
-
-    my.services.exportarr.radarr = {
-      port = port + 1;
-      url = "http://127.0.0.1:${toString port}";
-      inherit (cfg) apiKeyFile;
-    };
-
-    services.prometheus.scrapeConfigs = [
-      {
-        job_name = "radarr";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString port + 1}" ];
-          labels = {
-            instance = config.networking.hostName;
-          };
-        }];
       }
     ];
 
