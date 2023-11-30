@@ -64,6 +64,8 @@
 
   # no auto-updates
   systemd.services.update-prefetch.enable = false;
+  # disable rebuilding
+  system.switch.enable = false;
 
   environment.systemPackages = with pkgs; [
     diskrsync
