@@ -8,7 +8,6 @@
     ./blackbox
     ./blocky
     ./dyndns
-    ./exportarr
     ./freshrss
     ./gitea
     ./grafana
