@@ -162,7 +162,7 @@ in
         description = "Uptime monster: {{$labels.host}} has been up for more than 30 days";
       };
       # systemd
-      systemd_crashed = {
+      systemd_unit_crashed = {
         # ignore user services
         condition = ''node_systemd_unit_state{state="failed", name!~"user@\\d+.service"} == 1'';
         description = "Host SystemD service crashed (instance {{ $labels.instance }})";
