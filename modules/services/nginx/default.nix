@@ -419,6 +419,13 @@ in
         inherit (cfg.sso) port;
       }
     ];
+    my.services.backup = {
+      exclude = [
+        # fails often because the file changed
+        "/var/log/nginx/access.log"
+      ];
+    };
+
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     # Nginx needs to be able to read the certificates
     users.users.nginx.extraGroups = [ "acme" ];
