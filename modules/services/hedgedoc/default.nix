@@ -72,11 +72,6 @@ in
       ];
     };
 
-    # TODO remove for 23.11
-    # temporary fix for: https://github.com/NixOS/nixpkgs/issues/198250
-    #systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "/var/lib/hedgedoc";
-    systemd.services.hedgedoc.serviceConfig.StateDirectory = lib.mkForce "hedgedoc";
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "notes";
