@@ -93,7 +93,7 @@ in
       BlackboxProbeFailed = {
         condition = ''probe_success == 0'';
         description = "Blackbox probe failed (instance {{ $labels.instance }}): {{$value}}";
-        time = "0m";
+        time = "1m";
         labels = {
           severity = "critical";
         };
@@ -117,7 +117,7 @@ in
       BlackboxProbeHttpFailure = {
         condition = ''probe_http_status_code <= 199 OR probe_http_status_code >= 400'';
         description = "HTTP status code is not 200-399\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}";
-        time = "0m";
+        time = "1m";
       };
       BlackboxSslCertificateWillExpireSoon = {
         condition = ''3 <= round((last_over_time(probe_ssl_earliest_cert_expiry[10m]) - time()) / 86400, 0.1) < 20'';
