@@ -28,10 +28,10 @@ in
       paths = [ "/" ];
     };
 
-    # dyndns = {
-    #   enable = true;
-    #   passwordFile = secrets."dyndns/password".path;
-    # };
+    dyndns = {
+      enable = true;
+      passwordFile = secrets."dyndns/password".path;
+    };
 
     # aria2 = {
     #   enable = true;

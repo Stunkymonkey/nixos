@@ -27,7 +27,6 @@ in
       server = "dyndns.inwx.com";
       inherit (cfg) username passwordFile;
       domains = [ "serverle.${domain}" ];
-      ipv6 = true;
     };
   };
 }
