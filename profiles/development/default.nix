@@ -20,7 +20,6 @@ in
       gnumake
       meson
       ninja
-      valgrind
       # websites
       hugo
       # scripts
