@@ -133,14 +133,6 @@ in
       esphome.enable = true;
     };
 
-    # TODO remove after merge + backport: https://github.com/NixOS/nixpkgs/pull/270519
-    systemd.services.esphome.serviceConfig = {
-      ProtectHostname = lib.mkForce false;
-      ProtectKernelLogs = lib.mkForce false;
-      ProtectKernelTunables = lib.mkForce false;
-      ProcSubset = lib.mkForce "all";
-    };
-
     my.services.prometheus.rules = {
       homeassistant = {
         condition = ''homeassistant_entity_available{domain="persistent_notification", entity!~"persistent_notification.http_login|persistent_notification.recorder_database_migration"} >= 0'';
