@@ -7,9 +7,10 @@
     ./drive-monitor
     ./firmware
     ./graphics
+    ./id-card
     ./keychron
-    ./yubikey
     ./sound
     ./thunderbolt
+    ./yubikey
   ];
 }
