@@ -21,6 +21,7 @@ in
       inherit cpuFlavor;
     };
     graphics.cpuFlavor = cpuFlavor;
+    id-card.enable = true;
     keychron.enable = true;
     sound.enable = true;
     thunderbolt.enable = true;
