@@ -25,11 +25,12 @@ in
           with vscode-extensions; [
             bbenoist.nix
             editorconfig.editorconfig
+            equinusocio.vsc-material-theme
+            github.copilot
             mkhl.direnv
             ms-azuretools.vscode-docker
             ms-python.python
             ms-vscode-remote.remote-ssh
-            equinusocio.vsc-material-theme
           ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             # {
             #   name = "vsc-material-theme";
