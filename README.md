@@ -8,7 +8,7 @@ used flakes:
 - image generation: [nixos-generators](https://github.com/nix-community/nixos-generators)
 - disk partitioning: [disko](https://github.com/nix-community/disko)
 - secrets: [sops-nix](https://github.com/Mic92/sops-nix)
-- deployment: [deploy-rs](https://github.com/serokell/deploy-rs), see [usage](#usage)
+- deployment: [nixinate](https://github.com/MatthewCroughan/nixinate), see [usage](#usage)
 - formatting: [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix)
 - install: [nixos-anywhere](https://github.com/numtide/nixos-anywhere/)
 
@@ -32,10 +32,10 @@ used flakes:
     nix flake update
     ```
 
-- deployment:
+- deployment/update:
 
     ```bash
-    deploy .#<flake>
+    nix run .#apps.nixinate.<flake>
     ```
 
 - secrets:
@@ -137,5 +137,5 @@ used flakes:
 - [Nix config by ambroisie](https://github.com/ambroisie/nix-config)
 - [Nix config by pborzenkov](https://github.com/pborzenkov/nix-config)
 - [Nix config by nyanloutre](https://gitea.nyanlout.re/nyanloutre/nixos-config)
-- [deploy-rs by disassembler](https://samleathers.com/posts/2022-02-03-my-new-network-and-deploy-rs.html)
+- [Nix config by disassembler](https://github.com/disassembler/network)
 - [pre-commit config](https://github.com/cachix/pre-commit-hooks.nix/blob/master/template/flake.nix)

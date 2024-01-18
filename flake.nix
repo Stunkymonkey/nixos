@@ -15,6 +15,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+    nixinate.url = "github:matthewcroughan/nixinate";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -43,7 +44,7 @@
     };
   };
 
-  outputs = inputs@{ self, flake-parts, deploy-rs, ... }:
+  outputs = inputs@{ self, flake-parts, nixinate, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
 
       imports = [
@@ -58,11 +59,6 @@
         # make pkgs available to all `perSystem` functions
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
-          # prevent rebuilding deploy-rs everytime when nixpkgs changes
-          overlays = [
-            deploy-rs.overlay
-            (_self: super: { deploy-rs = { inherit (pkgs) deploy-rs; inherit (super.deploy-rs) lib; }; })
-          ];
         };
 
         # enable pre-commit checks
@@ -90,9 +86,8 @@
         devShells.default = pkgs.mkShellNoCC {
           nativeBuildInputs = [
             inputs'.sops-nix.packages.sops-import-keys-hook
-            inputs'.deploy-rs.packages.deploy-rs
             inputs'.disko.packages.disko
-            # formatters
+            # formatter + linter
             pkgs.deadnix
             pkgs.nixpkgs-fmt
             pkgs.shellcheck
@@ -104,14 +99,7 @@
           '';
         };
       };
-
-      flake = {
-        # currently disabled, because this causes rebuilds
-        # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-
-        deploy = import ./machines/deploy.nix (inputs // {
-          inherit inputs;
-        });
-      };
+      # flake = {};
+      flake.apps = inputs.nixinate.nixinate."x86_64-linux" self;
     };
 }
