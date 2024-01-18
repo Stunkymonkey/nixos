@@ -19,7 +19,10 @@ jobs:
         with:
           ignore-missing-flake-lock: false
           fail-mode: true
-      - name: Check Nix flake
-        run: nix flake check
+      # disabled, because of:
+      # https://github.com/MatthewCroughan/nixinate/issues/12
+      # https://github.com/NixOS/nix/issues/6381
+      # - name: Check Nix flake
+      #   run: nix flake check
       # - name: Build Nix packages
       #   run: nix build
