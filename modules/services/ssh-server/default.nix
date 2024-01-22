@@ -22,7 +22,7 @@ in
     # WARNING: if you remove this, then you need to assign a password to your user, otherwise
     # `sudo` won't work. You can do that either by using `passwd` after the first rebuild or
     # by setting an hashed password in the `users.users.felix` block as `initialHashedPassword`.
-    # additionally needed by deploy-rs
+    # additionally needed for deployment
     security.sudo.wheelNeedsPassword = false;
 
     my.services.loki.rules = {

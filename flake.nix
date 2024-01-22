@@ -14,7 +14,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    deploy-rs.url = "github:serokell/deploy-rs";
     nixinate.url = "github:matthewcroughan/nixinate";
 
     sops-nix = {
