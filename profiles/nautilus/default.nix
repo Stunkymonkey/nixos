@@ -35,5 +35,11 @@ in
         "/share/nautilus-python/extensions"
       ];
     };
+
+    # TODO enable 24.05
+    # programs.nautilus-open-any-terminal = {
+    #   enable = true;
+    #   terminal = "foot";
+    # };
   };
 }
