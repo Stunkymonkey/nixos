@@ -58,6 +58,7 @@ in
         category = "media";
         icon = "film";
         url = "https://movies.${domain}";
+        method = "get";
       };
     };
   };

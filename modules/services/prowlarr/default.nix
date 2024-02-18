@@ -58,6 +58,7 @@ in
         category = "app";
         icon = "sync-alt";
         url = "https://indexer.${domain}";
+        method = "get";
       };
     };
   };
