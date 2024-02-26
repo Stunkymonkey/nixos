@@ -25,7 +25,8 @@ in
           with vscode-extensions; [
             bbenoist.nix
             editorconfig.editorconfig
-            equinusocio.vsc-material-theme
+            # remove in 24.05
+            unstable.equinusocio.vsc-material-theme
             github.copilot
             mkhl.direnv
             ms-azuretools.vscode-docker
