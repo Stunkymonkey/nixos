@@ -10,8 +10,8 @@ in
   config = lib.mkIf cfg.enable {
     services.printing.enable = true;
     services.printing.drivers = with pkgs; [
-      canon-cups-ufr2
       gutenprint
+      gutenprintBin
       hplip
     ];
     programs.system-config-printer.enable = true;
