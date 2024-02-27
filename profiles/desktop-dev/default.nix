@@ -25,13 +25,14 @@ in
           with vscode-extensions; [
             bbenoist.nix
             editorconfig.editorconfig
-            # remove in 24.05
-            unstable.equinusocio.vsc-material-theme
             github.copilot
             mkhl.direnv
             ms-azuretools.vscode-docker
             ms-python.python
             ms-vscode-remote.remote-ssh
+          ] ++ [
+            # remove in 24.05
+            unstable.vscode-extensions.equinusocio.vsc-material-theme
           ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             # {
             #   name = "vsc-material-theme";
