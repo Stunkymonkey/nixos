@@ -23,7 +23,7 @@ in
 
     mediaDir = mkOption {
       type = types.path;
-      description = "Password for the defaultUser for FreshRSS.";
+      description = "Location of the FreshRSS data.";
       example = "/run/secrets/freshrss";
     };
 
@@ -37,7 +37,7 @@ in
   config = lib.mkIf cfg.enable {
     services.paperless = {
       enable = true;
-      inherit (cfg) port mediaDir;
+      inherit (cfg) port mediaDir passwordFile;
       extraConfig = {
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
       } // cfg.extraConfig;
