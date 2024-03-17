@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./network.nix
     ./profiles.nix
+    ./remote-build.nix
     ./services.nix
     ./system.nix
   ];
