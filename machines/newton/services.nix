@@ -47,6 +47,8 @@ in
     homer = {
       enable = true;
     };
+    # remote build
+    remote-build.enable = true;
     # RSS provider for websites that do not provide any feeds
     rss-bridge = {
       enable = true;

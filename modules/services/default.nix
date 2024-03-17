@@ -34,6 +34,7 @@
     ./promtail
     ./prowlarr
     ./radarr
+    ./remote-build
     ./rss-bridge
     ./sonarr
     ./ssh-server
