@@ -10,6 +10,7 @@
         "@wheel"
       ];
       auto-optimise-store = true;
+      builders-use-substitutes = true;
     };
 
     gc = {
