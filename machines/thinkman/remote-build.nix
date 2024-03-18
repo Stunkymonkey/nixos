@@ -12,6 +12,7 @@ in
       supportedFeatures = [ "nixos-test" "benchmark" "kvm" "big-parallel" ];
       sshUser = "nixremote";
       sshKey = secrets."nixremote/ssh_key".path;
+      maxJobs = 4;
     }
   ];
 
