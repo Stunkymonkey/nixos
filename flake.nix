@@ -63,7 +63,10 @@
         # enable pre-commit checks
         pre-commit.settings = {
           hooks = {
-            deadnix.enable = true;
+            deadnix = {
+              enable = true;
+              settings.noLambdaPatternNames = true;
+            };
             markdownlint.enable = true;
             nixpkgs-fmt.enable = true;
             shellcheck.enable = true;
@@ -76,9 +79,6 @@
               enable = true;
               excludes = [ "secrets\\.yaml" ];
             };
-          };
-          settings = {
-            deadnix.noLambdaPatternNames = true;
           };
         };
 
