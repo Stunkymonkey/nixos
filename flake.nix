@@ -74,6 +74,7 @@
             typos = {
               enable = true;
               excludes = [ "secrets\\.yaml" "\\.sops\\.yaml" ];
+              settings.ignored-words = [ "flate" ];
             };
             yamllint = {
               enable = true;

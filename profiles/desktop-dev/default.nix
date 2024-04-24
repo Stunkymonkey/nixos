@@ -30,9 +30,11 @@ in
             ms-azuretools.vscode-docker
             ms-python.python
             ms-vscode-remote.remote-ssh
+            pkief.material-icon-theme
           ] ++ [
             # remove in 24.05
             unstable.vscode-extensions.equinusocio.vsc-material-theme
+            unstable.vscode-extensions.hiukky.flate
           ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             # {
             #   name = "vsc-material-theme";
