@@ -7,8 +7,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    pre-commit-hooks-nix = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -49,7 +49,7 @@
       imports = [
         ./machines/configurations.nix
         ./images/flake-module.nix
-        inputs.pre-commit-hooks-nix.flakeModule
+        inputs.git-hooks.flakeModule
       ];
 
       systems = [ "x86_64-linux" "aarch64-linux" ];
