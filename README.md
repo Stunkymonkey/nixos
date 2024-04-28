@@ -9,7 +9,7 @@ used flakes:
 - disk partitioning: [disko](https://github.com/nix-community/disko)
 - secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - deployment: [nixinate](https://github.com/MatthewCroughan/nixinate), see [usage](#usage)
-- formatting: [pre-commit-hooks](https://github.com/cachix/pre-commit-hooks.nix)
+- formatting: [git-hooks](https://github.com/cachix/git-hooks.nix)
 - install: [nixos-anywhere](https://github.com/numtide/nixos-anywhere/)
 
 ## Structure
@@ -138,4 +138,4 @@ used flakes:
 - [Nix config by pborzenkov](https://github.com/pborzenkov/nix-config)
 - [Nix config by nyanloutre](https://gitea.nyanlout.re/nyanloutre/nixos-config)
 - [Nix config by disassembler](https://github.com/disassembler/network)
-- [pre-commit config](https://github.com/cachix/pre-commit-hooks.nix/blob/master/template/flake.nix)
+- [git-hook config](https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix)
