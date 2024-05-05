@@ -87,27 +87,39 @@ in
       # always backup everything and only define excludes
       inherit (cfg) paths;
       exclude = [
+        # system
         "/nix"
-        "/sys"
-        "/run"
+        "/mnt"
         "/proc"
         "/root/.cache/"
         "/root/.config/borg/security/"
-        "**/.Trash"
+        "/run"
+        "/sys"
         "/tmp"
 
-        "/var/lock"
+        # other-os
+        "**/.Trash" # apple
+        "**/.DS_Store" # apple
+        "**/$RECYCLE.BIN" #windows
+        "**/System Volume Information" #windows
+
+        # var data
+        "/var/cache"
         "/var/lib/docker/devicemapper"
+        "/var/lock"
+        "/var/log"
         "/var/run"
         "/var/tmp"
 
-        "/data/tmp"
-        "/data/todo"
-
+        # home-directories
         "/home/*/.cache"
         "/home/*/.gvfs"
         "/home/*/.local/share/Trash"
         "/home/*/.thumbnails"
+
+        # self-defined
+        "/data/tmp"
+        "/data/todo"
         "/home/*/tmp"
         "/home/*/todo"
       ] ++ cfg.exclude;
