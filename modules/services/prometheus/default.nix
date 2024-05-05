@@ -187,6 +187,8 @@ in
           inherit (cfg) port;
         }
       ];
+
+      backup.exclude = [ "/var/lib/prometheus2/data" ];
     };
 
     webapps.apps = {
