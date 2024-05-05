@@ -54,7 +54,7 @@
 
       systems = [ "x86_64-linux" "aarch64-linux" ];
 
-      perSystem = { self', inputs', config, pkgs, system, ... }: {
+      perSystem = { inputs', config, pkgs, system, ... }: {
         # make pkgs available to all `perSystem` functions
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
