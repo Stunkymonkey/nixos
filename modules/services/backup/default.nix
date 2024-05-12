@@ -116,6 +116,7 @@ in
         "/home/*/.gvfs"
         "/home/*/.local/share/Trash"
         "/home/*/.thumbnails"
+        "/home/*/.config/Element/Cache"
 
         # self-defined
         "/data/tmp"
