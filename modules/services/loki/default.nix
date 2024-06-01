@@ -61,106 +61,132 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    services = {
-      loki = {
-        enable = true;
-        configuration = {
-          server = {
-            http_listen_address = "127.0.0.1";
-            http_listen_port = cfg.port;
-          };
-          auth_enabled = false;
+  config =
+    let
+      rulerConfig = {
+        groups = [
+          {
+            name = "alerting-rules";
+            rules = lib.mapAttrsToList
+              (name: opts: {
+                alert = name;
+                inherit (opts) condition labels;
+                for = opts.time;
+                annotations.description = opts.description;
+              })
+              cfg.rules;
+          }
+        ];
+      };
+      rulerFile = pkgs.writeText "ruler.yml" (builtins.toJSON rulerConfig);
+    in
+    lib.mkIf cfg.enable {
+      services = {
+        loki = {
+          enable = true;
+          configuration = {
+            server = {
+              http_listen_address = "127.0.0.1";
+              http_listen_port = cfg.port;
+            };
+            auth_enabled = false;
 
-          common = {
-            instance_addr = "127.0.0.1";
-            ring.kvstore.store = "inmemory";
-            replication_factor = 1;
-            path_prefix = "/tmp/loki";
-          };
+            common = {
+              instance_addr = "127.0.0.1";
+              ring.kvstore.store = "inmemory";
+              replication_factor = 1;
 
-          ruler = lib.mkIf config.my.services.alertmanager.enable {
-            storage = {
-              type = "local";
-              local = {
-                # having the "fake" directory is important, because loki is running in single-tenant mode
-                directory = pkgs.writeTextDir "fake/loki-rules.yml" (builtins.toJSON {
-                  groups = [
-                    {
-                      name = "alerting-rules";
-                      rules = lib.mapAttrsToList
-                        (name: opts: {
-                          alert = name;
-                          inherit (opts) condition labels;
-                          for = opts.time;
-                          annotations.description = opts.description;
-                        })
-                        cfg.rules;
-                    }
-                  ];
-                });
+              path_prefix = config.services.loki.dataDir;
+              storage.filesystem = {
+                chunks_directory = "${config.services.loki.dataDir}/chunks";
+                rules_directory = "${config.services.loki.dataDir}/rules";
               };
             };
 
-            alertmanager_url = "http://127.0.0.1:${toString config.my.services.alertmanager.port}";
-            enable_alertmanager_v2 = true;
-          };
-
-          schema_config = {
-            configs = [{
-              from = "2020-05-15";
-              store = "boltdb-shipper";
-              object_store = "filesystem";
-              schema = "v11";
-              index = {
-                prefix = "index_";
-                period = "24h";
+            ruler = lib.mkIf config.my.services.alertmanager.enable {
+              storage = {
+                type = "local";
+                local.directory = "${config.services.loki.dataDir}/ruler";
               };
-            }];
+              rule_path = "${config.services.loki.dataDir}/rules";
+              alertmanager_url = "http://127.0.0.1:${toString config.my.services.alertmanager.port}";
+              enable_alertmanager_v2 = true;
+            };
+
+            schema_config = {
+              configs = [{
+                from = "2020-11-08";
+                store = "tsdb";
+                object_store = "filesystem";
+                schema = "v13";
+                index = {
+                  prefix = "index_";
+                  period = "24h";
+                };
+              }];
+            };
+
+            limits_config = {
+              max_query_lookback = "672h"; # 28 days
+              retention_period = "672h"; # 28 days
+            };
+
+            compactor = {
+              working_directory = "${config.services.loki.dataDir}/compactor";
+              retention_enabled = true;
+              delete_request_store = "filesystem";
+            };
           };
+        };
+
+        grafana.provision = {
+          datasources.settings.datasources = [
+            {
+              name = "Loki";
+              type = "loki";
+              access = "proxy";
+              url = "http://127.0.0.1:${toString cfg.port}";
+            }
+          ];
+          dashboards.settings.providers = [
+            {
+              name = "Loki";
+              options.path = pkgs.grafana-dashboards.loki;
+              disableDeletion = true;
+            }
+          ];
+        };
+
+        prometheus = {
+          scrapeConfigs = [
+            {
+              job_name = "loki";
+              static_configs = [
+                {
+                  targets = [ "127.0.0.1:${toString cfg.port}" ];
+                  labels = {
+                    instance = config.networking.hostName;
+                  };
+                }
+              ];
+            }
+          ];
         };
       };
 
-      grafana.provision = {
-        datasources.settings.datasources = [
-          {
-            name = "Loki";
-            type = "loki";
-            access = "proxy";
-            url = "http://127.0.0.1:${toString cfg.port}";
-          }
-        ];
-        dashboards.settings.providers = [
-          {
-            name = "Loki";
-            options.path = pkgs.grafana-dashboards.loki;
-            disableDeletion = true;
-          }
-        ];
-      };
+      systemd.tmpfiles.rules = [
+        "d /var/lib/loki 0700 loki loki - -"
+        "d /var/lib/loki/ruler 0700 loki loki - -"
+        "d /var/lib/loki/rules 0700 loki loki - -"
+        "L /var/lib/loki/ruler/ruler.yml - - - - ${rulerFile}"
+      ];
+      systemd.services.loki.reloadTriggers = [ rulerFile ];
 
-      prometheus = {
-        scrapeConfigs = [
-          {
-            job_name = "loki";
-            static_configs = [
-              {
-                targets = [ "127.0.0.1:${toString cfg.port}" ];
-                labels = {
-                  instance = config.networking.hostName;
-                };
-              }
-            ];
-          }
-        ];
+      my.services.loki.rules = {
+        loki_highLogRate = {
+          condition = ''sum by (host) (rate({unit="loki.service"}[1m])) > 60'';
+          description = "Loki has a high logging rate";
+        };
       };
     };
-
-    my.services.loki.rules = {
-      loki_highLogRate = {
-        condition = ''sum by (host) (rate({unit="loki.service"}[1m])) > 60'';
-        description = "Loki has a high logging rate";
-      };
-    };
-  };
 }
