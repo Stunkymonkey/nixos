@@ -11,7 +11,7 @@ in
     environment.systemPackages = with pkgs; [
       bless # hex editor
       chromium
-      dbeaver
+      dbeaver-bin
       filezilla
       fritzing
       gnome.gnome-font-viewer
