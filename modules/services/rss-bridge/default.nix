@@ -12,7 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     services.rss-bridge = {
       enable = true;
-      whitelist = [ "*" ]; # Whitelist all
+      config.system.enabled_bridges = [ "*" ]; # Whitelist all
       virtualHost = domain;
     };
 
