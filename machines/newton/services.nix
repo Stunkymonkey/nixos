@@ -76,7 +76,7 @@ in
     paperless = {
       enable = true;
       passwordFile = secrets."paperless/password".path;
-      extraConfig.PAPERLESS_ADMIN_USER = "felix";
+      settings.PAPERLESS_ADMIN_USER = "felix";
       mediaDir = "/data/docs";
     };
     # RSS aggregator and reader

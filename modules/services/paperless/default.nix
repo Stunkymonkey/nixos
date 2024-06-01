@@ -27,7 +27,7 @@ in
       example = "/run/secrets/freshrss";
     };
 
-    extraConfig = mkOption {
+    settings = mkOption {
       type = types.attrs;
       default = { };
       description = "additional extraConfig";
@@ -38,9 +38,9 @@ in
     services.paperless = {
       enable = true;
       inherit (cfg) port mediaDir passwordFile;
-      extraConfig = {
+      settings = {
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
-      } // cfg.extraConfig;
+      } // cfg.settings;
     };
 
     # monitoring is not really useful, because it only contains the http-worker infos -> skipped for now
