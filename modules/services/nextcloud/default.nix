@@ -19,7 +19,7 @@ in
       example = "admin";
       description = "Name of the admin user";
     };
-    defaultPhoneRegion = mkOption {
+    default_phone_region = mkOption {
       type = types.str;
       default = "DE";
       example = "US";
@@ -54,22 +54,23 @@ in
     services = {
       nextcloud = {
         enable = true;
-        package = pkgs.nextcloud28;
+        package = pkgs.nextcloud29;
         hostName = "cloud.${domain}";
         maxUploadSize = cfg.maxSize;
         autoUpdateApps.enable = true;
+        settings = {
+          inherit (cfg) default_phone_region;
+          overwriteprotocol = "https"; # nginx only allows SSL
+        };
         config = {
           adminuser = cfg.admin;
           adminpassFile = cfg.passwordFile;
-          inherit (cfg) defaultPhoneRegion;
-
-          overwriteProtocol = "https"; # Nginx only allows SSL
 
           #dbtype = "pgsql";
           #dbhost = "/run/postgresql";
         };
 
-        extraApps = with pkgs.nextcloud28Packages.apps; {
+        extraApps = with pkgs.nextcloud29Packages.apps; {
           inherit calendar contacts tasks deck;
         };
         extraAppsEnable = true;
