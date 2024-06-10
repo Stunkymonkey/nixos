@@ -6,8 +6,15 @@ let
   port = 8096;
   # enable monitoring
   jellyfin-with-metrics = pkgs.jellyfin.overrideAttrs (attrs: {
-    # with this patch the default setting for metrics is changed
-    patches = attrs.patches ++ [ ./enable-metrics.patch ];
+    patches =
+      let
+        existingPatches =
+          if attrs ? patches && builtins.isList attrs.patches
+          then attrs.patches
+          else [ ];
+      in
+      # with this patch the default setting for metrics is changed
+      existingPatches ++ [ ./enable-metrics.patch ];
   });
 in
 {
