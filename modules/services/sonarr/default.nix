@@ -58,6 +58,7 @@ in
         category = "media";
         icon = "tv";
         url = "https://series.${domain}";
+        method = "get";
       };
     };
   };
