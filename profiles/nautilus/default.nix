@@ -36,10 +36,9 @@ in
       ];
     };
 
-    # TODO enable 24.05
-    # programs.nautilus-open-any-terminal = {
-    #   enable = true;
-    #   terminal = "foot";
-    # };
+    programs.nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "foot";
+    };
   };
 }
