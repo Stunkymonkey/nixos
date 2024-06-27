@@ -14,10 +14,6 @@ in
       enable = true;
     };
 
-    systemd.services.jellyseerr = {
-      after = [ "network-online.target" ];
-    };
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "view";

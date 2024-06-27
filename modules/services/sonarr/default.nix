@@ -41,10 +41,6 @@ in
       ];
     };
 
-    systemd.services.sonarr = {
-      after = [ "network-online.target" ];
-    };
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "series";

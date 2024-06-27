@@ -23,10 +23,6 @@ in
       inherit (cfg) downloadDir;
     };
 
-    systemd.services.aria2 = {
-      after = [ "network-online.target" ];
-    };
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "download";

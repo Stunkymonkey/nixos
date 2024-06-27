@@ -41,10 +41,6 @@ in
       ];
     };
 
-    systemd.services.prowlarr = {
-      after = [ "network-online.target" ];
-    };
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "indexer";

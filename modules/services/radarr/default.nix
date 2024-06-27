@@ -41,10 +41,6 @@ in
       ];
     };
 
-    systemd.services.radarr = {
-      after = [ "network-online.target" ];
-    };
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "movies";

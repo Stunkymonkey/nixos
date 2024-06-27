@@ -41,10 +41,6 @@ in
       ];
     };
 
-    systemd.services.bazarr = {
-      after = [ "network-online.target" ];
-    };
-
     my.services.nginx.virtualHosts = [
       {
         subdomain = "subtitles";
