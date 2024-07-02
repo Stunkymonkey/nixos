@@ -1,21 +1,13 @@
-# EditorConfig configuration for nix
-# http://EditorConfig.org
-
-# Top-most EditorConfig file
 root = true
 
 # Unix-style newlines with a newline ending every file, utf-8 charset
 [*]
+charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-charset = utf-8
 
 # Match nix files, set indent to spaces with width of two
-[*.nix]
-indent_style = space
-indent_size = 2
-
-[*.json]
+[*.{nix,json,md}]
 indent_style = space
 indent_size = 2
