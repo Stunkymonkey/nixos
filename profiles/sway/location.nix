@@ -18,15 +18,11 @@ in
         desktopID = "gammastep";
         isAllowed = true;
         isSystem = false;
-        # Empty list allows all users
-        users = [ ];
       };
       appConfig."gammastep-indicator" = {
         desktopID = "gammastep-indicator";
         isAllowed = true;
         isSystem = false;
-        # Empty list allows all users
-        users = [ ];
       };
     };
   };
