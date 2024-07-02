@@ -83,9 +83,6 @@ in
         ];
       };
 
-      # for mail delivery
-      postfix.enable = true;
-
       go-neb.config.services = [
         {
           ID = "alertmanager_service";
