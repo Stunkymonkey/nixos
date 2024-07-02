@@ -16,7 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services = {
-      postfix.enable = lib.mkIf (cfg.OnFailureMail != null) true;
+      postfix.enable = cfg.OnFailureMail != null;
       smartd = {
         enable = true;
         notifications.mail = lib.mkIf (cfg.OnFailureMail != null) {

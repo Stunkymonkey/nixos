@@ -14,7 +14,6 @@ in
     debug.enable = true;
     drive-monitor = {
       enable = true;
-      OnFailureMail = "server@buehler.rocks";
     };
     firmware = {
       enable = true;
