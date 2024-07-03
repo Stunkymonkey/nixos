@@ -11,6 +11,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       aspell
+      aspellDicts.de
       aspellDicts.en
       aspellDicts.en-computers
       aspellDicts.en-science
