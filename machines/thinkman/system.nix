@@ -9,5 +9,6 @@ _:
       cpuFlavor = "intel";
     };
     podman.enable = true;
+    spell-check.enable = true;
   };
 }
