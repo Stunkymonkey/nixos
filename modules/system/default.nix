@@ -6,5 +6,6 @@
     ./fonts
     ./kvm
     ./podman
+    ./spell-check
   ];
 }
