@@ -9,7 +9,7 @@ in
     {
       hostName = "buehler.rocks";
       system = "x86_64-linux";
-      supportedFeatures = [ "nixos-test" "benchmark" "kvm" "big-parallel" ];
+      supportedFeatures = [ "benchmark" "kvm" "big-parallel" ];
       sshUser = "nixremote";
       sshKey = secrets."nixremote/ssh_key".path;
       maxJobs = 4;
