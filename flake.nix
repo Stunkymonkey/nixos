@@ -68,7 +68,11 @@
               settings.noLambdaPatternNames = true;
             };
             markdownlint.enable = true;
-            nixpkgs-fmt.enable = true;
+            nixfmt = {
+              enable = true;
+              # TODO remove in 24.11
+              package = pkgs.nixfmt-rfc-style;
+            };
             shellcheck.enable = true;
             statix.enable = true;
             typos = {
