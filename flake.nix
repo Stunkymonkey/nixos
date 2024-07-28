@@ -83,20 +83,14 @@
           };
         };
 
-        devShells.default = pkgs.mkShellNoCC {
-          nativeBuildInputs = [
+        devShells.default = pkgs.mkShell {
+          inputsFrom = [
+            config.pre-commit.devShell
+          ];
+          nativeBuildInputs = with pkgs; [
             inputs'.sops-nix.packages.sops-import-keys-hook
             inputs'.disko.packages.disko
-            # formatter + linter
-            pkgs.deadnix
-            pkgs.nixpkgs-fmt
-            pkgs.shellcheck
-            pkgs.statix
-            pkgs.typos
           ];
-          shellHook = ''
-            ${config.pre-commit.installationScript}
-          '';
         };
       };
       # flake = {};
