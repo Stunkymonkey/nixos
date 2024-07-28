@@ -39,7 +39,6 @@
     nix-prefetch
     nix-update
     nixfmt-rfc-style
-    nixpkgs-fmt
     nixpkgs-hammering
     nixpkgs-review
   ];
