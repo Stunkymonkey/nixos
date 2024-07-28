@@ -1,5 +1,10 @@
 # monitoring system services
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.alertmanager;
   inherit (config.networking) domain;
@@ -37,24 +42,18 @@ in
           extraFlags = [ "--cluster.advertise-address 127.0.0.1:${toString cfg.port}" ];
         };
 
-        alertmanagers = [
-          {
-            static_configs = [
-              {
-                targets = [ "localhost:${toString cfg.port}" ];
-              }
-            ];
-          }
-        ];
+        alertmanagers = [ { static_configs = [ { targets = [ "localhost:${toString cfg.port}" ]; } ]; } ];
         scrapeConfigs = [
           {
             job_name = "alertmanager";
-            static_configs = [{
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }];
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
           }
         ];
       };

@@ -1,5 +1,10 @@
 # to download things
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.aria2;
   inherit (config.networking) domain;

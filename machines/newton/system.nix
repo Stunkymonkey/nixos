@@ -1,6 +1,5 @@
 # enabled system services
-_:
-{
+_: {
   my.system = {
     podman.enable = true;
   };

@@ -1,5 +1,10 @@
 # The Free Software Media System
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.jellyfin;
   inherit (config.networking) domain;
@@ -8,10 +13,7 @@ let
   jellyfin-with-metrics = pkgs.jellyfin.overrideAttrs (attrs: {
     patches =
       let
-        existingPatches =
-          if attrs ? patches && builtins.isList attrs.patches
-          then attrs.patches
-          else [ ];
+        existingPatches = if attrs ? patches && builtins.isList attrs.patches then attrs.patches else [ ];
       in
       # with this patch the default setting for metrics is changed
       existingPatches ++ [ ./enable-metrics.patch ];

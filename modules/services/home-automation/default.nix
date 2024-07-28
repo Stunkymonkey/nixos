@@ -1,5 +1,10 @@
 # home automation
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.home-automation;
   inherit (config.networking) domain;

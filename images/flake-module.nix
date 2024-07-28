@@ -2,25 +2,19 @@
 let
   inherit (self.inputs) nixos-generators;
   defaultModule = {
-    imports = [
-      ./base-config.nix
-    ];
+    imports = [ ./base-config.nix ];
     _module.args.inputs = self.inputs;
   };
 in
 {
   perSystem =
-    { pkgs
-    , ...
-    }:
+    { pkgs, ... }:
     {
       packages = {
         install-iso = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           inherit pkgs;
-          modules = [
-            defaultModule
-          ];
+          modules = [ defaultModule ];
           format = "install-iso";
         };
 

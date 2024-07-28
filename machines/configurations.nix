@@ -1,7 +1,6 @@
 { self, ... }:
 let
-  inherit
-    (self.inputs)
+  inherit (self.inputs)
     nixpkgs
     nixpkgs-unstable
     sops-nix
@@ -26,18 +25,19 @@ let
     }
     {
       imports = [
-        ({ pkgs, ... }: {
-          nixpkgs.config.allowUnfree = true;
-          nixpkgs.overlays = [
-            overlay-unstable
-            (import ../overlays)
-            (import ../pkgs)
-          ];
-          nix.nixPath = [
-            "nixpkgs=${pkgs.path}"
-          ];
-          documentation.info.enable = false;
-        })
+        (
+          { pkgs, ... }:
+          {
+            nixpkgs.config.allowUnfree = true;
+            nixpkgs.overlays = [
+              overlay-unstable
+              (import ../overlays)
+              (import ../pkgs)
+            ];
+            nix.nixPath = [ "nixpkgs=${pkgs.path}" ];
+            documentation.info.enable = false;
+          }
+        )
         disko.nixosModules.disko
         passworts.nixosModules.passworts
         sops-nix.nixosModules.sops
@@ -60,9 +60,7 @@ in
     };
     newton = nixosSystem {
       system = "x86_64-linux";
-      modules = defaultModules ++ [
-        ./newton/configuration.nix
-      ];
+      modules = defaultModules ++ [ ./newton/configuration.nix ];
     };
     serverle = nixosSystem {
       system = "aarch64-linux";

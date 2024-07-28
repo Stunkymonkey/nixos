@@ -1,5 +1,10 @@
 # manages remote builds
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.remote-build;
 in
@@ -15,7 +20,9 @@ in
       isSystemUser = true;
       group = "nixremote";
       shell = pkgs.bashInteractive;
-      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYSzDdxqaNHmaaLqEvOK/vB65zvqoCebI3Nxzgg5smq root@thinkman" ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYSzDdxqaNHmaaLqEvOK/vB65zvqoCebI3Nxzgg5smq root@thinkman"
+      ];
     };
     nix.settings.trusted-users = [ "nixremote" ];
   };

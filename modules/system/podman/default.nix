@@ -1,5 +1,11 @@
 # Podman related settings
-{ config, lib, options, pkgs, ... }:
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.system.podman;
 in
@@ -10,9 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [
-      podman-compose
-    ];
+    environment.systemPackages = with pkgs; [ podman-compose ];
 
     virtualisation.podman = {
       enable = true;

@@ -27,7 +27,9 @@ let
 in
 {
   # kernel parameters are needed for initrd
-  boot.kernelParams = [ "ip=${ip4_addr}::${ip4_gw}:${ip4_mask}:${config.networking.hostName}:${ifname}:off" ];
+  boot.kernelParams = [
+    "ip=${ip4_addr}::${ip4_gw}:${ip4_mask}:${config.networking.hostName}:${ifname}:off"
+  ];
   networking = {
     nameservers = ip4_dns ++ ip6_dns;
     domain = "buehler.rocks";

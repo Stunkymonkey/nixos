@@ -1,5 +1,11 @@
 # monitoring system services
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   cfg = config.my.services.node-exporter;
 in
@@ -17,9 +23,7 @@ in
             "systemd"
             "textfile"
           ];
-          extraFlags = [
-            "--collector.textfile.directory=/etc/prometheus-node-exporter-text-files"
-          ];
+          extraFlags = [ "--collector.textfile.directory=/etc/prometheus-node-exporter-text-files" ];
           port = 9100;
           listenAddress = "127.0.0.1";
         };
@@ -32,21 +36,25 @@ in
       scrapeConfigs = [
         {
           job_name = "node";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
-            labels = {
-              instance = config.networking.hostName;
-            };
-          }];
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
         }
         {
           job_name = "systemd";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}" ];
-            labels = {
-              instance = config.networking.hostName;
-            };
-          }];
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
         }
       ];
     };
@@ -55,10 +63,14 @@ in
     environment.etc =
       let
         inputsWithDate = lib.filterAttrs (_: input: input ? lastModified) inputs;
-        flakeAttrs = input: (lib.mapAttrsToList (n: v: ''${n}="${v}"'')
-          (lib.filterAttrs (_n: v: (builtins.typeOf v) == "string") input));
-        lastModified = name: input: ''
-          flake_input_last_modified{input="${name}",${lib.concatStringsSep "," (flakeAttrs input)}} ${toString input.lastModified}'';
+        flakeAttrs =
+          input:
+          (lib.mapAttrsToList (n: v: ''${n}="${v}"'') (
+            lib.filterAttrs (_n: v: (builtins.typeOf v) == "string") input
+          ));
+        lastModified =
+          name: input:
+          ''flake_input_last_modified{input="${name}",${lib.concatStringsSep "," (flakeAttrs input)}} ${toString input.lastModified}'';
       in
       {
         "prometheus-node-exporter-text-files/flake-inputs.prom" = {

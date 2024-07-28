@@ -1,60 +1,65 @@
 # A simple abstraction layer for almost all of my services' needs
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.nginx;
-  virtualHostOption = with lib; types.submodule {
-    options = {
-      subdomain = mkOption {
-        type = types.str;
-        example = "dev";
-        description = ''
-          Which subdomain, under config.networking.domain, to use
-          for this virtual host.
-        '';
-      };
-      port = mkOption {
-        type = with types; nullOr port;
-        default = null;
-        example = 8080;
-        description = ''
-          Which port to proxy to, through 127.0.0.1, for this virtual host.
-          This option is incompatible with `root`.
-        '';
-      };
-      root = mkOption {
-        type = with types; nullOr path;
-        default = null;
-        example = "/var/www/blog";
-        description = ''
-          The root folder for this virtual host.  This option is incompatible
-          with `port`.
-        '';
-      };
-      sso = {
-        enable = mkEnableOption "SSO authentication";
-      };
-      extraConfig = mkOption {
-        type = types.attrs; # FIXME: forward type of virtualHosts
-        example = literalExpression ''
-          {
-            locations."/socket" = {
-              proxyPass = "http://127.0.0.1:8096/";
-              proxyWebsockets = true;
-            };
-          }
-        '';
-        default = { };
-        description = ''
-          Any extra configuration that should be applied to this virtual host.
-        '';
+  virtualHostOption =
+    with lib;
+    types.submodule {
+      options = {
+        subdomain = mkOption {
+          type = types.str;
+          example = "dev";
+          description = ''
+            Which subdomain, under config.networking.domain, to use
+            for this virtual host.
+          '';
+        };
+        port = mkOption {
+          type = with types; nullOr port;
+          default = null;
+          example = 8080;
+          description = ''
+            Which port to proxy to, through 127.0.0.1, for this virtual host.
+            This option is incompatible with `root`.
+          '';
+        };
+        root = mkOption {
+          type = with types; nullOr path;
+          default = null;
+          example = "/var/www/blog";
+          description = ''
+            The root folder for this virtual host.  This option is incompatible
+            with `port`.
+          '';
+        };
+        sso = {
+          enable = mkEnableOption "SSO authentication";
+        };
+        extraConfig = mkOption {
+          type = types.attrs; # FIXME: forward type of virtualHosts
+          example = literalExpression ''
+            {
+              locations."/socket" = {
+                proxyPass = "http://127.0.0.1:8096/";
+                proxyWebsockets = true;
+              };
+            }
+          '';
+          default = { };
+          description = ''
+            Any extra configuration that should be applied to this virtual host.
+          '';
+        };
       };
     };
-  };
 in
 {
-  imports = [
-    ./sso
-  ];
+  imports = [ ./sso ];
   options.my.services.nginx = with lib; {
     enable = mkEnableOption "Nginx";
     acme = {
@@ -116,20 +121,22 @@ in
         description = "Port to use for internal webui.";
       };
       users = mkOption {
-        type = types.attrsOf (types.submodule {
-          options = {
-            passwordHashFile = mkOption {
-              type = types.str;
-              example = "/var/lib/nginx-sso/alice/password-hash.txt";
-              description = "Path to file containing the user's password hash.";
+        type = types.attrsOf (
+          types.submodule {
+            options = {
+              passwordHashFile = mkOption {
+                type = types.str;
+                example = "/var/lib/nginx-sso/alice/password-hash.txt";
+                description = "Path to file containing the user's password hash.";
+              };
+              totpSecretFile = mkOption {
+                type = types.str;
+                example = "/var/lib/nginx-sso/alice/totp-secret.txt";
+                description = "Path to file containing the user's TOTP secret.";
+              };
             };
-            totpSecretFile = mkOption {
-              type = types.str;
-              example = "/var/lib/nginx-sso/alice/totp-secret.txt";
-              description = "Path to file containing the user's TOTP secret.";
-            };
-          };
-        });
+          }
+        );
         example = literalExpression ''
           {
             alice = {
@@ -153,9 +160,13 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    assertions = lib.flip builtins.map cfg.virtualHosts ({ subdomain, ... } @ args:
+    assertions = lib.flip builtins.map cfg.virtualHosts (
+      { subdomain, ... }@args:
       let
-        conflicts = [ "port" "root" ];
+        conflicts = [
+          "port"
+          "root"
+        ];
         optionsNotNull = builtins.map (v: args.${v} != null) conflicts;
         optionsSet = lib.filter lib.id optionsNotNull;
       in
@@ -166,39 +177,40 @@ in
             lib.concatStringsSep ", " (builtins.map (v: "'${v}'") conflicts)
           } configured.
         '';
-      })
-      #      ++ (
-      #      let
-      #        ports = lib.my.mapFilter
-      #          (v: v != null)
-      #          ({ port, ... }: port)
-      #          cfg.virtualHosts;
-      #        lib.unique ports;
-      #        lib.compareLists ports
-      #        portCounts = lib.my.countValues ports;
-      #        nonUniquesCounts = lib.filterAttrs (_: v: v != 1) portCounts;
-      #        nonUniques = builtins.attrNames nonUniquesCounts;
-      #        mkAssertion = port: {
-      #          assertion = false;
-      #          message = "Port ${port} cannot appear in multiple virtual hosts.";
-      #        };
-      #      in
-      #      map mkAssertion nonUniques
-      #    ) ++ (
-      #      let
-      #        subs = map ({ subdomain, ... }: subdomain) cfg.virtualHosts;
-      #        subsCounts = lib.my.countValues subs;
-      #        nonUniquesCounts = lib.filterAttrs (_: v: v != 1) subsCounts;
-      #        nonUniques = builtins.attrNames nonUniquesCounts;
-      #        mkAssertion = v: {
-      #          assertion = false;
-      #          message = ''
-      #            Subdomain '${v}' cannot appear in multiple virtual hosts.
-      #          '';
-      #        };
-      #      in
-      #      map mkAssertion nonUniques
-      #    )
+      }
+    )
+    #      ++ (
+    #      let
+    #        ports = lib.my.mapFilter
+    #          (v: v != null)
+    #          ({ port, ... }: port)
+    #          cfg.virtualHosts;
+    #        lib.unique ports;
+    #        lib.compareLists ports
+    #        portCounts = lib.my.countValues ports;
+    #        nonUniquesCounts = lib.filterAttrs (_: v: v != 1) portCounts;
+    #        nonUniques = builtins.attrNames nonUniquesCounts;
+    #        mkAssertion = port: {
+    #          assertion = false;
+    #          message = "Port ${port} cannot appear in multiple virtual hosts.";
+    #        };
+    #      in
+    #      map mkAssertion nonUniques
+    #    ) ++ (
+    #      let
+    #        subs = map ({ subdomain, ... }: subdomain) cfg.virtualHosts;
+    #        subsCounts = lib.my.countValues subs;
+    #        nonUniquesCounts = lib.filterAttrs (_: v: v != 1) subsCounts;
+    #        nonUniques = builtins.attrNames nonUniquesCounts;
+    #        mkAssertion = v: {
+    #          assertion = false;
+    #          message = ''
+    #            Subdomain '${v}' cannot appear in multiple virtual hosts.
+    #          '';
+    #        };
+    #      in
+    #      map mkAssertion nonUniques
+    #    )
     ;
     services = {
       nginx = {
@@ -251,67 +263,68 @@ in
           let
             genAttrs' = values: f: lib.listToAttrs (map f values);
             inherit (config.networking) domain;
-            mkVHost = { subdomain, ... } @ args: lib.nameValuePair
-              "${subdomain}.${domain}"
-              (lib.foldl lib.recursiveUpdate { } [
-                # Base configuration
-                {
-                  forceSSL = true;
-                  useACMEHost = domain;
-                }
-                # Proxy to port
-                (lib.optionalAttrs (args.port != null) {
-                  locations."/".proxyPass =
-                    "http://127.0.0.1:${toString args.port}";
-                  # TODO make ipv6 possible
-                  # http://[::1]:${toString args.port};
-                })
-                # Serve filesystem content
-                (lib.optionalAttrs (args.root != null) {
-                  inherit (args) root;
-                })
-                # VHost specific configuration
-                args.extraConfig
-                # SSO configuration
-                (lib.optionalAttrs args.sso.enable {
-                  extraConfig = (args.extraConfig.extraConfig or "") + ''
-                    error_page 401 = @error401;
-                  '';
-                  locations = {
-                    "@error401".return = ''
-                      302 https://${cfg.sso.subdomain}.${config.networking.domain}/login?go=$scheme://$http_host$request_uri
-                    '';
-                    "/" = {
-                      extraConfig =
-                        (args.extraConfig.locations."/".extraConfig or "") + ''
-                          # Use SSO
-                          auth_request /sso-auth;
-                          # Set username through header
-                          auth_request_set $username $upstream_http_x_username;
-                          proxy_set_header X-User $username;
-                          # Renew SSO cookie on request
-                          auth_request_set $cookie $upstream_http_set_cookie;
-                          add_header Set-Cookie $cookie;
-                        '';
-                    };
-                    "/sso-auth" = {
-                      proxyPass = "http://localhost:${toString cfg.sso.port}/auth";
-                      extraConfig = ''
-                        # Do not allow requests from outside
-                        internal;
-                        # Do not forward the request body
-                        proxy_pass_request_body off;
-                        proxy_set_header Content-Length "";
-                        # Set X-Application according to subdomain for matching
-                        proxy_set_header X-Application "${subdomain}";
-                        # Set origin URI for matching
-                        proxy_set_header X-Origin-URI $request_uri;
+            mkVHost =
+              { subdomain, ... }@args:
+              lib.nameValuePair "${subdomain}.${domain}" (
+                lib.foldl lib.recursiveUpdate { } [
+                  # Base configuration
+                  {
+                    forceSSL = true;
+                    useACMEHost = domain;
+                  }
+                  # Proxy to port
+                  (lib.optionalAttrs (args.port != null) {
+                    locations."/".proxyPass = "http://127.0.0.1:${toString args.port}";
+                    # TODO make ipv6 possible
+                    # http://[::1]:${toString args.port};
+                  })
+                  # Serve filesystem content
+                  (lib.optionalAttrs (args.root != null) { inherit (args) root; })
+                  # VHost specific configuration
+                  args.extraConfig
+                  # SSO configuration
+                  (lib.optionalAttrs args.sso.enable {
+                    extraConfig =
+                      (args.extraConfig.extraConfig or "")
+                      + ''
+                        error_page 401 = @error401;
                       '';
+                    locations = {
+                      "@error401".return = ''
+                        302 https://${cfg.sso.subdomain}.${config.networking.domain}/login?go=$scheme://$http_host$request_uri
+                      '';
+                      "/" = {
+                        extraConfig =
+                          (args.extraConfig.locations."/".extraConfig or "")
+                          + ''
+                            # Use SSO
+                            auth_request /sso-auth;
+                            # Set username through header
+                            auth_request_set $username $upstream_http_x_username;
+                            proxy_set_header X-User $username;
+                            # Renew SSO cookie on request
+                            auth_request_set $cookie $upstream_http_set_cookie;
+                            add_header Set-Cookie $cookie;
+                          '';
+                      };
+                      "/sso-auth" = {
+                        proxyPass = "http://localhost:${toString cfg.sso.port}/auth";
+                        extraConfig = ''
+                          # Do not allow requests from outside
+                          internal;
+                          # Do not forward the request body
+                          proxy_pass_request_body off;
+                          proxy_set_header Content-Length "";
+                          # Set X-Application according to subdomain for matching
+                          proxy_set_header X-Application "${subdomain}";
+                          # Set origin URI for matching
+                          proxy_set_header X-Origin-URI $request_uri;
+                        '';
+                      };
                     };
-                  };
-                })
-              ])
-            ;
+                  })
+                ]
+              );
           in
           genAttrs' cfg.virtualHosts mkVHost;
         sso = {
@@ -322,9 +335,7 @@ in
               inherit (cfg.sso) port;
             };
             audit_log = {
-              target = [
-                "fd://stdout"
-              ];
+              target = [ "fd://stdout" ];
               events = [
                 "access_denied"
                 "login_success"
@@ -359,21 +370,30 @@ in
                 in
                 {
                   users = applyUsers (_: v: { _secret = v.passwordHashFile; });
-                  mfa = applyUsers (_: v: [{
-                    provider = "totp";
-                    attributes = {
-                      secret = {
-                        _secret = v.totpSecretFile;
-                      };
-                    };
-                  }]);
+                  mfa = applyUsers (
+                    _: v: [
+                      {
+                        provider = "totp";
+                        attributes = {
+                          secret = {
+                            _secret = v.totpSecretFile;
+                          };
+                        };
+                      }
+                    ]
+                  );
                   inherit (cfg.sso) groups;
                 };
             };
             acl = {
               rule_sets = [
                 {
-                  rules = [{ field = "x-application"; present = true; }];
+                  rules = [
+                    {
+                      field = "x-application";
+                      present = true;
+                    }
+                  ];
                   allow = [ "@root" ];
                 }
               ];
@@ -426,7 +446,10 @@ in
       ];
     };
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     # Nginx needs to be able to read the certificates
     users.users.nginx.extraGroups = [ "acme" ];
     security.acme = {

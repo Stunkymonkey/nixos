@@ -74,9 +74,7 @@
         "Aria2" = {
           id = "jjnzq-pgzua";
           path = "/data/tmp/aria2";
-          devices = [
-            "thinkman"
-          ];
+          devices = [ "thinkman" ];
         };
       };
     };

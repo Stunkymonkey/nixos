@@ -1,4 +1,9 @@
-{ config, lib, modulesPath, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -9,9 +14,7 @@
     "virtio_pci"
     "virtio_scsi"
   ];
-  boot.initrd.kernelModules = [
-    "dm-snapshot"
-  ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

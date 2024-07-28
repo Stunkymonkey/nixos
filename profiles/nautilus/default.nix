@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.nautilus;
 in
@@ -31,9 +36,7 @@ in
       ];
 
       sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
-      pathsToLink = [
-        "/share/nautilus-python/extensions"
-      ];
+      pathsToLink = [ "/share/nautilus-python/extensions" ];
     };
 
     programs.nautilus-open-any-terminal = {

@@ -1,5 +1,4 @@
-_:
-{
+_: {
   networking.firewall.allowedTCPPorts = [
     8080 # aria
   ];

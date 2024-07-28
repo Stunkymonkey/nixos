@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.media;
 in
@@ -31,9 +36,7 @@ in
       shotwell # photo management
       sonixd # cloud-music-player
       soundkonverter # audio converter
-      (yt-dlp.override {
-        withAlias = true;
-      }) # video download
+      (yt-dlp.override { withAlias = true; }) # video download
     ];
   };
 }

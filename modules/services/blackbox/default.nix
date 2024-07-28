@@ -1,5 +1,10 @@
 # monitor urls
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.blackbox;
   blackBoxConfig = {
@@ -11,12 +16,8 @@ let
       ssh_banner = {
         prober = "tcp";
         tcp.query_response = [
-          {
-            send = "SSH-2.0-blackbox-ssh-check";
-          }
-          {
-            expect = "^SSH-2.0-";
-          }
+          { send = "SSH-2.0-blackbox-ssh-check"; }
+          { expect = "^SSH-2.0-"; }
         ];
       };
     };

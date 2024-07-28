@@ -1,5 +1,10 @@
 # A FLOSS self-hosted, subsonic compatible music server
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.navidrome;
   inherit (config.networking) domain;

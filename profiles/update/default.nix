@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.update;
 in
@@ -11,8 +16,6 @@ in
     # Enable firmware update daemon
     services.fwupd.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      topgrade
-    ];
+    environment.systemPackages = with pkgs; [ topgrade ];
   };
 }

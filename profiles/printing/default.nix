@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.printing;
 in
@@ -16,8 +21,6 @@ in
     ];
     programs.system-config-printer.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      gnome.simple-scan
-    ];
+    environment.systemPackages = with pkgs; [ gnome.simple-scan ];
   };
 }

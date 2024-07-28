@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.backup;
 in
@@ -52,9 +57,7 @@ in
       type = with types; listOf str;
       description = lib.mdDoc "additional path(s) to back up";
       default = [ "/" ];
-      example = [
-        "/home/user"
-      ];
+      example = [ "/home/user" ];
     };
     exclude = mkOption {
       type = with types; listOf str;
@@ -100,8 +103,8 @@ in
         # other-os
         "**/.Trash" # apple
         "**/.DS_Store" # apple
-        "**/$RECYCLE.BIN" #windows
-        "**/System Volume Information" #windows
+        "**/$RECYCLE.BIN" # windows
+        "**/System Volume Information" # windows
 
         # var data
         "/var/cache"
@@ -138,27 +141,31 @@ in
       inherit (cfg) doInit;
       compression = "auto,zstd";
 
-      postHook = ''
-        if (( $exitStatus > 1 )); then
-      '' + lib.optionalString cfg.OnFailureNotification ''
-        # iterate over all logged in users
-        for user in $(users); do
-          sway_pid=$(${pkgs.procps}/bin/pgrep -x "sway" -u "$user")
-          if [ -n "$sway_pid" ]; then
-            # set environment variables
-            export $(cat /proc/$sway_pid/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=' | tr -d '\0')
-            export DISPLAY=:0
-            # send notification via dbus: https://wiki.archlinux.org/title/Desktop_notifications#Bash
-            ${pkgs.sudo}/bin/sudo --preserve-env=DBUS_SESSION_BUS_ADDRESS,DISPLAY -u $user ${pkgs.libnotify}/bin/notify-send -u critical "BorgBackup Failed!" "Run journalctl -u borgbackup-job* for more details."
-            echo "sent notification"
+      postHook =
+        ''
+          if (( $exitStatus > 1 )); then
+        ''
+        + lib.optionalString cfg.OnFailureNotification ''
+          # iterate over all logged in users
+          for user in $(users); do
+            sway_pid=$(${pkgs.procps}/bin/pgrep -x "sway" -u "$user")
+            if [ -n "$sway_pid" ]; then
+              # set environment variables
+              export $(cat /proc/$sway_pid/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=' | tr -d '\0')
+              export DISPLAY=:0
+              # send notification via dbus: https://wiki.archlinux.org/title/Desktop_notifications#Bash
+              ${pkgs.sudo}/bin/sudo --preserve-env=DBUS_SESSION_BUS_ADDRESS,DISPLAY -u $user ${pkgs.libnotify}/bin/notify-send -u critical "BorgBackup Failed!" "Run journalctl -u borgbackup-job* for more details."
+              echo "sent notification"
+            fi
+          done
+        ''
+        + lib.optionalString (cfg.OnFailureMail != null) ''
+          journalctl -u borgbackup-job-hetzner.service | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
+          echo "sent mail"
+        ''
+        + ''
           fi
-        done
-      '' + lib.optionalString (cfg.OnFailureMail != null) ''
-        journalctl -u borgbackup-job-hetzner.service | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
-        echo "sent mail"
-      '' + ''
-        fi
-      '';
+        '';
 
       # for mail sending
       readWritePaths = lib.optional (cfg.OnFailureMail != null) "/var/lib/postfix/queue/maildrop/";

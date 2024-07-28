@@ -1,5 +1,10 @@
 # log monitoring
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.loki;
 in
@@ -15,8 +20,8 @@ in
     };
 
     rules = mkOption {
-      type = types.attrsOf
-        (types.submodule {
+      type = types.attrsOf (
+        types.submodule {
           options = {
             condition = mkOption {
               type = types.str;
@@ -53,7 +58,8 @@ in
               default = "2m";
             };
           };
-        });
+        }
+      );
       description = ''
         Defines the loki rules.
       '';
@@ -67,14 +73,12 @@ in
         groups = [
           {
             name = "alerting-rules";
-            rules = lib.mapAttrsToList
-              (name: opts: {
-                alert = name;
-                inherit (opts) condition labels;
-                for = opts.time;
-                annotations.description = opts.description;
-              })
-              cfg.rules;
+            rules = lib.mapAttrsToList (name: opts: {
+              alert = name;
+              inherit (opts) condition labels;
+              for = opts.time;
+              annotations.description = opts.description;
+            }) cfg.rules;
           }
         ];
       };
@@ -114,16 +118,18 @@ in
             };
 
             schema_config = {
-              configs = [{
-                from = "2020-11-08";
-                store = "tsdb";
-                object_store = "filesystem";
-                schema = "v13";
-                index = {
-                  prefix = "index_";
-                  period = "24h";
-                };
-              }];
+              configs = [
+                {
+                  from = "2020-11-08";
+                  store = "tsdb";
+                  object_store = "filesystem";
+                  schema = "v13";
+                  index = {
+                    prefix = "index_";
+                    period = "24h";
+                  };
+                }
+              ];
             };
 
             limits_config = {

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.hardware.thunderbolt;
 in
@@ -8,9 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      thunderbolt
-    ];
+    environment.systemPackages = with pkgs; [ thunderbolt ];
     services.hardware.bolt.enable = true;
   };
 }

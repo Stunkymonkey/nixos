@@ -1,5 +1,10 @@
 # RSS aggregator and reader
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.freshrss;
   inherit (config.networking) domain;

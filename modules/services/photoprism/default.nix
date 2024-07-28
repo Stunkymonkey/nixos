@@ -49,7 +49,12 @@ in
   config = lib.mkIf cfg.enable {
     services.photoprism = {
       enable = true;
-      inherit (cfg) passwordFile port originalsPath settings;
+      inherit (cfg)
+        passwordFile
+        port
+        originalsPath
+        settings
+        ;
     };
 
     my.services.nginx.virtualHosts = [

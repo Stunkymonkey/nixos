@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.hardware.yubikey;
 in
@@ -18,8 +23,6 @@ in
     };
     services.pcscd.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      yubikey-manager
-    ];
+    environment.systemPackages = with pkgs; [ yubikey-manager ];
   };
 }

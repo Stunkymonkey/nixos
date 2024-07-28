@@ -31,12 +31,14 @@ in
       prometheus.scrapeConfigs = [
         {
           job_name = "bazarr";
-          static_configs = [{
-            targets = [ "127.0.0.1:${toString port + 1}" ];
-            labels = {
-              instance = config.networking.hostName;
-            };
-          }];
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:${toString port + 1}" ];
+              labels = {
+                instance = config.networking.hostName;
+              };
+            }
+          ];
         }
       ];
     };

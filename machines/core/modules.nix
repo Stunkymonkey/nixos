@@ -1,5 +1,4 @@
-_:
-{
+_: {
   boot.initrd = {
     availableKernelModules = [
       "ahci"

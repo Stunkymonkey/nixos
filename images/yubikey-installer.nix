@@ -2,7 +2,13 @@
 # nix build -f yubikey-installer.nix nixos-yubikey
 # sudo cp -v installer/iso/*.iso /dev/sdb; sync
 let
-  configuration = { config, lib, pkgs, ... }:
+  configuration =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     with pkgs;
     let
       src = fetchGit "https://github.com/drduh/YubiKey-Guide";
@@ -54,12 +60,17 @@ let
 
       yubikey-guide = symlinkJoin {
         name = "yubikey-guide";
-        paths = [ view-yubikey-guide shortcut ];
+        paths = [
+          view-yubikey-guide
+          shortcut
+        ];
       };
 
     in
     {
-      nixpkgs.config = { allowBroken = true; };
+      nixpkgs.config = {
+        allowBroken = true;
+      };
 
       isoImage.isoBaseName = lib.mkForce "nixos-yubikey";
       # Uncomment this to disable compression and speed up image creation time
@@ -72,7 +83,9 @@ let
         kernelParams = [ "copytoram" ];
         # Secure defaults
         tmp.cleanOnBoot = true;
-        kernel.sysctl = { "kernel.unprivileged_bpf_disabled" = 1; };
+        kernel.sysctl = {
+          "kernel.unprivileged_bpf_disabled" = 1;
+        };
       };
 
       services.pcscd.enable = true;

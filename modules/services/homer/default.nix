@@ -1,5 +1,10 @@
 # Dashboard site
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.homer;
   inherit (config.networking) domain;
@@ -14,9 +19,7 @@ let
   };
 in
 {
-  imports = [
-    ./config.nix
-  ];
+  imports = [ ./config.nix ];
 
   options.my.services.homer = with lib; {
     enable = mkEnableOption "Homer Dashboard";
@@ -44,10 +47,22 @@ in
 
     webapps = {
       dashboardCategories = [
-        { name = "Applications"; tag = "app"; }
-        { name = "Media"; tag = "media"; }
-        { name = "Infrastructure"; tag = "infra"; }
-        { name = "Others"; tag = "other"; }
+        {
+          name = "Applications";
+          tag = "app";
+        }
+        {
+          name = "Media";
+          tag = "media";
+        }
+        {
+          name = "Infrastructure";
+          tag = "infra";
+        }
+        {
+          name = "Others";
+          tag = "other";
+        }
       ];
     };
   };

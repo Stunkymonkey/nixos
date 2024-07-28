@@ -1,9 +1,11 @@
 # based on: https://github.com/Mic92/dotfiles/blob/main/nixos/images/base-config.nix
-{ lib
-, pkgs
-, config
-, ...
-}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
   system.stateVersion = config.system.nixos.version;
 
   networking = {
@@ -23,7 +25,8 @@
     network.enable = true;
     network.networks =
       lib.mapAttrs'
-        (num: _:
+        (
+          num: _:
           lib.nameValuePair "eth${num}" {
             matchConfig.Name = "eth${num}";
             networkConfig = {
@@ -40,7 +43,8 @@
               RouteMetric = 512;
             };
             ipv6AcceptRAConfig.Token = "::521a:c5ff:fefe:65d9";
-          })
+          }
+        )
         {
           "0" = { };
           "1" = { };

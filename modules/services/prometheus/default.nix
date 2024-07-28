@@ -1,5 +1,10 @@
 # monitoring system services
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.prometheus;
   inherit (config.networking) domain;
@@ -31,8 +36,8 @@ in
 
     # a good collections for allerts can be found here: https://samber.github.io/awesome-prometheus-alerts/rules#blackbox
     rules = mkOption {
-      type = types.attrsOf
-        (types.submodule {
+      type = types.attrsOf (
+        types.submodule {
           options = {
             condition = mkOption {
               type = types.str;
@@ -69,7 +74,8 @@ in
               default = "2m";
             };
           };
-        });
+        }
+      );
       description = ''
         Defines the prometheus rules.
       '';
@@ -92,12 +98,12 @@ in
         };
 
         ruleFiles = [
-          (pkgs.writeText "prometheus-rules.yml" (builtins.toJSON {
-            groups = [
-              {
-                name = "alerting-rules";
-                rules = lib.mapAttrsToList
-                  (name: opts: {
+          (pkgs.writeText "prometheus-rules.yml" (
+            builtins.toJSON {
+              groups = [
+                {
+                  name = "alerting-rules";
+                  rules = lib.mapAttrsToList (name: opts: {
                     alert = name;
                     expr = opts.condition;
                     for = opts.time;
@@ -106,22 +112,24 @@ in
                       inherit (opts) description;
                       grafana = lib.optionalString config.services.grafana.enable "https://visualization.${domain}";
                     };
-                  })
-                  cfg.rules;
-              }
-            ];
-          }))
+                  }) cfg.rules;
+                }
+              ];
+            }
+          ))
         ];
 
         scrapeConfigs = [
           {
             job_name = "prometheus";
-            static_configs = [{
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
-              labels = {
-                instance = config.networking.hostName;
-              };
-            }];
+            static_configs = [
+              {
+                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                labels = {
+                  instance = config.networking.hostName;
+                };
+              }
+            ];
           }
         ];
       };

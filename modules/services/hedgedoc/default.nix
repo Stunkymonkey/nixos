@@ -1,5 +1,10 @@
 # HedgeDoc is an open-source, web-based, self-hosted, collaborative markdown editor.
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.hedgedoc;
   inherit (config.networking) domain;

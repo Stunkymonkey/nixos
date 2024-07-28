@@ -1,6 +1,5 @@
 # network settings
-_:
-{
+_: {
   # hotfixes for dns settings
   networking.extraHosts =
     let

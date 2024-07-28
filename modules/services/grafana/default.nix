@@ -1,5 +1,10 @@
 # visualize monitoring services
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.grafana;
   inherit (config.networking) domain;

@@ -1,5 +1,10 @@
 # self-hosted cloud
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.nextcloud;
   inherit (config.networking) domain;
@@ -71,7 +76,12 @@ in
         };
 
         extraApps = with pkgs.nextcloud29Packages.apps; {
-          inherit calendar contacts tasks deck;
+          inherit
+            calendar
+            contacts
+            tasks
+            deck
+            ;
         };
         extraAppsEnable = true;
       };

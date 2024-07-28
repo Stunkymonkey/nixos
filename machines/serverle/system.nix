@@ -1,6 +1,5 @@
 # enabled system services
-_:
-{
+_: {
   my.system = {
     avahi.enable = true;
     docker.enable = true;

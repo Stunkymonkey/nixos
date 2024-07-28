@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.sway;
 in
@@ -23,9 +28,7 @@ in
       sway-theme.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      polkit_gnome
-    ];
+    environment.systemPackages = with pkgs; [ polkit_gnome ];
     environment.pathsToLink = [ "/libexec" ];
 
     programs = {

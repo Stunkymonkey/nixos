@@ -43,7 +43,13 @@
     };
   };
 
-  outputs = inputs@{ self, flake-parts, nixinate, ... }:
+  outputs =
+    inputs@{
+      self,
+      flake-parts,
+      nixinate,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
 
       imports = [
@@ -52,51 +58,61 @@
         inputs.git-hooks.flakeModule
       ];
 
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-      perSystem = { inputs', config, pkgs, system, ... }: {
-        # make pkgs available to all `perSystem` functions
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-        };
+      perSystem =
+        {
+          inputs',
+          config,
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          # make pkgs available to all `perSystem` functions
+          _module.args.pkgs = import inputs.nixpkgs { inherit system; };
 
-        # enable pre-commit checks
-        pre-commit.settings = {
-          hooks = {
-            deadnix = {
-              enable = true;
-              settings.noLambdaPatternNames = true;
-            };
-            markdownlint.enable = true;
-            nixfmt = {
-              enable = true;
-              # TODO remove in 24.11
-              package = pkgs.nixfmt-rfc-style;
-            };
-            shellcheck.enable = true;
-            statix.enable = true;
-            typos = {
-              enable = true;
-              excludes = [ "secrets\\.yaml" "\\.sops\\.yaml" ];
-              settings.ignored-words = [ "flate" ];
-            };
-            yamllint = {
-              enable = true;
-              excludes = [ "secrets\\.yaml" ];
+          # enable pre-commit checks
+          pre-commit.settings = {
+            hooks = {
+              deadnix = {
+                enable = true;
+                settings.noLambdaPatternNames = true;
+              };
+              markdownlint.enable = true;
+              nixfmt = {
+                enable = true;
+                # TODO remove in 24.11
+                package = pkgs.nixfmt-rfc-style;
+              };
+              shellcheck.enable = true;
+              statix.enable = true;
+              typos = {
+                enable = true;
+                excludes = [
+                  "secrets\\.yaml"
+                  "\\.sops\\.yaml"
+                ];
+                settings.ignored-words = [ "flate" ];
+              };
+              yamllint = {
+                enable = true;
+                excludes = [ "secrets\\.yaml" ];
+              };
             };
           };
-        };
 
-        devShells.default = pkgs.mkShell {
-          inputsFrom = [
-            config.pre-commit.devShell
-          ];
-          nativeBuildInputs = with pkgs; [
-            inputs'.sops-nix.packages.sops-import-keys-hook
-            inputs'.disko.packages.disko
-          ];
+          devShells.default = pkgs.mkShell {
+            inputsFrom = [ config.pre-commit.devShell ];
+            nativeBuildInputs = with pkgs; [
+              inputs'.sops-nix.packages.sops-import-keys-hook
+              inputs'.disko.packages.disko
+            ];
+          };
         };
-      };
       # flake = {};
       flake.apps = inputs.nixinate.nixinate."x86_64-linux" self;
     };

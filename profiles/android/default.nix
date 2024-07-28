@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.android;
 in
@@ -9,8 +14,6 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.adb.enable = true;
-    environment.systemPackages = with pkgs; [
-      scrcpy
-    ];
+    environment.systemPackages = with pkgs; [ scrcpy ];
   };
 }

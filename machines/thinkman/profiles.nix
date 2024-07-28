@@ -1,6 +1,5 @@
 # enabled profiles
-_:
-{
+_: {
   my.profiles = {
     "3d-design".enable = true;
     android.enable = true;

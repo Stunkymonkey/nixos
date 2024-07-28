@@ -1,5 +1,10 @@
 # self-hosted git service
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.gitea;
   inherit (config.networking) domain;

@@ -1,5 +1,11 @@
 # Docker related settings
-{ config, lib, options, pkgs, ... }:
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.system.docker;
 in

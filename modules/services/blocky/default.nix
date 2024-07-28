@@ -1,5 +1,10 @@
 # Fast and lightweight DNS proxy as ad-blocker for local network
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.blocky;
 in

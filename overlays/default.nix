@@ -1,6 +1,5 @@
 # overlays for nixpkgs
-_self: _super:
-{
+_self: _super: {
   # freshrss = _super.freshrss.overrideAttrs (old: {
   #   version = "1.21.0";
   #   src = _super.fetchFromGitHub {

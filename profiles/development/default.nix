@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.development;
 in
@@ -23,18 +28,20 @@ in
       # websites
       hugo
       # scripts
-      (python3.withPackages (ps: with ps; [
-        jupyter # notebooks
-        matplotlib
-        numpy
-        pandas
-        pillow
-        plotly
-        scikitlearn
-        scipy
-        tqdm # progressbar in pandas
-        wheel # python development
-      ]))
+      (python3.withPackages (
+        ps: with ps; [
+          jupyter # notebooks
+          matplotlib
+          numpy
+          pandas
+          pillow
+          plotly
+          scikitlearn
+          scipy
+          tqdm # progressbar in pandas
+          wheel # python development
+        ]
+      ))
       # linter
       shellcheck
       typos

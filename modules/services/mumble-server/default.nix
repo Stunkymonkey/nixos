@@ -1,5 +1,10 @@
 # Have a good quality voice chat
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.mumble-server;
   domain = "voice.${config.networking.domain}";
@@ -28,7 +33,10 @@ in
       '';
     };
 
-    users.groups."voice-buehler-rocks".members = [ "murmur" "nginx" ];
+    users.groups."voice-buehler-rocks".members = [
+      "murmur"
+      "nginx"
+    ];
 
     my.services.prometheus.rules = {
       mumble_not_running = {

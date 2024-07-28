@@ -1,5 +1,10 @@
 # sandbox video game
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.minecraft-server;
 in

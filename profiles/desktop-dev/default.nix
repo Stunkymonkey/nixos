@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.profiles.desktop-dev;
 in
@@ -22,7 +27,8 @@ in
       (vscode-with-extensions.override {
         vscode = vscodium;
         vscodeExtensions =
-          with vscode-extensions; [
+          with vscode-extensions;
+          [
             bbenoist.nix
             editorconfig.editorconfig
             github.copilot
@@ -31,11 +37,13 @@ in
             ms-python.python
             ms-vscode-remote.remote-ssh
             pkief.material-icon-theme
-          ] ++ [
+          ]
+          ++ [
             # remove in 24.05
             unstable.vscode-extensions.equinusocio.vsc-material-theme
             unstable.vscode-extensions.hiukky.flate
-          ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          ]
+          ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             # {
             #   name = "vsc-material-theme";
             #   publisher = "Equinusocio";

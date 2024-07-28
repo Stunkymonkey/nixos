@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.hardware.bluetooth;
 in
@@ -18,8 +23,6 @@ in
       };
     };
     services.blueman.enable = true;
-    environment.systemPackages = with pkgs; [
-      sony-headphones-client
-    ];
+    environment.systemPackages = with pkgs; [ sony-headphones-client ];
   };
 }

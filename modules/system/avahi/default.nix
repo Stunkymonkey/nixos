@@ -1,5 +1,10 @@
 # avahi related settings
-{ config, lib, options, ... }:
+{
+  config,
+  lib,
+  options,
+  ...
+}:
 let
   cfg = config.my.system.avahi;
 in

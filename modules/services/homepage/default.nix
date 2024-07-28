@@ -1,5 +1,10 @@
 # My own personal homepage
-{ config, lib, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 let
   cfg = config.my.services.homepage;
   inherit (config.networking) domain;

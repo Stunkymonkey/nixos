@@ -1,5 +1,11 @@
 # I must override the module to allow having runtime secrets
-{ config, lib, pkgs, utils, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  utils,
+  ...
+}:
 let
   cfg = config.services.nginx.sso;
   pkg = lib.getBin cfg.package;
@@ -7,7 +13,6 @@ let
 in
 {
   disabledModules = [ "services/security/nginx-sso.nix" ];
-
 
   options.services.nginx.sso = with lib; {
     enable = mkEnableOption "nginx-sso service";
@@ -67,8 +72,7 @@ in
           # Fix permissions
           chown nginx-sso:nginx-sso ${confPath}
           chmod 0600 ${confPath}
-        ''
-        }'';
+        ''}'';
         ExecStart = lib.mkForce ''
           ${pkg}/bin/nginx-sso \
             --config ${confPath} \

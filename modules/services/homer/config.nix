@@ -3,24 +3,26 @@
 {
   options.webapps = {
     dashboardCategories = lib.mkOption {
-      type = lib.types.listOf (lib.types.submodule {
-        options = {
-          name = lib.mkOption {
-            type = lib.types.str;
-            description = ''
-              Category name.
-            '';
-            example = "Applications";
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              type = lib.types.str;
+              description = ''
+                Category name.
+              '';
+              example = "Applications";
+            };
+            tag = lib.mkOption {
+              type = lib.types.str;
+              description = ''
+                Category tag.
+              '';
+              example = "app";
+            };
           };
-          tag = lib.mkOption {
-            type = lib.types.str;
-            description = ''
-              Category tag.
-            '';
-            example = "app";
-          };
-        };
-      });
+        }
+      );
       description = ''
         App categories to display on the dashboard.
       '';
@@ -34,8 +36,8 @@
     };
 
     apps = lib.mkOption {
-      type = lib.types.attrsOf
-        (lib.types.submodule {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
           options = {
             dashboard = {
               url = lib.mkOption {
@@ -79,7 +81,10 @@
                 default = "Ping";
               };
               method = lib.mkOption {
-                type = lib.types.enum [ "get" "head" ];
+                type = lib.types.enum [
+                  "get"
+                  "head"
+                ];
                 description = ''
                   method of request used
                 '';
@@ -88,7 +93,8 @@
               };
             };
           };
-        });
+        }
+      );
       description = ''
         Defines a web application.
       '';
@@ -105,24 +111,33 @@
         let
           apps = builtins.filter (a: a.dashboard.name != null) (lib.attrValues cfg.apps);
         in
-        lib.forEach cfg.dashboardCategories (cat:
+        lib.forEach cfg.dashboardCategories (
+          cat:
           let
             catApps = lib.sort (a: b: a.dashboard.name < b.dashboard.name) (
-              builtins.filter
-                (a:
-                  a.dashboard.category != null && a.dashboard.category == cat.tag ||
-                  a.dashboard.category == null && cat.tag == "misc")
-                apps);
+              builtins.filter (
+                a:
+                a.dashboard.category != null && a.dashboard.category == cat.tag
+                || a.dashboard.category == null && cat.tag == "misc"
+              ) apps
+            );
           in
           {
             inherit (cat) name;
             items = lib.forEach catApps (a: {
-              inherit (a.dashboard) method name type url;
+              inherit (a.dashboard)
+                method
+                name
+                type
+                url
+                ;
               icon = lib.optionalString (a.dashboard.icon != null) "fas fa-${a.dashboard.icon}";
               target = "_blank";
             });
           }
         );
-      my.services.blackbox.http_endpoints = lib.mapAttrsToList (_key: value: value.dashboard.url) config.webapps.apps ++ [ "https://${config.networking.domain}/" ];
+      my.services.blackbox.http_endpoints =
+        lib.mapAttrsToList (_key: value: value.dashboard.url) config.webapps.apps
+        ++ [ "https://${config.networking.domain}/" ];
     };
 }

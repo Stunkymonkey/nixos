@@ -1,5 +1,11 @@
 # spell-checking
-{ config, lib, options, pkgs, ... }:
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.system.spell-check;
 in

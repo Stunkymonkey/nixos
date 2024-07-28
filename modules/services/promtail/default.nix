@@ -28,9 +28,11 @@ in
         positions = {
           filename = "/tmp/positions.yaml";
         };
-        clients = [{
-          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-        }];
+        clients = [
+          {
+            url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+          }
+        ];
         scrape_configs = [
           {
             job_name = "journal";
@@ -41,18 +43,18 @@ in
                 host = config.networking.hostName;
               };
             };
-            relabel_configs = [{
-              source_labels = [ "__journal__systemd_unit" ];
-              target_label = "unit";
-            }];
+            relabel_configs = [
+              {
+                source_labels = [ "__journal__systemd_unit" ];
+                target_label = "unit";
+              }
+            ];
           }
           {
             job_name = "nginx";
             static_configs = [
               {
-                targets = [
-                  "localhost"
-                ];
+                targets = [ "localhost" ];
                 labels = {
                   job = "nginx";
                   __path__ = "/var/log/nginx/*.log";
