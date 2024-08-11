@@ -6,6 +6,11 @@ in
   # video driver
   boot.initrd.kernelModules = [ "i915" ];
 
+  # fix audio
+  boot.extraModprobeConfig = ''
+    options snd-hda-intel dmic_detect=0
+  '';
+
   # Special power management settings for ThinkPads
   services.tlp.enable = true;
 

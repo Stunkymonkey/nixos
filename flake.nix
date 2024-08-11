@@ -96,7 +96,10 @@
                   "secrets\\.yaml"
                   "\\.sops\\.yaml"
                 ];
-                settings.ignored-words = [ "flate" ];
+                settings.ignored-words = [
+                  "flate"
+                  "hda"
+                ];
               };
               yamllint = {
                 enable = true;
