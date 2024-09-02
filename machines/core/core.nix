@@ -18,8 +18,8 @@
     killall
     lsof
     mosh
-    multipath-tools # kpartx
     mtr
+    multipath-tools # kpartx
     nmap
     nmon
     ouch # de-/compress
@@ -30,13 +30,14 @@
     rsync
     screen
     stress-ng
-    usbutils
     tmux
+    unzip
+    usbutils
     vim
     wget
     whois
+    xcp
     zip
-    unzip
   ];
 
   time.timeZone = "Europe/Berlin";
