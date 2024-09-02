@@ -15,13 +15,14 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       bless # hex editor
+      bruno
       chromium
       dbeaver-bin
       filezilla
       fritzing
       gnome.gnome-font-viewer
+      inlyne
       meld
-      bruno
       qgis
       sqlitebrowser
       (vscode-with-extensions.override {
