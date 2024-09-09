@@ -54,6 +54,7 @@ in
           swayidle
           swaylock
           wdisplays
+          wezterm
           wf-recorder
           wl-clipboard
           wofi
