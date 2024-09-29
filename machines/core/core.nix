@@ -6,6 +6,7 @@
     bind # dig
     borgbackup
     cryptsetup
+    fd # find replacement
     file
     fzf
     gettext
@@ -29,6 +30,7 @@
     reptyr
     rsync
     screen
+    sd # sed replacement
     stress-ng
     tmux
     unzip
