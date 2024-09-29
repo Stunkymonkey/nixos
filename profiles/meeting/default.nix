@@ -16,7 +16,7 @@ in
     environment.systemPackages = with pkgs; [
       element-desktop
       mumble
-      teamspeak_client
+      teamspeak5_client
     ];
   };
 }
