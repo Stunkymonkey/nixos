@@ -26,6 +26,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # TODO: fix this
+    nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
+
     # Create user so that we can set the ownership of the key to
     # it. DynamicUser will not take full effect as a result of this.
     users.users.go-neb = {
