@@ -1,11 +1,11 @@
 { stdenv, fetchzip }:
 stdenv.mkDerivation rec {
   pname = "homer";
-  version = "24.05.1";
+  version = "24.10.1";
 
   src = fetchzip {
     url = "https://github.com/bastienwirtz/homer/releases/download/v${version}/homer.zip";
-    hash = "sha256-2CnSDikhB903gnDbWPF4hwoih6B0x4KQs9qAIcrUUgg=";
+    hash = "sha256-UWRFiWkZi/1aHkf+hgXdnoVYb6bCBPPrk7DJAKla/B4=";
     stripRoot = false;
   };
 
