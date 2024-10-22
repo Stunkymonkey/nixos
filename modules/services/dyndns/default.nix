@@ -22,11 +22,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.ddclient = {
+    services.inadyn = {
       enable = true;
-      server = "dyndns.inwx.com";
-      inherit (cfg) username passwordFile;
-      domains = [ "serverle.${domain}" ];
+      settings.provider = {
+        "default@inwx.com" = {
+          inherit (cfg) username;
+          include = cfg.passwordFile;
+          hostname = "serverle.${domain}";
+        };
+      };
     };
   };
 }

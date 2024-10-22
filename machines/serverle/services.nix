@@ -9,7 +9,9 @@ in
     "bazarr/apikey" = { };
     "borgbackup/password" = { };
     "borgbackup/ssh_key" = { };
-    "dyndns/password" = { };
+    "dyndns/password" = {
+      owner = config.users.users.inadyn.name;
+    };
     "prowlarr/apikey" = { };
     "radarr/apikey" = { };
     "sonarr/apikey" = { };
