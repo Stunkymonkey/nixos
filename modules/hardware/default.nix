@@ -9,6 +9,7 @@
     ./graphics
     ./id-card
     ./keychron
+    ./monitor
     ./sound
     ./thunderbolt
     ./yubikey

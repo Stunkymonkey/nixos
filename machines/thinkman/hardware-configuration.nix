@@ -27,6 +27,7 @@ in
     graphics.cpuFlavor = cpuFlavor;
     id-card.enable = true;
     keychron.enable = true;
+    monitor.enable = true;
     sound.enable = true;
     thunderbolt.enable = true;
     yubikey.enable = true;
