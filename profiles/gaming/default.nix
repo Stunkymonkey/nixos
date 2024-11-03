@@ -17,6 +17,7 @@ in
       blobby
       discord
       minetest
+      moonlight-qt # steam-link stream
       openttd
       prismlauncher # replace minecraft
       superTuxKart
