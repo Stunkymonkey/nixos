@@ -35,7 +35,7 @@ used flakes:
 - deployment/update:
 
     ```bash
-    nix run .#apps.nixinate.<flake>
+    nix run .#<flake>
     ```
 
 - secrets:

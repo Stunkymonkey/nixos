@@ -112,8 +112,8 @@
               inputs'.disko.packages.disko
             ];
           };
+          # workaround for https://github.com/MatthewCroughan/nixinate/issues/12
+          apps = (nixinate.nixinate.${system} self).nixinate;
         };
-      # flake = {};
-      flake.apps = inputs.nixinate.nixinate."x86_64-linux" self;
     };
 }
