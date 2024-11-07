@@ -165,5 +165,12 @@ lib.makeScope pkgs.newScope (
         (_: {
           src = ./blackbox.json; # sadly only imported dashboards work
         });
+
+    fritzbox = buildGrafanaDashboard {
+      id = 17751;
+      pname = "fritzbox";
+      version = "1";
+      hash = "sha256-foc00LtcBTXOzvwyddJO0QJkCP82bUXa5iMuQmHqKcg=";
+    };
   }
 )

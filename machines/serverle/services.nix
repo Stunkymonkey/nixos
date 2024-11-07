@@ -12,6 +12,9 @@ in
     "dyndns/password" = {
       owner = config.users.users.inadyn.name;
     };
+    "fritzbox/password" = {
+      owner = config.users.users.fritz-exporter.name;
+    };
     "prowlarr/apikey" = { };
     "radarr/apikey" = { };
     "sonarr/apikey" = { };
@@ -74,6 +77,10 @@ in
     };
     jellyseerr = {
       enable = true;
+    };
+    fritzbox = {
+      enable = true;
+      passwordFile = secrets."fritzbox/password".path;
     };
     # Dashboard
     homer = {

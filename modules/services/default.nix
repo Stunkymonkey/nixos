@@ -9,6 +9,7 @@
     ./blocky
     ./dyndns
     ./freshrss
+    ./fritzbox
     ./gitea
     ./grafana
     ./hedgedoc
