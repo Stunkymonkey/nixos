@@ -1,7 +1,7 @@
 {
   description = "NixOS configuration";
   inputs = {
-    nix.url = "github:NixOS/nix";
+    # nix.url = "github:NixOS/nix";
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
@@ -107,6 +107,7 @@
           devShells.default = pkgs.mkShell {
             inputsFrom = [ config.pre-commit.devShell ];
             nativeBuildInputs = with pkgs; [
+              # inputs'.nix.packages.nix
               inputs'.sops-nix.packages.sops-import-keys-hook
               inputs'.disko.packages.disko
             ];
