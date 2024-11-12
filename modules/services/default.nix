@@ -8,6 +8,7 @@
     ./blackbox
     ./blocky
     ./dyndns
+    ./finance
     ./freshrss
     ./fritzbox
     ./gitea
