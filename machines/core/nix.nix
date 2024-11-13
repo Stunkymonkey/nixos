@@ -36,6 +36,7 @@
 
   environment.systemPackages = with pkgs; [
     nix-index
+    nix-init
     nix-prefetch
     nix-update
     nixfmt-rfc-style
