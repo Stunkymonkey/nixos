@@ -21,6 +21,6 @@ in
     ];
     programs.system-config-printer.enable = true;
 
-    environment.systemPackages = with pkgs; [ gnome.simple-scan ];
+    environment.systemPackages = with pkgs; [ simple-scan ];
   };
 }

@@ -24,17 +24,17 @@ in
     services = {
       udisks2.enable = true;
       dbus.packages = [ pkgs.dconf ];
-      udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+      udev.packages = [ pkgs.gnome-settings-daemon ];
       gnome.gnome-keyring.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
       glib
-      gnome.adwaita-icon-theme
-      gnome.dconf-editor
-      gnome.eog
-      gnome.file-roller
-      gnome.gnome-calculator
+      adwaita-icon-theme
+      dconf-editor
+      eog
+      file-roller
+      gnome-calculator
       polkit_gnome
       xdg-utils
     ];

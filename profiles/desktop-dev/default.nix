@@ -20,7 +20,7 @@ in
       dbeaver-bin
       filezilla
       fritzing
-      gnome.gnome-font-viewer
+      gnome-font-viewer
       inlyne
       meld
       qgis
