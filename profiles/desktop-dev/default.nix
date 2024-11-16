@@ -14,13 +14,13 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      bless # hex editor
       bruno
       chromium
       dbeaver-bin
       filezilla
       fritzing
       gnome-font-viewer
+      imhex # hex editor
       inlyne
       meld
       qgis
