@@ -35,7 +35,6 @@ in
         nautilus-open-any-terminal # terminal-context-entry
       ];
 
-      sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${config.system.path}/lib/nautilus/extensions-4";
       pathsToLink = [ "/share/nautilus-python/extensions" ];
     };
 
