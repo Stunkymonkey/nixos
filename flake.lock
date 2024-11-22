@@ -77,11 +77,11 @@
         "nixpkgs-lib": "nixpkgs-lib_3"
       },
       "locked": {
-        "lastModified": 1690933134,
-        "narHash": "sha256-ab989mN63fQZBFrkk4Q8bYxQCktuHmBIBqUG1jl6/FQ=",
+        "lastModified": 1730504689,
+        "narHash": "sha256-hgmguH29K2fvs9szpq2r3pz2/8cJd2LPS+b4tfNFCwE=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "59cf3f1447cfc75087e7273b04b31e689a8599fb",
+        "rev": "506278e768c2a08bec68eb62932193e341f55c90",
         "type": "github"
       },
       "original": {
@@ -137,11 +137,11 @@
     "hugo-coder": {
       "flake": false,
       "locked": {
-        "lastModified": 1692907267,
-        "narHash": "sha256-obTfWq/51LEhNFCQHzQkoHMJvpZKK8zfNF1JqRV1ho4=",
+        "lastModified": 1727390834,
+        "narHash": "sha256-zkAsUH0TKVeue+MS8v9hiamVXh+mdBrGF41TFVd7OtM=",
         "owner": "luizdepra",
         "repo": "hugo-coder",
-        "rev": "e35f1da207cb25f4fce730177423d041cf90e7dd",
+        "rev": "f69d6d6da728790a5f0bb1c5e2047174bc8f185c",
         "type": "github"
       },
       "original": {
@@ -267,20 +267,14 @@
     },
     "nixpkgs-lib_3": {
       "locked": {
-        "dir": "lib",
-        "lastModified": 1690881714,
-        "narHash": "sha256-h/nXluEqdiQHs1oSgkOOWF+j8gcJMWhwnZ9PFabN6q0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "9e1960bc196baf6881340d53dccb203a951745a2",
-        "type": "github"
+        "lastModified": 1730504152,
+        "narHash": "sha256-lXvH/vOfb4aGYyvFmZK/HlsNsr/0CVWlwYvo2rxJk3s=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/cc2f28000298e1269cea6612cd06ec9979dd5d7f.tar.gz"
       },
       "original": {
-        "dir": "lib",
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/cc2f28000298e1269cea6612cd06ec9979dd5d7f.tar.gz"
       }
     },
     "nixpkgs-stable": {
@@ -394,11 +388,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1693608506,
-        "narHash": "sha256-9O1kVZrwrcPcy/zPyQdR9sF6yElUeLjFhjHx0kJWZ1A=",
+        "lastModified": 1732305842,
+        "narHash": "sha256-+bmzPps80bfIcQYeQqUpPqjxiSmDGCGY8o0q8F+QC3o=",
         "owner": "Stunkymonkey",
         "repo": "stunkymonkey.de",
-        "rev": "6e192485dd390399d3adddad61e15acb50295511",
+        "rev": "88cbd07139584e7bc42eb3f137dd10c826e380e9",
         "type": "github"
       },
       "original": {
