@@ -26,7 +26,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: fix this
+    # TODO: since no encryption is used, this is not a major problem, but migration is advised
     nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 
     # Create user so that we can set the ownership of the key to
