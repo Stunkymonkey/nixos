@@ -59,7 +59,7 @@ in
     services = {
       nextcloud = {
         enable = true;
-        package = pkgs.nextcloud29;
+        package = pkgs.nextcloud30;
         hostName = "cloud.${domain}";
         maxUploadSize = cfg.maxSize;
         autoUpdateApps.enable = true;
@@ -75,7 +75,7 @@ in
           #dbhost = "/run/postgresql";
         };
 
-        extraApps = with pkgs.nextcloud29Packages.apps; {
+        extraApps = with pkgs.nextcloud30Packages.apps; {
           inherit
             calendar
             contacts
