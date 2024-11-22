@@ -147,9 +147,9 @@ lib.makeScope pkgs.newScope (
 
     grafana =
       (buildGrafanaDashboard {
-        id = 3590;
+        id = 20138;
         pname = "grafana";
-        version = "3";
+        version = "1";
       }).overrideAttrs
         (_: {
           src = ./grafana.json; # sadly only imported dashboards work
