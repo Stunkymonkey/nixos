@@ -10,7 +10,7 @@ used flakes:
 - secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - deployment: [nixinate](https://github.com/MatthewCroughan/nixinate), see [usage](#usage)
 - formatting: [git-hooks](https://github.com/cachix/git-hooks.nix)
-- install: [nixos-anywhere](https://github.com/numtide/nixos-anywhere/)
+- install: [nixos-anywhere](https://github.com/nix-community/nixos-anywhere/)
 
 ## Structure
 
@@ -80,25 +80,21 @@ used flakes:
 
             ```bash
             # enter disk encryption key
-            echo "my-super-safe-password" > /tmp/disk.key
+            (umask 077; echo "my-super-safe-password" > /tmp/disk.key)
 
             temp=$(mktemp -d)
             # ssh-host keys
             install -d -m755 "$temp/etc/ssh"
-            ssh-keygen -o -t rsa -a 100 -N "" -b 4096 -f "$temp/etc/ssh/ssh_host_rsa_key"
-            chmod 600 "$temp/etc/ssh/ssh_host_rsa_key"
-            ssh-keygen -o -t ed25519 -a 100 -N "" -f "$temp/etc/ssh/ssh_host_ed25519_key"
-            chmod 600 "$temp/etc/ssh/ssh_host_ed25519_key"
-            # initrd key
             install -d -m755 "$temp/etc/secrets/initrd"
-            ssh-keygen -o -t ed25519 -a 100 -N "" -f "$temp/etc/secrets/initrd/ssh_host_ed25519_key"
-            chmod 600 "$temp/etc/secrets/initrd/ssh_host_ed25519_key"
+            ssh-keygen -o -a 100 -N "" -t rsa     -b 4096 -f "$temp/etc/ssh/ssh_host_rsa_key"
+            ssh-keygen -o -a 100 -N "" -t ed25519         -f "$temp/etc/ssh/ssh_host_ed25519_key"
+            ssh-keygen -o -a 100 -N "" -t ed25519         -f "$temp/etc/secrets/initrd/ssh_host_ed25519_key"
             ```
 
         1. existing host
 
             ```bash
-            echo "my-super-safe-password" > /tmp/disk.key
+            (umask 077; echo "my-super-safe-password" > /tmp/disk.key)
             temp=$(mktemp -d)
             find $temp -printf '%M %p\n'
             ```
@@ -124,7 +120,7 @@ used flakes:
         now simply install by executing (this will delete all data!):
 
         ```bash
-        nix run github:numtide/nixos-anywhere -- \
+        nix run github:nix-community/nixos-anywhere -- \
             --disk-encryption-keys /tmp/disk.key /tmp/disk.key \
             --extra-files "$temp" \
             --flake .#<flake> \
