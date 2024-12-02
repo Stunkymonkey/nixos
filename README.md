@@ -10,7 +10,7 @@ used flakes:
 - secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - deployment: [nixinate](https://github.com/MatthewCroughan/nixinate), see [usage](#usage)
 - formatting: [git-hooks](https://github.com/cachix/git-hooks.nix)
-- install: [nixos-anywhere](https://github.com/numtide/nixos-anywhere/)
+- install: [nixos-anywhere](https://github.com/nix-community/nixos-anywhere/)
 
 ## Structure
 
@@ -120,7 +120,7 @@ used flakes:
         now simply install by executing (this will delete all data!):
 
         ```bash
-        nix run github:numtide/nixos-anywhere -- \
+        nix run github:nix-community/nixos-anywhere -- \
             --disk-encryption-keys /tmp/disk.key /tmp/disk.key \
             --extra-files "$temp" \
             --flake .#<flake> \
