@@ -80,7 +80,7 @@ used flakes:
 
             ```bash
             # enter disk encryption key
-            echo "my-super-safe-password" > /tmp/disk.key
+            (umask 077; echo "my-super-safe-password" > /tmp/disk.key)
 
             temp=$(mktemp -d)
             # ssh-host keys
@@ -98,7 +98,7 @@ used flakes:
         1. existing host
 
             ```bash
-            echo "my-super-safe-password" > /tmp/disk.key
+            (umask 077; echo "my-super-safe-password" > /tmp/disk.key)
             temp=$(mktemp -d)
             find $temp -printf '%M %p\n'
             ```
