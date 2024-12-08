@@ -31,7 +31,8 @@ in
       ${domain} = {
         forceSSL = true;
         useACMEHost = domain;
-        root = pkgs.homer;
+        # TODO: 25.05 use stable
+        root = pkgs.unstable.homer;
         locations."=/assets/config.yml" = {
           alias = pkgs.writeText "homerConfig.yml" (builtins.toJSON homeConfig);
         };
