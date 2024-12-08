@@ -32,8 +32,9 @@ in
     environment.pathsToLink = [ "/libexec" ];
 
     programs = {
-      wshowkeys.enable = true;
+      foot.enable = true;
       light.enable = true;
+      wshowkeys.enable = true;
 
       sway = {
         enable = true;
@@ -45,7 +46,6 @@ in
         extraPackages = with pkgs; [
           brightnessctl
           dmenu
-          foot
           gammastep
           grim
           i3status-rust
@@ -59,7 +59,6 @@ in
           wl-clipboard
           wofi
           xwayland
-          # wshowkeys
         ];
 
         extraSessionCommands = ''
