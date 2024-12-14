@@ -14,7 +14,10 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    nixinate.url = "github:matthewcroughan/nixinate";
+    nixinate = {
+      url = "github:matthewcroughan/nixinate";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
