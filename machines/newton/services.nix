@@ -21,7 +21,7 @@ in
     "freshrss/password" = {
       owner = config.users.users.freshrss.name;
     };
-    "photoprism/password" = { };
+    "photos/secrets" = { };
     "grafana/password" = {
       owner = config.users.users.grafana.name;
     };
@@ -98,14 +98,9 @@ in
       enable = true;
     };
     # self-hosted photo gallery
-    photoprism = {
+    photos = {
       enable = true;
-      passwordFile = secrets."photoprism/password".path;
-      originalsPath = "/data/photos";
-      settings = {
-        PHOTOPRISM_ADMIN_USER = "felix";
-        PHOTOPRISM_SPONSOR = "true";
-      };
+      secretsFile = secrets."photos/secrets".path;
     };
     ssh-server = {
       enable = true;

@@ -31,7 +31,7 @@
     ./octoprint
     ./paperless
     ./passworts
-    ./photoprism
+    ./photos
     ./prometheus
     ./promtail
     ./prowlarr
