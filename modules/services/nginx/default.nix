@@ -222,6 +222,7 @@ in
         recommendedTlsSettings = true;
         recommendedProxySettings = true;
         recommendedBrotliSettings = true;
+        recommendedZstdSettings = true;
 
         # Only allow PFS-enabled ciphers with AES256
         sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
@@ -274,9 +275,7 @@ in
                   }
                   # Proxy to port
                   (lib.optionalAttrs (args.port != null) {
-                    locations."/".proxyPass = "http://127.0.0.1:${toString args.port}";
-                    # TODO make ipv6 possible
-                    # http://[::1]:${toString args.port};
+                    locations."/".proxyPass = "http://localhost:${toString args.port}";
                   })
                   # Serve filesystem content
                   (lib.optionalAttrs (args.root != null) { inherit (args) root; })
