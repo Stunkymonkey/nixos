@@ -121,7 +121,7 @@ in
           job_name = "nextcloud";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString cfg.exporterPort}" ];
+              targets = [ "localhost:${toString cfg.exporterPort}" ];
               labels = {
                 instance = config.networking.hostName;
               };

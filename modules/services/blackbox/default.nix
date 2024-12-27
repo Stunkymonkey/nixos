@@ -75,7 +75,7 @@ in
               }
               {
                 target_label = "__address__";
-                replacement = "127.0.0.1:${toString config.services.prometheus.exporters.blackbox.port}";
+                replacement = "localhost:${toString config.services.prometheus.exporters.blackbox.port}";
               }
             ];
           }

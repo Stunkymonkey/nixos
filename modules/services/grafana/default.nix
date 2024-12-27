@@ -43,7 +43,6 @@ in
           domain = "visualization.${domain}";
           root_url = "https://visualization.${domain}/";
           http_port = cfg.port;
-          http_addr = "127.0.0.1";
         };
 
         security = {
@@ -70,7 +69,7 @@ in
           job_name = "grafana";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              targets = [ "localhost:${toString cfg.port}" ];
               labels = {
                 instance = config.networking.hostName;
               };

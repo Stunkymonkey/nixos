@@ -50,7 +50,6 @@ in
 
         settings = cfg.settings // {
           Port = cfg.port;
-          Address = "127.0.0.1";
           MusicFolder = cfg.musicFolder;
           LogLevel = "info";
           Prometheus.Enabled = config.services.prometheus.enable;
@@ -63,7 +62,7 @@ in
             job_name = "navidrome";
             static_configs = [
               {
-                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                targets = [ "localhost:${toString cfg.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };

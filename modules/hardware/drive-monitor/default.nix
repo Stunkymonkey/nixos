@@ -33,7 +33,7 @@ in
         job_name = "smartctl";
         static_configs = [
           {
-            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.smartctl.port}" ];
+            targets = [ "localhost:${toString config.services.prometheus.exporters.smartctl.port}" ];
             labels = {
               instance = config.networking.hostName;
             };

@@ -90,13 +90,13 @@ in
           enable = true;
           configuration = {
             server = {
-              http_listen_address = "127.0.0.1";
+              http_listen_address = "localhost";
               http_listen_port = cfg.port;
             };
             auth_enabled = false;
 
             common = {
-              instance_addr = "127.0.0.1";
+              instance_addr = "localhost";
               ring.kvstore.store = "inmemory";
               replication_factor = 1;
 
@@ -113,7 +113,7 @@ in
                 local.directory = "${config.services.loki.dataDir}/ruler";
               };
               rule_path = "${config.services.loki.dataDir}/rules";
-              alertmanager_url = "http://127.0.0.1:${toString config.my.services.alertmanager.port}";
+              alertmanager_url = "http://localhost:${toString config.my.services.alertmanager.port}";
               enable_alertmanager_v2 = true;
             };
 
@@ -151,7 +151,7 @@ in
               name = "Loki";
               type = "loki";
               access = "proxy";
-              url = "http://127.0.0.1:${toString cfg.port}";
+              url = "http://localhost:${toString cfg.port}";
             }
           ];
           dashboards.settings.providers = [
@@ -169,7 +169,7 @@ in
               job_name = "loki";
               static_configs = [
                 {
-                  targets = [ "127.0.0.1:${toString cfg.port}" ];
+                  targets = [ "localhost:${toString cfg.port}" ];
                   labels = {
                     instance = config.networking.hostName;
                   };

@@ -67,14 +67,14 @@ in
           job_name = "immich";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString (cfg.port + 1)}" ];
+              targets = [ "localhost:${toString (cfg.port + 1)}" ];
               labels = {
                 instance = config.networking.hostName;
                 service = "api";
               };
             }
             {
-              targets = [ "127.0.0.1:${toString (cfg.port + 2)}" ];
+              targets = [ "localhost:${toString (cfg.port + 2)}" ];
               labels = {
                 instance = config.networking.hostName;
                 service = "server";

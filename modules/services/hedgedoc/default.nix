@@ -43,7 +43,6 @@ in
         settings = {
           domain = "notes.${domain}";
           inherit (cfg) port;
-          host = "127.0.0.1";
           protocolUseSSL = true;
           db = {
             dialect = "sqlite";
@@ -58,7 +57,7 @@ in
             job_name = "hedgedoc";
             static_configs = [
               {
-                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                targets = [ "localhost:${toString cfg.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };

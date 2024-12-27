@@ -25,11 +25,9 @@ in
           ];
           extraFlags = [ "--collector.textfile.directory=/etc/prometheus-node-exporter-text-files" ];
           port = 9100;
-          listenAddress = "127.0.0.1";
         };
         systemd = {
           enable = true;
-          listenAddress = "127.0.0.1";
         };
       };
 
@@ -38,7 +36,7 @@ in
           job_name = "node";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+              targets = [ "localhost:${toString config.services.prometheus.exporters.node.port}" ];
               labels = {
                 instance = config.networking.hostName;
               };
@@ -49,7 +47,7 @@ in
           job_name = "systemd";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}" ];
+              targets = [ "localhost:${toString config.services.prometheus.exporters.systemd.port}" ];
               labels = {
                 instance = config.networking.hostName;
               };

@@ -34,7 +34,6 @@ in
       prometheus = {
         alertmanager = {
           enable = true;
-          listenAddress = "127.0.0.1";
           inherit (cfg) port;
           configuration = import ./config.nix;
           webExternalUrl = "https://alerts.${domain}";
@@ -48,7 +47,7 @@ in
             job_name = "alertmanager";
             static_configs = [
               {
-                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                targets = [ "localhost:${toString cfg.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -63,7 +62,7 @@ in
           {
             name = "Alertmanager";
             type = "alertmanager";
-            url = "http://127.0.0.1:${toString cfg.port}";
+            url = "http://localhost:${toString cfg.port}";
             jsonData = {
               implementation = "prometheus";
               handleGrafanaManagedAlerts = config.services.prometheus.enable;

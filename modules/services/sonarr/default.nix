@@ -25,7 +25,7 @@ in
       prometheus.exporters.exportarr-sonarr = {
         inherit (config.services.prometheus) enable;
         port = port + 1;
-        url = "http://127.0.0.1:${toString port}";
+        url = "http://localhost:${toString port}";
         inherit (cfg) apiKeyFile;
       };
       prometheus.scrapeConfigs = [
@@ -33,7 +33,7 @@ in
           job_name = "sonarr";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString port + 1}" ];
+              targets = [ "localhost:${toString port + 1}" ];
               labels = {
                 instance = config.networking.hostName;
               };

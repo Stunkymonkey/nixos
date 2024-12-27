@@ -24,7 +24,7 @@ let
           default = null;
           example = 8080;
           description = ''
-            Which port to proxy to, through 127.0.0.1, for this virtual host.
+            Which port to proxy to, through localhost, for this virtual host.
             This option is incompatible with `root`.
           '';
         };
@@ -45,7 +45,7 @@ let
           example = literalExpression ''
             {
               locations."/socket" = {
-                proxyPass = "http://127.0.0.1:8096/";
+                proxyPass = "http://localhost:8096/";
                 proxyWebsockets = true;
               };
             }
@@ -89,7 +89,7 @@ in
             port = 8096;
             extraConfig = {
               locations."/socket" = {
-                proxyPass = "http://127.0.0.1:8096/";
+                proxyPass = "http://localhost:8096/";
                 proxyWebsockets = true;
               };
             };
@@ -330,7 +330,7 @@ in
           enable = true;
           configuration = {
             listen = {
-              addr = "127.0.0.1";
+              addr = "localhost";
               inherit (cfg.sso) port;
             };
             audit_log = {
@@ -403,16 +403,13 @@ in
 
       # services.prometheus = lib.mkIf cfg.monitoring.enable {
       prometheus = {
-        exporters.nginx = {
-          enable = true;
-          listenAddress = "127.0.0.1";
-        };
+        exporters.nginx.enable = true;
         scrapeConfigs = [
           {
             job_name = "nginx";
             static_configs = [
               {
-                targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
+                targets = [ "localhost:${toString config.services.prometheus.exporters.nginx.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };

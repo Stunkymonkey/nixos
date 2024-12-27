@@ -99,7 +99,7 @@ in
             unit_system = "metric";
             time_zone = cfg.timezone;
             external_url = "https://automation.${domain}";
-            internal_url = "http://127.0.0.1:${toString cfg.port}";
+            internal_url = "http://localhost:${toString cfg.port}";
           };
           http = {
             server_port = cfg.port;
@@ -126,7 +126,7 @@ in
           metrics_path = "/api/prometheus";
           static_configs = [
             {
-              targets = [ "127.0.0.1:${toString cfg.port}" ];
+              targets = [ "localhost:${toString cfg.port}" ];
               labels = {
                 instance = config.networking.hostName;
               };

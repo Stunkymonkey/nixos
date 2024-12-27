@@ -89,7 +89,6 @@ in
         enable = true;
         webExternalUrl = "https://monitor.${domain}";
         inherit (cfg) port;
-        listenAddress = "127.0.0.1";
 
         inherit (cfg) retentionTime;
 
@@ -124,7 +123,7 @@ in
             job_name = "prometheus";
             static_configs = [
               {
-                targets = [ "127.0.0.1:${toString cfg.port}" ];
+                targets = [ "localhost:${toString cfg.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -140,7 +139,7 @@ in
             name = "Prometheus";
             type = "prometheus";
             isDefault = true;
-            url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+            url = "http://localhost:${toString config.services.prometheus.port}";
             jsonData = {
               prometheusType = "Prometheus";
               prometheusVersion = toString pkgs.prometheus.version;

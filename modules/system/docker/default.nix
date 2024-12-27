@@ -34,7 +34,7 @@ in
             job_name = "docker";
             static_configs = [
               {
-                targets = [ "127.0.0.1:${toString config.services.cadvisor.port}" ];
+                targets = [ "localhost:${toString config.services.cadvisor.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };

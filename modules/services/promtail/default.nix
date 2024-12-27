@@ -21,7 +21,6 @@ in
       enable = true;
       configuration = {
         server = {
-          http_listen_address = "127.0.0.1";
           http_listen_port = cfg.port;
           grpc_listen_port = 0; # without it collides with loki; only used for pushing (not used)
         };
@@ -30,7 +29,7 @@ in
         };
         clients = [
           {
-            url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+            url = "http://localhost:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
           }
         ];
         scrape_configs = [
