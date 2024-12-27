@@ -75,7 +75,7 @@ in
           #dbhost = "/run/postgresql";
         };
 
-        extraApps = with pkgs.nextcloud30Packages.apps; {
+        extraApps = with config.services.nextcloud.package.packages.apps; {
           inherit
             calendar
             contacts
