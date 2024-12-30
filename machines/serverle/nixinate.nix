@@ -4,5 +4,6 @@ _: {
     sshUser = "felix";
     buildOn = "remote";
     substituteOnTarget = true;
+    hermetic = false;
   };
 }
