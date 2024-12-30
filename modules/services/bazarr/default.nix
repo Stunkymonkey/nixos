@@ -11,7 +11,7 @@ in
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;
-      description = lib.mdDoc ''
+      description = ''
         File containing the api-key.
       '';
     };

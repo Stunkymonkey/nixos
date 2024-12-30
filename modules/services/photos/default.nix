@@ -6,12 +6,12 @@ let
 in
 {
   options.my.services.photos = {
-    enable = lib.mkEnableOption (lib.mdDoc "Photos gallery");
+    enable = lib.mkEnableOption "Photos gallery";
 
     secretsFile = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       default = null;
-      description = lib.mdDoc ''
+      description = ''
         pass secrets
       '';
     };
@@ -19,7 +19,7 @@ in
     port = lib.mkOption {
       type = lib.types.port;
       default = 2283;
-      description = lib.mdDoc ''
+      description = ''
         Web interface port.
       '';
     };
@@ -36,7 +36,7 @@ in
       type = lib.types.path;
       default = null;
       example = "/data/photos";
-      description = lib.mdDoc ''
+      description = ''
         Storage path of your original media files (photos and videos)
       '';
     };

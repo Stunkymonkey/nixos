@@ -8,18 +8,18 @@ in
     enable = mkEnableOption "enable matrix forwarding bot";
     Username = mkOption {
       type = types.str;
-      description = lib.mdDoc "Matrix bot name.";
+      description = "Matrix bot name.";
       example = "@bot:matrix.org";
       default = "@stunkymonkey-bot:matrix.org";
     };
     PasswortFile = mkOption {
       type = types.path;
-      description = lib.mdDoc "Password for the bot.";
+      description = "Password for the bot.";
       example = "/run/secrets/password";
     };
     RoomID = mkOption {
       type = types.str;
-      description = lib.mdDoc "Matrix room id.";
+      description = "Matrix room id.";
       example = "!abcdefghijklmnopqr:matrix.org";
       default = "!ZWnKiKLuQNBkBGMPCl:matrix.org";
     };

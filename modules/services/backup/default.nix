@@ -9,59 +9,59 @@ let
 in
 {
   options.my.services.backup = with lib; {
-    enable = mkEnableOption (lib.mdDoc "Borgbackup Service");
+    enable = mkEnableOption "Borgbackup Service";
 
     passwordFile = mkOption {
       type = types.path;
-      description = lib.mdDoc "Password for the backup";
+      description = "Password for the backup";
       example = "/run/secrets/password";
     };
 
     sshHost = mkOption {
       type = types.str;
-      description = lib.mdDoc "ssh-hostname for remote access";
+      description = "ssh-hostname for remote access";
       default = "u181505-sub1.your-storagebox.de";
       example = "test.domain.com";
     };
     sshUser = mkOption {
       type = types.str;
-      description = lib.mdDoc "ssh-user for remote access";
+      description = "ssh-user for remote access";
       default = "u181505-sub1";
       example = "max";
     };
     sshPort = mkOption {
       type = types.port;
-      description = lib.mdDoc "ssh-port for remote access";
+      description = "ssh-port for remote access";
       default = 23;
       example = 22;
     };
     sshKeyFile = mkOption {
       type = types.path;
-      description = lib.mdDoc "ssh-key for remote access";
+      description = "ssh-key for remote access";
       example = "/run/secrets/ssh_key";
     };
 
     OnFailureNotification = mkOption {
       type = types.bool;
-      description = lib.mdDoc "whether to show a warning to all users or not";
+      description = "whether to show a warning to all users or not";
       default = false;
     };
     OnFailureMail = mkOption {
       type = types.nullOr types.str;
-      description = lib.mdDoc "Mail address where to send the error report";
+      description = "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";
     };
 
     paths = mkOption {
       type = with types; listOf str;
-      description = lib.mdDoc "additional path(s) to back up";
+      description = "additional path(s) to back up";
       default = [ "/" ];
       example = [ "/home/user" ];
     };
     exclude = mkOption {
       type = with types; listOf str;
-      description = lib.mdDoc "Exclude paths matching any of the given patterns. See `borg help patterns`";
+      description = "Exclude paths matching any of the given patterns. See `borg help patterns`";
       default = [ ];
       example = [
         "/home/*/.cache"
@@ -71,7 +71,7 @@ in
 
     doInit = mkOption {
       type = types.bool;
-      description = lib.mdDoc ''
+      description = ''
         Run {command}`borg init` if the
         specified {option}`repo` does not exist.
         You should set this to `false`

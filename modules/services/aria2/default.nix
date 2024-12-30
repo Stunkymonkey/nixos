@@ -15,7 +15,7 @@ in
 
     downloadDir = mkOption {
       type = types.path;
-      description = mdDoc ''
+      description = ''
         Directory to store downloaded files.
       '';
     };

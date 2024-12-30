@@ -12,7 +12,7 @@ in
       default = [ ];
       defaultText = lib.literalExpression "plugins: []";
       example = lib.literalExpression "plugins: with plugins; [ themeify stlviewer ]";
-      description = lib.mdDoc "Additional plugins to be used. Available plugins are passed through the plugins input.";
+      description = "Additional plugins to be used. Available plugins are passed through the plugins input.";
     };
   };
 

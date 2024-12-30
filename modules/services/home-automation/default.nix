@@ -18,7 +18,7 @@ in
     port = lib.mkOption {
       type = lib.types.port;
       default = 8123;
-      description = lib.mdDoc ''
+      description = ''
         Web interface port.
       '';
     };
@@ -35,7 +35,7 @@ in
         ]
       '';
       default = [ ];
-      description = mdDoc ''
+      description = ''
           List
           of [ components ]
           (https://www.home-assistant.io/integrations/)
@@ -53,7 +53,7 @@ in
       type = types.nullOr (types.either types.float types.str);
       default = null;
       example = 52.3;
-      description = mdDoc ''
+      description = ''
         your location latitude. Impacts sunrise data.
       '';
     };
@@ -62,7 +62,7 @@ in
       type = types.nullOr (types.either types.float types.str);
       default = null;
       example = 4.9;
-      description = mdDoc ''
+      description = ''
         your location longitude. Impacts sunrise data.
       '';
     };
@@ -70,7 +70,7 @@ in
     elevation = mkOption {
       type = types.nullOr (types.either types.float types.str);
       default = null;
-      description = mdDoc ''
+      description = ''
         your location elevation. Impacts sunrise data.
       '';
     };
@@ -78,7 +78,7 @@ in
     timezone = mkOption {
       type = types.str;
       default = "GMT";
-      description = mdDoc ''
+      description = ''
         your timezone.
       '';
     };
