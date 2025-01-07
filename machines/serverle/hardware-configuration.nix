@@ -6,10 +6,6 @@
       act.disable = true;
       pwr.disable = true;
     };
-    deviceTree = {
-      enable = true;
-      filter = "*rpi-4-*.dtb";
-    };
   };
 
   environment.systemPackages = with pkgs; [
