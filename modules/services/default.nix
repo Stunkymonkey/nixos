@@ -41,5 +41,6 @@
     ./sonarr
     ./ssh-server
     ./tandoor-recipes
+    ./vpn
   ];
 }
