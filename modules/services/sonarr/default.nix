@@ -18,6 +18,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # TODO: remove when sonarr is updated to 5.x
+    nixpkgs.config.permittedInsecurePackages = [
+      "dotnet-sdk-6.0.428"
+      "aspnetcore-runtime-6.0.36"
+    ];
+
     services = {
       sonarr = {
         enable = true;
