@@ -16,5 +16,6 @@ in
       sshKeyFile = secrets."borgbackup/ssh_key".path;
       paths = [ "/" ];
     };
+    vpn.enable = true;
   };
 }

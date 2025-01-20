@@ -105,5 +105,6 @@ in
         };
       };
     };
+    vpn.enable = true;
   };
 }

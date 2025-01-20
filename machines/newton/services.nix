@@ -155,5 +155,9 @@ in
         };
       };
     };
+    vpn = {
+      enable = true;
+      isMaster = true;
+    };
   };
 }
