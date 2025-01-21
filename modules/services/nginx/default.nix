@@ -448,24 +448,5 @@ in
     ];
     # Nginx needs to be able to read the certificates
     users.users.nginx.extraGroups = [ "acme" ];
-    security.acme = {
-      defaults.email = "server@buehler.rocks";
-      # this is specially needed for inwx and does not work without it
-      defaults.dnsResolver = "ns.inwx.de";
-      acceptTerms = true;
-      # Use DNS wildcard certificate
-      certs =
-        let
-          inherit (config.networking) domain;
-        in
-        with pkgs;
-        {
-          "${domain}" = {
-            extraDomainNames = [ "*.${domain}" ];
-            dnsProvider = "inwx";
-            inherit (cfg.acme) credentialsFile;
-          };
-        };
-    };
   };
 }

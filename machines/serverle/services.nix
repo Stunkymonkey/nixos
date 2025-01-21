@@ -89,9 +89,6 @@ in
     # Webserver
     nginx = {
       enable = true;
-      acme = {
-        credentialsFile = secrets."acme/inwx".path;
-      };
       sso = {
         authKeyFile = secrets."sso/auth-key".path;
         users = {
@@ -104,6 +101,10 @@ in
           root = [ "felix" ];
         };
       };
+    };
+    acme = {
+      enable = true;
+      credentialsFile = secrets."acme/inwx".path;
     };
     vpn.enable = true;
   };

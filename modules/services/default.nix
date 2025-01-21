@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./acme
     ./alertmanager
     ./aria2
     ./backup
