@@ -25,8 +25,8 @@ in
       acceptTerms = true;
       # Use DNS wildcard certificate
       certs = {
-        "${config.networking.domain}" = {
-          extraDomainNames = [ "*.${config.networking.domain}" ];
+        "${domain}" = {
+          extraDomainNames = [ "*.${domain}" ];
           dnsProvider = "inwx";
           inherit (cfg) credentialsFile;
         };

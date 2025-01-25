@@ -188,7 +188,7 @@ in
         };
       };
 
-      nginx.virtualHosts = [
+      webserver.virtualHosts = [
         {
           subdomain = "monitor";
           inherit (cfg) port;

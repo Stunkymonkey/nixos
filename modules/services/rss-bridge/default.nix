@@ -1,5 +1,10 @@
 # Get RSS feeds from websites that don't natively have one
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.rss-bridge;
   domain = "rss-bridge.${config.networking.domain}";
@@ -13,13 +18,23 @@ in
     services.rss-bridge = {
       enable = true;
       config.system.enabled_bridges = [ "*" ]; # Whitelist all
-      virtualHost = domain;
+      virtualHost = null;
+      user = "caddy";
+      group = "caddy";
     };
 
-    services.nginx.virtualHosts.${domain} = {
-      forceSSL = true;
-      enableACME = true;
-    };
+    my.services.webserver.virtualHosts = [
+      {
+        subdomain = "rss-bridge";
+        extraConfig = ''
+          root * ${pkgs.rss-bridge}
+          php_fastcgi unix/${config.services.phpfpm.pools."rss-bridge".socket} {
+            env RSSBRIDGE_fileCache_path ${config.services.rss-bridge.dataDir}/cache/
+          }
+          file_server
+        '';
+      }
+    ];
 
     webapps.apps.rss-bridge = {
       dashboard = {

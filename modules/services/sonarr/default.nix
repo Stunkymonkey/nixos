@@ -49,7 +49,7 @@ in
       ];
     };
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "series";
         inherit port;

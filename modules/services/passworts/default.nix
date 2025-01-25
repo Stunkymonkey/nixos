@@ -21,7 +21,7 @@ in
       inherit (cfg) port;
     };
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "passworts";
         inherit (cfg) port;

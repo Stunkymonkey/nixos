@@ -28,7 +28,7 @@ in
       inherit (cfg) downloadDir;
     };
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "download";
         root = "${pkgs.ariang}/share/ariang";

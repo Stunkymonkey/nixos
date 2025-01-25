@@ -66,7 +66,7 @@ in
 
     # Proxy to Gitea
     my.services = {
-      nginx.virtualHosts = [
+      webserver.virtualHosts = [
         {
           subdomain = "code";
           inherit (cfg) port;

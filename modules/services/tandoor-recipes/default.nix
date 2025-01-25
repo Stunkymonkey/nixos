@@ -22,7 +22,7 @@ in
     };
 
     # Proxy to Tandoor-Recipes
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "recipes";
         inherit (cfg) port;

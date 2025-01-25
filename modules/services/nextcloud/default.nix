@@ -97,17 +97,6 @@ in
       #  ];
       #};
 
-      # The service above configures the domain, no need for my wrapper
-      nginx.virtualHosts."cloud.${domain}" = {
-        forceSSL = true;
-        useACMEHost = domain;
-
-        # so homer can get the online status
-        extraConfig = lib.optionalString config.my.services.homer.enable ''
-          add_header Access-Control-Allow-Origin https://${domain};
-        '';
-      };
-
       prometheus.exporters.nextcloud = {
         enable = true;
         url = "https://cloud.${domain}";
@@ -144,6 +133,55 @@ in
     #  requires = [ "postgresql.service" ];
     #  after = [ "postgresql.service" ];
     #};
+    services.phpfpm.pools.nextcloud.settings = {
+      "listen.owner" = config.services.caddy.user;
+      "listen.group" = config.services.caddy.group;
+    };
+
+    users.groups.nextcloud.members = [
+      "nextcloud"
+      config.services.caddy.user
+    ];
+
+    my.services.webserver.virtualHosts = [
+      {
+        subdomain = "cloud";
+        extraConfig = ''
+          redir /.well-known/carddav /remote.php/dav/ 301
+          redir /.well-known/caldav /remote.php/dav/ 301
+
+          @forbidden {
+              path /.htaccess
+              path /data/*
+              path /config/*
+              path /db_structure
+              path /.xml
+              path /README
+              path /3rdparty/*
+              path /lib/*
+              path /templates/*
+              path /occ
+              path /console.php
+          }
+          respond @forbidden 403
+
+          header {
+            X-Frame-Options "sameorigin"
+            X-Permitted-Cross-Domain-Policies "none"
+          }
+
+          # TODO: `config.services.nextcloud.package` does not contain additional apps. in nixpkgs there is "nextcloud-with-apps".
+          # for now we use the path passed to nginx. Can be improved in 25.05 via: https://github.com/NixOS/nixpkgs/pull/376818
+          root * ${config.services.nginx.virtualHosts."cloud.${domain}".root}
+          file_server
+          php_fastcgi unix/${config.services.phpfpm.pools."nextcloud".socket} {
+            root ${config.services.nginx.virtualHosts."cloud.${domain}".root}
+            env front_controller_active true
+            env modHeadersAvailable true
+          }
+        '';
+      }
+    ];
 
     my.services.backup = {
       exclude = [

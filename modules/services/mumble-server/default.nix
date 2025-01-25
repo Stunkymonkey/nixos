@@ -7,11 +7,11 @@
 }:
 let
   cfg = config.my.services.mumble-server;
-  domain = "voice.${config.networking.domain}";
+  inherit (config.networking) domain;
 in
 {
   options.my.services.mumble-server = {
-    enable = lib.mkEnableOption "RSS-Bridge service";
+    enable = lib.mkEnableOption "mumble server service";
   };
 
   config = lib.mkIf cfg.enable {
@@ -19,29 +19,29 @@ in
       enable = true;
       openFirewall = true;
       welcometext = "Welcome to the Mumble-Server!";
-      sslCert = "/var/lib/acme/${domain}/fullchain.pem";
-      sslKey = "/var/lib/acme/${domain}/key.pem";
+      sslCert = "${config.security.acme.certs.${domain}.directory}/fullchain.pem";
+      sslKey = "${config.security.acme.certs.${domain}.directory}/key.pem";
     };
 
-    services.nginx.virtualHosts.${domain}.enableACME = true;
-    security.acme.certs."${domain}" = {
-      group = "voice-buehler-rocks";
-      postRun = ''
-        if ${pkgs.systemd}/bin/systemctl is-active murmur.service; then
-          ${pkgs.systemd}/bin/systemctl kill -s SIGUSR1 murmur.service
-        fi
-      '';
+    # create a separate certificate for the mumble server
+    security.acme = {
+      certs.${domain} = {
+        reloadServices = [ "murmur" ];
+        group = "caddyandmurmur";
+      };
     };
-
-    users.groups."voice-buehler-rocks".members = [
+    users.groups.caddyandmurmur.members = [
+      "caddy"
       "murmur"
-      "nginx"
     ];
 
-    my.services.prometheus.rules = {
-      mumble_not_running = {
-        condition = ''systemd_unit_state{name="murmur.service", state!="active"} > 0'';
-        description = "{{$labels.host}} should have a running {{$labels.name}}";
+    my.services = {
+      acme.enable = true;
+      prometheus.rules = {
+        mumble_not_running = {
+          condition = ''systemd_unit_state{name="murmur.service", state!="active"} > 0'';
+          description = "{{$labels.host}} should have a running {{$labels.name}}";
+        };
       };
     };
   };

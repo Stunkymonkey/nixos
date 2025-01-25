@@ -89,7 +89,7 @@ in
       };
     };
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "music";
         inherit (cfg) port;
@@ -101,7 +101,8 @@ in
         name = "Music";
         category = "media";
         icon = "music";
-        url = "https://music.${domain}/app/#/login";
+        url = "https://music.${domain}";
+        method = "get";
       };
     };
   };

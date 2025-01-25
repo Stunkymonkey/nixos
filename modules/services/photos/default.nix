@@ -85,24 +85,10 @@ in
       ];
     };
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "photos";
         inherit (cfg) port;
-        extraConfig = {
-          locations."/" = {
-            proxyWebsockets = true;
-            extraConfig = ''
-              # Allow large file uploads
-              client_max_body_size 1G;
-
-              # Configure timeout
-              proxy_read_timeout 600s;
-              proxy_send_timeout 600s;
-              send_timeout       600s;
-            '';
-          };
-        };
       }
     ];
 

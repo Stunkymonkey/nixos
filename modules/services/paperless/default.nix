@@ -45,7 +45,7 @@ in
 
     # monitoring is not really useful, because it only contains the http-worker infos -> skipped for now
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "docs";
         inherit (cfg) port;

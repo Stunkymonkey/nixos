@@ -27,7 +27,6 @@
     ./mumble-server
     ./navidrome
     ./nextcloud
-    ./nginx
     ./node-exporter
     ./octoprint
     ./paperless
@@ -43,5 +42,6 @@
     ./ssh-server
     ./tandoor-recipes
     ./vpn
+    ./webserver
   ];
 }

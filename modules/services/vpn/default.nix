@@ -53,17 +53,10 @@ in
 
         # Proxy to Headscale
         my.services = {
-          nginx.virtualHosts = [
+          webserver.virtualHosts = [
             {
               subdomain = "vpn";
               inherit (cfg) port;
-              extraConfig = {
-                locations = {
-                  "/" = {
-                    proxyWebsockets = true;
-                  };
-                };
-              };
             }
           ];
 

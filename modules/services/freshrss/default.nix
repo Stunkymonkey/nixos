@@ -45,16 +45,26 @@ in
       enable = true;
       baseUrl = "https://news.${domain}";
       inherit (cfg) language passwordFile defaultUser;
+      virtualHost = null;
     };
 
-    # Set up a Nginx virtual host.
-    services.nginx = {
-      virtualHosts."freshrss" = {
-        serverName = "news.${domain}";
-        forceSSL = true;
-        useACMEHost = domain;
-      };
+    services.phpfpm.pools.freshrss.settings = {
+      "listen.owner" = lib.mkForce config.services.caddy.user;
+      "listen.group" = lib.mkForce config.services.caddy.group;
     };
+
+    my.services.webserver.virtualHosts = [
+      {
+        subdomain = "news";
+        extraConfig = ''
+          root * ${config.services.freshrss.package}/p
+          php_fastcgi unix/${config.services.phpfpm.pools.freshrss.socket} {
+              env FRESHRSS_DATA_PATH ${config.services.freshrss.dataDir}
+          }
+          file_server
+        '';
+      }
+    ];
 
     webapps.apps.freshrss = {
       dashboard = {

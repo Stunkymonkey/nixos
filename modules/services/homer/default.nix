@@ -26,24 +26,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts = {
-      # This is not a subdomain, cannot use my nginx wrapper module
-      ${domain} = {
-        forceSSL = true;
-        useACMEHost = domain;
-        # TODO: 25.05 use stable
-        root = pkgs.unstable.homer;
-        locations."=/assets/config.yml" = {
-          alias = pkgs.writeText "homerConfig.yml" (builtins.toJSON homeConfig);
-        };
-      };
-      # redirect any other attempt to the main site
-      "${domain}-redirect" = {
-        forceSSL = true;
-        useACMEHost = domain;
-        default = true;
-        globalRedirect = "${domain}";
-      };
+    # TODO: 25.05 use stable
+    services.caddy.virtualHosts.${domain} = {
+      extraConfig = ''
+        import common
+        root * ${pkgs.unstable.homer}
+        file_server
+        handle_path /assets/config.yml {
+          root * ${pkgs.writeText "homerConfig.yml" (builtins.toJSON homeConfig)}
+          file_server
+        }
+      '';
+      useACMEHost = domain;
     };
 
     webapps = {

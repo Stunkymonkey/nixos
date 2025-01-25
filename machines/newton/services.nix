@@ -136,21 +136,8 @@ in
     blackbox = {
       enable = true;
     };
-    # Webserver
-    nginx = {
+    webserver = {
       enable = true;
-      sso = {
-        authKeyFile = secrets."sso/auth-key".path;
-        users = {
-          felix = {
-            passwordHashFile = secrets."sso/felix/password-hash".path;
-            totpSecretFile = secrets."sso/felix/totp-secret".path;
-          };
-        };
-        groups = {
-          root = [ "felix" ];
-        };
-      };
     };
     acme = {
       enable = true;

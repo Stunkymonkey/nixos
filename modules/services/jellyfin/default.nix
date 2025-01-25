@@ -47,7 +47,7 @@ in
     };
     # sadly the metrics do not contain application specific metrics, only c# -> no dashboard
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "media";
         inherit port;

@@ -14,7 +14,7 @@ in
       enable = true;
     };
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "view";
         inherit (config.services.jellyseerr) port;

@@ -16,7 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    my.services.nginx.virtualHosts = [
+    my.services.webserver.virtualHosts = [
       {
         subdomain = "blog";
         root = inputs.stunkymonkey.packages.${config.nixpkgs.system}.default;

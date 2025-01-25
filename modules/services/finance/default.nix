@@ -1,5 +1,10 @@
 # finance overview
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.finance;
   inherit (config.networking) domain;
@@ -20,18 +25,26 @@ in
     services.firefly-iii = {
       enable = true;
       virtualHost = "finance";
-      enableNginx = true;
+      user = "caddy";
+      group = "caddy";
       settings = {
         APP_KEY_FILE = cfg.appKeyFile;
         SITE_OWNER = "server@buehler.rocks";
       };
     };
 
-    services.nginx.virtualHosts."finance" = {
-      serverName = "finance.${domain}";
-      forceSSL = true;
-      useACMEHost = domain;
-    };
+    my.services.webserver.virtualHosts = [
+      {
+        subdomain = "finance";
+        extraConfig = ''
+          file_server
+          root * "${config.services.firefly-iii.package}/public"
+          php_fastcgi unix/${config.services.phpfpm.pools."firefly-iii".socket} {
+            env modHeadersAvailable true
+          }
+        '';
+      }
+    ];
 
     webapps.apps.finance = {
       dashboard = {
