@@ -149,23 +149,10 @@ in
       {
         subdomain = "automation";
         inherit (cfg) port;
-        extraConfig = {
-          locations."/" = {
-            proxyWebsockets = true;
-            extraConfig = ''
-              proxy_buffering off;
-            '';
-          };
-        };
       }
       {
         subdomain = "esphome";
         inherit (config.services.esphome) port;
-        extraConfig = {
-          locations."/" = {
-            proxyWebsockets = true;
-          };
-        };
       }
     ];
 
