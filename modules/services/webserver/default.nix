@@ -171,6 +171,16 @@ in
           ];
         }
       ];
+
+      grafana.provision = {
+        dashboards.settings.providers = [
+          {
+            name = "Caddy";
+            options.path = pkgs.grafana-dashboards.caddy;
+            disableDeletion = true;
+          }
+        ];
+      };
     };
 
     networking.firewall.allowedTCPPorts = [

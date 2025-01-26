@@ -172,5 +172,16 @@ lib.makeScope pkgs.newScope (
       version = "1";
       hash = "sha256-foc00LtcBTXOzvwyddJO0QJkCP82bUXa5iMuQmHqKcg=";
     };
+
+    caddy =
+      (buildGrafanaDashboard {
+        id = 20802;
+        pname = "caddy-monitoring";
+        version = "1";
+        hash = "sha256-vSt63PakGp5NzKFjbU5Yh0nDbKET5QRWp5nusM76/O4=";
+      }).overrideAttrs
+        (_: {
+          src = ./caddy.json; # sadly only imported dashboards work
+        });
   }
 )
