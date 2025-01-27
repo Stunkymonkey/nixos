@@ -46,6 +46,8 @@ in
       baseUrl = "https://news.${domain}";
       inherit (cfg) language passwordFile defaultUser;
       virtualHost = null;
+      # TODO 25.05: Add support for custom virtualHost
+      # webserver = "caddy";
     };
 
     services.phpfpm.pools.freshrss.settings = {
