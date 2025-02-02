@@ -36,6 +36,7 @@ in
       shotwell # photo management
       sonixd # cloud-music-player
       soundkonverter # audio converter
+      varia # download
       (yt-dlp.override { withAlias = true; }) # video download
     ];
   };
