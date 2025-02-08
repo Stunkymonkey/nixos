@@ -171,7 +171,7 @@ in
           }
 
           # TODO: `config.services.nextcloud.package` does not contain additional apps. in nixpkgs there is "nextcloud-with-apps".
-          # for now we use the path passed to nginx. Can be improved in 25.05 via: https://github.com/NixOS/nixpkgs/pull/376818
+          # for now we use the path passed to nginx. Can be improved in 25.05 via: `config.services.nextcloud.finalPackage`
           root * ${config.services.nginx.virtualHosts."cloud.${domain}".root}
           file_server
           php_fastcgi unix/${config.services.phpfpm.pools."nextcloud".socket} {
