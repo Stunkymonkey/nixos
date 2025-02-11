@@ -23,6 +23,7 @@ in
     virtualisation.docker = {
       enable = true;
       autoPrune.enable = true;
+      liveRestore = false;
     };
 
     services = {
