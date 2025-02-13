@@ -21,8 +21,9 @@ in
       virtualHost = null;
       user = "caddy";
       group = "caddy";
+      # TODO: with 25.05 this can be simplified via
+      # webserver = "caddy";
     };
-
     my.services.webserver.virtualHosts = [
       {
         subdomain = "rss-bridge";
