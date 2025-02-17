@@ -10,6 +10,7 @@
     extraGroups = [
       "adbusers" # adb control
       "audio" # sound control
+      "cdrom" # emulate cds
       "dialout" # serial-console
       "docker" # usage of `docker` socket
       "input" # mouse control
