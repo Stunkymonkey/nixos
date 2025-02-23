@@ -154,13 +154,13 @@ in
               export $(cat /proc/$sway_pid/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=' | tr -d '\0')
               export DISPLAY=:0
               # send notification via dbus: https://wiki.archlinux.org/title/Desktop_notifications#Bash
-              ${pkgs.sudo}/bin/sudo --preserve-env=DBUS_SESSION_BUS_ADDRESS,DISPLAY -u $user ${pkgs.libnotify}/bin/notify-send -u critical "BorgBackup Failed!" "Run journalctl -u borgbackup-job* for more details."
+              ${lib.getExe pkgs.sudo} --preserve-env=DBUS_SESSION_BUS_ADDRESS,DISPLAY -u $user ${lib.getExe pkgs.libnotify} -u critical "BorgBackup Failed!" "Run journalctl -u borgbackup-job* for more details."
               echo "sent notification"
             fi
           done
         ''
         + lib.optionalString (cfg.OnFailureMail != null) ''
-          journalctl -u borgbackup-job-hetzner.service | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
+          journalctl -u borgbackup-job-hetzner.service --since "5 days ago" | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
           echo "sent mail"
         ''
         + ''
@@ -184,12 +184,12 @@ in
 
     my.services.prometheus.rules = {
       borgbackup_execution_missing = {
-        condition = ''time() - systemd_timer_last_trigger_seconds{name="borgbackup-job-hetzner.timer"} >= (60 * 60 * (24 + 1))'';
-        description = "{{$labels.instance}}: last backup was 25 hours ago please check.";
+        condition = ''time() - systemd_timer_last_trigger_seconds{name="borgbackup-job-hetzner.timer"} > (60 * 60 * (24 + 1))'';
+        description = "{{$labels.instance}}: last backup was over 25 hours ago, please check.";
       };
       borgbackup_last_execution = {
-        condition = ''systemd_unit_state{state="failed", name="borgbackup-job-hetzner.timer"} >= 1'';
-        description = "{{$labels.instance}}: last backup was not successful please check.";
+        condition = ''systemd_unit_state{state="failed", name="borgbackup-job-hetzner.timer"} == 1'';
+        description = "{{$labels.instance}}: Last backup failed, please check logs.";
       };
     };
   };
