@@ -91,6 +91,24 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = lib.allUnique (builtins.filter (p: p != null) (map (v: v.port) cfg.virtualHosts));
+        message =
+          let
+            portsWithSubdomains = builtins.filter (v: v.port != null) cfg.virtualHosts;
+            duplicates = lib.filter (
+              p: builtins.length (lib.filter (x: x.port == p.port) portsWithSubdomains) > 1
+            ) portsWithSubdomains;
+          in
+          if duplicates == [ ] then
+            ""
+          else
+            "Duplicate ports found in my.services.webserver.virtualHosts: "
+            + builtins.concatStringsSep ", " (map (v: v.subdomain + ":" + builtins.toString v.port) duplicates);
+      }
+    ];
+
     services = {
       nginx.enable = false;
       caddy = {
