@@ -12,12 +12,6 @@ in
 {
   options.my.services.gitea = with lib; {
     enable = mkEnableOption "Gitea";
-    port = mkOption {
-      type = types.port;
-      default = 3042;
-      example = 8080;
-      description = "Internal port";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -26,7 +20,7 @@ in
         enable = true;
         settings = {
           server = {
-            HTTP_PORT = cfg.port;
+            HTTP_PORT = 3042;
             ROOT_URL = "https://code.${domain}";
           };
           session.COOKIE_SECURE = true;
@@ -44,7 +38,7 @@ in
             job_name = "gitea";
             static_configs = [
               {
-                targets = [ "localhost:${toString cfg.port}" ];
+                targets = [ "localhost:${toString config.services.gitea.settings.server.HTTP_PORT}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -69,7 +63,7 @@ in
       webserver.virtualHosts = [
         {
           subdomain = "code";
-          inherit (cfg) port;
+          port = config.services.gitea.settings.server.HTTP_PORT;
         }
       ];
 

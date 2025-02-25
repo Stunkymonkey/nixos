@@ -3,6 +3,7 @@
 let
   cfg = config.my.services.radarr;
   inherit (config.networking) domain;
+  # in 25.05 this might be configurable
   port = 7878;
 in
 {

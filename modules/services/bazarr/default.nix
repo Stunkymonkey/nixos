@@ -3,7 +3,7 @@
 let
   cfg = config.my.services.bazarr;
   inherit (config.networking) domain;
-  port = 6767;
+  port = config.services.bazarr.listenPort;
 in
 {
   options.my.services.bazarr = with lib; {

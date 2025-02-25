@@ -47,12 +47,6 @@ in
         'nextcloud' user.
       '';
     };
-    exporterPort = mkOption {
-      type = types.port;
-      default = 9205;
-      example = 8080;
-      description = "Internal port for the exporter";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -102,7 +96,6 @@ in
         url = "https://cloud.${domain}";
         username = cfg.admin;
         passwordFile = cfg.exporterPasswordFile;
-        port = cfg.exporterPort;
       };
 
       prometheus.scrapeConfigs = [
@@ -110,7 +103,7 @@ in
           job_name = "nextcloud";
           static_configs = [
             {
-              targets = [ "localhost:${toString cfg.exporterPort}" ];
+              targets = [ "localhost:${toString config.services.prometheus.exporters.nextcloud.port}" ];
               labels = {
                 instance = config.networking.hostName;
               };

@@ -29,13 +29,6 @@ in
       '';
     };
 
-    port = mkOption {
-      type = types.port;
-      default = 4533;
-      example = 8080;
-      description = "Internal port for webui";
-    };
-
     musicFolder = mkOption {
       type = types.str;
       example = "/mnt/music/";
@@ -49,7 +42,6 @@ in
         enable = true;
 
         settings = cfg.settings // {
-          Port = cfg.port;
           MusicFolder = cfg.musicFolder;
           LogLevel = "info";
           Prometheus.Enabled = config.services.prometheus.enable;
@@ -62,7 +54,7 @@ in
             job_name = "navidrome";
             static_configs = [
               {
-                targets = [ "localhost:${toString cfg.port}" ];
+                targets = [ "localhost:${toString config.services.navidrome.settings.Port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -92,7 +84,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "music";
-        inherit (cfg) port;
+        port = config.services.navidrome.settings.Port;
       }
     ];
 

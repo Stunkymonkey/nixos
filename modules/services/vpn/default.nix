@@ -10,7 +10,7 @@ in
     isMaster = mkEnableOption "Headscale Master";
     port = mkOption {
       type = types.port;
-      default = 8099;
+      default = 8090;
       example = 8080;
       description = "Internal port";
     };
@@ -30,7 +30,7 @@ in
           settings = {
             dns.base_domain = "buehler.internal";
             server_url = "https://vpn.${domain}";
-            metrics_listen_addr = "127.0.0.1:8095";
+            metrics_listen_addr = "127.0.0.1:8091";
             log.level = "warn";
           };
         };
@@ -41,7 +41,7 @@ in
               job_name = "headscale";
               static_configs = [
                 {
-                  targets = [ "localhost:8095" ];
+                  targets = [ "localhost:8091" ];
                   labels = {
                     instance = config.networking.hostName;
                   };

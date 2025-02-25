@@ -6,7 +6,7 @@ let
 in
 {
   options.my.services.passworts = with lib; {
-    enable = mkEnableOption "Navidrome Music Server";
+    enable = mkEnableOption "Passwords Server";
     port = mkOption {
       type = types.port;
       default = 5010;

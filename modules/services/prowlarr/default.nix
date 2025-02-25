@@ -3,6 +3,7 @@
 let
   cfg = config.my.services.prowlarr;
   inherit (config.networking) domain;
+  # in 25.05 this might be configurable
   port = 9696;
 in
 {

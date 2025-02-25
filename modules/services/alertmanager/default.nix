@@ -12,12 +12,6 @@ in
 {
   options.my.services.alertmanager = with lib; {
     enable = mkEnableOption "Prometheus alertmanager for monitoring";
-    port = mkOption {
-      type = types.port;
-      default = 9093;
-      example = 3002;
-      description = "Internal alertmanager port";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -34,20 +28,27 @@ in
       prometheus = {
         alertmanager = {
           enable = true;
-          inherit (cfg) port;
           configuration = import ./config.nix;
           webExternalUrl = "https://alerts.${domain}";
           # fix issue: https://gitlab.com/gitlab-org/omnibus-gitlab/-/issues/4556
-          extraFlags = [ "--cluster.advertise-address 127.0.0.1:${toString cfg.port}" ];
+          extraFlags = [
+            "--cluster.advertise-address 127.0.0.1:${toString config.services.prometheus.alertmanager.port}"
+          ];
         };
 
-        alertmanagers = [ { static_configs = [ { targets = [ "localhost:${toString cfg.port}" ]; } ]; } ];
+        alertmanagers = [
+          {
+            static_configs = [
+              { targets = [ "localhost:${toString config.services.prometheus.alertmanager.port}" ]; }
+            ];
+          }
+        ];
         scrapeConfigs = [
           {
             job_name = "alertmanager";
             static_configs = [
               {
-                targets = [ "localhost:${toString cfg.port}" ];
+                targets = [ "localhost:${toString config.services.prometheus.alertmanager.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -62,7 +63,7 @@ in
           {
             name = "Alertmanager";
             type = "alertmanager";
-            url = "http://localhost:${toString cfg.port}";
+            url = "http://localhost:${toString config.services.prometheus.alertmanager.port}";
             jsonData = {
               implementation = "prometheus";
               handleGrafanaManagedAlerts = config.services.prometheus.enable;
@@ -135,7 +136,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "alerts";
-        inherit (cfg) port;
+        inherit (config.services.prometheus.alertmanager) port;
       }
     ];
 

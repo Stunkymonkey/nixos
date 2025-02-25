@@ -24,7 +24,6 @@ in
             "textfile"
           ];
           extraFlags = [ "--collector.textfile.directory=/etc/prometheus-node-exporter-text-files" ];
-          port = 9100;
         };
         systemd = {
           enable = true;

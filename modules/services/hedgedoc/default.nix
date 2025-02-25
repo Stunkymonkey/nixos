@@ -26,13 +26,6 @@ in
         Additional settings.
       '';
     };
-
-    port = mkOption {
-      type = types.port;
-      default = 3080;
-      example = 8080;
-      description = "Internal port for webui";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -42,7 +35,7 @@ in
 
         settings = {
           domain = "notes.${domain}";
-          inherit (cfg) port;
+          port = 3080;
           protocolUseSSL = true;
           db = {
             dialect = "sqlite";
@@ -57,7 +50,7 @@ in
             job_name = "hedgedoc";
             static_configs = [
               {
-                targets = [ "localhost:${toString cfg.port}" ];
+                targets = [ "localhost:${toString config.services.hedgedoc.settings.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -79,7 +72,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "notes";
-        inherit (cfg) port;
+        inherit (config.services.hedgedoc.settings) port;
       }
     ];
 

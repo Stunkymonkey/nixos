@@ -3,6 +3,7 @@
 let
   cfg = config.my.services.photos;
   inherit (config.networking) domain;
+  inherit (config.services.immich) port;
 in
 {
   options.my.services.photos = {
@@ -13,14 +14,6 @@ in
       default = null;
       description = ''
         pass secrets
-      '';
-    };
-
-    port = lib.mkOption {
-      type = lib.types.port;
-      default = 2283;
-      description = ''
-        Web interface port.
       '';
     };
 
@@ -46,18 +39,15 @@ in
     services.immich = {
       enable = true;
       # mediaLocation = path;
-      inherit (cfg)
-        secretsFile
-        port
-        ;
+      inherit (cfg) secretsFile;
       settings = {
         ffmpeg.transcode = "disabled";
         server.externalDomain = "https://photos.${domain}";
       } // cfg.settings;
       environment = {
         IMMICH_TELEMETRY_INCLUDE = "all";
-        IMMICH_API_METRICS_PORT = toString (cfg.port + 1);
-        IMMICH_MICROSERVICES_METRICS_PORT = toString (cfg.port + 2);
+        IMMICH_API_METRICS_PORT = toString (port + 1);
+        IMMICH_MICROSERVICES_METRICS_PORT = toString (port + 2);
       };
     };
 
@@ -67,14 +57,14 @@ in
           job_name = "immich";
           static_configs = [
             {
-              targets = [ "localhost:${toString (cfg.port + 1)}" ];
+              targets = [ "localhost:${toString (port + 1)}" ];
               labels = {
                 instance = config.networking.hostName;
                 service = "api";
               };
             }
             {
-              targets = [ "localhost:${toString (cfg.port + 2)}" ];
+              targets = [ "localhost:${toString (port + 2)}" ];
               labels = {
                 instance = config.networking.hostName;
                 service = "server";
@@ -88,7 +78,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "photos";
-        inherit (cfg) port;
+        inherit port;
       }
     ];
 

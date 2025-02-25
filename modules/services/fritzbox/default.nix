@@ -10,12 +10,6 @@ in
 {
   options.my.services.fritzbox = with lib; {
     enable = mkEnableOption "Fritzbox-Monitoring";
-    port = mkOption {
-      type = types.port;
-      default = 9787;
-      example = 8080;
-      description = "Internal port";
-    };
 
     username = mkOption {
       type = types.str;
@@ -34,7 +28,7 @@ in
   config = lib.mkIf cfg.enable {
     services = {
       prometheus.exporters.fritz = {
-        inherit (cfg) enable port;
+        inherit (cfg) enable;
         settings.devices = [
           {
             inherit (cfg) username;
@@ -48,7 +42,7 @@ in
           job_name = "fritzbox";
           static_configs = [
             {
-              targets = [ "localhost:${toString cfg.port}" ];
+              targets = [ "localhost:${toString config.services.prometheus.exporters.fritzbox.port}" ];
               labels = {
                 instance = config.networking.hostName;
               };

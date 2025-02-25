@@ -15,14 +15,6 @@ in
 
     package = lib.mkPackageOption pkgs "home-assistant" { };
 
-    port = lib.mkOption {
-      type = lib.types.port;
-      default = 8123;
-      description = ''
-        Web interface port.
-      '';
-    };
-
     extraComponents = mkOption {
       type = types.listOf (types.enum cfg.package.availableComponents);
       example = literalExpression ''
@@ -99,10 +91,9 @@ in
             unit_system = "metric";
             time_zone = cfg.timezone;
             external_url = "https://automation.${domain}";
-            internal_url = "http://localhost:${toString cfg.port}";
+            internal_url = "http://localhost:${toString config.services.home-assistant.config.http.server_port}";
           };
           http = {
-            server_port = cfg.port;
             use_x_forwarded_for = true;
             trusted_proxies = [
               "127.0.0.1"
@@ -126,7 +117,7 @@ in
           metrics_path = "/api/prometheus";
           static_configs = [
             {
-              targets = [ "localhost:${toString cfg.port}" ];
+              targets = [ "localhost:${toString config.services.home-assistant.config.http.server_port}" ];
               labels = {
                 instance = config.networking.hostName;
               };
@@ -148,7 +139,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "automation";
-        inherit (cfg) port;
+        port = config.services.home-assistant.config.http.server_port;
       }
       {
         subdomain = "esphome";

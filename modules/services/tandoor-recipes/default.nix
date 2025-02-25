@@ -7,25 +7,18 @@ in
 {
   options.my.services.tandoor-recipes = with lib; {
     enable = mkEnableOption "Tandoor Recipes";
-    port = mkOption {
-      type = types.port;
-      default = 8089;
-      example = 8080;
-      description = "Internal port";
-    };
   };
 
   config = lib.mkIf cfg.enable {
     services.tandoor-recipes = {
       enable = true;
-      inherit (cfg) port;
     };
 
     # Proxy to Tandoor-Recipes
     my.services.webserver.virtualHosts = [
       {
         subdomain = "recipes";
-        inherit (cfg) port;
+        inherit (config.services.tandoor-recipes) port;
       }
     ];
 

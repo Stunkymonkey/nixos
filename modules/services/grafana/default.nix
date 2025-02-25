@@ -13,13 +13,6 @@ in
   options.my.services.grafana = with lib; {
     enable = mkEnableOption "Grafana for visualizing";
 
-    port = mkOption {
-      type = types.port;
-      default = 9500;
-      example = 3001;
-      description = "Internal port";
-    };
-
     username = mkOption {
       type = types.str;
       default = "felix";
@@ -42,7 +35,6 @@ in
         server = {
           domain = "visualization.${domain}";
           root_url = "https://visualization.${domain}/";
-          http_port = cfg.port;
         };
 
         security = {
@@ -69,7 +61,7 @@ in
           job_name = "grafana";
           static_configs = [
             {
-              targets = [ "localhost:${toString cfg.port}" ];
+              targets = [ "localhost:${toString config.services.grafana.settings.server.http_port}" ];
               labels = {
                 instance = config.networking.hostName;
               };
@@ -82,7 +74,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "visualization";
-        inherit (cfg) port;
+        port = config.services.grafana.settings.server.http_port;
       }
     ];
 

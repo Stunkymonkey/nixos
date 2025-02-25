@@ -7,17 +7,12 @@
 }:
 let
   cfg = config.my.services.loki;
+  # no default port defined in nixpkgs
+  port = 3101;
 in
 {
   options.my.services.loki = with lib; {
     enable = mkEnableOption "loki log monitoring";
-
-    port = mkOption {
-      type = types.port;
-      default = 3100;
-      example = 3002;
-      description = "Internal port";
-    };
 
     rules = mkOption {
       type = types.attrsOf (
@@ -91,7 +86,7 @@ in
           configuration = {
             server = {
               http_listen_address = "localhost";
-              http_listen_port = cfg.port;
+              http_listen_port = port;
             };
             auth_enabled = false;
 
@@ -113,7 +108,7 @@ in
                 local.directory = "${config.services.loki.dataDir}/ruler";
               };
               rule_path = "${config.services.loki.dataDir}/rules";
-              alertmanager_url = "http://localhost:${toString config.my.services.alertmanager.port}";
+              alertmanager_url = "http://localhost:${toString config.services.prometheus.alertmanager.port}";
               enable_alertmanager_v2 = true;
             };
 
@@ -151,7 +146,7 @@ in
               name = "Loki";
               type = "loki";
               access = "proxy";
-              url = "http://localhost:${toString cfg.port}";
+              url = "http://localhost:${toString port}";
             }
           ];
           dashboards.settings.providers = [
@@ -169,7 +164,7 @@ in
               job_name = "loki";
               static_configs = [
                 {
-                  targets = [ "localhost:${toString cfg.port}" ];
+                  targets = [ "localhost:${toString port}" ];
                   labels = {
                     instance = config.networking.hostName;
                   };

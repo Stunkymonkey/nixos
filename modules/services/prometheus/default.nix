@@ -13,13 +13,6 @@ in
   options.my.services.prometheus = with lib; {
     enable = mkEnableOption "Prometheus for monitoring";
 
-    port = mkOption {
-      type = types.port;
-      default = 9090;
-      example = 3002;
-      description = "Internal prometheus port";
-    };
-
     scrapeInterval = mkOption {
       type = types.str;
       default = "15s";
@@ -88,7 +81,6 @@ in
       prometheus = {
         enable = true;
         webExternalUrl = "https://monitor.${domain}";
-        inherit (cfg) port;
 
         inherit (cfg) retentionTime;
 
@@ -123,7 +115,7 @@ in
             job_name = "prometheus";
             static_configs = [
               {
-                targets = [ "localhost:${toString cfg.port}" ];
+                targets = [ "localhost:${toString config.services.prometheus.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };
@@ -191,7 +183,7 @@ in
       webserver.virtualHosts = [
         {
           subdomain = "monitor";
-          inherit (cfg) port;
+          inherit (config.services.prometheus) port;
         }
       ];
 

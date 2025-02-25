@@ -14,17 +14,10 @@ in
       example = "/run/secrets/freshrss";
     };
 
-    port = mkOption {
-      type = types.port;
-      default = 28981;
-      example = 8080;
-      description = "Internal port for webui";
-    };
-
     mediaDir = mkOption {
       type = types.path;
       description = "Location of the FreshRSS data.";
-      example = "/run/secrets/freshrss";
+      example = "/data/docs";
     };
 
     settings = mkOption {
@@ -37,7 +30,7 @@ in
   config = lib.mkIf cfg.enable {
     services.paperless = {
       enable = true;
-      inherit (cfg) port mediaDir passwordFile;
+      inherit (cfg) mediaDir passwordFile;
       settings = {
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
       } // cfg.settings;
@@ -48,7 +41,7 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "docs";
-        inherit (cfg) port;
+        inherit (config.services.paperless) port;
       }
     ];
 

@@ -8,7 +8,6 @@
 let
   cfg = config.my.services.jellyfin;
   inherit (config.networking) domain;
-  port = 8096;
   # enable monitoring
   jellyfin-with-metrics = pkgs.jellyfin.overrideAttrs (attrs: {
     patches =
@@ -50,7 +49,8 @@ in
     my.services.webserver.virtualHosts = [
       {
         subdomain = "media";
-        inherit port;
+        # jellyfin does not allow modification
+        port = 8096;
       }
     ];
 
