@@ -12,6 +12,9 @@ in
     "sso/felix/password-hash" = { };
     "sso/felix/totp-secret" = { };
     "paperless/password" = { };
+    "git/password" = {
+      owner = config.users.users.forgejo.name;
+    };
     "nextcloud/password" = {
       owner = config.users.users.nextcloud.name;
     };
@@ -85,9 +88,10 @@ in
       defaultUser = "felix";
       passwordFile = secrets."freshrss/password".path;
     };
-    # self-hosted git service
-    gitea = {
+    # self-hosted git server
+    git = {
       enable = true;
+      passwordFile = secrets."git/password".path;
     };
     # collaborative markdown editor
     hedgedoc = {

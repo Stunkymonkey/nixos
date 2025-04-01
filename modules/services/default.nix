@@ -12,7 +12,7 @@
     ./finance
     ./freshrss
     ./fritzbox
-    ./gitea
+    ./git
     ./grafana
     ./hedgedoc
     ./home-automation

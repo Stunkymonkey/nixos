@@ -123,15 +123,15 @@ lib.makeScope pkgs.newScope (
       hash = "sha256-/scCKBKqTjRKKImIrEYLBKGweOUnkx+QsD5yLfdXW5o=";
     };
 
-    gitea =
+    forgejo =
       (buildGrafanaDashboard {
         id = 13192;
-        pname = "gitea";
+        pname = "forgejo";
         version = "1";
         hash = "sha256-IAaI/HvMxcWE3PGQFK8avNjgj88DgcDvkWRcDAWSejM=";
       }).overrideAttrs
         (_: {
-          src = ./gitea.json; # sadly not yet updated to latest grafana
+          src = ./forgejo.json; # sadly not yet updated to latest grafana
         });
 
     prometheus =
