@@ -49,25 +49,9 @@ in
               }
             ];
           }
-          {
-            job_name = "nginx";
-            static_configs = [
-              {
-                targets = [ "localhost" ];
-                labels = {
-                  job = "nginx";
-                  __path__ = "/var/log/nginx/*.log";
-                  host = config.networking.hostName;
-                };
-              }
-            ];
-          }
         ];
       };
     };
-
-    # otherwise access to the log is denied
-    users.users.promtail.extraGroups = [ "nginx" ];
 
     my.services.prometheus.rules = {
       promtail_request_errors = {

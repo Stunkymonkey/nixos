@@ -50,13 +50,6 @@ lib.makeScope pkgs.newScope (
           src = ./node-systemd.json; # sadly only imported dashboards work
         });
 
-    nginx = buildGrafanaDashboard {
-      id = 12708;
-      pname = "nginx";
-      version = "1";
-      hash = "sha256-T1HqWbwt+i/We+Y2B7hcl3CijGxZF5QI38aPcXjk9y0=";
-    };
-
     nextcloud =
       (buildGrafanaDashboard {
         id = 9632;
