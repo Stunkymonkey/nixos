@@ -27,7 +27,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -438,7 +438,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "probe_success{job=~\"$job\", instance=~\"$instance\"}",
           "format": "table",
@@ -450,7 +450,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "probe_http_ssl{job=~\"$job\", instance=~\"$instance\"} > 0",
           "format": "table",
@@ -462,7 +462,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "(probe_ssl_earliest_cert_expiry{job=~\"$job\", instance=~\"$instance\"} - time()) / 3600 / 24",
           "format": "table",
@@ -474,7 +474,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "probe_http_status_code{job=~\"$job\", instance=~\"$instance\"} > 0",
           "format": "table",
@@ -486,7 +486,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "avg_over_time(probe_duration_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
           "format": "table",
@@ -500,7 +500,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "probe_tls_version_info{job=~\"$job\", instance=~\"$instance\"}",
           "format": "table",
@@ -512,7 +512,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "avg_over_time(probe_dns_lookup_time_seconds{job=~\"$job\", instance=~\"$instance\"}[1m])",
           "format": "table",
@@ -638,7 +638,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "Returns how long the probe took to complete in seconds",
       "fill": 0,
@@ -681,7 +681,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(probe_http_duration_seconds{job=~\"$job\", instance=~\"$instance\"}) by (instance)",
           "instant": false,
@@ -726,7 +726,7 @@
       "collapsed": true,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -743,7 +743,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "description": "Duration of http request by phase, summed over all redirects",
           "fieldConfig": {
@@ -792,7 +792,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "KNkR71YVk"
+                "uid": "PBFA97CFB590B2093"
               },
               "expr": "probe_http_duration_seconds{job=~\"$job\", instance=~\"$instance\"}",
               "interval": "",
@@ -838,7 +838,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "refId": "A"
         }
@@ -865,7 +865,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "KNkR71YVk"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(probe_success, job)",
         "hide": 0,
@@ -893,7 +893,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "KNkR71YVk"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(probe_success{job=~\"$job\"}, instance)",
         "hide": 0,

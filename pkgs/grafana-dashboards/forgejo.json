@@ -22,7 +22,7 @@
       }
     ]
   },
-  "description": "Monitor Gitea server",
+  "description": "Monitor Forgejo server",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 13192,
@@ -38,7 +38,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -84,9 +84,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "expr": "process_resident_memory_bytes{job=\"gitea\"}",
+          "expr": "process_resident_memory_bytes{job=\"forgejo\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -130,7 +130,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -176,9 +176,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "expr": "process_cpu_seconds_total{job=\"gitea\"}",
+          "expr": "process_cpu_seconds_total{job=\"forgejo\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -223,7 +223,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -269,9 +269,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "expr": "process_open_fds{job=\"gitea\"}",
+          "expr": "process_open_fds{job=\"forgejo\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -314,7 +314,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -357,7 +357,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_accesses",
           "interval": "",
@@ -371,7 +371,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -414,7 +414,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_repositories",
           "interval": "",
@@ -428,7 +428,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -471,7 +471,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_users",
           "interval": "",
@@ -485,7 +485,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -528,7 +528,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_issues",
           "interval": "",
@@ -542,7 +542,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -585,7 +585,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_actions",
           "interval": "",
@@ -599,7 +599,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -642,7 +642,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_labels",
           "interval": "",
@@ -656,7 +656,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -699,7 +699,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_organizations",
           "interval": "",
@@ -713,7 +713,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -756,7 +756,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_teams",
           "interval": "",
@@ -770,7 +770,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -813,7 +813,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_follows",
           "interval": "",
@@ -827,7 +827,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -870,7 +870,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_publickeys",
           "interval": "",
@@ -884,7 +884,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -927,7 +927,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_stars",
           "interval": "",
@@ -941,7 +941,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -984,7 +984,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_webhooks",
           "interval": "",
@@ -998,7 +998,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1041,7 +1041,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_releases",
           "interval": "",
@@ -1055,7 +1055,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1098,7 +1098,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_comments",
           "interval": "",
@@ -1112,7 +1112,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1155,7 +1155,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_milestones",
           "interval": "",
@@ -1169,7 +1169,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1212,7 +1212,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "gitea_watches",
           "interval": "",
@@ -1249,7 +1249,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Gitea",
+  "title": "Forgejo",
   "uid": "nNq1Iw5Gz",
   "version": 1,
   "weekStart": ""

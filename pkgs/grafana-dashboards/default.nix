@@ -36,8 +36,8 @@ lib.makeScope pkgs.newScope (
     node-exporter = buildGrafanaDashboard {
       id = 1860;
       pname = "node-exporter-full";
-      version = "31";
-      hash = "sha256-QsRHsnayYRRGc+2MfhaKGYpNdH02PesnR5b50MDzHIg=";
+      version = "37";
+      hash = "sha256-1DE1aaanRHHeCOMWDGdOS1wBXxOF84UXAjJzT5Ek6mM=";
     };
     node-systemd =
       (buildGrafanaDashboard {

@@ -37,7 +37,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -78,7 +78,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_auth_errors_total",
           "format": "time_series",
@@ -90,7 +90,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "",
           "format": "time_series",
@@ -132,7 +132,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -199,7 +199,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "avg(nextcloud_up)",
           "format": "time_series",
@@ -218,7 +218,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -260,7 +260,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(nextcloud_shares_federated_total)",
           "format": "time_series",
@@ -272,7 +272,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(nextcloud_shares_total)",
           "format": "time_series",
@@ -318,7 +318,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -359,7 +359,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_files_total",
           "format": "time_series",
@@ -405,7 +405,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -446,7 +446,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_users_total",
           "format": "time_series",
@@ -457,7 +457,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_active_users_total",
           "format": "time_series",
@@ -503,7 +503,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -544,7 +544,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_scrape_errors_total",
           "format": "time_series",

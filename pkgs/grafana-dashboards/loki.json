@@ -34,7 +34,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "gridPos": {
@@ -59,7 +59,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "loki_build_info",
           "format": "table",
@@ -75,7 +75,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -122,7 +122,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "loki_build_info",
           "format": "table",
@@ -138,7 +138,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -185,7 +185,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(log_messages_total)",
           "instant": false,
@@ -200,7 +200,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -251,7 +251,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "cortex_prometheus_notifications_alertmanagers_discovered",
           "format": "time_series",
@@ -267,7 +267,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -318,7 +318,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "cortex_prometheus_notifications_sent_total",
           "format": "time_series",
@@ -334,7 +334,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -381,7 +381,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(loki_store_series_total)",
           "instant": false,
@@ -396,7 +396,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -443,7 +443,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(loki_ingester_chunk_stored_bytes_total)",
           "instant": true,
@@ -458,7 +458,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -509,7 +509,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(cortex_prometheus_rule_group_rules)",
           "format": "time_series",
@@ -525,7 +525,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -572,7 +572,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "loki_panic_total",
           "instant": false,
@@ -591,7 +591,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -638,7 +638,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(irate(log_messages_total[1m])) by (level)",
           "interval": "",
@@ -685,7 +685,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -736,7 +736,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(cortex_s3_request_duration_seconds_bucket[5m])) by (le,operation))",
           "interval": "",
@@ -783,7 +783,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -834,7 +834,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_request_duration_seconds_bucket[5m])) by (le,route))",
           "interval": "",
@@ -881,7 +881,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -932,7 +932,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_logql_querystats_latency_seconds_bucket[5m])) by (le,type))",
           "interval": "",
@@ -979,7 +979,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1030,7 +1030,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_logql_querystats_bytes_processed_per_seconds_bucket[5m])) by (le,type))",
           "interval": "",
@@ -1074,7 +1074,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -1088,7 +1088,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "refId": "A"
         }
@@ -1105,7 +1105,7 @@
       },
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fontSize": "80%",
       "format": "short",
@@ -1132,7 +1132,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "cortex_prometheus_rule_evaluations_total",
           "format": "time_series",
@@ -1145,7 +1145,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "cortex_prometheus_notifications_sent_total",
           "instant": true,
@@ -1165,7 +1165,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1216,7 +1216,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(rate(cortex_prometheus_notifications_latency_seconds[5m]))  by (quantile)",
           "interval": "",
@@ -1263,7 +1263,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1314,7 +1314,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(rate(cortex_prometheus_rule_evaluation_duration_seconds[5m]))  by (quantile)",
           "interval": "",
@@ -1358,7 +1358,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -1372,7 +1372,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "refId": "A"
         }
@@ -1387,7 +1387,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1438,7 +1438,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(cortex_cache_request_duration_seconds_bucket[5m])) by (le,name,method))",
           "interval": "",
@@ -1485,7 +1485,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1536,7 +1536,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(cortex_cache_value_size_bytes_bucket[5m])) by (le,name,method))",
           "interval": "",
@@ -1583,7 +1583,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1623,7 +1623,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "rate(cortex_cache_hits[5m])",
           "interval": "",
@@ -1670,7 +1670,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1710,7 +1710,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "cortex_cache_background_queue_length",
           "interval": "",
@@ -1758,7 +1758,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1798,7 +1798,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "cortex_cache_fetched_keys",
           "interval": "",
@@ -1842,7 +1842,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -1856,7 +1856,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "refId": "A"
         }
@@ -1871,7 +1871,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1922,7 +1922,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(cortex_cassandra_request_duration_seconds_bucket[5m])) by (le,operation))",
           "interval": "",
@@ -1969,7 +1969,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2020,7 +2020,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(cortex_chunk_store_chunks_per_query_bucket[5m])) by (le))",
           "interval": "",
@@ -2067,7 +2067,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2118,7 +2118,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(cortex_table_manager_sync_duration_seconds_bucket[5m])) by (le))",
           "interval": "",
@@ -2163,7 +2163,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -2177,7 +2177,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "refId": "A"
         }
@@ -2192,7 +2192,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -2232,7 +2232,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum by (tenant) (rate(loki_distributor_lines_received_total[5m]))",
           "interval": "",
@@ -2279,7 +2279,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -2319,7 +2319,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(rate(loki_distributor_bytes_received_total[5m])) by (tenant)",
           "interval": "",
@@ -2366,7 +2366,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -2406,7 +2406,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "rate(loki_distributor_ingester_appends_total[5m])",
           "interval": "",
@@ -2416,7 +2416,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "loki_distributor_ingester_append_failures_total",
           "interval": "",
@@ -2463,7 +2463,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2511,7 +2511,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum by (status) (rate(loki_store_series_total[5m]))",
           "instant": false,
@@ -2556,7 +2556,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "gridPos": {
         "h": 1,
@@ -2570,7 +2570,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "refId": "A"
         }
@@ -2585,7 +2585,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2636,7 +2636,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_ingester_blocks_per_chunk_bucket[5m])) by (le))",
           "interval": "",
@@ -2683,7 +2683,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2734,7 +2734,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_ingester_chunk_size_bytes_bucket[5m])) by (le))",
           "interval": "",
@@ -2781,7 +2781,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2832,7 +2832,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_ingester_chunk_age_seconds_bucket[5m])) by (le))",
           "interval": "",
@@ -2879,7 +2879,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -2931,7 +2931,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_ingester_chunk_compression_ratio_bucket[5m])) by (le))",
           "interval": "",
@@ -2978,7 +2978,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -3030,7 +3030,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_ingester_chunk_encode_time_seconds_bucket[5m])) by (le))",
           "interval": "",
@@ -3077,7 +3077,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -3129,7 +3129,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "histogram_quantile(0.95, sum(rate(loki_ingester_chunk_entries_bucket[5m])) by (le))",
           "interval": "",
@@ -3176,7 +3176,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -3224,7 +3224,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "rate(loki_ingester_chunks_created_total[5m])",
           "interval": "",
@@ -3234,7 +3234,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum by (reason) (rate(loki_ingester_chunks_flushed_total[5m]))",
           "interval": "",
@@ -3244,7 +3244,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum by (fake) (rate(loki_ingester_chunks_stored_total[5m]))",
           "interval": "",
@@ -3254,7 +3254,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "",
           "interval": "",
@@ -3301,7 +3301,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -3347,7 +3347,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "loki_ingester_memory_chunks",
           "interval": "",
@@ -3394,7 +3394,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -3440,7 +3440,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum by (tenan) (loki_ingester_memory_streams)",
           "interval": "",
@@ -3487,7 +3487,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KNkR71YVk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -3535,7 +3535,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "rate(loki_ingester_streams_created_total[5m])",
           "interval": "",
@@ -3545,7 +3545,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "KNkR71YVk"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "rate(loki_ingester_streams_removed_total[5m])",
           "interval": "",
