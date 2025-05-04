@@ -17,14 +17,15 @@ in
   my.hardware = {
     bluetooth.enable = true;
     debug.enable = true;
-    drive-monitor = {
-      enable = true;
-    };
+    drive-monitor.enable = true;
     firmware = {
       enable = true;
       inherit cpuFlavor;
     };
-    graphics.cpuFlavor = cpuFlavor;
+    graphics = {
+      enable = true;
+      inherit cpuFlavor;
+    };
     id-card.enable = true;
     keychron.enable = true;
     monitor.enable = true;
