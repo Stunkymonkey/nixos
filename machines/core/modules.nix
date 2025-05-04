@@ -13,7 +13,6 @@ _: {
     ];
 
     kernelModules = [
-      "dm-snapshot"
       "e1000e"
       "nvme"
     ];
