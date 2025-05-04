@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    framework-plymouth = {
+      url = "github:j-pap/framework-plymouth";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # own flakes
     stunkymonkey = {
       url = "github:Stunkymonkey/stunkymonkey.de";
@@ -76,7 +81,9 @@
         }:
         {
           # make pkgs available to all `perSystem` functions
-          _module.args.pkgs = import inputs.nixpkgs { inherit system; };
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+          };
 
           # enable pre-commit checks
           pre-commit.settings = {

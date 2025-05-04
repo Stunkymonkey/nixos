@@ -58,6 +58,13 @@ in
         ./thinkman/configuration.nix
       ];
     };
+    workman = nixosSystem {
+      system = "x86_64-linux";
+      modules = defaultModules ++ [
+        nixos-hardware.nixosModules.framework-amd-ai-300-series
+        ./workman/configuration.nix
+      ];
+    };
     newton = nixosSystem {
       system = "x86_64-linux";
       modules = defaultModules ++ [ ./newton/configuration.nix ];

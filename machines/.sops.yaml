@@ -2,10 +2,16 @@
 
 keys:
   - &admin_felix age1hf8m9upp00dr7qv2kmqdr50fpvd9ejzkfu8yknqnuda2aas2tvrs4l3u7m
+  - &workman age1f2e644jteyeppfaatajtvjmsupl0e7nzx97ded6m0cgzw04l84ks5xl9l2
   - &thinkman age1spt854cdscqs757a8kazth52rv4p9udh54suw9lpzlqg5savyapq2u0c03
   - &serverle age14nt7qcsrye0vrpk0xcgcfmhkxwwumna39fpn83g3x0zml62skatqpnmhk4
   - &newton age1s9spl75rwhgm3cvvqsr9rze5m0kuxqes2tsxjmq07xg5ycn5j47s2m0dlu
 creation_rules:
+  - path_regex: workman/secrets.yaml$
+    key_groups:
+      - age:
+          - *admin_felix
+          - *workman
   - path_regex: thinkman/secrets.yaml$
     key_groups:
       - age:

@@ -90,6 +90,26 @@
         "type": "github"
       }
     },
+    "framework-plymouth": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1744254441,
+        "narHash": "sha256-zpbqouGFxu0fdECX54jHPyjYEX+04kZRWZFZ4IKL58c=",
+        "owner": "j-pap",
+        "repo": "framework-plymouth",
+        "rev": "6aa8efd36bd79660ced9b8a82495afdb0c8c1166",
+        "type": "github"
+      },
+      "original": {
+        "owner": "j-pap",
+        "repo": "framework-plymouth",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -314,6 +334,7 @@
       "inputs": {
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "framework-plymouth": "framework-plymouth",
         "git-hooks": "git-hooks",
         "nixinate": "nixinate",
         "nixos-generators": "nixos-generators",
