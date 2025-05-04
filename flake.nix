@@ -85,6 +85,7 @@
                 enable = true;
                 settings.noLambdaPatternNames = true;
               };
+              flake-checker.enable = true;
               markdownlint.enable = true;
               nixfmt-rfc-style.enable = true;
               shellcheck.enable = true;
