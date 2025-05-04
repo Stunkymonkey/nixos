@@ -14,7 +14,6 @@
     "virtio_pci"
     "virtio_scsi"
   ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
