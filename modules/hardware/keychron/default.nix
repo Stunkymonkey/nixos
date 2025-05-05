@@ -13,8 +13,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    hardware.keyboard.qmk.enable = true;
+
     services.udev.packages = with pkgs; [
-      qmk-udev-rules
       via
     ];
 
