@@ -121,6 +121,7 @@ used flakes:
 
         ```bash
         nix run github:nix-community/nixos-anywhere -- \
+            --disko-mode disko \
             --disk-encryption-keys /tmp/disk.key /tmp/disk.key \
             --extra-files "$temp" \
             --flake .#<flake> \
