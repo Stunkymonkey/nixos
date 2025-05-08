@@ -31,6 +31,8 @@ in
     environment.systemPackages = with pkgs; [ polkit_gnome ];
     environment.pathsToLink = [ "/libexec" ];
 
+    services.seatd.enable = true;
+
     programs = {
       foot.enable = true;
       light.enable = true;

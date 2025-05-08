@@ -17,6 +17,7 @@
       "libvirtd" # kvm control
       "networkmanager" # wireless configuration
       "podman" # usage of `podman` socket
+      "seat" # access to input devices
       "video" # screen control
       "wheel" # `sudo` for the user.
     ];
