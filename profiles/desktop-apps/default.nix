@@ -16,12 +16,12 @@ in
     environment.systemPackages = with pkgs; [
       evince
       firefox
-      ghostwriter
       (gimp-with-plugins.override {
         plugins = with gimpPlugins; [
           # resynthesizer # disabled because broken with python3
         ];
       })
+      kdePackages.ghostwriter
       keepassxc
       libreoffice
       (mpv.override {
