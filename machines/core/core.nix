@@ -12,7 +12,6 @@
     gettext
     git
     gitAndTools.delta
-    gnufdisk
     gptfdisk
     htop
     jq
