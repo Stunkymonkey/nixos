@@ -37,7 +37,6 @@ in
           font-awesome # icons
           joypixels # emojis
           liberation_ttf # main microsoft fonts
-          # mplus-outline-fonts.githubRelease # microsoft fonts
           noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-color-emoji
