@@ -8,6 +8,9 @@ in
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  services.power-profiles-daemon.enable = true;
+  services.tlp.enable = false;
+
   my.hardware = {
     bluetooth.enable = true;
     debug.enable = true;
