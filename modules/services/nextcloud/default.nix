@@ -53,7 +53,7 @@ in
     services = {
       nextcloud = {
         enable = true;
-        package = pkgs.nextcloud30;
+        package = pkgs.nextcloud31;
         hostName = "cloud.${domain}";
         maxUploadSize = cfg.maxSize;
         autoUpdateApps.enable = true;
@@ -65,6 +65,7 @@ in
           adminuser = cfg.admin;
           adminpassFile = cfg.passwordFile;
 
+          dbtype = "sqlite";
           #dbtype = "pgsql";
           #dbhost = "/run/postgresql";
         };
