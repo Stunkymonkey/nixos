@@ -6,8 +6,6 @@
   ...
 }:
 {
-  system.stateVersion = config.system.nixos.version;
-
   networking = {
     firewall.enable = false;
 
