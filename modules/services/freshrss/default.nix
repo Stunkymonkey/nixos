@@ -45,28 +45,9 @@ in
       enable = true;
       baseUrl = "https://news.${domain}";
       inherit (cfg) language passwordFile defaultUser;
-      virtualHost = null;
-      # TODO 25.05: Add support for custom virtualHost
-      # webserver = "caddy";
+      virtualHost = "news.${domain}";
+      webserver = "caddy";
     };
-
-    services.phpfpm.pools.freshrss.settings = {
-      "listen.owner" = lib.mkForce config.services.caddy.user;
-      "listen.group" = lib.mkForce config.services.caddy.group;
-    };
-
-    my.services.webserver.virtualHosts = [
-      {
-        subdomain = "news";
-        extraConfig = ''
-          root * ${config.services.freshrss.package}/p
-          php_fastcgi unix/${config.services.phpfpm.pools.freshrss.socket} {
-              env FRESHRSS_DATA_PATH ${config.services.freshrss.dataDir}
-          }
-          file_server
-        '';
-      }
-    ];
 
     webapps.apps.freshrss = {
       dashboard = {
