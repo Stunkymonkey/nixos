@@ -27,7 +27,7 @@ in
       description = "retention time";
     };
 
-    # a good collections for allerts can be found here: https://samber.github.io/awesome-prometheus-alerts/rules#blackbox
+    # a good collections for alerts can be found here: https://samber.github.io/awesome-prometheus-alerts/rules#blackbox
     rules = mkOption {
       type = types.attrsOf (
         types.submodule {
