@@ -31,7 +31,7 @@ in
       pdfgrep # grep in pdfs
       pdfsam-basic # pdf editing
       picard # music tagging
-      projectm # visualization of music
+      projectm-sdl-cpp # visualization of music
       puddletag # audio tagging
       shotwell # photo management
       sonixd # cloud-music-player
