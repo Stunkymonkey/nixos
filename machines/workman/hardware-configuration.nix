@@ -11,6 +11,18 @@ in
   services.power-profiles-daemon.enable = true;
   services.tlp.enable = false;
 
+  systemd.services.audio-off = {
+    description = "Mute audio before suspend";
+    wantedBy = [ "sleep.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      Environment = "XDG_RUNTIME_DIR=/run/user/1000";
+      User = "felix";
+      RemainAfterExit = "yes";
+      ExecStart = "${pkgs.pamixer}/bin/pamixer --mute";
+    };
+  };
+
   my.hardware = {
     bluetooth.enable = true;
     debug.enable = true;
