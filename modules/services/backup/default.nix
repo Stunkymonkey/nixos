@@ -128,7 +128,11 @@ in
         "/home/*/todo"
       ] ++ cfg.exclude;
 
-      extraCreateArgs = "--exclude-caches --keep-exclude-tags --stats";
+      extraCreateArgs = [
+        "--exclude-caches"
+        "--keep-exclude-tags"
+        "--stats"
+      ];
 
       encryption = {
         mode = "repokey-blake2";
