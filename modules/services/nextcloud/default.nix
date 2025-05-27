@@ -164,12 +164,10 @@ in
             X-Permitted-Cross-Domain-Policies "none"
           }
 
-          # TODO: `config.services.nextcloud.package` does not contain additional apps. in nixpkgs there is "nextcloud-with-apps".
-          # for now we use the path passed to nginx. Can be improved in 25.05 via: `config.services.nextcloud.finalPackage`
-          root * ${config.services.nginx.virtualHosts."cloud.${domain}".root}
+          root * ${config.services.nextcloud.finalPackage}
           file_server
           php_fastcgi unix/${config.services.phpfpm.pools."nextcloud".socket} {
-            root ${config.services.nginx.virtualHosts."cloud.${domain}".root}
+            root ${config.services.nextcloud.finalPackage}
             env front_controller_active true
             env modHeadersAvailable true
           }
