@@ -105,39 +105,46 @@
   config =
     let
       cfg = config.webapps;
+      appsWithName = builtins.filter (app: app.dashboard.name != null) (lib.attrValues cfg.apps);
     in
     {
-      lib.webapps.homerServices =
+      lib.webapps.homerServices = lib.forEach cfg.dashboardCategories (
+        category:
         let
-          apps = builtins.filter (a: a.dashboard.name != null) (lib.attrValues cfg.apps);
+          catTag = category.tag;
+          catApps = lib.sort (a: b: a.dashboard.name < b.dashboard.name) (
+            builtins.filter (
+              app:
+              let
+                cat = app.dashboard.category;
+              in
+              (cat != null && cat == catTag) || (cat == null && catTag == "misc")
+            ) appsWithName
+          );
         in
-        lib.forEach cfg.dashboardCategories (
-          cat:
-          let
-            catApps = lib.sort (a: b: a.dashboard.name < b.dashboard.name) (
-              builtins.filter (
-                a:
-                a.dashboard.category != null && a.dashboard.category == cat.tag
-                || a.dashboard.category == null && cat.tag == "misc"
-              ) apps
-            );
-          in
-          {
-            inherit (cat) name;
-            items = lib.forEach catApps (a: {
-              inherit (a.dashboard)
+        {
+          inherit (category) name;
+          items = lib.forEach catApps (
+            app:
+            let
+              dash = app.dashboard;
+            in
+            {
+              inherit (dash)
                 method
                 name
                 type
                 url
                 ;
-              icon = lib.optionalString (a.dashboard.icon != null) "fas fa-${a.dashboard.icon}";
+              icon = lib.optionalString (dash.icon != null) "fas fa-${dash.icon}";
               target = "_blank";
-            });
-          }
-        );
-      my.services.blackbox.http_endpoints =
-        lib.mapAttrsToList (_key: value: value.dashboard.url) config.webapps.apps
-        ++ [ "https://${config.networking.domain}/" ];
+            }
+          );
+        }
+      );
+
+      my.services.blackbox.http_endpoints = lib.mapAttrsToList (_: app: app.dashboard.url) cfg.apps ++ [
+        "https://${config.networking.domain}/"
+      ];
     };
 }

@@ -10,10 +10,8 @@ let
   inherit (config.networking) domain;
 
   homeConfig = {
-    title = "Dashboard";
     header = false;
     footer = false;
-    connectivityCheck = true;
     columns = "auto";
     services = config.lib.webapps.homerServices;
   };
@@ -26,18 +24,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: 25.05 use stable
-    services.caddy.virtualHosts.${domain} = {
-      extraConfig = ''
-        import common
-        root * ${pkgs.unstable.homer}
-        file_server
-        handle_path /assets/config.yml {
-          root * ${pkgs.writeText "homerConfig.yml" (builtins.toJSON homeConfig)}
-          file_server
-        }
-      '';
-      useACMEHost = domain;
+    services.homer = {
+      enable = true;
+      virtualHost.caddy.enable = true;
+      virtualHost.domain = domain;
+      settings = homeConfig;
     };
 
     webapps = {
