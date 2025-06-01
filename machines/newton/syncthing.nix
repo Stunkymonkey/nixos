@@ -23,7 +23,7 @@
         urAccepted = 3;
       };
       devices = {
-        "thinkman" = {
+        "workman" = {
           id = "KXSCPX3-JCCFZM4-S2LQZZL-3AM6WRL-IPNWVG2-IB5FEDJ-YYFUIRR-VMDO3AL";
         };
         "birdman" = {
@@ -38,7 +38,7 @@
           id = "djdxo-1akub";
           path = "/data/computer";
           devices = [
-            "thinkman"
+            "workman"
             "birdman"
             "serverle"
           ];
@@ -47,7 +47,7 @@
           id = "4hds7-gpypp";
           path = "/data/phone";
           devices = [
-            "thinkman"
+            "workman"
             "birdman"
             "serverle"
           ];
@@ -57,7 +57,7 @@
           path = "/data/music";
           fsWatcherEnabled = false;
           devices = [
-            "thinkman"
+            "workman"
             "birdman"
             "serverle"
           ];
@@ -67,7 +67,7 @@
           path = "/data/photos";
           fsWatcherEnabled = false;
           devices = [
-            "thinkman"
+            "workman"
             "serverle"
           ];
         };

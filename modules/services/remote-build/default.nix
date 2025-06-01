@@ -21,7 +21,7 @@ in
       group = "nixremote";
       shell = pkgs.bashInteractive;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYSzDdxqaNHmaaLqEvOK/vB65zvqoCebI3Nxzgg5smq root@thinkman"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGYSzDdxqaNHmaaLqEvOK/vB65zvqoCebI3Nxzgg5smq root@workman"
       ];
     };
     nix.settings.trusted-users = [ "nixremote" ];
