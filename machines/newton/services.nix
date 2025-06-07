@@ -28,9 +28,7 @@ in
     "grafana/password" = {
       owner = config.users.users.grafana.name;
     };
-    "matrix-bot/password" = {
-      owner = config.systemd.services.go-neb.serviceConfig.User;
-    };
+    "matrix-bot/password" = { };
   };
 
   # List services that you want to enable:

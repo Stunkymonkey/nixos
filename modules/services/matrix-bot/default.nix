@@ -1,5 +1,9 @@
-# adjusted from: https://github.com/NixOS/nixos-org-configurations/blob/master/delft/eris/alertmanager-matrix-forwarder.nix
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.matrix-bot;
 in
@@ -14,7 +18,10 @@ in
     };
     PasswortFile = mkOption {
       type = types.path;
-      description = "Password for the bot.";
+      description = ''
+        Password for the bot.
+        format: MX_TOKEN=<token>
+      '';
       example = "/run/secrets/password";
     };
     RoomID = mkOption {
@@ -26,41 +33,27 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: since no encryption is used, this is not a major problem, but migration is advised
-    nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
-
-    # Create user so that we can set the ownership of the key to
-    # it. DynamicUser will not take full effect as a result of this.
-    users.users.go-neb = {
-      isSystemUser = true;
-      group = "go-neb";
-    };
-    users.groups.go-neb = { };
-
-    services.go-neb = {
-      enable = true;
-      baseUrl = "http://localhost";
-      secretFile = cfg.PasswortFile;
-      config = {
-        clients = [
-          {
-            UserId = cfg.Username;
-            AccessToken = "$CHANGEME";
-            DeviceID = "KIYFUKBRRK";
-            HomeServerUrl = "https://matrix-client.matrix.org";
-            Sync = true;
-            AutoJoinRooms = true;
-            DisplayName = "Stunkymonkey-Bot";
-          }
-        ];
-        services = [
-          {
-            ID = "echo_service";
-            Type = "echo";
-            UserId = cfg.Username;
-            Config = { };
-          }
-        ];
+    systemd.services.matrix-hook = {
+      description = "Matrix Hook";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      environment = {
+        HTTP_ADDRESS = "[::1]";
+        HTTP_PORT = "4050";
+        MX_HOMESERVER = "https://matrix.org";
+        MX_ID = cfg.Username;
+        MX_ROOMID = cfg.RoomID;
+        MX_MSG_TEMPLATE = "${pkgs.matrix-hook}/message.html.tmpl";
+      };
+      serviceConfig = {
+        EnvironmentFile = [ cfg.PasswortFile ];
+        Type = "simple";
+        ExecStart = lib.getExe pkgs.matrix-hook;
+        Restart = "always";
+        RestartSec = "10";
+        DynamicUser = true;
+        User = "matrix-hook";
+        Group = "matrix-hook";
       };
     };
   };
