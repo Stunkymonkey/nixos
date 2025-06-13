@@ -15,8 +15,8 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       meshlab
-      super-slicer-latest
       openscad
+      prusa-slicer
     ];
   };
 }
