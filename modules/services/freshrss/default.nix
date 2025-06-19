@@ -49,6 +49,10 @@ in
       webserver = "caddy";
     };
 
+    services.caddy.virtualHosts."news.${domain}".extraConfig = lib.mkAfter ''
+      import common
+    '';
+
     webapps.apps.freshrss = {
       dashboard = {
         name = "News";
