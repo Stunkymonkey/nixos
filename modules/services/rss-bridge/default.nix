@@ -22,6 +22,10 @@ in
       webserver = "caddy";
     };
 
+    services.caddy.virtualHosts."${domain}".extraConfig = lib.mkAfter ''
+      import common
+    '';
+
     webapps.apps.rss-bridge = {
       dashboard = {
         name = "RSS-Bridge";
