@@ -15,6 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       element-desktop
+      fractal
       mumble
       teamspeak5_client
     ];
