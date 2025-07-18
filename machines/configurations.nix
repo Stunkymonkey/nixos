@@ -1,12 +1,13 @@
 { self, ... }:
 let
   inherit (self.inputs)
+    disko
+    framework-plymouth
+    nixos-hardware
     nixpkgs
     nixpkgs-unstable
-    sops-nix
-    nixos-hardware
     passworts
-    disko
+    sops-nix
     ;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
   overlay-unstable = final: _prev: {
@@ -31,6 +32,7 @@ let
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = [
               overlay-unstable
+              framework-plymouth.overlays.default
               (import ../overlays)
               (import ../pkgs)
             ];

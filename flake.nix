@@ -36,7 +36,6 @@
 
     framework-plymouth = {
       url = "github:j-pap/framework-plymouth";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # own flakes

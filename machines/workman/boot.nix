@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  pkgs,
   ...
 }:
 {
@@ -18,7 +18,7 @@
     plymouth = {
       enable = true;
       theme = "framework";
-      themePackages = [ inputs.framework-plymouth.packages.${config.nixpkgs.system}.default ];
+      themePackages = [ pkgs.framework-plymouth ];
     };
   };
 }
