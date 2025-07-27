@@ -33,7 +33,8 @@ in
       inherit (cfg) mediaDir passwordFile;
       settings = {
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
-      } // cfg.settings;
+      }
+      // cfg.settings;
     };
 
     # monitoring is not really useful, because it only contains the http-worker infos -> skipped for now

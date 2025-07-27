@@ -108,7 +108,8 @@ in
           "esphome"
           "shelly"
           "prometheus"
-        ] ++ cfg.extraComponents;
+        ]
+        ++ cfg.extraComponents;
       };
 
       prometheus.scrapeConfigs = [

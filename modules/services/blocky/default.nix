@@ -49,7 +49,8 @@ in
             ];
           };
           prometheus.enable = config.services.prometheus.enable;
-        } // cfg.settings;
+        }
+        // cfg.settings;
       };
 
       prometheus.scrapeConfigs = [

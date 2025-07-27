@@ -43,7 +43,8 @@ in
       settings = {
         ffmpeg.transcode = "disabled";
         server.externalDomain = "https://photos.${domain}";
-      } // cfg.settings;
+      }
+      // cfg.settings;
       environment = {
         IMMICH_TELEMETRY_INCLUDE = "all";
         IMMICH_API_METRICS_PORT = toString (port + 1);

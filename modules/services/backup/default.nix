@@ -126,7 +126,8 @@ in
         "/data/todo"
         "/home/*/tmp"
         "/home/*/todo"
-      ] ++ cfg.exclude;
+      ]
+      ++ cfg.exclude;
 
       extraCreateArgs = [
         "--exclude-caches"
@@ -145,31 +146,30 @@ in
       inherit (cfg) doInit;
       compression = "auto,zstd";
 
-      postHook =
-        ''
-          if (( $exitStatus > 1 )); then
-        ''
-        + lib.optionalString cfg.OnFailureNotification ''
-          # iterate over all logged in users
-          for user in $(users); do
-            sway_pid=$(${pkgs.procps}/bin/pgrep -x "sway" -u "$user")
-            if [ -n "$sway_pid" ]; then
-              # set environment variables
-              export $(cat /proc/$sway_pid/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=' | tr -d '\0')
-              export DISPLAY=:0
-              # send notification via dbus: https://wiki.archlinux.org/title/Desktop_notifications#Bash
-              ${lib.getExe pkgs.sudo} --preserve-env=DBUS_SESSION_BUS_ADDRESS,DISPLAY -u $user ${lib.getExe pkgs.libnotify} -u critical "BorgBackup Failed!" "Run journalctl -u borgbackup-job* for more details."
-              echo "sent notification"
-            fi
-          done
-        ''
-        + lib.optionalString (cfg.OnFailureMail != null) ''
-          journalctl -u borgbackup-job-hetzner.service --since "5 days ago" | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
-          echo "sent mail"
-        ''
-        + ''
+      postHook = ''
+        if (( $exitStatus > 1 )); then
+      ''
+      + lib.optionalString cfg.OnFailureNotification ''
+        # iterate over all logged in users
+        for user in $(users); do
+          sway_pid=$(${pkgs.procps}/bin/pgrep -x "sway" -u "$user")
+          if [ -n "$sway_pid" ]; then
+            # set environment variables
+            export $(cat /proc/$sway_pid/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=' | tr -d '\0')
+            export DISPLAY=:0
+            # send notification via dbus: https://wiki.archlinux.org/title/Desktop_notifications#Bash
+            ${lib.getExe pkgs.sudo} --preserve-env=DBUS_SESSION_BUS_ADDRESS,DISPLAY -u $user ${lib.getExe pkgs.libnotify} -u critical "BorgBackup Failed!" "Run journalctl -u borgbackup-job* for more details."
+            echo "sent notification"
           fi
-        '';
+        done
+      ''
+      + lib.optionalString (cfg.OnFailureMail != null) ''
+        journalctl -u borgbackup-job-hetzner.service --since "5 days ago" | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
+        echo "sent mail"
+      ''
+      + ''
+        fi
+      '';
 
       # for mail sending
       readWritePaths = lib.optional (cfg.OnFailureMail != null) "/var/lib/postfix/queue/maildrop/";

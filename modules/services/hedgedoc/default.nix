@@ -41,7 +41,8 @@ in
             dialect = "sqlite";
             storage = "/var/lib/hedgedoc/hedgedoc.sqlite";
           };
-        } // cfg.settings;
+        }
+        // cfg.settings;
       };
 
       prometheus = {
