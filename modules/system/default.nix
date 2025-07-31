@@ -5,6 +5,7 @@
     ./docker
     ./fonts
     ./kvm
+    ./miracast
     ./podman
     ./spell-check
   ];
