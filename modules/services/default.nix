@@ -12,6 +12,7 @@
     ./finance
     ./freshrss
     ./fritzbox
+    ./game-stream
     ./git
     ./grafana
     ./hedgedoc
