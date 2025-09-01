@@ -2,6 +2,7 @@
 { ... }:
 {
   imports = [
+    ./action-on-low-power
     ./bluetooth
     ./debug
     ./drive-monitor
