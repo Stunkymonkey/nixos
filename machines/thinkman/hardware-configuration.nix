@@ -15,7 +15,6 @@ in
   services.tlp.enable = true;
 
   my.hardware = {
-    action-on-low-power.enable = true;
     bluetooth.enable = true;
     debug.enable = true;
     drive-monitor.enable = true;
