@@ -4,8 +4,8 @@ let
   cfg = config.my.services.initrd-ssh;
 in
 {
-  options.my.services.initrd-ssh = with lib; {
-    enable = mkEnableOption "Enable initrd-ssh service";
+  options.my.services.initrd-ssh = {
+    enable = lib.mkEnableOption "Enable initrd-ssh service";
   };
 
   config = lib.mkIf cfg.enable {

@@ -11,35 +11,35 @@ let
   port = 3101;
 in
 {
-  options.my.services.loki = with lib; {
-    enable = mkEnableOption "loki log monitoring";
+  options.my.services.loki = {
+    enable = lib.mkEnableOption "loki log monitoring";
 
-    rules = mkOption {
-      type = types.attrsOf (
-        types.submodule {
+    rules = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
           options = {
-            condition = mkOption {
-              type = types.str;
+            condition = lib.mkOption {
+              type = lib.types.str;
               description = ''
                 Loki alert expression.
               '';
               example = ''count_over_time({job=~"secure"} |="sshd[" |~": Failed|: Invalid|: Connection closed by authenticating user" | __error__="" [15m]) > 15'';
               default = null;
             };
-            description = mkOption {
-              type = types.str;
+            description = lib.mkOption {
+              type = lib.types.str;
               description = ''
                 Loki alert message.
               '';
               example = "Prometheus encountered value {{ $value }} with {{ $labels }}";
               default = null;
             };
-            labels = mkOption {
-              type = types.nullOr (types.attrsOf types.str);
+            labels = lib.mkOption {
+              type = lib.types.nullOr (lib.types.attrsOf lib.types.str);
               description = ''
                 Additional alert labels.
               '';
-              example = literalExpression ''
+              example = lib.literalExpression ''
                 { severity = "page" };
               '';
               default = { };

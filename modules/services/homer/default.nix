@@ -19,8 +19,8 @@ in
 {
   imports = [ ./config.nix ];
 
-  options.my.services.homer = with lib; {
-    enable = mkEnableOption "Homer Dashboard";
+  options.my.services.homer = {
+    enable = lib.mkEnableOption "Homer Dashboard";
   };
 
   config = lib.mkIf cfg.enable {

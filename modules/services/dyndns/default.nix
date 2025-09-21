@@ -5,17 +5,17 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.dyndns = with lib; {
-    enable = mkEnableOption "Dyndns";
+  options.my.services.dyndns = {
+    enable = lib.mkEnableOption "Dyndns";
 
-    username = mkOption {
-      type = types.str;
+    username = lib.mkOption {
+      type = lib.types.str;
       description = "Username for the dyndns.";
       example = "admin";
       default = "Stunkymonkey-dyndns";
     };
-    passwordFile = mkOption {
-      type = types.path;
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
       description = "Password for the username for dyndns.";
       example = "/run/secrets/freshrss";
     };

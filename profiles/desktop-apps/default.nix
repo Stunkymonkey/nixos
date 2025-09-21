@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.desktop-apps;
 in
 {
-  options.my.profiles.desktop-apps = with lib; {
-    enable = mkEnableOption "desktop-apps profile";
+  options.my.profiles.desktop-apps = {
+    enable = lib.mkEnableOption "desktop-apps profile";
   };
 
   config = lib.mkIf cfg.enable {

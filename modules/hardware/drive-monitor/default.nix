@@ -3,11 +3,11 @@ let
   cfg = config.my.hardware.drive-monitor;
 in
 {
-  options.my.hardware.drive-monitor = with lib; {
-    enable = mkEnableOption "drive-monitor configuration";
+  options.my.hardware.drive-monitor = {
+    enable = lib.mkEnableOption "drive-monitor configuration";
 
-    OnFailureMail = mkOption {
-      type = types.nullOr types.str;
+    OnFailureMail = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
       description = "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";

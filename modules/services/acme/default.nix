@@ -5,11 +5,11 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.acme = with lib; {
-    enable = mkEnableOption "ACME certificates";
+  options.my.services.acme = {
+    enable = lib.mkEnableOption "ACME certificates";
 
-    credentialsFile = mkOption {
-      type = types.str;
+    credentialsFile = lib.mkOption {
+      type = lib.types.str;
       example = "/var/lib/acme/creds.env";
       description = ''
         INWX API key file as an 'EnvironmentFile' (see `systemd.exec(5)`)

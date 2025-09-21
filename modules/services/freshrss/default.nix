@@ -10,30 +10,30 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.freshrss = with lib; {
+  options.my.services.freshrss = {
     enable = lib.mkEnableOption "FreshRSS feed reader";
 
-    package = mkOption {
-      type = types.package;
+    package = lib.mkOption {
+      type = lib.types.package;
       default = pkgs.freshrss;
       description = "Which FreshRSS package to use.";
     };
 
-    defaultUser = mkOption {
-      type = types.str;
+    defaultUser = lib.mkOption {
+      type = lib.types.str;
       default = "admin";
       description = "Default username for FreshRSS.";
       example = "eva";
     };
 
-    passwordFile = mkOption {
-      type = types.path;
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
       description = "Password for the defaultUser for FreshRSS.";
       example = "/run/secrets/freshrss";
     };
 
-    language = mkOption {
-      type = types.str;
+    language = lib.mkOption {
+      type = lib.types.str;
       default = "en";
       description = "Default language for FreshRSS.";
       example = "de";

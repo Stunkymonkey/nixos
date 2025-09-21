@@ -8,59 +8,59 @@ let
   cfg = config.my.services.backup;
 in
 {
-  options.my.services.backup = with lib; {
-    enable = mkEnableOption "Borgbackup Service";
+  options.my.services.backup = {
+    enable = lib.mkEnableOption "Borgbackup Service";
 
-    passwordFile = mkOption {
-      type = types.path;
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
       description = "Password for the backup";
       example = "/run/secrets/password";
     };
 
-    sshHost = mkOption {
-      type = types.str;
+    sshHost = lib.mkOption {
+      type = lib.types.str;
       description = "ssh-hostname for remote access";
       default = "u181505-sub1.your-storagebox.de";
       example = "test.domain.com";
     };
-    sshUser = mkOption {
-      type = types.str;
+    sshUser = lib.mkOption {
+      type = lib.types.str;
       description = "ssh-user for remote access";
       default = "u181505-sub1";
       example = "max";
     };
-    sshPort = mkOption {
-      type = types.port;
+    sshPort = lib.mkOption {
+      type = lib.types.port;
       description = "ssh-port for remote access";
       default = 23;
       example = 22;
     };
-    sshKeyFile = mkOption {
-      type = types.path;
+    sshKeyFile = lib.mkOption {
+      type = lib.types.path;
       description = "ssh-key for remote access";
       example = "/run/secrets/ssh_key";
     };
 
-    OnFailureNotification = mkOption {
-      type = types.bool;
+    OnFailureNotification = lib.mkOption {
+      type = lib.types.bool;
       description = "whether to show a warning to all users or not";
       default = false;
     };
-    OnFailureMail = mkOption {
-      type = types.nullOr types.str;
+    OnFailureMail = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
       description = "Mail address where to send the error report";
       default = null;
       example = "alarm@mail.com";
     };
 
-    paths = mkOption {
-      type = with types; listOf str;
+    paths = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       description = "additional path(s) to back up";
       default = [ "/" ];
       example = [ "/home/user" ];
     };
-    exclude = mkOption {
-      type = with types; listOf str;
+    exclude = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       description = "Exclude paths matching any of the given patterns. See `borg help patterns`";
       default = [ ];
       example = [
@@ -69,8 +69,8 @@ in
       ];
     };
 
-    doInit = mkOption {
-      type = types.bool;
+    doInit = lib.mkOption {
+      type = lib.types.bool;
       description = ''
         Run {command}`borg init` if the
         specified {option}`repo` does not exist.

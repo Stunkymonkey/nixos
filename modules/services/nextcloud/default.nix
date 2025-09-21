@@ -10,28 +10,28 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.nextcloud = with lib; {
-    enable = mkEnableOption "Nextcloud";
-    maxSize = mkOption {
-      type = types.str;
+  options.my.services.nextcloud = {
+    enable = lib.mkEnableOption "Nextcloud";
+    maxSize = lib.mkOption {
+      type = lib.types.str;
       default = "10G";
       example = "512M";
       description = "Maximum file upload size";
     };
-    admin = mkOption {
-      type = types.str;
+    admin = lib.mkOption {
+      type = lib.types.str;
       default = "felix";
       example = "admin";
       description = "Name of the admin user";
     };
-    default_phone_region = mkOption {
-      type = types.str;
+    default_phone_region = lib.mkOption {
+      type = lib.types.str;
       default = "DE";
       example = "US";
       description = "country codes for automatic phone-number ";
     };
-    passwordFile = mkOption {
-      type = types.path;
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
       example = "/var/lib/nextcloud/password.txt";
       description = ''
         Path to a file containing the admin's password, must be readable by
@@ -39,8 +39,8 @@ in
       '';
     };
 
-    exporterPasswordFile = mkOption {
-      type = types.path;
+    exporterPasswordFile = lib.mkOption {
+      type = lib.types.path;
       example = "/var/lib/nextcloud/password.txt";
       description = ''
         Path to a file containing the admin's password, must be readable by

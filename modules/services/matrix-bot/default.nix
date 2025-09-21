@@ -8,24 +8,24 @@ let
   cfg = config.my.services.matrix-bot;
 in
 {
-  options.my.services.matrix-bot = with lib; {
-    enable = mkEnableOption "enable matrix forwarding bot";
-    Username = mkOption {
-      type = types.str;
+  options.my.services.matrix-bot = {
+    enable = lib.mkEnableOption "enable matrix forwarding bot";
+    Username = lib.mkOption {
+      type = lib.types.str;
       description = "Matrix bot name.";
       example = "@bot:matrix.org";
       default = "@stunkymonkey-bot:matrix.org";
     };
-    PasswortFile = mkOption {
-      type = types.path;
+    PasswortFile = lib.mkOption {
+      type = lib.types.path;
       description = ''
         Password for the bot.
         format: MX_TOKEN=<token>
       '';
       example = "/run/secrets/password";
     };
-    RoomID = mkOption {
-      type = types.str;
+    RoomID = lib.mkOption {
+      type = lib.types.str;
       description = "Matrix room id.";
       example = "!abcdefghijklmnopqr:matrix.org";
       default = "!ZWnKiKLuQNBkBGMPCl:matrix.org";

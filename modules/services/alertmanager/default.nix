@@ -10,8 +10,8 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.alertmanager = with lib; {
-    enable = mkEnableOption "Prometheus alertmanager for monitoring";
+  options.my.services.alertmanager = {
+    enable = lib.mkEnableOption "Prometheus alertmanager for monitoring";
   };
 
   config = lib.mkIf cfg.enable {

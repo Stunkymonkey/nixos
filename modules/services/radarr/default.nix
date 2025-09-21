@@ -7,8 +7,8 @@ let
   port = 7878;
 in
 {
-  options.my.services.radarr = with lib; {
-    enable = mkEnableOption "Radarr for film management";
+  options.my.services.radarr = {
+    enable = lib.mkEnableOption "Radarr for film management";
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;

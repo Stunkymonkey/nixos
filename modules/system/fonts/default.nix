@@ -8,11 +8,11 @@ let
   cfg = config.my.system.fonts;
 in
 {
-  options.my.system.fonts = with lib; {
-    enable = mkEnableOption "fonts configuration";
+  options.my.system.fonts = {
+    enable = lib.mkEnableOption "fonts configuration";
 
-    additionalFonts = mkOption {
-      type = types.listOf types.package;
+    additionalFonts = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
       default = [ ];
       example = "fira";
       description = "Which additional fonts should be added as well";

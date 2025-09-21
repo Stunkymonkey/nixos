@@ -8,15 +8,15 @@ let
   cfg = config.my.hardware.graphics;
 in
 {
-  options.my.hardware.graphics = with lib; {
-    enable = mkEnableOption "graphics configuration";
-    cpuFlavor = mkOption {
-      type =
-        with types;
-        nullOr (enum [
+  options.my.hardware.graphics = {
+    enable = lib.mkEnableOption "graphics configuration";
+    cpuFlavor = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
           "amd"
           "intel"
-        ]);
+        ]
+      );
       default = null;
       example = "intel";
       description = "Which kind of GPU";

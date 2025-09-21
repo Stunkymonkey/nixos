@@ -7,8 +7,8 @@ let
   port = 8989;
 in
 {
-  options.my.services.sonarr = with lib; {
-    enable = mkEnableOption "Sonarr for series management";
+  options.my.services.sonarr = {
+    enable = lib.mkEnableOption "Sonarr for series management";
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;

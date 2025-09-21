@@ -10,14 +10,14 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.home-automation = with lib; {
-    enable = mkEnableOption "home-assistant server";
+  options.my.services.home-automation = {
+    enable = lib.mkEnableOption "home-assistant server";
 
     package = lib.mkPackageOption pkgs "home-assistant" { };
 
-    extraComponents = mkOption {
-      type = types.listOf (types.enum cfg.package.availableComponents);
-      example = literalExpression ''
+    extraComponents = lib.mkOption {
+      type = lib.types.listOf (lib.types.enum cfg.package.availableComponents);
+      example = lib.literalExpression ''
         [
           "analytics"
           "default_config"
@@ -41,8 +41,8 @@ in
       '';
     };
 
-    latitude = mkOption {
-      type = types.nullOr (types.either types.float types.str);
+    latitude = lib.mkOption {
+      type = lib.types.nullOr (lib.types.either lib.types.float lib.types.str);
       default = null;
       example = 52.3;
       description = ''
@@ -50,8 +50,8 @@ in
       '';
     };
 
-    longitude = mkOption {
-      type = types.nullOr (types.either types.float types.str);
+    longitude = lib.mkOption {
+      type = lib.types.nullOr (lib.types.either lib.types.float lib.types.str);
       default = null;
       example = 4.9;
       description = ''
@@ -59,16 +59,16 @@ in
       '';
     };
 
-    elevation = mkOption {
-      type = types.nullOr (types.either types.float types.str);
+    elevation = lib.mkOption {
+      type = lib.types.nullOr (lib.types.either lib.types.float lib.types.str);
       default = null;
       description = ''
         your location elevation. Impacts sunrise data.
       '';
     };
 
-    timezone = mkOption {
-      type = types.str;
+    timezone = lib.mkOption {
+      type = lib.types.str;
       default = "GMT";
       description = ''
         your timezone.

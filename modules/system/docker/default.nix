@@ -10,8 +10,8 @@ let
   cfg = config.my.system.docker;
 in
 {
-  options.my.system.docker = with lib; {
-    enable = mkEnableOption "docker configuration";
+  options.my.system.docker = {
+    enable = lib.mkEnableOption "docker configuration";
   };
 
   config = lib.mkIf cfg.enable {

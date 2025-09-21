@@ -5,10 +5,10 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.passworts = with lib; {
-    enable = mkEnableOption "Passwords Server";
-    port = mkOption {
-      type = types.port;
+  options.my.services.passworts = {
+    enable = lib.mkEnableOption "Passwords Server";
+    port = lib.mkOption {
+      type = lib.types.port;
       default = 5010;
       example = 8080;
       description = "Internal port for webui";

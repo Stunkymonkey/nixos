@@ -10,10 +10,10 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.navidrome = with lib; {
-    enable = mkEnableOption "Navidrome Music Server";
+  options.my.services.navidrome = {
+    enable = lib.mkEnableOption "Navidrome Music Server";
 
-    settings = mkOption {
+    settings = lib.mkOption {
       inherit (pkgs.formats.json { }) type;
       default = {
         EnableSharing = true;
@@ -29,8 +29,8 @@ in
       '';
     };
 
-    musicFolder = mkOption {
-      type = types.str;
+    musicFolder = lib.mkOption {
+      type = lib.types.str;
       example = "/mnt/music/";
       description = "Music folder";
     };

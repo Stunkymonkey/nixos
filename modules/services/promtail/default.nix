@@ -5,11 +5,11 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.promtail = with lib; {
-    enable = mkEnableOption "promtail log forwarding";
+  options.my.services.promtail = {
+    enable = lib.mkEnableOption "promtail log forwarding";
 
-    port = mkOption {
-      type = types.port;
+    port = lib.mkOption {
+      type = lib.types.port;
       default = 9081;
       example = 3002;
       description = "Internal port";

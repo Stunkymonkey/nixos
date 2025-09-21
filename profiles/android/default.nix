@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.android;
 in
 {
-  options.my.profiles.android = with lib; {
-    enable = mkEnableOption "android profile";
+  options.my.profiles.android = {
+    enable = lib.mkEnableOption "android profile";
   };
 
   config = lib.mkIf cfg.enable {

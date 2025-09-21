@@ -10,8 +10,8 @@ let
   cfg = config.my.system.podman;
 in
 {
-  options.my.system.podman = with lib; {
-    enable = mkEnableOption "podman configuration";
+  options.my.system.podman = {
+    enable = lib.mkEnableOption "podman configuration";
   };
 
   config = lib.mkIf cfg.enable {

@@ -3,16 +3,16 @@ let
   cfg = config.my.system.kvm;
 in
 {
-  options.my.system.kvm = with lib; {
-    enable = mkEnableOption "kvm configuration";
+  options.my.system.kvm = {
+    enable = lib.mkEnableOption "kvm configuration";
 
-    cpuFlavor = mkOption {
-      type =
-        with types;
-        nullOr (enum [
+    cpuFlavor = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
           "intel"
           "amd"
-        ]);
+        ]
+      );
       default = null;
       example = "intel";
       description = "Which kind of CPU to activate kernelModules";

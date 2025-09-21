@@ -9,20 +9,20 @@ let
   cfg = config.my.services.blocky;
 in
 {
-  options.my.services.blocky = with lib; {
-    enable = mkEnableOption "Blocky DNS Server";
+  options.my.services.blocky = {
+    enable = lib.mkEnableOption "Blocky DNS Server";
 
-    httpPort = mkOption {
-      type = types.port;
+    httpPort = lib.mkOption {
+      type = lib.types.port;
       default = 8053;
       example = 8080;
       description = "port for requests";
     };
 
-    settings = mkOption {
+    settings = lib.mkOption {
       inherit (pkgs.formats.json { }) type;
       default = { };
-      example = literalExpression ''
+      example = lib.literalExpression ''
         { ports.http = "8053" };
       '';
       description = ''

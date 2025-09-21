@@ -5,8 +5,8 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.jellyseerr = with lib; {
-    enable = mkEnableOption "Sonarr for films management";
+  options.my.services.jellyseerr = {
+    enable = lib.mkEnableOption "Sonarr for films management";
   };
 
   config = lib.mkIf cfg.enable {

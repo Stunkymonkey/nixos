@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.development;
 in
 {
-  options.my.profiles.development = with lib; {
-    enable = mkEnableOption "development profile";
+  options.my.profiles.development = {
+    enable = lib.mkEnableOption "development profile";
   };
 
   config = lib.mkIf cfg.enable {

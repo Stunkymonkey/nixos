@@ -5,11 +5,11 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.vpn = with lib; {
-    enable = mkEnableOption "Headscale VPN";
-    isMaster = mkEnableOption "Headscale Master";
-    port = mkOption {
-      type = types.port;
+  options.my.services.vpn = {
+    enable = lib.mkEnableOption "Headscale VPN";
+    isMaster = lib.mkEnableOption "Headscale Master";
+    port = lib.mkOption {
+      type = lib.types.port;
       default = 8090;
       example = 8080;
       description = "Internal port";

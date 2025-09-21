@@ -8,8 +8,8 @@ let
   cfg = config.my.hardware.bluetooth;
 in
 {
-  options.my.hardware.bluetooth = with lib; {
-    enable = mkEnableOption "bluetooth configuration";
+  options.my.hardware.bluetooth = {
+    enable = lib.mkEnableOption "bluetooth configuration";
   };
 
   config = lib.mkIf cfg.enable {

@@ -10,18 +10,18 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.grafana = with lib; {
-    enable = mkEnableOption "Grafana for visualizing";
+  options.my.services.grafana = {
+    enable = lib.mkEnableOption "Grafana for visualizing";
 
-    username = mkOption {
-      type = types.str;
+    username = lib.mkOption {
+      type = lib.types.str;
       default = "felix";
       example = "admin";
       description = "Admin username";
     };
 
-    passwordFile = mkOption {
-      type = types.str;
+    passwordFile = lib.mkOption {
+      type = lib.types.str;
       example = "/var/lib/grafana/password.txt";
       description = "Admin password stored in a file";
     };

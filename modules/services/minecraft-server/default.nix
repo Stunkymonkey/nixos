@@ -9,8 +9,8 @@ let
   cfg = config.my.services.minecraft-server;
 in
 {
-  options.my.services.minecraft-server = with lib; {
-    enable = mkEnableOption "Minecraft Server";
+  options.my.services.minecraft-server = {
+    enable = lib.mkEnableOption "Minecraft Server";
   };
 
   config = lib.mkIf cfg.enable {

@@ -24,13 +24,13 @@ let
   };
 in
 {
-  options.my.services.blackbox = with lib; {
-    enable = mkEnableOption "Blackbox prometheus exporter";
+  options.my.services.blackbox = {
+    enable = lib.mkEnableOption "Blackbox prometheus exporter";
 
-    http_endpoints = mkOption {
-      type = types.listOf types.str;
+    http_endpoints = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ ];
-      example = literalExpression ''
+      example = lib.literalExpression ''
         [
           "https://domain.com"
           "https://another-domain.com"

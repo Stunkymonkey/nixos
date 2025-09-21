@@ -10,8 +10,8 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.homepage = with lib; {
-    enable = mkEnableOption "Stunkymonkey-Hompage";
+  options.my.services.homepage = {
+    enable = lib.mkEnableOption "Stunkymonkey-Hompage";
   };
 
   config = lib.mkIf cfg.enable {

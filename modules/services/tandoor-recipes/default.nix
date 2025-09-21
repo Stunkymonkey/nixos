@@ -5,8 +5,8 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.tandoor-recipes = with lib; {
-    enable = mkEnableOption "Tandoor Recipes";
+  options.my.services.tandoor-recipes = {
+    enable = lib.mkEnableOption "Tandoor Recipes";
   };
 
   config = lib.mkIf cfg.enable {

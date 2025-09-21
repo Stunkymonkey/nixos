@@ -7,8 +7,8 @@ let
   port = 9696;
 in
 {
-  options.my.services.prowlarr = with lib; {
-    enable = mkEnableOption "Prowlarr for indexing";
+  options.my.services.prowlarr = {
+    enable = lib.mkEnableOption "Prowlarr for indexing";
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;

@@ -9,8 +9,8 @@ let
   cfg = config.my.system.avahi;
 in
 {
-  options.my.system.avahi = with lib; {
-    enable = mkEnableOption "avahi configuration";
+  options.my.system.avahi = {
+    enable = lib.mkEnableOption "avahi configuration";
   };
 
   config = lib.mkIf cfg.enable {

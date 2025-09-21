@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.desktop-dev;
 in
 {
-  options.my.profiles.desktop-dev = with lib; {
-    enable = mkEnableOption "desktop-dev profile";
+  options.my.profiles.desktop-dev = {
+    enable = lib.mkEnableOption "desktop-dev profile";
   };
 
   config = lib.mkIf cfg.enable {

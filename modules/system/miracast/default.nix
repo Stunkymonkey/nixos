@@ -10,8 +10,8 @@ let
   cfg = config.my.system.miracast;
 in
 {
-  options.my.system.miracast = with lib; {
-    enable = mkEnableOption "miracast configuration";
+  options.my.system.miracast = {
+    enable = lib.mkEnableOption "miracast configuration";
   };
 
   config = lib.mkIf cfg.enable {

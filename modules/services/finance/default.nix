@@ -9,11 +9,11 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.finance = with lib; {
+  options.my.services.finance = {
     enable = lib.mkEnableOption "Finance firefly service.";
 
-    appKeyFile = mkOption {
-      type = types.path;
+    appKeyFile = lib.mkOption {
+      type = lib.types.path;
       description = "appkey for the service.";
       example = "/run/secrets/freshrss";
       default = "base64:ICs6jizTJnu4U8Sl/+GKIUC6TSK+0i+Lu84CicRhTNE=";

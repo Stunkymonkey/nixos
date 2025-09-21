@@ -10,8 +10,8 @@ let
   cfg = config.my.system.spell-check;
 in
 {
-  options.my.system.spell-check = with lib; {
-    enable = mkEnableOption "spell-check configuration";
+  options.my.system.spell-check = {
+    enable = lib.mkEnableOption "spell-check configuration";
   };
 
   config = lib.mkIf cfg.enable {

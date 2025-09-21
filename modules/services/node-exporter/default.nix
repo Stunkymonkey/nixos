@@ -10,8 +10,8 @@ let
   cfg = config.my.services.node-exporter;
 in
 {
-  options.my.services.node-exporter = with lib; {
-    enable = mkEnableOption "Node-Exporter for monitoring";
+  options.my.services.node-exporter = {
+    enable = lib.mkEnableOption "Node-Exporter for monitoring";
   };
 
   config = lib.mkIf cfg.enable {

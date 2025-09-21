@@ -8,18 +8,18 @@ let
   cfg = config.my.services.fritzbox;
 in
 {
-  options.my.services.fritzbox = with lib; {
-    enable = mkEnableOption "Fritzbox-Monitoring";
+  options.my.services.fritzbox = {
+    enable = lib.mkEnableOption "Fritzbox-Monitoring";
 
-    username = mkOption {
-      type = types.str;
+    username = lib.mkOption {
+      type = lib.types.str;
       default = "prometheus";
       example = "admin";
       description = "Admin username";
     };
 
-    passwordFile = mkOption {
-      type = types.str;
+    passwordFile = lib.mkOption {
+      type = lib.types.str;
       example = "/var/lib/fritz/password.txt";
       description = "password stored in a file";
     };

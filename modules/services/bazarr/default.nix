@@ -6,8 +6,8 @@ let
   port = config.services.bazarr.listenPort;
 in
 {
-  options.my.services.bazarr = with lib; {
-    enable = mkEnableOption "Bazarr for subtitle management";
+  options.my.services.bazarr = {
+    enable = lib.mkEnableOption "Bazarr for subtitle management";
 
     apiKeyFile = lib.mkOption {
       type = lib.types.path;

@@ -10,50 +10,50 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.prometheus = with lib; {
-    enable = mkEnableOption "Prometheus for monitoring";
+  options.my.services.prometheus = {
+    enable = lib.mkEnableOption "Prometheus for monitoring";
 
-    scrapeInterval = mkOption {
-      type = types.str;
+    scrapeInterval = lib.mkOption {
+      type = lib.types.str;
       default = "15s";
       example = "1m";
       description = "Scrape interval";
     };
 
-    retentionTime = mkOption {
-      type = types.str;
+    retentionTime = lib.mkOption {
+      type = lib.types.str;
       default = "2y";
       example = "1m";
       description = "retention time";
     };
 
     # a good collections for alerts can be found here: https://samber.github.io/awesome-prometheus-alerts/rules#blackbox
-    rules = mkOption {
-      type = types.attrsOf (
-        types.submodule {
+    rules = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
           options = {
-            condition = mkOption {
-              type = types.str;
+            condition = lib.mkOption {
+              type = lib.types.str;
               description = ''
                 Prometheus alert expression.
               '';
-              example = ''disk_used_percent{mode!="ro"} >= 90'';
+              example = "up == 0";
               default = null;
             };
-            description = mkOption {
-              type = types.str;
+            description = lib.mkOption {
+              type = lib.types.str;
               description = ''
                 Prometheus alert message.
               '';
               example = "Prometheus encountered value {{ $value }} with {{ $labels }}";
               default = null;
             };
-            labels = mkOption {
-              type = types.nullOr (types.attrsOf types.str);
+            labels = lib.mkOption {
+              type = lib.types.nullOr (lib.types.attrsOf lib.types.str);
               description = ''
                 Additional alert labels.
               '';
-              example = literalExpression ''
+              example = lib.literalExpression ''
                 { severity = "page" };
               '';
               default = { };

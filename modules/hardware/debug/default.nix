@@ -8,8 +8,8 @@ let
   cfg = config.my.hardware.debug;
 in
 {
-  options.my.hardware.debug = with lib; {
-    enable = mkEnableOption "hardware-debug configuration";
+  options.my.hardware.debug = {
+    enable = lib.mkEnableOption "hardware-debug configuration";
   };
 
   config = lib.mkIf cfg.enable {

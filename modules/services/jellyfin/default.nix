@@ -19,8 +19,8 @@ let
   });
 in
 {
-  options.my.services.jellyfin = with lib; {
-    enable = mkEnableOption "Jellyfin Media Server";
+  options.my.services.jellyfin = {
+    enable = lib.mkEnableOption "Jellyfin Media Server";
   };
 
   config = lib.mkIf cfg.enable {

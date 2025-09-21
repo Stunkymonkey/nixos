@@ -5,23 +5,23 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.paperless = with lib; {
-    enable = mkEnableOption "Paperless Server";
+  options.my.services.paperless = {
+    enable = lib.mkEnableOption "Paperless Server";
 
-    passwordFile = mkOption {
-      type = types.path;
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
       description = "Password for the defaultUser for FreshRSS.";
       example = "/run/secrets/freshrss";
     };
 
-    mediaDir = mkOption {
-      type = types.path;
+    mediaDir = lib.mkOption {
+      type = lib.types.path;
       description = "Location of the FreshRSS data.";
       example = "/data/docs";
     };
 
-    settings = mkOption {
-      type = types.attrs;
+    settings = lib.mkOption {
+      type = lib.types.attrs;
       default = { };
       description = "additional extraConfig";
     };

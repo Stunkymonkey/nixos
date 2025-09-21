@@ -10,10 +10,10 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.hedgedoc = with lib; {
-    enable = mkEnableOption "Hedgedoc Music Server";
+  options.my.services.hedgedoc = {
+    enable = lib.mkEnableOption "Hedgedoc Music Server";
 
-    settings = mkOption {
+    settings = lib.mkOption {
       inherit (pkgs.formats.json { }) type;
       default = { };
       example = {

@@ -10,11 +10,11 @@ let
   inherit (config.networking) domain;
 in
 {
-  options.my.services.aria2 = with lib; {
-    enable = mkEnableOption "Aria2 for downloads";
+  options.my.services.aria2 = {
+    enable = lib.mkEnableOption "Aria2 for downloads";
 
-    downloadDir = mkOption {
-      type = types.path;
+    downloadDir = lib.mkOption {
+      type = lib.types.path;
       description = ''
         Directory to store downloaded files.
       '';
