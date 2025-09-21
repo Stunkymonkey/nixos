@@ -73,6 +73,16 @@ in
         Defines the prometheus rules.
       '';
       default = { };
+      example = lib.literalExpression ''
+        {
+          cpu_high_usage = {
+            condition = "cpu_usage_percent > 80";
+            description = "High CPU usage detected on {{ $labels.instance }}";
+            time = "5m";
+            labels = { severity = "warning"; };
+          };
+        }
+      '';
     };
   };
 
