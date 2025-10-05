@@ -13,6 +13,7 @@ _: {
     media.enable = true;
     meeting.enable = true;
     nautilus.enable = true;
+    nix.enable = true;
     powersave.enable = true;
     printing.enable = true;
     sway.enable = true;

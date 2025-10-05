@@ -33,14 +33,4 @@
     enable = true;
     flake = "github:Stunkymonkey/nixos";
   };
-
-  environment.systemPackages = with pkgs; [
-    nix-index
-    nix-init
-    nix-prefetch
-    nix-update
-    nixfmt-rfc-style
-    nixpkgs-hammering
-    nixpkgs-review
-  ];
 }

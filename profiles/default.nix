@@ -14,6 +14,7 @@
     ./media
     ./meeting
     ./nautilus
+    ./nix
     ./powersave
     ./printing
     ./sway
