@@ -53,7 +53,7 @@ in
     services = {
       nextcloud = {
         enable = true;
-        package = pkgs.nextcloud31;
+        package = pkgs.nextcloud32;
         hostName = "cloud.${domain}";
         maxUploadSize = cfg.maxSize;
         autoUpdateApps.enable = true;
