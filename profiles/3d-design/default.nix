@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       meshlab
-      openscad
+      openscad-unstable
       prusa-slicer
     ];
   };
