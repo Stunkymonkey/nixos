@@ -29,7 +29,7 @@ in
       mp3splt # splitting mp3 files
       mp3val # audio validation
       pdfgrep # grep in pdfs
-      pdfsam-basic # pdf editing
+      unstable.pdfsam-basic # pdf editing
       picard # music tagging
       projectm-sdl-cpp # visualization of music
       puddletag # audio tagging
