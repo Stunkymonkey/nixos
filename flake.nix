@@ -87,12 +87,17 @@
           # enable pre-commit checks
           pre-commit.settings = {
             hooks = {
+              actionlint.enable = true;
               deadnix = {
                 enable = true;
                 settings.noLambdaPatternNames = true;
               };
+              editorconfig-checker.enable = true;
+              end-of-file-fixer.enable = true;
               flake-checker.enable = true;
+              keep-sorted.enable = true;
               markdownlint.enable = true;
+              nil.enable = true;
               nixfmt-rfc-style.enable = true;
               shellcheck.enable = true;
               statix.enable = true;
