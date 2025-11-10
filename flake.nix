@@ -116,7 +116,7 @@
 
           devShells.default = pkgs.mkShell {
             inputsFrom = [ config.pre-commit.devShell ];
-            nativeBuildInputs = with pkgs; [
+            nativeBuildInputs = [
               # inputs'.nix.packages.nix
               inputs'.sops-nix.packages.sops-import-keys-hook
               inputs'.disko.packages.disko
