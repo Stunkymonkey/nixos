@@ -16,6 +16,7 @@ in
     environment.systemPackages = with pkgs; [
       blobby
       discord
+      gamemode
       minetest
       moonlight-qt # steam-link stream
       openttd
