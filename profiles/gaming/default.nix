@@ -29,7 +29,16 @@ in
       winetricks
     ];
 
-    programs.steam.enable = true;
+    programs.steam = {
+      enable = true;
+      # fix gamemode: https://github.com/NixOS/nixpkgs/issues/389142
+      package = pkgs.steam.override {
+        extraPkgs =
+          pkgs: with pkgs; [
+            gamemode
+          ];
+      };
+    };
 
     hardware = {
       graphics.enable32Bit = true;
