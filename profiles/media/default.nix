@@ -28,7 +28,7 @@ in
       mp3gain # audio volume
       mp3val # audio validation
       pdfgrep # grep in pdfs
-      unstable.pdfsam-basic # pdf editing
+      pdfsam-basic # pdf editing
       picard # music tagging
       projectm-sdl-cpp # visualization of music
       puddletag # audio tagging
