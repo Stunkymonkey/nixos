@@ -116,9 +116,7 @@ in
         email = "server@buehler.rocks";
 
         globalConfig = ''
-          servers{
-            metrics
-          }
+          metrics
         '';
         extraConfig = ''
           (compress) {
