@@ -18,7 +18,7 @@ in
       firefox
       (gimp-with-plugins.override {
         plugins = with gimpPlugins; [
-          resynthesizer # disabled because broken with python3
+          # resynthesizer # disabled because broken with python3
         ];
       })
       kdePackages.ghostwriter
@@ -34,7 +34,7 @@ in
       })
       newsflash
       rhythmbox
-      tdesktop
+      telegram-desktop
       thunderbird
       vlc
       wayvnc

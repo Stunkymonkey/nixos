@@ -15,10 +15,10 @@ in
   config = lib.mkIf cfg.enable {
     # binary blobs are needed for ventoy
     nixpkgs.config.permittedInsecurePackages = [
-      "ventoy-1.1.05"
+      "ventoy-1.1.07"
     ];
     environment.systemPackages = with pkgs; [
-      ventoy-bin-full # general
+      ventoy-full # general
       woeusb-ng # windows
     ];
   };

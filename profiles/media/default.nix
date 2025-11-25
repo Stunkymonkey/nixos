@@ -26,7 +26,6 @@ in
       mediaelch # video sorting
       metadata-cleaner # mat2-gui
       mp3gain # audio volume
-      mp3splt # splitting mp3 files
       mp3val # audio validation
       pdfgrep # grep in pdfs
       unstable.pdfsam-basic # pdf editing
@@ -35,7 +34,7 @@ in
       puddletag # audio tagging
       shotwell # photo management
       sonixd # cloud-music-player
-      soundkonverter # audio converter
+      soundconverter # audio converter
       varia # download
       (yt-dlp.override { withAlias = true; }) # video download
     ];

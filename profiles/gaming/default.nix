@@ -17,14 +17,14 @@ in
       blobby
       discord
       gamemode
-      minetest
+      luanti
       moonlight-qt # steam-link stream
       openttd
       prismlauncher # replace minecraft
-      superTuxKart
-      steam
       SDL
       SDL2
+      steam
+      superTuxKart
       wine
       winetricks
     ];

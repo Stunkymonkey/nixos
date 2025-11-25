@@ -36,7 +36,7 @@ in
           pandas
           pillow
           plotly
-          scikitlearn
+          scikit-learn
           scipy
           tqdm # progressbar in pandas
           wheel # python development

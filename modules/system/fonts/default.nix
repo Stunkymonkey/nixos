@@ -40,8 +40,7 @@ in
           noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-color-emoji
-          noto-fonts-extra
-          ubuntu_font_family
+          ubuntu-classic
           unifont # unicode fallback
         ]
         ++ cfg.additionalFonts;

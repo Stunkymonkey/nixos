@@ -6,12 +6,12 @@
     bind # dig
     borgbackup
     cryptsetup
+    delta
     fd # find replacement
     file
     fzf
     gettext
     git
-    gitAndTools.delta
     gptfdisk
     htop
     jq
