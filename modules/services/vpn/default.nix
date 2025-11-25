@@ -29,6 +29,7 @@ in
           inherit (cfg) port;
           settings = {
             dns.base_domain = "buehler.internal";
+            dns.override_local_dns = false;
             server_url = "https://vpn.${domain}";
             metrics_listen_addr = "127.0.0.1:8091";
             log.level = "warn";
