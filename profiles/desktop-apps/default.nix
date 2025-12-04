@@ -37,7 +37,6 @@ in
       telegram-desktop
       thunderbird
       vlc
-      wayvnc
       zathura
       zeal
       # terminal
@@ -47,9 +46,13 @@ in
       keychain
     ];
 
-    programs.wireshark = {
-      enable = true;
-      package = pkgs.wireshark; # enable the gui
+    programs = {
+      wayvnc.enable = true;
+      wireshark = {
+        enable = true;
+        package = pkgs.wireshark; # enable the gui
+      };
+
     };
   };
 }
