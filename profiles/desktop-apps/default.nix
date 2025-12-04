@@ -14,7 +14,6 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      evince
       firefox
       (gimp-with-plugins.override {
         plugins = with gimpPlugins; [
@@ -33,6 +32,7 @@ in
         ];
       })
       newsflash
+      papers
       rhythmbox
       telegram-desktop
       thunderbird
