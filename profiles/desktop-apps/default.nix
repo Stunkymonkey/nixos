@@ -17,7 +17,7 @@ in
       firefox
       (gimp-with-plugins.override {
         plugins = with gimpPlugins; [
-          # resynthesizer # disabled because broken with python3
+          resynthesizer
         ];
       })
       kdePackages.ghostwriter
