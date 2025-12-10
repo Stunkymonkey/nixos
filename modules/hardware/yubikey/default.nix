@@ -13,16 +13,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.udev.packages = [ pkgs.yubikey-personalization ];
     programs = {
+      yubikey-manager.enable = true;
       ssh.startAgent = false;
       gnupg.agent = {
         enable = true;
         enableSSHSupport = true;
       };
     };
-    services.pcscd.enable = true;
-
-    environment.systemPackages = with pkgs; [ yubikey-manager ];
   };
 }
