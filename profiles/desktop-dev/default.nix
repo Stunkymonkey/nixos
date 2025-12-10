@@ -18,7 +18,7 @@ in
       chromium
       dbeaver-bin
       filezilla
-      # fritzing # disabled because broken
+      fritzing
       gnome-font-viewer
       imhex # hex editor
       inlyne
