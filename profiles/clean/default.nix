@@ -13,6 +13,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    services.angrr = {
+      enable = true;
+      timer.enable = true;
+    };
+
     environment.systemPackages = with pkgs; [
       baobab
       dupeguru
