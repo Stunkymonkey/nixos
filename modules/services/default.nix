@@ -5,7 +5,6 @@
     ./alertmanager
     ./aria2
     ./backup
-    ./bazarr
     ./blackbox
     ./blocky
     ./dyndns
@@ -20,26 +19,20 @@
     ./homepage
     ./homer
     ./initrd-ssh
-    ./jellyfin
-    ./jellyseerr
     ./loki
-    ./minecraft-server
     ./matrix-bot
+    ./media
+    ./minecraft-server
     ./mumble-server
-    ./navidrome
     ./nextcloud
     ./node-exporter
     ./octoprint
     ./paperless
     ./passworts
-    ./photos
     ./prometheus
     ./promtail
-    ./prowlarr
-    ./radarr
     ./remote-build
     ./rss-bridge
-    ./sonarr
     ./ssh-server
     ./tandoor-recipes
     ./vpn
