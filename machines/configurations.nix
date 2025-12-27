@@ -17,7 +17,7 @@ let
     };
   };
 
-  customModules = import ./core/default.nix;
+  customModules = import ../profiles/core/default.nix;
   baseModules = [
     # make flake inputs accessible in NixOS
     {

@@ -51,8 +51,8 @@
   };
 
   imports = [
-    ../machines/core/core.nix
-    ../machines/core/nix.nix
+    ../profiles/core/core.nix
+    ../profiles/core/nix.nix
   ];
 
   documentation = {
