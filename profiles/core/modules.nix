@@ -11,10 +11,5 @@ _: {
       "usb_storage"
       "xhci_pci"
     ];
-
-    kernelModules = [
-      "e1000e"
-      "nvme"
-    ];
   };
 }
