@@ -4,6 +4,7 @@
     ./3d-design
     ./android
     ./clean
+    ./core
     ./desktop-apps
     ./desktop-dev
     ./development

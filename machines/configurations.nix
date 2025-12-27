@@ -17,8 +17,7 @@ let
     };
   };
 
-  customModules = import ../profiles/core/default.nix;
-  baseModules = [
+  defaultModules = [
     # make flake inputs accessible in NixOS
     {
       _module.args.self = self;
@@ -45,10 +44,12 @@ let
         sops-nix.nixosModules.sops
       ];
     }
+    {
+      my.profiles.core.enable = true;
+    }
     ../modules
     ../profiles
   ];
-  defaultModules = baseModules ++ customModules;
 in
 {
   flake.nixosConfigurations = {
