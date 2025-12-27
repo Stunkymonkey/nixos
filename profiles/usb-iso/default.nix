@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     # binary blobs are needed for ventoy
     nixpkgs.config.permittedInsecurePackages = [
-      "ventoy-1.1.07"
+      "ventoy-${pkgs.ventoy.version}"
     ];
     environment.systemPackages = with pkgs; [
       ventoy-full # general
