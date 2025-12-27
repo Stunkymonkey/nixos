@@ -3,11 +3,10 @@ _: {
     enable = true;
 
     unmanaged = [
-      "interface-name:br-*" # Ignore docker compose network bridges
-      "interface-name:docker?" # Ignore docker default bridge
-      "interface-name:veth*" # Ignore docker compose network devices
-      "interface-name:virbr?" # Ignore libvirt default bridge
+      "interface-name:br-*" # docker compose bridges
+      "interface-name:docker?" # docker default bridge
+      "interface-name:veth*" # docker veth devices
+      "interface-name:virbr?" # libvirt default bridge
     ];
   };
-
 }
