@@ -8,12 +8,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
-    # start sway if login happens
-    environment.interactiveShellInit = ''
-      if test `tty` = /dev/tty1; then
-        exec sway
-      fi
-    '';
+    services.displayManager.lemurs = {
+      enable = true;
+      settings.environment_switcher.include_tty_shell = true;
+    };
   };
 }
