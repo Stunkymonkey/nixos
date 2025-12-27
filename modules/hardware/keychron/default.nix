@@ -13,7 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.keyboard.qmk.enable = true;
+    hardware.keyboard.qmk = {
+      enable = true;
+      keychronSupport = true;
+    };
 
     services.udev.packages = with pkgs; [
       via
