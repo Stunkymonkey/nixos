@@ -34,9 +34,8 @@ in
 
     environment.systemPackages = with pkgs; [
       noisetorch
-      pavucontrol
       playerctl
-      pulseaudio # provide pactl to enable keyboard shortcuts
+      pwvucontrol
     ];
   };
 }
