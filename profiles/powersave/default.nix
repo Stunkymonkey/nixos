@@ -27,5 +27,12 @@ in
       thermald.enable = true;
       upower.enable = true;
     };
+
+    services.udev.extraRules = ''
+      # disable USB auto suspend for Keychron Q3 HE
+      ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="3434", ATTR{idProduct}=="0b31", ATTR{power/autosuspend}="-1"
+      # disable USB auto suspend for Keychron Q3
+      ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="3434", ATTR{idProduct}=="0123", ATTR{power/autosuspend}="-1"
+    '';
   };
 }
