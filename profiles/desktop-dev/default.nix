@@ -18,9 +18,10 @@ in
       chromium
       dbeaver-bin
       filezilla
-      fritzing
+      fritzing # wiring design
       gnome-font-viewer
       imhex # hex editor
+      kicad # pcb design
       inlyne
       meld
       qgis
