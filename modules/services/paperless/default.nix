@@ -33,6 +33,7 @@ in
       inherit (cfg) mediaDir passwordFile;
       settings = {
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
+        PAPERLESS_URL = "https://docs.${domain}";
       }
       // cfg.settings;
     };
