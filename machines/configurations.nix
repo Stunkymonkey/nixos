@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, lib, ... }:
 let
   inherit (self.inputs)
     disko
@@ -46,6 +46,7 @@ let
     }
     {
       my.profiles.core.enable = true;
+      my.profiles.zsh.enable = lib.mkDefault true;
     }
     ../modules
     ../profiles
