@@ -23,5 +23,6 @@
     ./update
     ./usb-iso
     ./webcam
+    ./zsh
   ];
 }
