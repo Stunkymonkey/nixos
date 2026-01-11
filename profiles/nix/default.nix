@@ -16,6 +16,7 @@ in
     environment.systemPackages = with pkgs; [
       nix-index
       nix-init
+      nix-output-monitor
       nix-prefetch
       nix-update
       nixfmt-rfc-style
