@@ -61,9 +61,9 @@ in
       };
 
       promtail_file_lagging = {
-        condition = ''abs(promtail_file_bytes_total - promtail_read_bytes_total) > 1e6'';
+        condition = "abs(promtail_file_bytes_total - promtail_read_bytes_total) > 1e6";
         time = "15m";
-        description = ''{{ $labels.instance }} {{ $labels.job }} {{ $labels.path }} has been lagging by more than 1MB for more than 15m'';
+        description = "{{ $labels.instance }} {{ $labels.job }} {{ $labels.path }} has been lagging by more than 1MB for more than 15m";
       };
     };
 

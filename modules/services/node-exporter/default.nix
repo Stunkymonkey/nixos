@@ -115,7 +115,7 @@ in
         description = "{{$labels.instance}} device {{$labels.device}} on {{$labels.path}} got less than 10% space left on its filesystem";
       };
       filesystem_inodes_full = {
-        condition = ''node_filesystem_files_free / node_filesystem_files < 0.10'';
+        condition = "node_filesystem_files_free / node_filesystem_files < 0.10";
         time = "10m";
         description = "{{$labels.instance}} device {{$labels.device}} on {{$labels.path}} got less than 10% inodes left on its filesystem";
       };
@@ -125,11 +125,11 @@ in
         description = "{{$labels.instance}}: filesystem has reported {{$value}} errors: check /sys/fs/ext4/*/errors_count";
       };
       disk_unusual_read = {
-        condition = ''sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 50'';
+        condition = "sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 50";
         description = ''Disk is probably reading too much data (> 50 MB/s)\n  VALUE = {{ $value }}'';
       };
       disk_unusual_write = {
-        condition = ''sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 50'';
+        condition = "sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 50";
         description = ''Disk is probably writing too much data (> 50 MB/s)\n  VALUE = {{ $value }}'';
       };
       # memory
@@ -144,21 +144,21 @@ in
         description = ''CPU load is > 80%\n  VALUE = {{ $value }}'';
       };
       swap_is_filling = {
-        condition = ''(1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80'';
+        condition = "(1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80";
         description = "{{$labels.host}} is using {{$value}} (>80%) of its swap space";
       };
       oom_kill_detected = {
-        condition = ''increase(node_vmstat_oom_kill[1m]) > 0'';
+        condition = "increase(node_vmstat_oom_kill[1m]) > 0";
         description = ''OOM kill detected\n  VALUE = {{ $value }}'';
         time = "0m";
       };
       # network
       network_unusual_throughput_in = {
-        condition = ''sum by (instance) (rate(node_network_receive_bytes_total[2m])) / 1024 / 1024 > 100'';
+        condition = "sum by (instance) (rate(node_network_receive_bytes_total[2m])) / 1024 / 1024 > 100";
         description = ''Host network interfaces are probably receiving too much data (> 100 MB/s)\n  VALUE = {{ $value }}'';
       };
       network_unusual_throughput_out = {
-        condition = ''sum by (instance) (rate(node_network_transmit_bytes_total[2m])) / 1024 / 1024 > 100'';
+        condition = "sum by (instance) (rate(node_network_transmit_bytes_total[2m])) / 1024 / 1024 > 100";
         description = ''Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}'';
       };
       # uptime
@@ -167,7 +167,7 @@ in
         description = "{{$labels.host}} just rebooted";
       };
       uptime = {
-        condition = ''node_time_seconds - node_boot_time_seconds > (30 * 24 * 60 * 60)'';
+        condition = "node_time_seconds - node_boot_time_seconds > (30 * 24 * 60 * 60)";
         description = "Uptime monster: {{$labels.host}} has been up for more than 30 days";
       };
       # systemd
@@ -178,7 +178,7 @@ in
       };
       # time
       clock_not_synchronising = {
-        condition = ''min_over_time(node_timex_sync_status[1m]) == 0 and node_timex_maxerror_seconds >= 16'';
+        condition = "min_over_time(node_timex_sync_status[1m]) == 0 and node_timex_maxerror_seconds >= 16";
         description = ''Clock not synchronising.\n  VALUE = {{ $value }}'';
       };
     };
