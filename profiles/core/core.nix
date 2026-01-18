@@ -20,6 +20,7 @@
     mosh # mobile shell
     mtr # network diagnostic tool
     multipath-tools # disk multipathing tools (kpartx)
+    neovim # text editor
     nmap # network scanner
     nmon # performance monitor
     ouch # de-/compression tool
