@@ -97,6 +97,7 @@
               keep-sorted.enable = true;
               markdownlint.enable = true;
               nil.enable = true;
+              nixf-diagnose.enable = true;
               nixfmt-rfc-style.enable = true;
               shellcheck.enable = true;
               statix.enable = true;
