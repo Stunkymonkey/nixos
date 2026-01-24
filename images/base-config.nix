@@ -50,10 +50,8 @@
         };
   };
 
-  imports = [
-    ../profiles/core/core.nix
-    ../profiles/core/nix.nix
-  ];
+  my.profiles.core.nix.enable = true;
+  my.profiles.core.packages.enable = true;
 
   documentation = {
     enable = lib.mkDefault false;

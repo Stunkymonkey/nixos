@@ -1,10 +1,16 @@
 { self, ... }:
 let
-  inherit (self.inputs) nixos-generators;
-  defaultModule = {
-    imports = [ ./base-config.nix ];
-    _module.args.inputs = self.inputs;
-  };
+  inherit (self.inputs) nixos-generators sops-nix;
+  defaultModules = [
+    {
+      imports = [
+        ./base-config.nix
+        sops-nix.nixosModules.sops
+      ];
+      _module.args.inputs = self.inputs;
+    }
+    ../profiles
+  ];
 in
 {
   perSystem =
@@ -14,16 +20,14 @@ in
         install-iso = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           inherit pkgs;
-          modules = [ defaultModule ];
+          modules = defaultModules;
           format = "install-iso";
         };
 
         # install-sd-aarch64 = nixos-generators.nixosGenerate {
         #   system = "aarch64-linux";
         #   inherit pkgs;
-        #   modules = [
-        #     defaultModule
-        #   ];
+        #   modules = defaultModules;
         #   format = "sd-aarch64-installer";
         # };
       };
@@ -35,8 +39,7 @@ in
   #      {
   #        nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   #      }
-  #      defaultModule
-  #    ];
+  #    ] ++ defaultModules;
   #  };
   #};
 }
