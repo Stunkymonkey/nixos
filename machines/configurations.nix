@@ -13,6 +13,7 @@ let
   overlay-unstable = final: _prev: {
     unstable = import nixpkgs-unstable {
       inherit (final.stdenv.hostPlatform) system;
+      # TODO 26.05: replace with nixpkgs.config.allowUnfreePackages
       config.allowUnfree = true;
     };
   };
@@ -28,6 +29,7 @@ let
         (
           { pkgs, ... }:
           {
+            # TODO 26.05: replace with nixpkgs.config.allowUnfreePackages
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = [
               overlay-unstable
