@@ -34,6 +34,7 @@ in
             bbenoist.nix
             editorconfig.editorconfig
             github.copilot
+            github.copilot-chat
             mkhl.direnv
             ms-azuretools.vscode-docker
             ms-python.python
