@@ -85,6 +85,7 @@
 
           # enable pre-commit checks
           pre-commit.settings = {
+            package = pkgs.prek;
             hooks = {
               actionlint.enable = true;
               deadnix = {
