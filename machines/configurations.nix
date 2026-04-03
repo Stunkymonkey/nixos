@@ -82,5 +82,12 @@ in
         ./serverle/configuration.nix
       ];
     };
+    playman = nixosSystem {
+      system = "x86_64-linux";
+      modules = defaultModules ++ [
+        nixos-hardware.nixosModules.dell-precision-5820
+        ./playman/configuration.nix
+      ];
+    };
   };
 }

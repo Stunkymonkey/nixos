@@ -222,15 +222,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1774567711,
-        "narHash": "sha256-uVlOHBvt6Vc/iYNJXLPa4c3cLXwMllOCVfAaLAcphIo=",
-        "owner": "NixOS",
+        "lastModified": 1775232991,
+        "narHash": "sha256-QkmL6kwmQXBN24FVOZSfFkNpUgu8jHfdYPoA2H8sA7k=",
+        "owner": "Stunkymonkey",
         "repo": "nixos-hardware",
-        "rev": "3f6f874dfc34d386d10e434c48ad966c4832243e",
+        "rev": "d6ee262f8d4db0815b08c76714becc09af11f962",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "Stunkymonkey",
+        "ref": "dell-precision-5820",
         "repo": "nixos-hardware",
         "type": "github"
       }
