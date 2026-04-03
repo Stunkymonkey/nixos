@@ -2,9 +2,6 @@
   pkgs,
   ...
 }:
-let
-  cpuFlavor = "intel";
-in
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -17,11 +14,11 @@ in
     };
     firmware = {
       enable = true;
-      inherit cpuFlavor;
+      cpuFlavor = "intel";
     };
     graphics = {
       enable = true;
-      inherit cpuFlavor;
+      gpuFlavor = "nvidia";
     };
     keychron.enable = true;
     yubikey.enable = true;

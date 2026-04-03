@@ -1,8 +1,4 @@
-_:
-let
-  cpuFlavor = "intel";
-in
-{
+_: {
   # video driver
   boot.initrd.kernelModules = [ "i915" ];
 
@@ -20,11 +16,11 @@ in
     drive-monitor.enable = true;
     firmware = {
       enable = true;
-      inherit cpuFlavor;
+      cpuFlavor = "intel";
     };
     graphics = {
       enable = true;
-      inherit cpuFlavor;
+      gpuFlavor = "intel";
     };
     id-card.enable = true;
     keychron.enable = true;

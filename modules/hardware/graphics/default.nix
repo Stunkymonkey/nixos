@@ -10,11 +10,12 @@ in
 {
   options.my.hardware.graphics = {
     enable = lib.mkEnableOption "graphics configuration";
-    cpuFlavor = lib.mkOption {
+    gpuFlavor = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "amd"
           "intel"
+          "nvidia"
         ]
       );
       default = null;
@@ -29,7 +30,7 @@ in
         hardware.graphics.enable = true;
       }
       # Intel GPU
-      (lib.mkIf (cfg.cpuFlavor == "intel") {
+      (lib.mkIf (cfg.gpuFlavor == "intel") {
         nixpkgs.config.packageOverrides = pkgs: {
           intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
         };
@@ -41,7 +42,9 @@ in
         ];
       })
 
-      (lib.mkIf (cfg.cpuFlavor == "amd") {
+      (lib.mkIf (cfg.gpuFlavor == "amd") {
+      })
+      (lib.mkIf (cfg.gpuFlavor == "nvidia") {
       })
     ]
   );

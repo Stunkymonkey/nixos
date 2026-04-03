@@ -2,9 +2,6 @@
   pkgs,
   ...
 }:
-let
-  cpuFlavor = "amd";
-in
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -30,11 +27,11 @@ in
     drive-monitor.enable = true;
     firmware = {
       enable = true;
-      inherit cpuFlavor;
+      cpuFlavor = "amd";
     };
     graphics = {
       enable = true;
-      inherit cpuFlavor;
+      gpuFlavor = "amd";
     };
     id-card.enable = true;
     keychron.enable = true;
