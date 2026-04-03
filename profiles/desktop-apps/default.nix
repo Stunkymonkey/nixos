@@ -14,7 +14,6 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      firefox
       (gimp-with-plugins.override {
         plugins = with gimpPlugins; [
           resynthesizer
@@ -47,6 +46,10 @@ in
     ];
 
     programs = {
+      firefox = {
+        enable = true;
+        nativeMessagingHosts.packages = [ pkgs.keepassxc ];
+      };
       wayvnc.enable = true;
       wireshark = {
         enable = true;
