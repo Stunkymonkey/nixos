@@ -109,6 +109,7 @@ in
     };
     initrd-ssh = {
       enable = true;
+      mode = "grub2";
     };
     # self-hosted recipe manager
     tandoor-recipes = {
