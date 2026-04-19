@@ -35,7 +35,7 @@ in
         };
 
         postCommands = lib.optionalString (cfg.mode == "grub2") ''
-          echo 'cryptsetup-askpass || echo "Unlock was successful; exiting SSH session" && exit 1' >> /root/.profile
+          echo 'cryptsetup-askpass && { echo "Unlock was successful; exiting SSH session"; exit 0; }' >> /root/.profile
         '';
       };
 
@@ -49,7 +49,7 @@ in
           unitConfig.DefaultDependencies = "no";
           serviceConfig.Type = "oneshot";
           script = ''
-            echo 'systemctl default || echo "Unlock was successful; exiting SSH session" && exit 1' >> /var/empty/.profile
+            echo 'systemctl default && { echo "Unlock was successful; exiting SSH session"; exit 0; }' >> /var/empty/.profile
           '';
         };
       };
