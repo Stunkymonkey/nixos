@@ -12,6 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     services.tandoor-recipes = {
       enable = true;
+      extraConfig.ALLOWED_HOSTS = "recipes.${domain}";
     };
 
     # Proxy to Tandoor-Recipes
