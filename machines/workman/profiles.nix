@@ -2,6 +2,7 @@
 _: {
   my.profiles = {
     "3d-design".enable = true;
+    ai.enable = true;
     android.enable = true;
     clean.enable = true;
     desktop-apps.enable = true;
