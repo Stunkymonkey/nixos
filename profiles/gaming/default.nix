@@ -29,7 +29,7 @@ in
           blobby
           discord
           gamemode
-          luanti
+          unstable.luanti
           mangohud
           moonlight-qt # steam-link stream
           openttd
