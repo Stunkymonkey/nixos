@@ -1,9 +1,12 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  networking.useDHCP = lib.mkForce true;
 
   my.hardware = {
     bluetooth.enable = true;
