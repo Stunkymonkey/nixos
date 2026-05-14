@@ -15,7 +15,13 @@
       efi.canTouchEfiVariables = true;
     };
     initrd = {
-      systemd.enable = true; # for a nice password prompt
+      systemd = {
+        enable = true; # for a nice password prompt
+        settings.Manager = {
+          # remove default 90 seconds timeout
+          DefaultDeviceTimeoutSec = "infinity";
+        };
+      };
       verbose = false;
     };
     # Enable "Silent boot"

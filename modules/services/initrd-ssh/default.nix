@@ -42,6 +42,10 @@ in
       systemd = lib.optionalAttrs (cfg.mode == "systemd") {
         enable = true;
         network.enable = true;
+        settings.Manager = {
+          # remove default 90 seconds timeout
+          DefaultDeviceTimeoutSec = "infinity";
+        };
         services.luks-remote-unlock = {
           description = "Prepare for LUKS remote unlock";
           wantedBy = [ "initrd.target" ];
