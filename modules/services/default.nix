@@ -19,6 +19,7 @@
     ./homepage
     ./homer
     ./initrd-ssh
+    ./initrd-wifi
     ./llm
     ./loki
     ./matrix-bot
