@@ -7,6 +7,13 @@ in
   options.my.services.initrd-ssh = {
     enable = lib.mkEnableOption "Enable initrd-ssh service";
 
+    interface = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      example = "eth0";
+      description = "Ethernet interface name shown by 'ip addr'";
+      default = null;
+    };
+
     mode = lib.mkOption {
       type = lib.types.enum [
         "grub2"
@@ -15,13 +22,16 @@ in
       default = "systemd";
       description = "Whether to use GRUB2 or systemd for the initrd SSH server.";
     };
+
+    hostKeys = lib.mkOption {
+      type = lib.types.listOf lib.types.path;
+      example = [ "/run/secret/ssh_host_ed25519_key" ];
+      description = "the host keys to use for the SSH server for initrd.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     boot.initrd = {
-      secrets = {
-        "/etc/secrets/initrd/ssh_host_ed25519_key" = "/etc/secrets/initrd/ssh_host_ed25519_key";
-      };
       network = {
         enable = true;
 
@@ -41,7 +51,15 @@ in
 
       systemd = lib.optionalAttrs (cfg.mode == "systemd") {
         enable = true;
-        network.enable = true;
+        network = {
+          enable = true;
+          networks = lib.optionalAttrs (cfg.interface != null) {
+            "10-lan" = {
+              matchConfig.Name = cfg.interface;
+              networkConfig.DHCP = "yes";
+            };
+          };
+        };
         settings.Manager = {
           # remove default 90 seconds timeout
           DefaultDeviceTimeoutSec = "infinity";

@@ -26,6 +26,7 @@ in
     };
     initrd-ssh = {
       enable = true;
+      interface = "eno1";
     };
     vpn = {
       enable = true;
