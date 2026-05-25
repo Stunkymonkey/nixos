@@ -35,7 +35,6 @@ in
 
     programs = {
       foot.enable = true;
-      light.enable = true;
       wshowkeys.enable = true;
 
       sway = {
