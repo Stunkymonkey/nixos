@@ -19,7 +19,7 @@ in
       nix-output-monitor
       nix-prefetch
       nix-update
-      nixfmt-rfc-style
+      nixfmt
       nixpkgs-hammering
       nixpkgs-review
       shh
