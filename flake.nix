@@ -84,7 +84,7 @@
             inherit system;
           };
 
-          # enable pre-commit checks
+          # enable git-hook checks
           pre-commit.settings = {
             package = pkgs.prek;
             hooks = {
@@ -100,7 +100,7 @@
               markdownlint.enable = true;
               nil.enable = true;
               nixf-diagnose.enable = true;
-              nixfmt-rfc-style.enable = true;
+              nixfmt.enable = true;
               shellcheck.enable = true;
               statix.enable = true;
               typos = {
