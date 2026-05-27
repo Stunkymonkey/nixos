@@ -105,7 +105,7 @@ in
             ""
           else
             "Duplicate ports found in my.services.webserver.virtualHosts: "
-            + builtins.concatStringsSep ", " (map (v: v.subdomain + ":" + builtins.toString v.port) duplicates);
+            + builtins.concatStringsSep ", " (map (v: v.subdomain + ":" + toString v.port) duplicates);
       }
     ];
 
