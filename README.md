@@ -70,7 +70,7 @@ used flakes:
         nixos-generate-config --no-filesystems --root $(mktemp -d)
         ```
 
-        reuse the `hardware-configuration.nix` to create a new machine with its flake.
+        Reuse `hardware-configuration.nix` for a new machine via its flake.
 
     1. setup secrets
 
