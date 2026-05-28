@@ -28,6 +28,9 @@ in
     "grafana/password" = {
       owner = config.users.users.grafana.name;
     };
+    "grafana/secret_key" = {
+      owner = config.users.users.grafana.name;
+    };
     "matrix-bot/password" = { };
   };
 
@@ -129,6 +132,7 @@ in
     grafana = {
       enable = true;
       passwordFile = secrets."grafana/password".path;
+      secretKeyFile = secrets."grafana/secret_key".path;
     };
     loki = {
       enable = true;

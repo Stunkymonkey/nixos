@@ -21,9 +21,15 @@ in
     };
 
     passwordFile = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.path;
       example = "/var/lib/grafana/password.txt";
       description = "Admin password stored in a file";
+    };
+
+    secretKeyFile = lib.mkOption {
+      type = lib.types.path;
+      example = "/var/lib/grafana/secret_key.txt";
+      description = "`openssl rand -hex 32` stored in a file";
     };
   };
 
@@ -40,6 +46,7 @@ in
         security = {
           admin_user = cfg.username;
           admin_password = "$__file{${cfg.passwordFile}}";
+          secret_key = "$__file{${cfg.secretKeyFile}}";
         };
       };
 
