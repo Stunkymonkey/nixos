@@ -8,7 +8,7 @@ in
   options.my.services.acme = {
     enable = lib.mkEnableOption "ACME certificates";
 
-    credentialsFile = lib.mkOption {
+    environmentFile = lib.mkOption {
       type = lib.types.str;
       example = "/var/lib/acme/creds.env";
       description = ''
@@ -28,7 +28,7 @@ in
         "${domain}" = {
           extraDomainNames = [ "*.${domain}" ];
           dnsProvider = "inwx";
-          inherit (cfg) credentialsFile;
+          inherit (cfg) environmentFile;
         };
       };
     };

@@ -144,7 +144,7 @@ in
     };
     acme = {
       enable = true;
-      credentialsFile = secrets."acme/inwx".path;
+      environmentFile = secrets."acme/inwx".path;
     };
     vpn = {
       enable = true;
