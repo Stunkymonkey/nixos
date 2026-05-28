@@ -12,7 +12,10 @@ in
   config = lib.mkIf cfg.enable {
     services.tandoor-recipes = {
       enable = true;
-      extraConfig.ALLOWED_HOSTS = "recipes.${domain}";
+      extraConfig = {
+        ALLOWED_HOSTS = "recipes.${domain}";
+        MEDIA_ROOT = "/var/lib/tandoor-recipes/media";
+      };
     };
 
     # Proxy to Tandoor-Recipes
