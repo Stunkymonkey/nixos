@@ -18,8 +18,10 @@ in
       enable = true;
       openFirewall = true;
       welcometext = "Welcome to the Mumble-Server!";
-      sslCert = "${config.security.acme.certs.${domain}.directory}/fullchain.pem";
-      sslKey = "${config.security.acme.certs.${domain}.directory}/key.pem";
+      tls = {
+        certPath = "${config.security.acme.certs.${domain}.directory}/fullchain.pem";
+        keyPath = "${config.security.acme.certs.${domain}.directory}/key.pem";
+      };
     };
 
     # create a separate certificate for the mumble server
