@@ -37,7 +37,7 @@ in
           SDL
           SDL2
           steam
-          superTuxKart
+          supertuxkart
           wine
           winetricks
         ];
