@@ -17,7 +17,6 @@ in
       element-desktop
       fractal
       mumble
-      teamspeak6-client
     ];
   };
 }
