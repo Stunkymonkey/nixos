@@ -14,15 +14,6 @@ in
       default = null;
     };
 
-    mode = lib.mkOption {
-      type = lib.types.enum [
-        "grub2"
-        "systemd"
-      ];
-      default = "systemd";
-      description = "Whether to use GRUB2 or systemd for the initrd SSH server.";
-    };
-
     hostKeys = lib.mkOption {
       type = lib.types.listOf lib.types.path;
       example = [ "/run/secret/ssh_host_ed25519_key" ];
@@ -43,13 +34,9 @@ in
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFx6OLwL9MbkD3mnMsv+xrzZHN/rwCTgVs758SCLG0h felix@workman"
           ];
         };
-
-        postCommands = lib.optionalString (cfg.mode == "grub2") ''
-          echo 'cryptsetup-askpass && { echo "Unlock was successful; exiting SSH session"; exit 0; }' >> /root/.profile
-        '';
       };
 
-      systemd = lib.optionalAttrs (cfg.mode == "systemd") {
+      systemd = {
         enable = true;
         network = {
           enable = true;
