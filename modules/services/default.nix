@@ -29,10 +29,10 @@
     ./nextcloud
     ./node-exporter
     ./octoprint
+    ./otel
     ./paperless
     ./passworts
     ./prometheus
-    ./promtail
     ./remote-build
     ./rss-bridge
     ./ssh-server

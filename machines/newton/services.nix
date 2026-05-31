@@ -136,7 +136,7 @@ in
     loki = {
       enable = true;
     };
-    promtail = {
+    otel = {
       enable = true;
     };
     blackbox = {
