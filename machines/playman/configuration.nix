@@ -9,6 +9,7 @@
     ./profiles.nix
     ./services.nix
     ./system.nix
+    ./wifi.nix
   ];
 
   networking.hostName = "playman";
