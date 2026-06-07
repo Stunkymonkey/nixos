@@ -66,13 +66,15 @@ in
         programs = {
           gamescope = {
             enable = true;
-            capSysNice = true;
+            # TODO: issue https://github.com/nixos/nixpkgs/issues/523200
+            # capSysNice = true;
           };
           steam.gamescopeSession.enable = true;
         };
 
         services = {
           xserver.enable = false;
+          seatd.enable = true;
 
           getty.autologinUser = cfg.gamescope.username;
 
