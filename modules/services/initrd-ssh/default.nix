@@ -51,16 +51,7 @@ in
           # remove default 90 seconds timeout
           DefaultDeviceTimeoutSec = "infinity";
         };
-        services.luks-remote-unlock = {
-          description = "Prepare for LUKS remote unlock";
-          wantedBy = [ "initrd.target" ];
-          after = [ "systemd-networkd.service" ];
-          unitConfig.DefaultDependencies = "no";
-          serviceConfig.Type = "oneshot";
-          script = ''
-            echo 'systemctl default && { echo "Unlock was successful; exiting SSH session"; exit 0; }' >> /var/empty/.profile
-          '';
-        };
+        users.root.shell = "/bin/systemd-tty-ask-password-agent";
       };
     };
   };
