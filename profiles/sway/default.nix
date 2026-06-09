@@ -46,6 +46,7 @@ in
 
         extraPackages = with pkgs; [
           brightnessctl
+          cliphist
           dmenu
           gammastep
           grim
