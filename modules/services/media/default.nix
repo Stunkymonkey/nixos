@@ -3,7 +3,7 @@
   imports = [
     ./bazarr
     ./jellyfin
-    ./jellyseerr
+    ./seerr
     ./navidrome
     ./photos
     ./prowlarr

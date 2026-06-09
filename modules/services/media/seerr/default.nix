@@ -1,27 +1,27 @@
 # manages and downloads films
 { config, lib, ... }:
 let
-  cfg = config.my.services.jellyseerr;
+  cfg = config.my.services.seerr;
   inherit (config.networking) domain;
 in
 {
-  options.my.services.jellyseerr = {
+  options.my.services.seerr = {
     enable = lib.mkEnableOption "Sonarr for films management";
   };
 
   config = lib.mkIf cfg.enable {
-    services.jellyseerr = {
+    services.seerr = {
       enable = true;
     };
 
     my.services.webserver.virtualHosts = [
       {
         subdomain = "view";
-        inherit (config.services.jellyseerr) port;
+        inherit (config.services.seerr) port;
       }
     ];
 
-    webapps.apps.jellyseerr = {
+    webapps.apps.seerr = {
       dashboard = {
         name = "View";
         category = "media";

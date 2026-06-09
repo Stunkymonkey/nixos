@@ -75,7 +75,7 @@ in
     jellyfin = {
       enable = true;
     };
-    jellyseerr = {
+    seerr = {
       enable = true;
     };
     fritzbox = {
