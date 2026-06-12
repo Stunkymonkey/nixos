@@ -5,7 +5,6 @@ It is fully reproducible, flakes based, and position-independent, ...
 
 used flakes:
 
-- image generation: [nixos-generators](https://github.com/nix-community/nixos-generators)
 - disk partitioning: [disko](https://github.com/nix-community/disko)
 - secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - deployment: [nixinate](https://github.com/MatthewCroughan/nixinate), see [usage](#usage)
@@ -47,8 +46,8 @@ used flakes:
 - images:
 
     ```bash
-    nix build .#install-iso
-    nix build .#aarch64-install --system aarch64-linux
+    nix build .#packages.x86_64-linux.install-iso
+    nix build .#packages.aarch64-linux.install-sd-aarch64
     ```
 
 - vms:

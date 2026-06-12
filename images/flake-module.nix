@@ -1,6 +1,6 @@
 { self, ... }:
 let
-  inherit (self.inputs) nixos-generators sops-nix;
+  inherit (self.inputs) sops-nix;
   defaultModules = [
     {
       imports = [
@@ -14,23 +14,44 @@ let
 in
 {
   perSystem =
-    { pkgs, ... }:
-    {
-      packages = {
-        install-iso = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          inherit pkgs;
-          modules = defaultModules;
-          format = "install-iso";
+    { system, ... }:
+    let
+      nixpkgsLib = self.inputs.nixpkgs.lib;
+
+      images = {
+        x86_64-linux = {
+          name = "install-iso";
+          module = "${self.inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix";
+          output = "isoImage";
         };
 
-        # install-sd-aarch64 = nixos-generators.nixosGenerate {
-        #   system = "aarch64-linux";
-        #   inherit pkgs;
-        #   modules = defaultModules;
-        #   format = "sd-aarch64-installer";
-        # };
+        aarch64-linux = {
+          name = "install-sd-aarch64";
+          module = "${self.inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix";
+          output = "sdImage";
+        };
       };
+
+      image = images.${system} or null;
+
+      base = nixpkgsLib.nixosSystem {
+        inherit system;
+        modules = defaultModules ++ [
+          { nixpkgs.hostPlatform = system; }
+        ];
+      };
+    in
+    {
+      packages =
+        if image == null then
+          { }
+        else
+          {
+            "${image.name}" =
+              (base.extendModules {
+                modules = [ image.module ];
+              }).config.system.build.${image.output};
+          };
     };
   # for debugging
   #flake.nixosConfigurations = {
