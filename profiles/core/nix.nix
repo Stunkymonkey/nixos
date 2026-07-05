@@ -17,10 +17,7 @@ in
       daemonIOSchedClass = "idle";
 
       settings = {
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
+        trusted-users = [ "@wheel" ];
         auto-optimise-store = true;
         builders-use-substitutes = true;
       };
