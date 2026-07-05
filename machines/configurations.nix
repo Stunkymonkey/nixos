@@ -10,11 +10,28 @@ let
     sops-nix
     ;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
+
+  unfreePackages = [
+    "aspell-dict-en-science"
+    "claude-code"
+    "crush"
+    "discord"
+    "joypixels"
+    "mpv-convert-script"
+    "nvidia-x11"
+    "opencode"
+    "steam-unwrapped"
+    "steam"
+    "ventoy"
+    "via"
+    "vscode-extension-github-copilot"
+    "vscode-extension-ms-vscode-remote-remote-ssh"
+  ];
+
   overlay-unstable = final: _prev: {
     unstable = import nixpkgs-unstable {
       inherit (final.stdenv.hostPlatform) system;
-      # TODO 26.05: replace with nixpkgs.config.allowUnfreePackages
-      config.allowUnfree = true;
+      config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
     };
   };
 
@@ -29,8 +46,7 @@ let
         (
           { pkgs, ... }:
           {
-            # TODO 26.05: replace with nixpkgs.config.allowUnfreePackages
-            nixpkgs.config.allowUnfree = true;
+            nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
             nixpkgs.overlays = [
               overlay-unstable
               framework-plymouth.overlays.default
