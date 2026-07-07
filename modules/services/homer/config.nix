@@ -105,7 +105,7 @@
   config =
     let
       cfg = config.webapps;
-      appsWithName = builtins.filter (app: app.dashboard.name != null) (lib.attrValues cfg.apps);
+      appsWithName = lib.filter (app: app.dashboard.name != null) (lib.attrValues cfg.apps);
     in
     {
       lib.webapps.homerServices = lib.forEach cfg.dashboardCategories (
@@ -113,7 +113,7 @@
         let
           catTag = category.tag;
           catApps = lib.sort (a: b: a.dashboard.name < b.dashboard.name) (
-            builtins.filter (
+            lib.filter (
               app:
               let
                 cat = app.dashboard.category;

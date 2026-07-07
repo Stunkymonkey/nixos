@@ -12,7 +12,7 @@ let
   jellyfin-with-metrics = pkgs.jellyfin.overrideAttrs (attrs: {
     patches =
       let
-        existingPatches = if attrs ? patches && builtins.isList attrs.patches then attrs.patches else [ ];
+        existingPatches = if attrs ? patches && lib.isList attrs.patches then attrs.patches else [ ];
       in
       # with this patch the default setting for metrics is changed
       existingPatches ++ [ ./enable-metrics.patch ];
