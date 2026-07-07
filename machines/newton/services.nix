@@ -38,7 +38,7 @@ in
   my.services = {
     backup = {
       enable = true;
-      OnFailureMail = "server@buehler.rocks";
+      onFailureMail = "server@buehler.rocks";
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/ssh_key".path;
       paths = [ "/" ];
@@ -126,7 +126,7 @@ in
     };
     matrix-bot = {
       enable = true;
-      PasswortFile = secrets."matrix-bot/password".path;
+      passwordFile = secrets."matrix-bot/password".path;
     };
     grafana = {
       enable = true;

@@ -13,7 +13,7 @@ in
   my.services = {
     backup = {
       enable = true;
-      OnFailureMail = "server@buehler.rocks";
+      onFailureMail = "server@buehler.rocks";
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/ssh_key".path;
       paths = [ "/" ];

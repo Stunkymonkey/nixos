@@ -6,7 +6,7 @@ in
   options.my.hardware.drive-monitor = {
     enable = lib.mkEnableOption "drive-monitor configuration";
 
-    OnFailureMail = lib.mkOption {
+    onFailureMail = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       description = "Mail address where to send the error report";
       default = null;
@@ -16,12 +16,12 @@ in
 
   config = lib.mkIf cfg.enable {
     services = {
-      postfix.enable = cfg.OnFailureMail != null;
+      postfix.enable = cfg.onFailureMail != null;
       smartd = {
         enable = true;
-        notifications.mail = lib.mkIf (cfg.OnFailureMail != null) {
+        notifications.mail = lib.mkIf (cfg.onFailureMail != null) {
           enable = true;
-          recipient = cfg.OnFailureMail;
+          recipient = cfg.onFailureMail;
         };
       };
     };

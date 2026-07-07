@@ -41,12 +41,12 @@ in
       example = "/run/secrets/ssh_key";
     };
 
-    OnFailureNotification = lib.mkOption {
+    onFailureNotification = lib.mkOption {
       type = lib.types.bool;
       description = "whether to show a warning to all users or not";
       default = false;
     };
-    OnFailureMail = lib.mkOption {
+    onFailureMail = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       description = "Mail address where to send the error report";
       default = null;
@@ -84,7 +84,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # mails can only be delivered if postfix is available
-    services.postfix.enable = lib.mkIf (cfg.OnFailureMail != null) true;
+    services.postfix.enable = lib.mkIf (cfg.onFailureMail != null) true;
 
     services.borgbackup.jobs.hetzner = {
       # always backup everything and only define excludes
@@ -149,7 +149,7 @@ in
       postHook = ''
         if (( $exitStatus > 1 )); then
       ''
-      + lib.optionalString cfg.OnFailureNotification ''
+      + lib.optionalString cfg.onFailureNotification ''
         # iterate over all logged in users
         for user in $(users); do
           sway_pid=$(${pkgs.procps}/bin/pgrep -x "sway" -u "$user")
@@ -163,7 +163,7 @@ in
           fi
         done
       ''
-      + lib.optionalString (cfg.OnFailureMail != null) ''
+      + lib.optionalString (cfg.onFailureMail != null) ''
         journalctl -u borgbackup-job-hetzner.service --since "5 days ago" | ${pkgs.mailutils}/bin/mail -r "Administrator<root@buehler.rocks>" -s "Backup Error" server@buehler.rocks
         echo "sent mail"
       ''
@@ -172,7 +172,7 @@ in
       '';
 
       # for mail sending
-      readWritePaths = lib.optional (cfg.OnFailureMail != null) "/var/lib/postfix/queue/maildrop/";
+      readWritePaths = lib.optional (cfg.onFailureMail != null) "/var/lib/postfix/queue/maildrop/";
 
       startAt = "daily";
       persistentTimer = true;

@@ -86,12 +86,12 @@ in
         {
           ID = "alertmanager_service";
           Type = "alertmanager";
-          UserId = config.my.services.matrix-bot.Username;
+          UserId = config.my.services.matrix-bot.username;
           Config = {
             # url contains "alertmanager_service" encoded as base64
             webhook_url = "http://localhost:4050/services/hooks/YWxlcnRtYW5hZ2VyX3NlcnZpY2U";
             rooms = {
-              "${config.my.services.matrix-bot.RoomID}" = {
+              "${config.my.services.matrix-bot.roomId}" = {
                 #bots:nixos.org
                 text_template = ''
                   {{range .Alerts -}} [{{ .Status }}] {{index .Labels "alertname" }}: {{index .Annotations "description"}} {{ end -}}

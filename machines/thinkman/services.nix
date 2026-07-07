@@ -11,7 +11,7 @@ in
   my.services = {
     backup = {
       enable = true;
-      OnFailureNotification = true;
+      onFailureNotification = true;
       passwordFile = secrets."borgbackup/password".path;
       sshKeyFile = secrets."borgbackup/ssh_key".path;
       paths = [ "/" ];
