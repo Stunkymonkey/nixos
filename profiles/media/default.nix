@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.media;
 in
 {
-  options.my.profiles.media = with lib; {
-    enable = mkEnableOption "media profile";
+  options.my.profiles.media = {
+    enable = lib.mkEnableOption "media profile";
   };
 
   config = lib.mkIf cfg.enable {

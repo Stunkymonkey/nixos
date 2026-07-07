@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.sway-theme;
 in
 {
-  options.my.profiles.sway-theme = with lib; {
-    enable = mkEnableOption "sway-theme profile";
+  options.my.profiles.sway-theme = {
+    enable = lib.mkEnableOption "sway-theme profile";
   };
 
   config = lib.mkIf cfg.enable {

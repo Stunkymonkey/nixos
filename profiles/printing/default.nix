@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.printing;
 in
 {
-  options.my.profiles.printing = with lib; {
-    enable = mkEnableOption "printing profile";
+  options.my.profiles.printing = {
+    enable = lib.mkEnableOption "printing profile";
   };
 
   config = lib.mkIf cfg.enable {

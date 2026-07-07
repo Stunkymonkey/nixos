@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.filesystem;
 in
 {
-  options.my.profiles.filesystem = with lib; {
-    enable = mkEnableOption "filesystem profile";
+  options.my.profiles.filesystem = {
+    enable = lib.mkEnableOption "filesystem profile";
   };
 
   config = lib.mkIf cfg.enable {

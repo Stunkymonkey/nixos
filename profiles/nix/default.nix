@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.nix;
 in
 {
-  options.my.profiles.nix = with lib; {
-    enable = mkEnableOption "nix profile";
+  options.my.profiles.nix = {
+    enable = lib.mkEnableOption "nix profile";
   };
 
   config = lib.mkIf cfg.enable {

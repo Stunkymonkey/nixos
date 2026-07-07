@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.usb-iso;
 in
 {
-  options.my.profiles.usb-iso = with lib; {
-    enable = mkEnableOption "usb-iso profile";
+  options.my.profiles.usb-iso = {
+    enable = lib.mkEnableOption "usb-iso profile";
   };
 
   config = lib.mkIf cfg.enable {

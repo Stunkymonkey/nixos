@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.gnome;
 in
 {
-  options.my.profiles.gnome = with lib; {
-    enable = mkEnableOption "gnome profile";
+  options.my.profiles.gnome = {
+    enable = lib.mkEnableOption "gnome profile";
   };
 
   config = lib.mkIf cfg.enable {

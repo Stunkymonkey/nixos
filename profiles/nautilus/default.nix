@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.nautilus;
 in
 {
-  options.my.profiles.nautilus = with lib; {
-    enable = mkEnableOption "nautilus profile";
+  options.my.profiles.nautilus = {
+    enable = lib.mkEnableOption "nautilus profile";
   };
 
   config = lib.mkIf cfg.enable {

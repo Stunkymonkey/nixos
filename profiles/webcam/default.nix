@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.webcam;
 in
 {
-  options.my.profiles.webcam = with lib; {
-    enable = mkEnableOption "webcam profile";
+  options.my.profiles.webcam = {
+    enable = lib.mkEnableOption "webcam profile";
   };
 
   config = lib.mkIf cfg.enable {

@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.meeting;
 in
 {
-  options.my.profiles.meeting = with lib; {
-    enable = mkEnableOption "meeting profile";
+  options.my.profiles.meeting = {
+    enable = lib.mkEnableOption "meeting profile";
   };
 
   config = lib.mkIf cfg.enable {

@@ -3,8 +3,8 @@ let
   cfg = config.my.profiles.sway-autostart;
 in
 {
-  options.my.profiles.sway-autostart = with lib; {
-    enable = mkEnableOption "sway-autostart profile";
+  options.my.profiles.sway-autostart = {
+    enable = lib.mkEnableOption "sway-autostart profile";
   };
 
   config = lib.mkIf cfg.enable {

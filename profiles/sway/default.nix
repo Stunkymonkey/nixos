@@ -15,8 +15,8 @@ in
     ./theme.nix
   ];
 
-  options.my.profiles.sway = with lib; {
-    enable = mkEnableOption "sway profile";
+  options.my.profiles.sway = {
+    enable = lib.mkEnableOption "sway profile";
   };
 
   config = lib.mkIf cfg.enable {

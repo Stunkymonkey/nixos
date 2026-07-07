@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.sync;
 in
 {
-  options.my.profiles.sync = with lib; {
-    enable = mkEnableOption "sync profile";
+  options.my.profiles.sync = {
+    enable = lib.mkEnableOption "sync profile";
   };
 
   config = lib.mkIf cfg.enable {

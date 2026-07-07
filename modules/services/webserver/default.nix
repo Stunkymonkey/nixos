@@ -20,7 +20,7 @@ let
         '';
       };
       port = lib.mkOption {
-        type = with lib.types; nullOr port;
+        type = lib.types.nullOr lib.types.port;
         default = null;
         example = 8080;
         description = ''
@@ -29,7 +29,7 @@ let
         '';
       };
       root = lib.mkOption {
-        type = with lib.types; nullOr path;
+        type = lib.types.nullOr lib.types.path;
         default = null;
         example = "/var/www/blog";
         description = ''
@@ -38,7 +38,7 @@ let
         '';
       };
       extraConfig = lib.mkOption {
-        type = with lib.types; nullOr lines;
+        type = lib.types.nullOr lib.types.lines;
         example = lib.literalExpression ''
           {
             locations."/socket" = {

@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.update;
 in
 {
-  options.my.profiles.update = with lib; {
-    enable = mkEnableOption "update profile";
+  options.my.profiles.update = {
+    enable = lib.mkEnableOption "update profile";
   };
 
   config = lib.mkIf cfg.enable {

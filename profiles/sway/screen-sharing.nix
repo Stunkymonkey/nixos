@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.sway-screen-sharing;
 in
 {
-  options.my.profiles.sway-screen-sharing = with lib; {
-    enable = mkEnableOption "sway-screen-sharing profile";
+  options.my.profiles.sway-screen-sharing = {
+    enable = lib.mkEnableOption "sway-screen-sharing profile";
   };
 
   config = lib.mkIf cfg.enable {

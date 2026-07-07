@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.powersave;
 in
 {
-  options.my.profiles.powersave = with lib; {
-    enable = mkEnableOption "powersave profile";
+  options.my.profiles.powersave = {
+    enable = lib.mkEnableOption "powersave profile";
   };
 
   config = lib.mkIf cfg.enable {

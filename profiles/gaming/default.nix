@@ -8,13 +8,13 @@ let
   cfg = config.my.profiles.gaming;
 in
 {
-  options.my.profiles.gaming = with lib; {
-    enable = mkEnableOption "gaming profile";
+  options.my.profiles.gaming = {
+    enable = lib.mkEnableOption "gaming profile";
 
     gamescope = {
-      enable = mkEnableOption "gamescope profile";
-      username = mkOption {
-        type = types.str;
+      enable = lib.mkEnableOption "gamescope profile";
+      username = lib.mkOption {
+        type = lib.types.str;
         default = "felix";
         description = "Username for gamescope autologin";
       };

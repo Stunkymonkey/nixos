@@ -3,8 +3,8 @@ let
   cfg = config.my.profiles.sway-location;
 in
 {
-  options.my.profiles.sway-location = with lib; {
-    enable = mkEnableOption "sway-location profile";
+  options.my.profiles.sway-location = {
+    enable = lib.mkEnableOption "sway-location profile";
   };
 
   config = lib.mkIf cfg.enable {

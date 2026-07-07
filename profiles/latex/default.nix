@@ -8,8 +8,8 @@ let
   cfg = config.my.profiles.latex;
 in
 {
-  options.my.profiles.latex = with lib; {
-    enable = mkEnableOption "latex profile";
+  options.my.profiles.latex = {
+    enable = lib.mkEnableOption "latex profile";
   };
 
   config = lib.mkIf cfg.enable {
