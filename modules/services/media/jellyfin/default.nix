@@ -35,7 +35,7 @@ in
           job_name = "jellyfin";
           static_configs = [
             {
-              targets = [ "localhost:${toString cfg.port}" ];
+              targets = [ "localhost:8096" ];
               labels = {
                 instance = config.networking.hostName;
               };
