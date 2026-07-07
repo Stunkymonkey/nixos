@@ -27,9 +27,10 @@ in
         options = "--delete-older-than 30d";
       };
 
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       registry = {
         nixpkgs.flake = inputs.nixpkgs;
