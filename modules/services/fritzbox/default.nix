@@ -19,7 +19,7 @@ in
     };
 
     passwordFile = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.path;
       example = "/var/lib/fritz/password.txt";
       description = "password stored in a file";
     };

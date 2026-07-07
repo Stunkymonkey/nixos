@@ -30,7 +30,7 @@ in
     };
 
     musicFolder = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.path;
       example = "/mnt/music/";
       description = "Music folder";
     };

@@ -38,7 +38,6 @@ in
                 Prometheus alert expression.
               '';
               example = "up == 0";
-              default = null;
             };
             description = lib.mkOption {
               type = lib.types.str;
@@ -46,7 +45,6 @@ in
                 Prometheus alert message.
               '';
               example = "Prometheus encountered value {{ $value }} with {{ $labels }}";
-              default = null;
             };
             labels = lib.mkOption {
               type = lib.types.nullOr (lib.types.attrsOf lib.types.str);

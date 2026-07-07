@@ -24,7 +24,6 @@ in
                 Loki alert expression.
               '';
               example = ''count_over_time({job=~"secure"} |="sshd[" |~": Failed|: Invalid|: Connection closed by authenticating user" | __error__="" [15m]) > 15'';
-              default = null;
             };
             description = lib.mkOption {
               type = lib.types.str;
@@ -32,7 +31,6 @@ in
                 Loki alert message.
               '';
               example = "Prometheus encountered value {{ $value }} with {{ $labels }}";
-              default = null;
             };
             labels = lib.mkOption {
               type = lib.types.nullOr (lib.types.attrsOf lib.types.str);

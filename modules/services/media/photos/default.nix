@@ -26,7 +26,7 @@ in
     };
 
     path = lib.mkOption {
-      type = lib.types.path;
+      type = lib.types.nullOr lib.types.path;
       default = null;
       example = "/data/photos";
       description = ''

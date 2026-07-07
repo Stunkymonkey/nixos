@@ -14,7 +14,7 @@ in
     additionalFonts = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = [ ];
-      example = "fira";
+      example = lib.literalExpression "with pkgs; [ fira ]";
       description = "Which additional fonts should be added as well";
     };
   };

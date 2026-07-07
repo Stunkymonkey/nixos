@@ -27,7 +27,7 @@ in
     };
 
     powerInPercent = lib.mkOption {
-      type = lib.types.int;
+      type = lib.types.ints.between 0 100;
       default = 10;
       description = ''
         Power percentage threshold to trigger the action.

@@ -14,9 +14,8 @@ in
 
     appKeyFile = lib.mkOption {
       type = lib.types.path;
-      description = "appkey for the service.";
-      example = "/run/secrets/freshrss";
-      default = "base64:ICs6jizTJnu4U8Sl/+GKIUC6TSK+0i+Lu84CicRhTNE=";
+      description = "Path to a file containing the APP_KEY for Firefly III.";
+      example = "/run/secrets/firefly/app-key";
     };
   };
 
