@@ -14,6 +14,11 @@ in
       example = 8080;
       description = "Internal port";
     };
+    internalDomain = lib.mkOption {
+      type = lib.types.str;
+      default = "buehler.internal";
+      description = "Internal DNS base domain for Headscale";
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -28,7 +33,7 @@ in
           enable = true;
           inherit (cfg) port;
           settings = {
-            dns.base_domain = "buehler.internal";
+            dns.base_domain = cfg.internalDomain;
             dns.override_local_dns = false;
             server_url = "https://vpn.${domain}";
             metrics_listen_addr = "127.0.0.1:8091";
