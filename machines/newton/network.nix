@@ -21,7 +21,6 @@ in
       "2605:a140:5028:1200::1" # ns3.contabo.net
     ];
     domain = "buehler.rocks";
-    search = [ "buehler.rocks" ];
 
     defaultGateway = {
       address = ip4_gw;

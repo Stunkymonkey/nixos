@@ -3,8 +3,5 @@ _: {
     8080 # aria
   ];
 
-  networking = {
-    domain = "stunkymonkey.de";
-    search = [ "stunkymonkey.de" ];
-  };
+  networking.domain = "stunkymonkey.de";
 }

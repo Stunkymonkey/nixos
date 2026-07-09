@@ -1,6 +1,3 @@
 _: {
-  networking = {
-    domain = "buehler.rocks";
-    search = [ "buehler.rocks" ];
-  };
+  networking.domain = "buehler.rocks";
 }
