@@ -18,6 +18,8 @@ let
     "discord"
     "joypixels"
     "mpv-convert-script"
+    "nvidia-kernel-modules"
+    "nvidia-settings"
     "nvidia-x11"
     "opencode"
     "steam-unwrapped"
