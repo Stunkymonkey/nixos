@@ -22,6 +22,7 @@
 
   my.hardware = {
     action-on-low-power.enable = true;
+    auto-brightness.enable = true;
     bluetooth.enable = true;
     debug.enable = true;
     drive-monitor.enable = true;

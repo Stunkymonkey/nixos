@@ -3,6 +3,7 @@
 {
   imports = [
     ./action-on-low-power
+    ./auto-brightness
     ./bluetooth
     ./debug
     ./drive-monitor
