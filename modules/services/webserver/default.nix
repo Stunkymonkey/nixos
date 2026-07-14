@@ -173,7 +173,14 @@ in
                 ]
               );
           in
-          lib.listToAttrs (map mkVHost cfg.virtualHosts);
+          lib.listToAttrs (map mkVHost cfg.virtualHosts)
+          // {
+            # Catch-all for subdomains without a vhost above (e.g. wildcard DNS).
+            "*.${domain}" = {
+              useACMEHost = domain;
+              extraConfig = "abort";
+            };
+          };
       };
 
       prometheus.scrapeConfigs = [
