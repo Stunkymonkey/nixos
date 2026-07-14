@@ -162,8 +162,8 @@ in
                       ''}
                       ${lib.optionalString (args.port != null) ''
                         reverse_proxy localhost:${toString args.port} {
-                          # remove CORS headers from proxied server, because duplicate headers are not allowed
-                          # remove after new release: https://github.com/navidrome/navidrome/commit/657fe11f5327ff7a3cb6aa9308b0bb7c71eea5c6
+                          # TODO: remove CORS headers from proxied server, because duplicate headers are not allowed
+                          # navidrome hardcodes Access-Control-Allow-Origin: * on most routes; remove once configurable/removed upstream: https://github.com/navidrome/navidrome/blob/fe6ac2e577f14090a2fb33a9e4c91c1bee6196a7/server/middlewares.go#L89
                           header_down -Access-Control-Allow-Origin
                         }
                       ''}
