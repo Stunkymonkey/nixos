@@ -1,8 +1,8 @@
 {
   description = "NixOS configuration";
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
