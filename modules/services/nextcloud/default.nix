@@ -187,7 +187,7 @@ in
         name = "Cloud";
         category = "media";
         icon = "cloud";
-        url = "https://cloud.${domain}/login";
+        url = "https://cloud.${domain}";
       };
     };
   };
