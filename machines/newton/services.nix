@@ -12,6 +12,9 @@ in
     "sso/felix/password-hash" = { };
     "sso/felix/totp-secret" = { };
     "paperless/password" = { };
+    "headscale/cookie" = {
+      owner = config.users.users.headscale.name;
+    };
     "git/password" = {
       owner = config.users.users.forgejo.name;
     };
@@ -152,6 +155,10 @@ in
     vpn = {
       enable = true;
       isMaster = true;
+      webInterface = {
+        enable = true;
+        cookieSecretFile = secrets."headscale/cookie".path;
+      };
     };
   };
 }

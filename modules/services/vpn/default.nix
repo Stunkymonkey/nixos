@@ -19,6 +19,23 @@ in
       default = "buehler.internal";
       description = "Internal DNS base domain for Headscale";
     };
+    webInterface = {
+      enable = lib.mkEnableOption "Headplane web interface for Headscale";
+      port = lib.mkOption {
+        type = lib.types.port;
+        default = 8092;
+        example = 8080;
+        description = "Internal port";
+      };
+      cookieSecretFile = lib.mkOption {
+        type = lib.types.path;
+        description = ''
+          Path to a file containing the Headplane session cookie secret.
+          Must be exactly 32 characters long.
+        '';
+        example = "/run/secrets/headplane/cookie_secret";
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -73,16 +90,36 @@ in
             };
           };
         };
+      })
 
-        # waiting for a nice web-ui
-        # webapps.apps.vpn = {
-        #   dashboard = {
-        #     name = "VPN";
-        #     category = "infra";
-        #     icon = "shield-halved";
-        #     url = "https://vpn.${domain}";
-        #   };
-        # };
+      (lib.mkIf (cfg.isMaster && cfg.webInterface.enable) {
+        services.headplane = {
+          enable = true;
+          settings.server = {
+            inherit (cfg.webInterface) port;
+            cookie_secret_path = cfg.webInterface.cookieSecretFile;
+          };
+        };
+
+        my.services.webserver.virtualHosts = [
+          {
+            subdomain = "vpn-admin";
+            inherit (cfg.webInterface) port;
+            # Headplane only serves its UI under /admin, not at the bare root.
+            extraConfig = ''
+              redir / /admin permanent
+            '';
+          }
+        ];
+
+        webapps.apps.vpn = {
+          dashboard = {
+            name = "VPN";
+            category = "infra";
+            icon = "shield-halved";
+            url = "https://vpn-admin.${domain}";
+          };
+        };
       })
     ]
   );
