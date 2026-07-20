@@ -3,7 +3,7 @@
   ...
 }:
 {
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   services.power-profiles-daemon.enable = true;
   services.tlp.enable = false;
