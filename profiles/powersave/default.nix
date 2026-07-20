@@ -21,6 +21,11 @@ in
     powerManagement = {
       cpuFreqGovernor = "powersave";
       powertop.enable = true;
+      # powertop --auto-tune re-enables USB autosuspend for every device, clobbering the udev rules below. Re-trigger them afterwards.
+      powertop.postStart = ''
+        ${lib.getExe' pkgs.systemd "udevadm"} trigger -c bind -s usb -a idVendor=3434 -a idProduct=0b31
+        ${lib.getExe' pkgs.systemd "udevadm"} trigger -c bind -s usb -a idVendor=3434 -a idProduct=0123
+      '';
     };
 
     services = {
