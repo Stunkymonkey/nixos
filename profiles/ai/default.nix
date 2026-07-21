@@ -17,6 +17,8 @@ in
       unstable.crush
       unstable.claude-code
       unstable.opencode
+      github-cli
+      glab
     ];
   };
 }
