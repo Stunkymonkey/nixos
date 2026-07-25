@@ -11,6 +11,8 @@ in
   options.my.profiles.gaming = {
     enable = lib.mkEnableOption "gaming profile";
 
+    games.enable = lib.mkEnableOption "games packages";
+
     gamescope = {
       enable = lib.mkEnableOption "gamescope profile";
       username = lib.mkOption {
@@ -26,18 +28,13 @@ in
     lib.mkMerge [
       {
         environment.systemPackages = with pkgs; [
-          blobby
           discord
           gamemode
-          unstable.luanti
           mangohud
           moonlight-qt # steam-link stream
-          openttd
-          prismlauncher # replace minecraft
           SDL
           SDL2
           steam
-          supertuxkart
           wine
           winetricks
         ];
@@ -61,6 +58,17 @@ in
 
         services.pulseaudio.support32Bit = true;
       }
+
+      (lib.mkIf cfg.games.enable {
+        environment.systemPackages = with pkgs; [
+          blobby
+          unstable.luanti
+          openrct2
+          openttd
+          prismlauncher # replace minecraft
+          supertuxkart
+        ];
+      })
 
       (lib.mkIf cfg.gamescope.enable {
         programs = {

@@ -9,7 +9,10 @@ _: {
     desktop-dev.enable = true;
     development.enable = true;
     filesystem.enable = true;
-    gaming.enable = true;
+    gaming = {
+      enable = true;
+      games.enable = true;
+    };
     latex.enable = true;
     media.enable = true;
     meeting.enable = true;
