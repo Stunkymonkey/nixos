@@ -24,7 +24,6 @@ in
       kicad # pcb design
       inlyne
       meld
-      qgis
       sqlitebrowser
       (vscode-with-extensions.override {
         vscode = vscodium;
