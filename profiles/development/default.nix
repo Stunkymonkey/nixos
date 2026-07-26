@@ -20,11 +20,7 @@ in
       entr
       ripgrep
       # general
-      clang
-      cmake
       gnumake
-      meson
-      ninja
       # websites
       hugo
       # scripts
