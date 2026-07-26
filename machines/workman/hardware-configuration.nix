@@ -33,7 +33,6 @@
       gpuFlavor = "amd";
     };
     id-card.enable = true;
-    keychron.enable = true;
     monitor.enable = true;
     sound.enable = true;
     thunderbolt.enable = true;
