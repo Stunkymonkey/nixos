@@ -62,7 +62,6 @@ in
       (lib.mkIf cfg.games.enable {
         environment.systemPackages = with pkgs; [
           blobby
-          unstable.luanti
           openrct2
           openttd
           prismlauncher # replace minecraft
