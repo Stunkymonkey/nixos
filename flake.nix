@@ -81,6 +81,8 @@
             inherit system;
           };
 
+          formatter = pkgs.nixfmt;
+
           # enable git-hook checks
           pre-commit.settings = {
             package = pkgs.prek;
