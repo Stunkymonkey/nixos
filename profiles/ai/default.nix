@@ -14,7 +14,6 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      unstable.crush
       unstable.claude-code
       unstable.opencode
       github-cli
