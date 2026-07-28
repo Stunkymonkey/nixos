@@ -11,8 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-hardware.url = "github:Stunkymonkey/nixos-hardware/dell-precision-5820";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixinate = {
       url = "github:matthewcroughan/nixinate";
