@@ -9,7 +9,13 @@ in
   boot.kernelParams = [
     "ip=${ip4_addr}::${ip4_gw}:255.255.240.0:${config.networking.hostName}:${ifname}:off"
   ];
+
+  # in conflict with networkd
+  my.profiles.core.network.enable = false;
+
   networking = {
+    useNetworkd = true;
+
     nameservers = [
       "86.54.11.1" # protective.joindns4.eu
       "5.180.150.13" # ns1.contabo.net
