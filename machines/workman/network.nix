@@ -3,7 +3,7 @@ _: {
   # hotfixes for dns settings
   networking.extraHosts =
     let
-      serverle_ip = "192.168.178.60";
+      serverle_ip = "192.168.178.110";
     in
     ''
       ${serverle_ip} stunkymonkey.de
