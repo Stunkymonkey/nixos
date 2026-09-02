@@ -16,7 +16,6 @@ in
     environment.systemPackages = with pkgs; [
       audacity # audio editing
       chromaprint # music-brainz fingerprint
-      feishin # cloud-music-player
       ffmpeg # general purpose
       gallery-dl # image donwloader
       handbrake # video converter
