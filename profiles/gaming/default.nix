@@ -65,7 +65,6 @@ in
           openrct2
           openttd
           prismlauncher # replace minecraft
-          supertuxkart
         ];
       })
 
