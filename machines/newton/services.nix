@@ -54,6 +54,10 @@ in
     homer = {
       enable = true;
     };
+    # PDF toolkit
+    pdf-toolkit = {
+      enable = true;
+    };
     # remote build
     remote-build.enable = true;
     # RSS provider for websites that do not provide any feeds

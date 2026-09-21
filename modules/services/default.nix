@@ -32,6 +32,7 @@
     ./otel
     ./paperless
     ./passworts
+    ./pdf-toolkit
     ./prometheus
     ./remote-build
     ./rss-bridge
