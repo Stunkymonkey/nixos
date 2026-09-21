@@ -1,5 +1,10 @@
 # self-hosted photo gallery
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.my.services.photos;
   inherit (config.networking) domain;
@@ -38,6 +43,9 @@ in
   config = lib.mkIf cfg.enable {
     services.immich = {
       enable = true;
+      # TODO: drop this pin once nixpkgs 26.11 ships immich 3.x;
+      # 26.05 is stuck on the EOL 2.x branch (CVE-2026-59258, CVE-2026-82272)
+      package = pkgs.unstable.immich;
       # mediaLocation = path;
       inherit (cfg) secretsFile;
       settings = {
