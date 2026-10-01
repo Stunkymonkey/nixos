@@ -88,7 +88,7 @@ in
             enable = true;
             settings = {
               default_session = {
-                command = "${lib.getExe pkgs.gamescope} -W 1920 -H 1080 -f -e --xwayland-count 2 --hdr-enabled --hdr-itm-enabled -- ${lib.getExe config.programs.steam.package} -pipewire-dmabuf -gamepadui -steamos3 > /dev/null 2>&1";
+                command = "${lib.getExe pkgs.gamescope} -f -e --xwayland-count 2 -- ${lib.getExe config.programs.steam.package} -pipewire-dmabuf -gamepadui -steamos3 > /dev/null 2>&1";
                 user = cfg.gamescope.username;
               };
             };
