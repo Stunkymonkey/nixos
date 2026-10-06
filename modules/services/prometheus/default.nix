@@ -22,7 +22,7 @@ in
 
     retentionTime = lib.mkOption {
       type = lib.types.str;
-      default = "2y";
+      default = "1y";
       example = "1m";
       description = "retention time";
     };
