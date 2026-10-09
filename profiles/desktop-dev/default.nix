@@ -14,17 +14,16 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      bruno
+      bruno # http/api debugger
       chromium
-      dbeaver-bin
-      filezilla
+      dbeaver-bin # database editor
+      filezilla # ftp
       fritzing # wiring design
       gnome-font-viewer
       imhex # hex editor
-      kicad # pcb design
       inlyne
-      meld
-      sqlitebrowser
+      meld # diff viewer
+      sqlitebrowser # sqlite editor
       (vscode-with-extensions.override {
         vscode = vscodium;
         vscodeExtensions =
