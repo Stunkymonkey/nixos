@@ -33,6 +33,9 @@ in
 
     services.seatd.enable = true;
 
+    # enabled by graphical-desktop, pulls in large mbrola voices
+    services.speechd.enable = false;
+
     programs = {
       foot.enable = true;
       wshowkeys.enable = true;
