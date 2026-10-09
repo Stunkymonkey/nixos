@@ -17,7 +17,7 @@ in
       biber
       pdfpc
       qtikz
-      texlive.combined.scheme-full
+      texlive.combined.scheme-medium
       texstudio
     ];
   };
