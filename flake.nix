@@ -111,6 +111,7 @@
                 settings.ignored-words = [
                   "flate"
                   "hda"
+                  "mosquitto"
                 ];
               };
               yamllint = {
