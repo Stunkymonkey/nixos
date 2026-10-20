@@ -106,10 +106,15 @@ in
         extraComponents = [
           "backup"
           "esphome"
+          "mqtt"
           "shelly"
           "prometheus"
         ]
         ++ cfg.extraComponents;
+
+        customComponents = with pkgs.home-assistant-custom-components; [
+          valetudo
+        ];
       };
 
       prometheus.scrapeConfigs = [
