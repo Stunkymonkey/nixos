@@ -71,6 +71,10 @@ in
     ssh-server = {
       enable = true;
     };
+    initrd-ssh = {
+      enable = true;
+      interface = "end0";
+    };
 
     jellyfin = {
       enable = true;
