@@ -15,9 +15,13 @@ in
     };
 
     hostKeys = lib.mkOption {
-      type = lib.types.listOf lib.types.path;
-      example = [ "/run/secret/ssh_host_ed25519_key" ];
-      description = "the host keys to use for the SSH server for initrd.";
+      type = lib.types.listOf (lib.types.either lib.types.str lib.types.path);
+      example = [ ./initrd_ssh_host_ed25519_key ];
+      description = ''
+        the host keys to use for the SSH server for initrd.
+        Use unquoted paths for bootloaders without initrd secrets support (e.g. extlinux).
+      '';
+      default = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
     };
   };
 
@@ -29,7 +33,7 @@ in
         ssh = {
           enable = true;
           port = 2222;
-          hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
+          inherit (cfg) hostKeys;
           authorizedKeys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFx6OLwL9MbkD3mnMsv+xrzZHN/rwCTgVs758SCLG0h felix@workman"
           ];
