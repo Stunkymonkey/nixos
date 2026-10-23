@@ -71,6 +71,7 @@ in
     ssh-server = {
       enable = true;
     };
+    remote-build.enable = true;
     initrd-ssh = {
       enable = true;
       interface = "end0";
