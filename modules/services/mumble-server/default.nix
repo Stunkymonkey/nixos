@@ -41,7 +41,7 @@ in
       prometheus.rules = {
         mumble_not_running = {
           condition = ''systemd_unit_state{name="murmur.service", state!="active"} > 0'';
-          description = "{{$labels.host}} should have a running {{$labels.name}}";
+          description = "{{ $labels.instance }} should have a running {{$labels.name}}";
         };
       };
     };
