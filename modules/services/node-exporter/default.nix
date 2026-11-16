@@ -98,7 +98,7 @@ in
     my.services.prometheus.rules = {
       nixpkgs_out_of_date = {
         condition = ''(time() - flake_input_last_modified{input="nixpkgs"}) / (60 * 60 * 24) > 14'';
-        description = "{{$labels.host}}: nixpkgs flake is older than two weeks";
+        description = "{{ $labels.instance }}: nixpkgs flake is older than two weeks";
       };
       # disk space
       filesystem_full_shortly = {
@@ -145,7 +145,7 @@ in
       };
       swap_is_filling = {
         condition = "(1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80";
-        description = "{{$labels.host}} is using {{$value}} (>80%) of its swap space";
+        description = "{{ $labels.instance }} is using {{$value}} (>80%) of its swap space";
       };
       oom_kill_detected = {
         condition = "increase(node_vmstat_oom_kill[1m]) > 0";
@@ -164,17 +164,17 @@ in
       # uptime
       reboot = {
         condition = "node_time_seconds - node_boot_time_seconds < (5 * 30)";
-        description = "{{$labels.host}} just rebooted";
+        description = "{{ $labels.instance }} just rebooted";
       };
       uptime = {
         condition = "node_time_seconds - node_boot_time_seconds > (30 * 24 * 60 * 60)";
-        description = "Uptime monster: {{$labels.host}} has been up for more than 30 days";
+        description = "Uptime monster: {{ $labels.instance }} has been up for more than 30 days";
       };
       # systemd
       systemd_unit_crashed = {
         # ignore user services
         condition = ''node_systemd_unit_state{state="failed", name!~"user@\\d+.service"} == 1'';
-        description = "Host SystemD service crashed (instance {{ $labels.instance }})";
+        description = "{{ $labels.instance }}: systemd service {{ $labels.name }} has failed";
       };
       # time
       clock_not_synchronising = {
